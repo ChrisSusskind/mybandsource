@@ -1,7 +1,8 @@
-# README
+# MyBandSource
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a band social networking website for people to get more out of the listening experience.
+
+
 
 Things you may want to cover:
 
