@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one:
+  name: "Tommy 2 Tone"
+  real_name: "Jebediah Jenkins"
+  profile: "A huge fag band who plays weddings."
+  data_quality: "Shit"
+  location: "Bumfuck nowhere, AL" 
+
+two:
+  name: "Bimbo Sally and the Shit Quartet"
+  real_name: "Alexi Mundo"
+  profile: "Machisimo incarnate."
+  data_quality: "Tremendous"
+  location: "Boston..." 
