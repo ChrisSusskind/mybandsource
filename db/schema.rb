@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20170204231738) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "artists", force: :cascade do |t|
     t.string   "name",           null: false
     t.string   "real_name"
@@ -26,9 +29,9 @@ ActiveRecord::Schema.define(version: 20170204231738) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.integer  "genre_id"
-    t.index ["genre_id"], name: "index_artists_on_genre_id"
-    t.index ["location"], name: "index_artists_on_location"
-    t.index ["name"], name: "index_artists_on_name"
+    t.index ["genre_id"], name: "index_artists_on_genre_id", using: :btree
+    t.index ["location"], name: "index_artists_on_location", using: :btree
+    t.index ["name"], name: "index_artists_on_name", using: :btree
   end
 
   create_table "genres", force: :cascade do |t|
@@ -36,7 +39,7 @@ ActiveRecord::Schema.define(version: 20170204231738) do
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["name"], name: "index_genres_on_name", unique: true
+    t.index ["name"], name: "index_genres_on_name", unique: true, using: :btree
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -53,8 +56,8 @@ ActiveRecord::Schema.define(version: 20170204231738) do
   create_table "subscriptions", force: :cascade do |t|
     t.integer "user_id",   null: false
     t.integer "artist_id", null: false
-    t.index ["artist_id"], name: "index_subscriptions_on_artist_id"
-    t.index ["user_id"], name: "index_subscriptions_on_user_id"
+    t.index ["artist_id"], name: "index_subscriptions_on_artist_id", using: :btree
+    t.index ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -72,9 +75,9 @@ ActiveRecord::Schema.define(version: 20170204231738) do
     t.string   "last_sign_in_ip"
     t.string   "name"
     t.string   "location"
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["location"], name: "index_users_on_location"
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["location"], name: "index_users_on_location", using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
 end

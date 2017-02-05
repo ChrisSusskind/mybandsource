@@ -10,4 +10,6 @@ class User < ApplicationRecord
 
 	#For user to review associations
 	has_many :reviews, dependent: :destroy
+
+	validates :name, presence: true
 end
