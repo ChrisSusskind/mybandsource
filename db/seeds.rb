@@ -10,6 +10,11 @@
 
 User.create(name: 'eric', email: "e@turtle.com", password: "turtle")
 
+Genre.populate 20 do |genre|
+	genre.name 				= Faker::Lorem.unique.word
+	genre.description 		= Faker::Lorem.sentence
+end
+
 Artist.populate 100 do |artist|
 	artist.name				= Faker::RockBand.name
 	artist.real_name		= Faker::Name.name
@@ -23,12 +28,9 @@ Artist.populate 100 do |artist|
 	artist.twitter_url		= Faker::Internet.url('twitter.com')
 	artist.created_at		= Faker::Time.between(DateTime.now-1, DateTime.now)
 	artist.updated_at		= DateTime.now
+	artist.genre_id			= Genre.first.id
 end
 
-Genre.populate 20 do |genre|
-	genre.name 				= Faker::Lorem.unique.word
-	genre.description 		= Faker::Lorem.sentence
-end
 
 User.populate 50 do |user|
 	user.email				= Faker::Internet.unique.safe_email
