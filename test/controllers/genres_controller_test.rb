@@ -2,7 +2,7 @@ require 'test_helper'
 
 class GenresControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @genre = genres(:one)
+    @genre = Genre.first
   end
 
   test "should get index" do
