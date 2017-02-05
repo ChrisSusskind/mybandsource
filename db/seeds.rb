@@ -30,7 +30,7 @@ Genre.populate 20 do |genre|
 	genre.description 		= Faker::Lorem.sentence
 end
 
-User.populate 500 do |user|
+User.populate 50 do |user|
 	user.email				= Faker::Internet.unique.safe_email
 	user.name 				= Faker::Name.name
 	user.location 			= Faker::Address.city
