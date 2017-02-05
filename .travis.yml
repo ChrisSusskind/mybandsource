@@ -5,10 +5,10 @@ rvm:
 cache: bundler
 
 env:
-- DB=sqlite
+- DB=postgresql
 
 script:
-- RAILS_ENV=test bundle exec rake db:migrate --trace
+- RAILS_ENV=test bundle exec rake db:setup --trace
 - bundle exec rake
 
 notifications:

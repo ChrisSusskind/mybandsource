@@ -8,7 +8,7 @@
 
 [User, Artist, Genre].each(&:delete_all)
 
-User.create(email: "e@turtle.com", password: "turtle")
+User.create(name: 'eric', email: "e@turtle.com", password: "turtle")
 
 Artist.populate 100 do |artist|
 	artist.name				= Faker::RockBand.name

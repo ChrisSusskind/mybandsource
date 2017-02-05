@@ -5,7 +5,6 @@ class UserArtistReviewsAssociationTest < ActionDispatch::IntegrationTest
   #   assert true
   # end
 
-  #ATTENTION Not sure why this test doesn't result in an error as a review shouldn't be allowed to be create w/o an artist id (based on validation, DB constraints)
   test "create user review" do
     user = User.create(name: 'peter', email: 'peter@test.com', password: 'xxxxxxx', password_confirmation: 'xxxxxxx')
     artist = Artist.create(name: 'John', data_quality: 'ehh')
