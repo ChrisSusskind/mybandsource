@@ -1,13 +1,15 @@
 
 <div class="container-fluid">
+
+	<div class="row justify-content-center">
+		<h1 class="display-2 text-center">Reinventing Music Conversation</h1>
+	</div>
+
 	<!-- Search block -->
 	<div class="row justify-content-center p-4">
 		<div class="col-8">
 			<div class="input-group input-group-lg">
 				<input type="text" class="form-control" placeholder="Search for something">
-				<span class="input-group-btn">
-					<button class="btn btn-secondary" type="button">Go!</button>
-				</span>
 			</div>
 		</div>
 	</div>
@@ -15,7 +17,6 @@
 	<hr>
 
 	<div class="container">
-		<h1 class="display-3">Results</h1>
 		<div class="card-columns">
 
 			<% @artists.each do |artist| %>

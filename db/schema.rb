@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 20170207054149) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
     t.string   "name",                   default: "", null: false
     t.string   "location"
     t.string   "picture"
