@@ -38,4 +38,9 @@ User.populate 50 do |user|
 	user.encrypted_password	= Faker::Crypto.sha1
 	user.sign_in_count		= 0
 	user.picture			= Faker::LoremPixel.image("150x150", true, 'people')
+
+	Subscription.populate 10 do |subscription|
+		subscription.user_id 		= user.id	
+		subscription.artist_id 		= Artist.limit(1).order("RANDOM()").first.id
+	end
 end
