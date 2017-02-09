@@ -15,3 +15,14 @@
 
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
+
+.jumbotron {
+  background-color: rgb(170,24,42);
+}
+
+.verified_checkmark{
+  float: right;
+  position: relative;
+  bottom: 30px;
+  right: 5px;
+}

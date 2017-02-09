@@ -1,6 +1,44 @@
 <div class="container">
 
-	<h1 class="display-3"><%= @artist.name %></h1>
-	<p class="lead"><%= @artist.profile %></p>
+	<div class="row">
+		<div class="col-sm-3">
+			<img src="<%= Faker::LoremPixel.image("200x200") %>" class="rounded">
+		</div>
+		<div class="col-sm-9">
+			<h1><%= @artist.name %></h1>
+			<p class="lead">Real Name: <%= @artist.real_name %></p>
+			<p class="lead">Location: <%= @artist.location %></p>
+			<p class="lead">Genre: <%= @artist.genre.name %></p>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-6">
+			<p class="lead"><%= @artist.profile %></p>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-2 card">
+			<div class="card-block">
+				<h5>Twitter Link</h5>
+			</div>
+		</div>
+		<div class="col-sm-2 card">
+			<div class="card-block">
+				<h5>Soundcloud Link</h5>
+			</div>
+		</div>
+		<div class="col-sm-2 card">
+			<div class="card-block">
+				<h5>Facebook Link</h5>
+			</div>
+		</div>
+		<div class="col-sm-2 card">
+			<div class="card-block">
+				<h5>Spotify Link</h5>
+			</div>
+		</div>
+	</div>
 
 </div>

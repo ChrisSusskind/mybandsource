@@ -6,21 +6,21 @@ class SubscriptionsAssociationTest < ActionDispatch::IntegrationTest
   # end
 
   test "user subscribes to an artist successfully" do
-    user = User.create(email: 'peter@test.com', password: 'xxxxxxx', password_confirmation: 'xxxxxxx')
+    user = User.create(name: 'peter', email: 'peter@test.com', password: 'xxxxxxx', password_confirmation: 'xxxxxxx')
     artist = Artist.create(name: 'John', data_quality: 'ehh')
     user.artists << artist
     assert_equal 1, user.artists.size
   end
 
   test "artist can get subscribers" do
-    user = User.create(email: 'peter@test.com', password: 'xxxxxxx', password_confirmation: 'xxxxxxx')
+    user = User.create(name: 'peter', email: 'peter@test.com', password: 'xxxxxxx', password_confirmation: 'xxxxxxx')
     artist = Artist.create(name: 'John', data_quality: 'ehh')
     user.artists << artist
     assert_equal 1, artist.users.size
   end
 
   test "user unsubscribes from an artist successfully" do
-    user = User.create(email: 'peter@test.com', password: 'xxxxxxx', password_confirmation: 'xxxxxxx')
+    user = User.create(name: 'peter', email: 'peter@test.com', password: 'xxxxxxx', password_confirmation: 'xxxxxxx')
     artist = Artist.create(name: 'John', data_quality: 'ehh')
     user.artists << artist
     user.artists.delete(artist)
@@ -28,7 +28,7 @@ class SubscriptionsAssociationTest < ActionDispatch::IntegrationTest
   end
 
   test "user removed from artist following list when account deleted" do
-    user = User.create(email: 'peter@test.com', password: 'xxxxxxx', password_confirmation: 'xxxxxxx')
+    user = User.create(name: 'peter', email: 'peter@test.com', password: 'xxxxxxx', password_confirmation: 'xxxxxxx')
     artist = Artist.create(name: 'John', data_quality: 'ehh')
     user.artists << artist
     user.destroy

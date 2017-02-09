@@ -8,7 +8,12 @@
 
 [User, Artist, Genre].each(&:delete_all)
 
-User.create(email: "e@turtle.com", password: "turtle")
+User.create(email: "eric@turtle.com", name: "Eric", location: "Cornholeville", password: "turtle", picture: Faker::LoremPixel.image("150x150", true, 'people'), confirmed_at: Time.now)
+
+Genre.populate 20 do |genre|
+	genre.name 				= Faker::Lorem.unique.word
+	genre.description 		= Faker::Lorem.sentence
+end
 
 Artist.populate 100 do |artist|
 	artist.name				= Faker::RockBand.name
@@ -23,17 +28,25 @@ Artist.populate 100 do |artist|
 	artist.twitter_url		= Faker::Internet.url('twitter.com')
 	artist.created_at		= Faker::Time.between(DateTime.now-1, DateTime.now)
 	artist.updated_at		= DateTime.now
+	artist.genre_id			= Genre.first.id
+	artist.picture			= Faker::LoremPixel.image("150x150", true, 'people')
 end
 
-Genre.populate 20 do |genre|
-	genre.name 				= Faker::Lorem.unique.word
-	genre.description 		= Faker::Lorem.sentence
-end
 
-User.populate 500 do |user|
+User.populate 50 do |user|
 	user.email				= Faker::Internet.unique.safe_email
 	user.name 				= Faker::Name.name
 	user.location 			= Faker::Address.city
 	user.encrypted_password	= Faker::Crypto.sha1
 	user.sign_in_count		= 0
+	user.picture			= Faker::LoremPixel.image("150x150", true, 'people')
+
+	sub_count = 10 # Number of subscriptions to be seeded
+	artist_list = Artist.limit(sub_count).order("RANDOM()")
+	counter = 0
+	Subscription.populate sub_count do |subscription|
+		subscription.user_id 		= user.id	
+		subscription.artist_id 		= artist_list[counter].id
+		counter += 1
+	end
 end
