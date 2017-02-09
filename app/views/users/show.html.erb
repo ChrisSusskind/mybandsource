@@ -19,9 +19,8 @@
         </div>
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-        <%= render partial: "shared/social_media_buttons", locals:{user: @user} %>
+        <%= link_to 'Edit User Profile', edit_user_registration_path(@user), class: "row m-0 float-right btn btn-primary" if current_user == @user %>
       </div>
-      <%= link_to 'Edit', edit_user_path(@user) if current_user == @user %>
     </div>
   </div>
   <div class="row m-2">
