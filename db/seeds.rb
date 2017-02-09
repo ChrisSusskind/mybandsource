@@ -8,7 +8,7 @@
 
 [User, Artist, Genre].each(&:delete_all)
 
-User.create(name: 'eric', email: "e@turtle.com", password: "turtle", location: "Chicago, IL")
+User.create(name: 'eric', email: "e@turtle.com", password: "turtle", location: "Chicago, IL", confirmed_at: Time.now)
 
 Genre.populate 20 do |genre|
 	genre.name 				= Faker::Lorem.unique.word

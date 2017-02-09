@@ -42,6 +42,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
+        bypass_sign_in(@user)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -70,6 +71,6 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.fetch(:user, {})
-      params.require(:user).permit(:name)
+      params.require(:user).permit(:name, :email, :location, :password, :password_confirmation)
     end
 end
