@@ -8,8 +8,6 @@
 
 [User, Artist, Genre].each(&:delete_all)
 
-User.create(name: 'eric', email: "e@turtle.com", password: "turtle", location: "Chicago, IL", confirmed_at: Time.now)
-
 Genre.populate 20 do |genre|
 	genre.name 				= Faker::Lorem.unique.word
 	genre.description 		= Faker::Lorem.sentence
@@ -29,6 +27,7 @@ Artist.populate 100 do |artist|
 	artist.created_at		= Faker::Time.between(DateTime.now-1, DateTime.now)
 	artist.updated_at		= DateTime.now
 	artist.genre_id			= Genre.first.id
+	artist.picture			= Faker::LoremPixel.image("150x150", true, 'people')
 end
 
 
@@ -38,4 +37,5 @@ User.populate 50 do |user|
 	user.location 			= Faker::Address.city
 	user.encrypted_password	= Faker::Crypto.sha1
 	user.sign_in_count		= 0
+	user.picture			= Faker::LoremPixel.image("150x150", true, 'people')
 end
