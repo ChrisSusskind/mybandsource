@@ -31,19 +31,11 @@
     </div>
   </div>
 
-  <div class="row m-3">
-    <% @user.artists.each do |user| %>
-      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
-        <%= user.name %>
-      </div>
-    <% end %>
-  </div>
-
   <div class="row">
-    <% 6.times do %>
-        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
-          <img src="<%= Faker::LoremPixel.image("125x125", true, 'people') %>" class="rounded mx-auto d-block">
-          <h3>THIS WILL BE AN ARTIST LINK WITH NAME</h3>
+    <% @user.artists.limit(6).each do |artist| %>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 m-3">
+          <%= image_tag(artist.picture, :alt => "User Image", class: "rounded") %>
+          <h3><%= artist.name %></h3>
         </div>
     <% end %>
   </div>
