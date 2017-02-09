@@ -8,6 +8,8 @@
 
 [User, Artist, Genre].each(&:delete_all)
 
+User.create(email: "eric@turtle.com", name: "Eric", location: "Cornholeville", password: "turtle", picture: Faker::LoremPixel.image("150x150", true, 'people'), confirmed_at: Time.now)
+
 Genre.populate 20 do |genre|
 	genre.name 				= Faker::Lorem.unique.word
 	genre.description 		= Faker::Lorem.sentence
@@ -39,8 +41,12 @@ User.populate 50 do |user|
 	user.sign_in_count		= 0
 	user.picture			= Faker::LoremPixel.image("150x150", true, 'people')
 
-	Subscription.populate 10 do |subscription|
+	sub_count = 10 # Number of subscriptions to be seeded
+	artist_list = Artist.limit(sub_count).order("RANDOM()")
+	counter = 0
+	Subscription.populate sub_count do |subscription|
 		subscription.user_id 		= user.id	
-		subscription.artist_id 		= Artist.limit(1).order("RANDOM()").first.id
+		subscription.artist_id 		= artist_list[counter].id
+		counter += 1
 	end
 end
