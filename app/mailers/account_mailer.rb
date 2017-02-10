@@ -1,2 +1,0 @@
-class AccountMailer < ApplicationMailer
-end

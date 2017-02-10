@@ -43,9 +43,6 @@ gem 'devise'
 # Foundation CSS Framework – https://github.com/zurb/foundation-rails
 gem 'bootstrap', '~> 4.0.0.alpha6'
 
-group :production do
-  gem 'mandrill-api'
-end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

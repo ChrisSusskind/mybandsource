@@ -15,7 +15,7 @@ Devise.setup do |config|
   config.mailer_sender = 'accounts@mybandsource.com'
 
   # Configure the class responsible to send e-mails.
-  config.mailer = 'AccountMailer'
+  # config.mailer = 'AccountMailer'
 
   # Configure the parent class responsible to send e-mails.
   # config.parent_mailer = 'ActionMailer::Base'
