@@ -57,16 +57,24 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "mybandsource_#{Rails.env}"
   config.action_mailer.perform_caching = false
 
+
+  require 'rest-client'
+  require 'json'
+  response = RestClient.get "https://mailtrap.io/api/v1/inboxes.json?api_token=#{ENV['MAILTRAP_API_TOKEN']}"
+
+  first_inbox = JSON.parse(response)[0] # get first inbox
+
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: ENV.fetch("SMTP_ADDRESS"),
-    authentication: :login,
-    domain: ENV.fetch("SMTP_DOMAIN"),
-    tls: true,
-    password: ENV.fetch("SMTP_PASSWORD"),
-    port: "587",
-    user_name: ENV.fetch("SMTP_USERNAME")
+    :user_name => '209858c18ee2bf',
+    :password => 'ad4fcbd6b6f2e7',
+    :address => 'smtp.mailtrap.io',
+    :domain => 'smtp.mailtrap.io',
+    :port => '2525',
+    :authentication => :cram_md5
   }
-  config.action_mailer.default_url_options = { host: ENV["SMTP_DOMAIN"] }
+
+  config.action_mailer.default_url_options = { host: ENV["DEFAULT_HOST"] }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

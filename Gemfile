@@ -11,8 +11,6 @@ end
 gem 'rails', '~> 5.0.1'
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
-# Use Puma as the app server
-gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -43,6 +41,8 @@ gem 'devise'
 # Foundation CSS Framework – https://github.com/zurb/foundation-rails
 gem 'bootstrap', '~> 4.0.0.alpha6'
 
+gem 'puma'
+gem 'rest-client'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
