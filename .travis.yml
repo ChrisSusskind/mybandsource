@@ -1,4 +1,5 @@
 language: ruby
+
 rvm:
 - 2.3.3
 
@@ -14,3 +15,12 @@ script:
 notifications:
   slack:
     secure: ofCErz9a4ElIhCACCrKUmzTUWUQZoi3zMiNihUO88TvrT7I5wfYhuGL/uBujttV56FwAgToVUnShuPsVAzbRQraKJ0iHbWp4smBW0L9ISPDuPwbwsrYeMia/WbVtU4BbUE8MZlz/cr8ojCNv+W+jRgjB57AzPkJbXM4eESVm4TIoXhgN0n7hid+s3qkwpzVoIlbMSR933tcrcYmZbAa3ZC00SBn04NDsYIEKHLXSRJzQyaJKVgKOPduhks3GW+c6A1lB7xHHQrSAk4tX+z74MpQ2sIpMQZY6fOSsoqLf97+lCNBHq3wXrCkyNZWl/k0h4CJWcGm7Hg5gWs2HNlXq5mkOftqBuF3TVl3WKRfR0Y/oDzCafq6zCyb8akh/n6/UYwj+jFKqCcJ0UtPQaRR0WGwVpOoQIzvOTwbBzMZLMX8xWXEOjKqJuAq5+YfTrJztSTfiPb5iFglH6+CCSE+F0lHHsYU89P81LMsUYUpM5IoNIMPfeSmJQptFCl+4SyJ1SfgRWc3HDe5MEgCGI+aOc/wcWt5qkeq3kisB4Fy+3HetF0jACCxu01cH6XZ7E5iWKypAi/dvDNnxgIMjqBIq1IukXPMNtAIlxNoMA6N7fDRC7yRPsqP+dQNmCZ6MAzcq68j1uR8leo/iiCaqgP8orvd48SRUwkoe9WCelEUGeSs=
+
+deploy:
+  provider: heroku
+  run: "rake db:migrate"
+  app:
+    master: mybandsource-master
+    dev: mybandsource-dev
+  api_key:
+    secure: Aq+i2eAtpiBNzs9BKPptL/IQKcF+oMh7jws+XSA9MOkdYIAMyAf7qjDU264oikn3hL92c8GZb0cRHVBW/+4aheEufR+Mm1aDW6xEpW9l++PylriIsi/EzUwPfihaUdwgnhJfFhGnLR6959gwHn6t3XgUlVsC/aNyuv0XCe2TKGSEUz6fdi3FzYTLcOkBaSQq0RcuPvmYlifNo954LkV+Dov4Dyen/Ig42HirV5tPzeV8FHIv/AtT4C6WyJofPrzNsU0T20saAO0JQRxt49GsaTudnmsSub6V8brMFc+0AyfMcd/54lsd7mNI9oBGSIrdiVX7Fpt2RUpEwBIBw7K0WQYQOprWTPM4mXCvCFXBnurVGRFtMBWflDaYBVmfhWshY3TK1ESWlZ97CV/j3UXLDljgrSlR5n7SGYyD34P7YfB/515KC/PPf7wRYLupIF8eKxukC4MSquoN3K91oVK4I0F68Zqr1m1Vj7p1g/64BCrGXDnH/RI5lfZ5iRA8H/8NczfEIJoUAfTPC4iNALztQGNChzLys9TEZOZ0Ltbdc+aYZyN14UtqIRiP26oRyqL9Hu6X56dAnFeyC63m4CVUVY/4pnta+EjUA4A8s0JngTOYD0UgFytykoZgMOIZmv2JLY3PqUrQyR7Wck9dI8apItkd0k/vxZgZNRbhpKX51s8=
