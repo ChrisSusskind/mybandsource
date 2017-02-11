@@ -66,4 +66,4 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     #delete '/users.' + @user.id.to_s
     #assert_redirected_to users_url
   #end
-#end
+end
