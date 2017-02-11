@@ -46,4 +46,4 @@ bower.json
 .byebug_history
 
 #Ignore Rubymine ide files
-.idea/*.env
+.idea/*
