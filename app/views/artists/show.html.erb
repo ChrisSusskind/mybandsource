@@ -41,4 +41,17 @@
 		</div>
 	</div>
 
+  <% if user_signed_in? && !Subscription.exists?({user_id: current_user.id, artist_id: @artist.id}) %>
+  <div>
+    <%= link_to("Subscribe", "/subscriptions/#{@artist.id}", method: "post", class: "btn btn-primary") %>
+  </div>
+  <% end %>
+
+  <% if user_signed_in? && Subscription.exists?({user_id: current_user.id, artist_id: @artist.id}) %>
+  <div>
+    <%= link_to("Unsubscribe", "/subscriptions/#{@artist.id}", method: "delete", class: "btn btn-primary") %>
+  </div>
+  <% end %>
+
+  <%= link_to("#{@artist.users.size} follows", "/artists/#{@artist.id}/subscriptions", method: "get", class: "lead") %>
 </div>

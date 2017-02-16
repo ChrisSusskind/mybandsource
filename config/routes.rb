@@ -7,4 +7,8 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
+  post '/subscriptions/:artist_id', to: 'subscriptions#create'
+  delete '/subscriptions/:artist_id', to: 'subscriptions#destroy'
+  get '/users/:user_id/subscriptions', to: 'subscriptions#user_subscriptions'
+  get '/artists/:artist_id/subscriptions', to: 'subscriptions#artist_subscriptions'
 end
