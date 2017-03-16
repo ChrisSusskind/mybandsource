@@ -16,13 +16,55 @@
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
 
-.jumbotron {
-  background-color: rgb(170,24,42);
+.img-circle{
+  border-radius: 50%;
 }
 
-.verified_checkmark{
-  float: right;
+.row{
   position: relative;
-  bottom: 30px;
-  right: 5px;
+}
+
+.profile_jumbotron {
+  background-color: gray;
+  padding-bottom: 25px!important;
+  padding-top: 150px!important;
+}
+
+.follow-button{
+  background-color: rgb(184,0,25);
+  box-shadow: none;
+  border: none!important;
+}
+
+.follow-button:hover,
+.follow-button:focus,
+.follow-button:active {
+  background-color: blue;
+}
+
+.share_button{
+  background-color: transparent;
+  border: none!important;
+}
+
+.right_align{
+  text-align: right;
+}
+
+.followers_text{
+  margin-bottom: 0;
+}
+
+.follow_count{
+  position: relative;
+  top: 20px;
+}
+
+.bio_margin{
+  margin-bottom: 20px;
+}
+
+.profile-genres-left-padding{
+  padding-left: 50px;
+  border-left: 1px solid lightgray;
 }
