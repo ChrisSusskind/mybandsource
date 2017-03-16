@@ -1,14 +1,17 @@
 <div class="container-fluid">
 
-	<div class="row justify-content-center">
-		<h1 class="display-2 text-center">Reinventing Music Conversation</h1>
-	</div>
+	<div class="jumbotron jumbotron-main">
+		<div class="row justify-content-center">
+			<h3 class="display-4 text-center">Reinventing Music Conversation</h3>
+		</div>
 
-	<!-- Search block -->
-	<div class="row justify-content-center p-4">
-		<div class="col-8">
-			<div class="input-group input-group-lg">
-				<input type="text" class="form-control" placeholder="Search for something">
+		<!-- Search block -->
+		<div class="row justify-content-center p-4">
+			<div class="col-8">
+				<div class="input-group input-group-lg">
+					<input type="text" class="form-control search-bar" placeholder="Search for something">
+				</div>
+				<button class="btn btn-primary">Search</button>
 			</div>
 		</div>
 	</div>
@@ -16,22 +19,40 @@
 	<hr>
 
 	<div class="container-fluid">
+
+		<div class="section-title-block text-center">
+			<h3>Featured Artists</h3>
+			<p>Discover and explore conversations around artists.</p>
+		</div>
+
 		<div class="row">
 			<% @artists.each do |artist| %>
 				<div class="col-sm-4">
-					<h4><%= artist.name %></h4>
-					<h5><%= artist.genre.name %></h5>
+					<div class="card artist-card">
+						<div class="card-block">
+							<img src="">
+							<h4><%= artist.name %></h4>
+							<h5><%= artist.genre.name %></h5>
+						</div>
+					</div>
 				</div>
 			<% end %>
 		</div>
 	</div>
 
+	
 	<!-- Browser Section -->
 	<div class="container">
+
+		<div class="section-title-block text-center">
+			<h3>Popular Genres</h3>
+			<p>Explore artists by genre.</p>
+		</div>
+
 		<div class="card-columns">
 
 			<% @genres.each do |genre| %>
-				<div class="card">
+				<div class="card text-center genre-card">
 					<div class="card-block">
 						<h4 class="card-title"><%= genre.name %></h4>
 						<p class="card-text"><%= genre.description %></p>
@@ -40,5 +61,24 @@
 			<% end %>
 
 		</div>
+
+		<div class="text-center">
+			<button class="btn btn-outline-primary">View all genres</button>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="container text-center">
+			<h1>Join the Conversation</h1>
+			<p class="lead">Rate, Review, and Discuss.</p>
+			<button class="btn btn-outline-primary">Sign up</button>
+		</div>
+	</div>
+
+	<hr>
+
+	<div>
+		<p>Copyright mybandsource LLC</p>
+		<p>About Terms Privacy etc</p>
 	</div>
 </div>
