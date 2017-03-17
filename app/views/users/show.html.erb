@@ -1,58 +1,66 @@
-<div class="jumbotron jumbotron-fluid vertical-center profile_jumbotron">
-  <div class="container">
-      <div class="row align-items-end justify-content-center">
-        <div class="col-xl-6 col-lg-6 col-md-8 col-sm-10 col-xs-10">
-          <%= image_tag(@user.picture, :alt => "User Image", class: "rounded img float-left img-circle") if @user.picture %>
-          <%= image_tag("blank_user.png", size: "150x150" , :alt => "User Image", class: "rounder img float-left img-circle") if !@user.picture %> 
-          <h3><%= @user.name %></h3>
-          <p class="lead"><%= @user.location %></p>
-          <p class="lead">Member since <%= Date::MONTHNAMES[@user.created_at.month] %> <%= @user.created_at.year %></p>
-          <div class="row">
-            <button type="button" class="btn btn-lg btn-danger follow-button">Follow</button>
-            <button type="button" class="btn btn-lg btn-danger share-button">Share</button>
-          </div>
-        </div>
-        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-xs-4 offset-xl-1 offset-lg-1">
-          <div class="follow_count">
-            <p class="followers_text right_align">Followers</p>
-            <p class="right_align">6k</p>
-            <p class="followers_text right_align">Following</p>
-            <p class="right_align"><%= link_to("#{@user.artists.size} follows", "/users/#{@user.id}/subscriptions", method: "get") %></p>
-          </div>
-      </div>
-    </div>
-  </div>
+<div class="jumbotron jumbotron-fluid vertical-center jumbotron-profile">
+	<div class="container">
+			<div class="row align-items-end justify-content-center">
+				<div class="col-xl-6 col-lg-6 col-md-8 col-sm-10 col-xs-10">
+					<%= image_tag(@user.picture, :alt => "User Image", class: "profile-picture rounded-circle float-left img-circle") if @user.picture %>
+					<%= image_tag("blank_user.png", size: "150x150" , :alt => "User Image", class: "profile-picture rounded-circle float-left img-circle") if !@user.picture %> 
+					<h2>
+						<%= @user.name %> <br/>
+						<small class="text-muted"><%= @user.location %></small>
+					</h2>
+					<p class="lead">Member since <%= Date::MONTHNAMES[@user.created_at.month] %> <%= @user.created_at.year %></p>
+					<div class="row">
+						<div class="col-sm-4">
+							<button type="button" class="btn btn-danger follow-button">Follow</button>
+						</div>
+						<div class="col-sm-4">
+							<button type="button" class="btn btn-danger share-button">Share</button>
+						</div>
+						
+						
+					</div>
+				</div>
+				<div class="col-lg-2 col-md-4 col-sm-4 offset-xl-1 offset-lg-1">
+					<div class="follow_count">
+						<p class="followers_text right_align">Followers</p>
+						<p class="right_align">6k</p>
+						<p class="followers_text right_align">Following</p>
+						<p class="right_align"><%= link_to("#{@user.artists.size} follows", "/users/#{@user.id}/subscriptions", method: "get") %></p>
+					</div>
+			</div>
+		</div>
+	</div>
 </div>
 <div class="container row">
-  <div class="col-xl-2 col-lg-2 col-md-1 col-sm-0 col-xs-0">
+	<div class="col-xl-2 col-lg-2 col-md-1 col-sm-0 col-xs-0">
 
-  </div>
-  <div class="col-xl-6 col-lg-6">
-    <div class="row">
-      <h1 class="bio_margin">About</h1>
-      <h4 class="bio margin"><%= @user.bio %></h4>
-    </div>
-    <hr>
-    <div class="row">
-      <div class="col-xl-3 col-lg-3 offset-xl-1 offset-lg-1">
-        <h1>Reviews</h1>
-      </div>
-      <div class="col-x1-3 col-lg-3 offset-xl-2 offset-lg-2">
-        <h1>Discussion</h1>
-      </div>
-    </div>
-    <div class="row">
-      <!-- Make reviews available when review link is selected, when we add discussion capabilities make them available when discussion link is selected -->
-      <% @user.reviews.each do |review| %> 
-      <%= render partial: "shared/review", locals:{user: @user, review: review} %> 
-      <% end %>
-    </div>
-  </div>
-  <div class="col-xl-4 col-lg-4 profile-genres-left-padding">
-    <p>Favorite Genres</p>
-    <!-- Replace with Ruby code that fetches all of a user's favorite genres with links and arrange them by length-->
-    <p>Sadboy Tunes</p>
-    <p>Electronic</p>
-    <p>Rap</p>
-  </div>
+	</div>
+	<div class="col-xl-6 col-lg-6">
+		<div class="row">
+			<h1 class="bio_margin">About</h1>
+			<h4 class="bio margin"><%= @user.bio %></h4>
+		</div>
+		<hr>
+		<div class="row">
+			<div class="col-xl-3 col-lg-3 offset-xl-1 offset-lg-1">
+				<h1>Reviews</h1>
+			</div>
+			<div class="col-x1-3 col-lg-3 offset-xl-2 offset-lg-2">
+				<h1>Discussion</h1>
+			</div>
+		</div>
+		<div class="row">
+			<!-- Make reviews available when review link is selected, when we add discussion capabilities make them available when discussion link is selected -->
+			<% @user.reviews.each do |review| %> 
+			<%= render partial: "shared/review", locals:{user: @user, review: review} %> 
+			<% end %>
+		</div>
+	</div>
+	<div class="col-xl-4 col-lg-4 profile-genres-left-padding">
+		<p>Favorite Genres</p>
+		<!-- Replace with Ruby code that fetches all of a user's favorite genres with links and arrange them by length-->
+		<p>Sadboy Tunes</p>
+		<p>Electronic</p>
+		<p>Rap</p>
+	</div>
 </div>

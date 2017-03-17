@@ -7,11 +7,11 @@
 
 		<!-- Search block -->
 		<div class="row justify-content-center p-4">
-			<div class="col-8">
+			<div class="col-8 text-center">
 				<div class="input-group input-group-lg">
-					<input type="text" class="form-control search-bar" placeholder="Search for something">
+					<input type="text" class="form-control search-bar" placeholder="Search for a band...">
 				</div>
-				<button class="btn btn-primary">Search</button>
+				<button class="btn btn-danger button-home mx-auto m-3">Search</button>
 			</div>
 		</div>
 	</div>
@@ -25,24 +25,22 @@
 			<p>Discover and explore conversations around artists.</p>
 		</div>
 
-		<div class="row">
+		<div class="card-columns">
 			<% @artists.each do |artist| %>
-				<div class="col-sm-4">
 					<div class="card artist-card">
+						<%= image_tag("artist1.png", class: "card-img-top img-fluid") %>
 						<div class="card-block">
-							<img src="">
 							<h4><%= artist.name %></h4>
 							<h5><%= artist.genre.name %></h5>
 						</div>
 					</div>
-				</div>
 			<% end %>
 		</div>
 	</div>
 
 	
 	<!-- Browser Section -->
-	<div class="container">
+	<div class="container-fluid">
 
 		<div class="section-title-block text-center">
 			<h3>Popular Genres</h3>
@@ -50,8 +48,8 @@
 		</div>
 
 		<div class="card-columns">
-
 			<% @genres.each do |genre| %>
+
 				<div class="card text-center genre-card">
 					<div class="card-block">
 						<h4 class="card-title"><%= genre.name %></h4>
@@ -63,15 +61,15 @@
 		</div>
 
 		<div class="text-center">
-			<button class="btn btn-outline-primary">View all genres</button>
+			<button class="btn btn-danger button-home">View all genres</button>
 		</div>
 	</div>
 
-	<div class="container">
-		<div class="container text-center">
+	<div class="container-fluid">
+		<div class="container text-center section-title-block">
 			<h1>Join the Conversation</h1>
 			<p class="lead">Rate, Review, and Discuss.</p>
-			<button class="btn btn-outline-primary">Sign up</button>
+			<button class="btn btn-danger button-home">Sign up</button>
 		</div>
 	</div>
 
