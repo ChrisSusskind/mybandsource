@@ -1,0 +1,32 @@
+<div class="container">
+  <table class="table">
+    <thead>
+    <tr>
+      <% if @artists %>
+        <th>Artists</th>
+      <% end %>
+      <% if @users %>
+        <th>Users</th>
+      <% end %>
+    </tr>
+    </thead>
+
+    <tbody>
+      <% if @users %>
+        <% @users.each do |user| %>
+        <tr>
+          <td><%= link_to(user.name, "/users/#{user.id}", method: "get", class: "lead") %></td>
+        </tr>
+        <% end %>
+      <% end %>
+
+      <% if @artists %>
+        <% @artists.each do |artist| %>
+          <tr>
+            <td><%= link_to(artist.name, "/artists/#{artist.id}", method: "get", class: "lead") %></td>
+          </tr>
+    <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
