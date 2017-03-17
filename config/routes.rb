@@ -12,7 +12,8 @@ Rails.application.routes.draw do
   end
 
   #User relationship create and destroy routes
-  resources :userrelationships, only: [:create, :destroy]
+  post '/userrelationship/:id', to: 'user_relationships#create'
+  delete '/userrelationship/:id', to: 'user_relationships#destroy'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 

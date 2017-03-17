@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>@title</h1>
+  <h1><%= @title %></h1>
   <table class="table">
     <thead>
     <tr>
@@ -15,14 +15,14 @@
     <% if @combined %>
         <% @combined.each do |follow_pair| %>
             <tr>
-              <td><%= link_to(follow_pair[0], "/artists/#{artist.id}", method: "get", class: "lead") %></td>
-              <td><%= link_to(follow_pair[1], "/users/#{user.id}", method: "get", class: "lead") %></td>
+              <td><%= follow_pair[0].nil? ? "" : link_to(follow_pair[0].name, "/artists/#{follow_pair[0].id}", method: "get", class: "lead") %></td>
+              <td><%= follow_pair[1].nil? ? "" : link_to(follow_pair[1].name, "/users/#{follow_pair[1].id}", method: "get", class: "lead") %></td>
             </tr>
         <% end %>
     <% else %>
         <% @users.each do |user| %>
             <tr>
-              <td><%= link_to(user, "/users/#{user.id}", method: "get", class: "lead") %></td>
+              <td><%= link_to(user.name, "/users/#{user.id}", method: "get", class: "lead") %></td>
             </tr>
         <% end %>
     <% end %>

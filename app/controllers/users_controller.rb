@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   include UsersHelper
-  before_action :set_user, only: [:show]
+  before_action :set_user, only: [:show, :following, :followers]
   before_action :authenticate_user!, only: [:following, :followers]
 
   # GET /users
@@ -18,12 +18,14 @@ class UsersController < ApplicationController
     @title = "Following"
     users = @user.following
     artists = @user.artists
-    @combined = safe_zip(users, artists)
+    @combined = safe_zip(artists, users)
+    render 'show_follow'
   end
 
   def followers
     @title = "Followers"
     @users = @user.followers
+    render 'show_follow'
   end
 
   private

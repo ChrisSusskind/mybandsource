@@ -16,26 +16,28 @@
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
 
+
+/* Homepage styling */
 .jumbotron-main {
-  background-color: rgb(170,24,42);
-  color: white;
-  height: 400px;
-  border-radius: 0;
+	background-image: url(<%= image_path 'home-header.png' %>);
+	color: white;
+	height: 500px;
+	border-radius: 0;
 }
 
 .artist-card {
 	color: white;
 	border-radius: 0;
 	border: none;
-	background-color: darkgray;
-	height: 200px;
+	background: #242424;
 }
 
 .genre-card {
+	height: 300px;
 	color: white;
 	border: none;
 	border-radius: 0;
-	background-color: darkgray;
+	background-image: url(<%= image_path 'genre1.png' %>);
 }
 
 .search-bar {
@@ -43,50 +45,63 @@
 	border-radius: 50px;
 }
 
-.section-title-block {}
+.section-title-block {
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+.button-home {
+	background: #AA182A;
+	border: 1px solid #AA182A;
+	border-radius: 100px;
+}
 
 
-.profile_jumbotron {
-  background-color: gray;
-  padding-bottom: 25px!important;
-  padding-top: 150px!important;
+/* Profile Styling */
+.jumbotron-profile {
+	background-color: gray;
+	color: white;
+}
+
+.profile-picture {
+	margin: 25px;
 }
 
 .follow-button {
-  background-color: rgb(184,0,25);
-  box-shadow: none;
-  border: none!important;
+	background-color: rgb(184,0,25);
+	box-shadow: none;
+	border: none !important;
 }
 
 .follow-button:hover,
 .follow-button:focus,
 .follow-button:active {
-  background-color: blue;
+	background-color: blue;
 }
 
 .share_button {
-  background-color: transparent;
-  border: none!important;
+	background-color: transparent;
+	border: none !important;
 }
 
 .right_align {
-  text-align: right;
+	text-align: right;
 }
 
 .followers_text {
-  margin-bottom: 0;
+	margin-bottom: 0;
 }
 
 .follow_count {
-  position: relative;
-  top: 20px;
+	position: relative;
+	top: 20px;
 }
 
 .bio_margin {
-  margin-bottom: 20px;
+	margin-bottom: 20px;
 }
 
 .profile-genres-left-padding {
-  padding-left: 50px;
-  border-left: 1px solid lightgray;
+	padding-left: 50px;
+	border-left: 1px solid lightgray;
 }
