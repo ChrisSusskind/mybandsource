@@ -8,16 +8,28 @@
           <p class="lead"><%= @user.location %></p>
           <p class="lead">Member since <%= Date::MONTHNAMES[@user.created_at.month] %> <%= @user.created_at.year %></p>
           <div class="row">
-            <button type="button" class="btn btn-lg btn-danger follow-button">Follow</button>
+            <div>
+              <% if user_signed_in? && !current_user.following?(@user) %>
+              <div>
+                <%= link_to("Follow", "userrelationships_path", method: "post", class: "btn btn-primary btn-lg btn-danger follow-button") %>
+              </div>
+              <% end %>
+
+              <% if user_signed_in? && !current_user.following?(@user) %>
+              <div>
+                <%= link_to("Unfollow", "userrelationship_path", method: "delete", class: "btn btn-primary btn-lg btn-danger follow-button") %>
+              </div>
+              <% end %>
+            </div>
             <button type="button" class="btn btn-lg btn-danger share-button">Share</button>
           </div>
         </div>
         <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-xs-4 offset-xl-1 offset-lg-1">
           <div class="follow_count">
             <p class="followers_text right_align">Followers</p>
-            <p class="right_align">6k</p>
+            <p class="right_align"><%= link_to("#{@user.following.count} followers", "", method: "get") %></p>
             <p class="followers_text right_align">Following</p>
-            <p class="right_align"><%= link_to("#{@user.artists.size} follows", "/users/#{@user.id}/subscriptions", method: "get") %></p>
+            <p class="right_align"><%= link_to("#{@user.followers.count + @user.artists.count} following", "", method: "get") %></p>
           </div>
       </div>
     </div>
@@ -29,8 +41,8 @@
   </div>
   <div class="col-xl-6 col-lg-6">
     <div class="row">
-      <h1 class="bio_margin">About</h1>
-      <h4 class="bio margin"><%= @user.bio %></h4>
+      <h1 class="">About</h1>
+      <h4 class=""><%= @user.bio %></h4>
     </div>
     <hr>
     <div class="row">

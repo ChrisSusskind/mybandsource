@@ -53,6 +53,16 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response 401
   end
 
+  test "should redirect following when not logged in" do
+    get following_user_path(@user)
+    assert_redirected_to new_user_session_path
+  end
+
+  test "should redirect followers when not logged in" do
+    get followers_user_path(@user)
+    assert_redirected_to new_user_session_path
+  end
+
   ###THESE TESTS DON'T WORK.  Getting ActionController::UnknownFormat Error
 
   test "should update user location" do
