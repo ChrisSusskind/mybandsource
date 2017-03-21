@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170321040719) do
+ActiveRecord::Schema.define(version: 20170321065921) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,9 @@ ActiveRecord::Schema.define(version: 20170321040719) do
     t.integer  "user_id",                 null: false
     t.integer  "artist_id",               null: false
     t.integer  "rating",     default: -1
+    t.index ["artist_id"], name: "index_reviews_on_artist_id", using: :btree
+    t.index ["user_id", "artist_id"], name: "index_reviews_on_user_id_and_artist_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_reviews_on_user_id", using: :btree
   end
 
   create_table "subscriptions", force: :cascade do |t|
