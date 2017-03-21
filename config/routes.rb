@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :genres
-  resources :artists
+  resources :artists do
+    resources :reviews
+  end
   devise_for :users, controllers: {sessions: 'users/sessions', registrations: 'users/registrations'}
 
 

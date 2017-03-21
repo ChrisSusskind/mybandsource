@@ -1,3 +1,5 @@
+<%= javascript_include_tag 'starrating.js' %>
+
 <div class="container">
 
 	<div class="row">
@@ -54,4 +56,28 @@
   <% end %>
 
   <%= link_to("#{@artist.users.size} follows", "/artists/#{@artist.id}/subscriptions", method: "get", class: "lead") %>
+
+  <% if user_signed_in? %>
+    <h1>FUCK<%=@review.nil? ? 6 : @review.rating%></h1>
+    <div id="leave_rating">
+      <span>&starf;</span>
+      <span>&starf;</span>
+      <span>&starf;</span>
+      <span>&starf;</span>
+      <span>&starf;</span>
+    </div>
+    <%= form_for([@artist, @review]) do |f| %>
+      <p>
+        <%= f.label :comment %><br>
+        <%= f.text_area :comment, :value=>@review.nil? ? "" : @review.comment %>
+      </p>
+      <%= f.hidden_field :rating, :id=>"rating_field", :value=>@review.nil? ? 6 : @review.rating%>
+      <%= f.submit @review.rating == -1 ? "Leave Review" : "Update Review" %>
+    <% end %>
+  <% end %>
+  <div class="row">
+    <% @artist.reviews.each do |review| %>
+    <%= render partial: 'shared/review', :locals => {:review => review} %>
+    <% end %>
+  </div>
 </div>

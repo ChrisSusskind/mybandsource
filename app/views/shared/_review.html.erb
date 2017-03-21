@@ -1,22 +1,23 @@
 <div class="container">
   <div class="row m-1">
-    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+    <div>
       <%# @user.image %>
-      <%# @user.name %>
+      <%= @review.user.name %>
       <img src="<%= Faker::LoremPixel.image("25x25", true, 'people') %>" class="rounded">
-      Jack Black
     </div>
-    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-      <%# @review.rating_1 Use gem to turn into stars %>
-      <%# @review.created_at %>
-      *****
-      2/15/2017
+    <div>
+      <div class="ratings_list" data-rating=<%=@review.rating%>>
+        <span>&starf;</span>
+        <span>&starf;</span>
+        <span>&starf;</span>
+        <span>&starf;</span>
+        <span>&starf;</span>
+      </div>
+      <%= @review.created_at %>
+
     </div>
-    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
-      <%# @review.comment #%>
-      Allow browsers to determine video or slideshow dimensions based on the width of their containing block by creating an intrinsic ratio that will properly scale on any device.
-      Rules are directly applied to elements; optionally use an explicit descendant class .embed-responsive-item when you want to match the styling for other attributes.
-      Pro-Tip! You don’t need to include frameborder="0" in yours as we override that for you.
+    <div>
+      <%= @review.comment %>
     </div>
   </div>
 </div>

@@ -10,6 +10,10 @@ class ArtistsController < ApplicationController
   # GET /artists/1
   # GET /artists/1.json
   def show
+    if user_signed_in?
+        @review = Review.find_by(artist_id: @artist.id, user_id: current_user.id)
+        @review.nil? ? @review = Review.new : @review
+    end
   end
 
   # GET /artists/new
