@@ -14,6 +14,7 @@ class ArtistsController < ApplicationController
         @review = Review.find_by(artist_id: @artist.id, user_id: current_user.id)
         @review.nil? ? @review = Review.new : @review
     end
+    @reviews = @artist.reviews.limit(1)
   end
 
   # GET /artists/new

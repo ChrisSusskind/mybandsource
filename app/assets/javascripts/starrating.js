@@ -9,9 +9,6 @@ var ratings_list = [];
 $(document).ready(function(){
     var temp = $('#leave_rating');
     stars = temp.find('span');
-    $(".ratings_list").each(function(){
-        ratings_list.push({rating: this.getAttribute('data-rating'), children: $(this).find('span')});
-    });
     selected_rating = parseInt($('#rating_field').val());
     if(selected_rating != -1){
         loadRatingToUpdate(selected_rating);
@@ -57,6 +54,11 @@ function loadRatingToUpdate(rating){
 }
 
 function loadRatings(){
+    $(".ratings_list").each(function(){
+        ratings_list.push({rating: this.getAttribute('data-rating'), children: $(this).find('span')});
+    });
+
+
     for(var i=0; i<ratings_list.length; i++){
         for(var j=0; j < ratings_list[i].rating; j++){
             console.log(j);
