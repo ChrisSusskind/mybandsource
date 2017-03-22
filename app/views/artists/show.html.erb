@@ -1,7 +1,4 @@
-<%= javascript_include_tag 'starrating.js' %>
-
 <div class="container">
-
 	<div class="row">
 		<div class="col-sm-3">
 			<img src="<%= Faker::LoremPixel.image("200x200") %>" class="rounded">
@@ -43,41 +40,54 @@
 		</div>
 	</div>
 
-  <% if user_signed_in? && !Subscription.exists?({user_id: current_user.id, artist_id: @artist.id}) %>
-  <div>
-    <%= link_to("Subscribe", "/subscriptions/#{@artist.id}", method: "post", class: "btn btn-primary") %>
-  </div>
-  <% end %>
+  <div class="row">
+    <div class="col-4">
+      <% if user_signed_in? && !Subscription.exists?({user_id: current_user.id, artist_id: @artist.id}) %>
+      <div>
+        <%= link_to("Subscribe", "/subscriptions/#{@artist.id}", method: "post", class: "btn btn-primary") %>
+      </div>
+      <% end %>
 
-  <% if user_signed_in? && Subscription.exists?({user_id: current_user.id, artist_id: @artist.id}) %>
-  <div>
-    <%= link_to("Unsubscribe", "/subscriptions/#{@artist.id}", method: "delete", class: "btn btn-primary") %>
-  </div>
-  <% end %>
-
-  <%= link_to("#{@artist.users.size} follows", "/artists/#{@artist.id}/subscriptions", method: "get", class: "lead") %>
-
-  <% if user_signed_in? %>
-    <h1>FUCK<%=@review.nil? ? 6 : @review.rating%></h1>
-    <div id="leave_rating">
-      <span>&starf;</span>
-      <span>&starf;</span>
-      <span>&starf;</span>
-      <span>&starf;</span>
-      <span>&starf;</span>
+      <% if user_signed_in? && Subscription.exists?({user_id: current_user.id, artist_id: @artist.id}) %>
+      <div>
+        <%= link_to("Unsubscribe", "/subscriptions/#{@artist.id}", method: "delete", class: "btn btn-primary") %>
+      </div>
+      <% end %>
     </div>
-    <%= form_for([@artist, @review]) do |f| %>
-      <p>
-        <%= f.label :comment %><br>
-        <%= f.text_area :comment, :value=>@review.nil? ? "" : @review.comment %>
-      </p>
-      <%= f.hidden_field :rating, :id=>"rating_field", :value=>@review.nil? ? 6 : @review.rating%>
-      <%= f.submit @review.rating == -1 ? "Leave Review" : "Update Review" %>
-    <% end %>
+
+    <div class="col-4">
+      <p>Followers</p>
+      <%= link_to("#{@artist.users.size}", "/artists/#{@artist.id}/subscriptions", method: "get", class: "lead") %>
+    </div>
+  </div>
+
+  <div class="row">
+  <% if user_signed_in? %>
+    <div class="col-4">
+      <div id="leave_rating">
+        <span>&starf;</span>
+        <span>&starf;</span>
+        <span>&starf;</span>
+        <span>&starf;</span>
+        <span>&starf;</span>
+      </div>
+    </div>
+    <div class="col-4">
+      <%= form_for([@artist, @review]) do |f| %>
+        <p>
+          <%= f.label :comment %><br>
+          <%= f.text_area :comment, :value=>@review.nil? ? "" : @review.comment %>
+        </p>
+        <%= f.hidden_field :rating, :id=>"rating_field", :value=>@review.nil? ? 6 : @review.rating%>
+        <%= f.submit @review.rating == -1 ? "Leave Review" : "Update Review" %>
+      <% end %>
+    </div>
   <% end %>
+  </div>
+
   <div class="row">
     <% @artist.reviews.each do |review| %>
-    <%= render partial: 'shared/review', :locals => {:review => review} %>
+      <%= render partial: 'shared/review', :locals => {:review => review} %>
     <% end %>
   </div>
 </div>

@@ -1,23 +1,38 @@
 <div class="container">
-  <div class="row m-1">
-    <div>
-      <%# @user.image %>
-      <%= @review.user.name %>
-      <img src="<%= Faker::LoremPixel.image("25x25", true, 'people') %>" class="rounded">
-    </div>
-    <div>
-      <div class="ratings_list" data-rating=<%=@review.rating%>>
-        <span>&starf;</span>
-        <span>&starf;</span>
-        <span>&starf;</span>
-        <span>&starf;</span>
-        <span>&starf;</span>
-      </div>
-      <%= @review.updated_at %>
+  <%# @user.image %>
+  <img src="<%= Faker::LoremPixel.image("50x50", true, 'people') %>" class="rounded rounded-circle float-left">
 
-    </div>
-    <div>
-      <%= @review.comment %>
+  <div class="row">
+    <div class="col-12">
+      <h4 class="review_username"><strong><%= review.user.name %></strong></h4>
+
+      <span class="ratings_list" data-rating=<%=review.rating%>>
+        <span>&starf;</span>
+        <span>&starf;</span>
+        <span>&starf;</span>
+        <span>&starf;</span>
+        <span>&starf;</span>
+      </span>
     </div>
   </div>
+
+  <div class="row">
+    <div class="col-12">
+      <%= review.comment %>
+    </div>
+  </div>
+
+  <% if user_signed_in? %>
+  <div class="row">
+    <div class="col-12">
+      <%= review.upvotes %>
+      <%= link_to(image_tag('rockon_icon.png', alt: 'Rockon Image', size: '20x20', class: "review_icon"), "/artists/#{review.artist.id}/upvote/#{review.id}", method: :post) if !current_user.id.to_s.in? review.upvotes_userlist %>
+      <%= link_to(image_tag('rockon_icon.png', alt: 'Rockon Image', size: '20x20', class: "review_icon rockon_icon_flipped"), "/artists/#{review.artist.id}/upvote/#{review.id}", method: :delete) if current_user.id.to_s.in? review.upvotes_userlist %>
+      <%= link_to(image_tag('trashcan_icon.png', :alt => "Trashcan Image", size: "20x20", class: "review_icon"), [review.artist, review], method: :delete) if review.user == current_user %>
+      <abbr class="timeago" title="<%= review.created_at.getutc.iso8601 %>">
+        <%= review.updated_at.to_s %>
+      </abbr>
+    </div>
+  </div>
+  <% end %>
 </div>

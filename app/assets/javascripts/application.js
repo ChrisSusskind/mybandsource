@@ -14,3 +14,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
+//= require 'starrating.js'
+//= require 'review.js'
+//= require 'jquery.timeago.js'

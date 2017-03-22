@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   resources :genres
   resources :artists do
-    resources :reviews
+    resources :reviews, only: [:create, :update, :destroy]
+    post '/upvote/:id', to: 'reviews#upvote'
+    delete 'upvote/:id', to: 'reviews#remove_upvote'
   end
   devise_for :users, controllers: {sessions: 'users/sessions', registrations: 'users/registrations'}
 
