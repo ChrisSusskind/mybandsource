@@ -85,21 +85,7 @@
   <% end %>
   </div>
 
-  <div class="row reviews_container">
-      <%= render partial: 'shared/review', collection: @reviews %>
-  </div>
+  <%= render partial: 'shared/reviews_list',  locals: {reviews: @reviews} %>
 
-  <div class="row">
-    <div class="col-12">
-      <button class="btn btn-primary show_more_reviews">Show More Reviews</button>
-      <button class="btn btn-primary show_all_reviews">Show All Reviews</button>
-      <div class="dropdown">
-        <button onclick="toggleDropdown()" class="dropbtn">Arrange Reviews By</button>
-        <div id="reviews_dropdown" class="dropdown-content">
-          <a href="#" onclick="orderReviewsByAge(event)">Most Recent</a>
-          <a href="#" onclick="orderReviewsByUpvotes(event)">Most Upvoted</a>
-        </div>
-      </div>
-    </div>
-  </div>
+
 </div>
