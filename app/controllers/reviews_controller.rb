@@ -2,12 +2,12 @@ class ReviewsController < ApplicationController
   def create
     artist = Artist.find(params[:artist_id])
     @review = artist.reviews.create({user_id: current_user.id, comment: params[:review][:comment], rating: params[:review][:rating]})
-    redirect_to artist_path(artist)
+    redirect_to artist
   end
 
   def update
     artist = Artist.find(params[:artist_id])
-    @review = @artist.reviews.find(params[:id])
+    @review = artist.reviews.find(params[:id])
     if @review.update(review_params)
       redirect_to artist
     else
@@ -45,52 +45,12 @@ class ReviewsController < ApplicationController
     redirect_to artist
   end
 
-  def get_more_reviews
-    number_displayed = params[:number_displayed].to_i
+  def reorder
+    (params[:recent_order] == "false") ?
+        @reviews = Review.where('artist_id = ?', params[:artist_id]).page(params[:page]).order('upvotes DESC').per(25) :
+    @reviews = Review.where('artist_id = ?', params[:artist_id]).page(params[:page]).order('created_at DESC').per(25)
 
-    if number_displayed == -1
-      if params[:recent_order] == "true"
-        @reviews = Review.where('artist_id = ?', params[:artist_id]).order('created_at DESC').limit(10)
-      else
-        @reviews = Review.where('artist_id = ?', params[:artist_id]).order('upvotes DESC').limit(10)
-      end
-    else
-      if params[:recent_order] == "true"
-        temp = Review.where('artist_id = ?', params[:artist_id]).order('created_at DESC').to_a
-      else
-        temp = Review.where('artist_id = ?', params[:artist_id]).order('upvotes DESC').to_a
-      end
-      if temp.length < number_displayed + 10
-        @reviews = temp.slice(number_displayed, 10)
-      else
-        @reviews = temp.slice(number_displayed, temp.length-number_displayed)
-      end
-    end
-
-    respond_to do |format|
-      format.js {render :action => "show_reviews"}
-    end
-  end
-
-  def get_all_reviews
-    number_displayed = params[:number_displayed].to_i
-
-    if params[:recent_order] == "true"
-      temp = Review.where('artist_id = ?', params[:artist_id]).order('created_at DESC').to_a
-    else
-      temp = Review.where('artist_id = ?', params[:artist_id]).order('upvotes DESC').to_a
-    end
-    @reviews = temp.slice(number_displayed, temp.length-number_displayed)
-    respond_to do |format|
-      format.js {render :action => "show_reviews"}
-    end
-  end
-
-  def get_number_of_artists_reviews
-    reviews = Artist.find(params[:artist_id]).reviews
-    respond_to do |format|
-      format.json {render json: {number_of_reviews: reviews.size}}
-    end
+        render :action => 'show_reviews'
   end
 
   private

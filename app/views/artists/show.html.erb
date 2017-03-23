@@ -1,4 +1,4 @@
-<div class="container artist_id_container" data-artist_id=<%=@artist.id%>>
+<div class="container artist_id_container" id="artist_id_container" data-artist_id=<%=@artist.id%>>
 	<div class="row">
 		<div class="col-sm-3">
 			<img src="<%= Faker::LoremPixel.image("200x200") %>" class="rounded">
@@ -61,31 +61,53 @@
     </div>
   </div>
 
-  <div class="row">
   <% if user_signed_in? %>
-    <div class="col-4">
-      <div id="leave_rating">
-        <span>&starf;</span>
-        <span>&starf;</span>
-        <span>&starf;</span>
-        <span>&starf;</span>
-        <span>&starf;</span>
+    <% if !@review.artist_id.nil? %>
+      <button onclick="loadReviewForm()" id="review_load_button" class="btn btn-danger">Edit Review</button>
+    <% end %>
+    <% if @review.artist_id.nil? %>
+      <div class="row">
+    <% else %>
+      <div class="row" id="review_form">
+    <% end %>
+        <div class="col-4" id="leave_rating">
+          <span>&starf;</span>
+          <span>&starf;</span>
+          <span>&starf;</span>
+          <span>&starf;</span>
+          <span>&starf;</span>
+        </div>
+        <div class="col-4">
+          <%= form_for([@artist, @review]) do |f| %>
+            <p>
+              <%= f.label :comment %><br>
+              <%= f.text_area :comment, :value=>@review.nil? ? "" : @review.comment %>
+            </p>
+            <%= f.hidden_field :rating, :id=>"rating_field", :value=>@review.nil? ? 6 : @review.rating%>
+            <%= f.submit @review.rating == -1 ? "Leave Review" : "Update Review" %>
+          <% end %>
+        </div>
+        <div class="col-4">
+          <%= link_to(image_tag('trashcan_icon.png', alt: "Trashcan Icon", size: "20x20", class: "review_icon"), [@review.artist, @review], method: :delete) if @review.user == current_user %>
+        </div>
       </div>
-    </div>
-    <div class="col-4">
-      <%= form_for([@artist, @review]) do |f| %>
-        <p>
-          <%= f.label :comment %><br>
-          <%= f.text_area :comment, :value=>@review.nil? ? "" : @review.comment %>
-        </p>
-        <%= f.hidden_field :rating, :id=>"rating_field", :value=>@review.nil? ? 6 : @review.rating%>
-        <%= f.submit @review.rating == -1 ? "Leave Review" : "Update Review" %>
-      <% end %>
-    </div>
   <% end %>
   </div>
 
-  <%= render partial: 'shared/reviews_list',  locals: {reviews: @reviews} %>
+  <div class="row reviews_container" id="reviews_container">
+    <%= render @reviews %>
+    <%= paginate @reviews %>
+  </div>
 
-
+  <div class="row">
+    <div class="col-12">
+      <div class="dropdown">
+        <button onclick="toggleDropdown()" class="dropbtn">Arrange Reviews By</button>
+        <div id="reviews_dropdown" class="dropdown-content">
+          <a href="#" onclick="orderReviewsByAge(event)">Most Recent</a>
+          <a href="#" onclick="orderReviewsByUpvotes(event)">Most Upvoted</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

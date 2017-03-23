@@ -14,7 +14,8 @@ class ArtistsController < ApplicationController
         @review = Review.find_by(artist_id: @artist.id, user_id: current_user.id)
         @review.nil? ? @review = Review.new : @review
     end
-    @reviews = @artist.reviews.limit(1)
+    @reviews = Review.where('artist_id = ?', @artist.id).page(params[:page]).order('created_at DESC').per(25)
+    render action: :show, layout: request.xhr? == nil
   end
 
   # GET /artists/new

@@ -1,0 +1,44 @@
+<div class="container review_content">
+  <%# @user.image %>
+  <img src="<%= Faker::LoremPixel.image("50x50", true, 'people') %>" class="rounded rounded-circle float-left">
+
+  <div class="row">
+    <div class="col-12">
+      <h4 class="review_username"><strong><%= review.user.name %></strong></h4>
+
+      <span class="ratings_list" data-rating=<%=review.rating%>>
+        <span>&starf;</span>
+        <span>&starf;</span>
+        <span>&starf;</span>
+        <span>&starf;</span>
+        <span>&starf;</span>
+      </span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <%= review.comment %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <%= review.upvotes %>
+      <% if user_signed_in? %>
+        <% if review.upvotes_userlist.nil? || !current_user.id.to_s.in?(review.upvotes_userlist) %>
+          <%= link_to(image_tag('rockon_icon.png', alt: 'Rockon Icon', size: '20x20', class: "review_icon"), "/artists/#{review.artist.id}/reviews/#{review.id}/upvote", method: :post) %>
+        <% elsif !review.upvotes_userlist.nil? %>
+          <%= link_to(image_tag('rockon_icon.png', alt: 'Rockon Icon', size: '20x20', class: "review_icon rockon_icon_flipped"), "/artists/#{review.artist.id}/reviews/#{review.id}/upvote", method: :delete) unless review.upvotes_userlist.nil? %>
+        <% end %>
+              <%= link_to(image_tag('trashcan_icon.png', alt: "Trashcan Icon", size: "20x20", class: "review_icon"), [review.artist, review], method: :delete) if review.user == current_user %>
+        <%= link_to(image_tag('share_icon.png', alt: "Share Icon", size: "20x20", class:"review_icon"), '') %>Share
+      <% else %>
+          <%= image_tag('rockon_icon.png', alt: 'Rockon Icon', size: '20x20', class: "review_icon") %>
+      <% end %>
+      <abbr class="timeago" title="<%= review.created_at.getutc.iso8601 %>">
+        <%= review.updated_at.to_s %>
+      </abbr>
+    </div>
+  </div>
+</div>

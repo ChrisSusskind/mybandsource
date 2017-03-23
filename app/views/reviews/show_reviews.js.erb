@@ -1,2 +1,1 @@
-$('.reviews_container').append('<%= escape_javascript(
-  render(partial: 'shared/review', collection: @reviews)) %>');
+$('.reviews_container').append("<%= escape_javascript(render(@reviews)) %>");

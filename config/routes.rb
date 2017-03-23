@@ -4,9 +4,7 @@ Rails.application.routes.draw do
     resources :reviews, only: [:create, :update, :destroy]
     post '/reviews/:id/upvote', to: 'reviews#upvote'
     delete '/reviews/:id/upvote', to: 'reviews#remove_upvote'
-    get 'more_reviews/:number_displayed', to: 'reviews#get_more_reviews'
-    get 'all_reviews/:number_displayed', to: 'reviews#get_all_reviews'
-    get '/review_number', to: 'reviews#get_number_of_artists_reviews'
+    get '/reviews/reorder/:recent_order', to: 'reviews#reorder'
   end
   devise_for :users, controllers: {sessions: 'users/sessions', registrations: 'users/registrations'}
 

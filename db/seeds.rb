@@ -48,5 +48,14 @@ User.populate 50 do |user|
 		subscription.user_id 		= user.id	
 		subscription.artist_id 		= artist_list[counter].id
 		counter += 1
-	end
+  end
+
+  Review.populate 1 do |review|
+		review.artist_id = 23
+		review.user_id = user.id
+		review.comment = "FUCK YA" + user.id.to_s
+		review.rating = 3
+    review.upvotes = user.id
+    review.upvotes_userlist = []
+  end
 end
