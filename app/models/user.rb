@@ -11,6 +11,9 @@ class User < ApplicationRecord
 	#For user to review associations
 	has_many :reviews, dependent: :destroy
 
+  #For user to response associations
+  has_many :responses, dependent: :destroy
+
   #For user to user relationships
   has_many :active_relationships, class_name: "UserRelationship", foreign_key: "follower_id", dependent: :destroy
   has_many :passive_relationships, class_name: "UserRelationship", foreign_key: "followed_id", dependent: :destroy

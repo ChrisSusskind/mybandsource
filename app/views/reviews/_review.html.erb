@@ -1,4 +1,4 @@
-<div class="container review_content">
+<div class="container review_content" data-review_id=<%=review.id%>>
   <%# @user.image %>
   <img src="<%= Faker::LoremPixel.image("50x50", true, 'people') %>" class="rounded rounded-circle float-left">
 
@@ -29,9 +29,10 @@
         <% if review.upvotes_userlist.nil? || !current_user.id.to_s.in?(review.upvotes_userlist) %>
           <%= link_to(image_tag('rockon_icon.png', alt: 'Rockon Icon', size: '20x20', class: "review_icon"), "/artists/#{review.artist.id}/reviews/#{review.id}/upvote", method: :post) %>
         <% elsif !review.upvotes_userlist.nil? %>
-          <%= link_to(image_tag('rockon_icon.png', alt: 'Rockon Icon', size: '20x20', class: "review_icon rockon_icon_flipped"), "/artists/#{review.artist.id}/reviews/#{review.id}/upvote", method: :delete) unless review.upvotes_userlist.nil? %>
+          <%= link_to(image_tag('rockon_icon.png', alt: 'Rockon Icon', size: '20x20', class: "review_icon rockon_icon_flipped"), "/artists/#{review.artist.id}/reviews/#{review.id}/remove_upvote", method: :delete) unless review.upvotes_userlist.nil? %>
         <% end %>
-              <%= link_to(image_tag('trashcan_icon.png', alt: "Trashcan Icon", size: "20x20", class: "review_icon"), [review.artist, review], method: :delete) if review.user == current_user %>
+          <%= image_tag('reply_icon.png', alt: "Reply Icon", size: "20x20", class: "review_icon reply_icon", id: "reply_icon", onclick: "showReplyForm(this)") %>
+          <%= link_to(image_tag('trashcan_icon.png', alt: "Trashcan Icon", size: "20x20", class: "review_icon"), [review.artist, review], method: :delete) if review.user == current_user %>
         <%= link_to(image_tag('share_icon.png', alt: "Share Icon", size: "20x20", class:"review_icon"), '') %>Share
       <% else %>
           <%= image_tag('rockon_icon.png', alt: 'Rockon Icon', size: '20x20', class: "review_icon") %>
@@ -41,4 +42,8 @@
       </abbr>
     </div>
   </div>
+
+  <% if responses_shown %>
+    <%= render partial: 'responses/response', collection: review.responses, locals: {review: review} %>
+  <% end %>
 </div>

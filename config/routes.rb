@@ -1,10 +1,21 @@
 Rails.application.routes.draw do
   resources :genres
   resources :artists do
-    resources :reviews, only: [:create, :update, :destroy]
-    post '/reviews/:id/upvote', to: 'reviews#upvote'
-    delete '/reviews/:id/upvote', to: 'reviews#remove_upvote'
+    resources :reviews, only: [:create, :update, :destroy] do
+      member do
+        post 'upvote'
+        delete 'remove_upvote'
+      end
+      resources :responses, only: [:create, :destroy] do
+        member do
+          post 'upvote'
+          delete 'remove_upvote'
+        end
+      end
+    end
     get '/reviews/reorder/:recent_order', to: 'reviews#reorder'
+    get '/reviews/show_responses', to: 'reviews#show_responses'
+    get '/reviews/hide_responses', to: 'reviews#hide_responses'
   end
   devise_for :users, controllers: {sessions: 'users/sessions', registrations: 'users/registrations'}
 

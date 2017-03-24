@@ -57,5 +57,13 @@ User.populate 50 do |user|
 		review.rating = 3
     review.upvotes = user.id
     review.upvotes_userlist = []
+
+    Response.populate 1 do |response|
+      response.review_id = review.id
+      response.comment = "Response" + user.id.to_s
+      response.user_id = user.id
+      response.upvotes = user.id
+      response.upvotes_userlist = []
+    end
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170322012940) do
+ActiveRecord::Schema.define(version: 20170324005533) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,17 @@ ActiveRecord::Schema.define(version: 20170322012940) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["name"], name: "index_genres_on_name", unique: true, using: :btree
+  end
+
+  create_table "responses", force: :cascade do |t|
+    t.integer  "upvotes",          default: 0
+    t.text     "upvotes_userlist", default: [],              array: true
+    t.text     "comment",                       null: false
+    t.integer  "user_id"
+    t.integer  "review_id"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.index ["review_id"], name: "index_responses_on_review_id", using: :btree
   end
 
   create_table "reviews", force: :cascade do |t|

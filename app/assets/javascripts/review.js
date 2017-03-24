@@ -3,6 +3,7 @@
  */
 
 var artist_id;
+var show_responses = false;
 
 /*
 Performs following actions when document is ready
@@ -23,20 +24,17 @@ $(document).ready(function(){
           }
       }
     };
-});
 
-//Function that
-$(function() {
-    $(document.body).off('click', 'nav.pagination a');
-    $(document.body).on('click', 'nav.pagination a', function(e) {
-        e.preventDefault();
-        var loadingHTML = "<div class='loading'>Loading...</div>";
-        $("#reviews_container").html(loadingHTML).load($(this).attr("href"), function(){
-            loadRatingsStyle();
-            changeTimeDisplays();
-        });
-        return false;
+    $('#reviews_button').on('click', function(e) {
+        console.log("Review button clicked");
+        show_responses = false;
     });
+
+    $('#discussion_button').on('click', function(e) {
+        console.log("Discussion button clicked");
+        show_responses = true;
+    });
+
 });
 
 //Function that is called when dropdown menu button is clicked on (toggles whether options are shown)
@@ -50,7 +48,7 @@ Removes all reviews currently shown on the screen and reloads 10 initial ones us
 */
 function orderReviewsByAge(e) {
     e.preventDefault();
-    $('.reviews_container').empty();
+    //$('.reviews_container').empty();
     reorderReviews(true);
 }
 
@@ -61,7 +59,7 @@ function orderReviewsByAge(e) {
 function orderReviewsByUpvotes(e) {
     e.preventDefault();
     age_ordered = false;
-    $('.reviews_container').empty();
+    //$('.reviews_container').empty();
     reorderReviews(false)
 }
 
@@ -69,6 +67,9 @@ function reorderReviews(recent_ordered) {
     $.ajax({
         method: 'GET',
         url: '/artists/' + artist_id + '/reviews/reorder/' + recent_ordered,
+        data: {
+          show_responses: show_responses
+        },
         success: function(){
             loadRatingsStyle();
             changeTimeDisplays();
@@ -79,4 +80,21 @@ function reorderReviews(recent_ordered) {
 function loadReviewForm(){
     $('#review_load_button').hide();
     $('#review_form').show();
+}
+
+function showReplyForm(node){
+    var review = node.parentElement.parentElement.parentElement;
+    var review_id = review.getAttribute('data-review_id');
+    var wrapper = document.createElement('div');
+    wrapper.innerHTML = '<form id="reply_form"><textarea id="reply"></textarea><input type="submit" value="Submit"></form>';
+    review.append(wrapper);
+    $('#reply_form').submit(function(){
+       $.ajax({
+           type: 'POST',
+           url: '/artists/' + artist_id + '/reviews/' + review_id + '/responses',
+           data: {
+               comment: $('#reply').val()
+           }
+       })
+    });
 }

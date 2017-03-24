@@ -94,9 +94,16 @@
   <% end %>
   </div>
 
+  <div class="row">
+    <%= link_to("Reviews", "/artists/#{@artist.id}/reviews/hide_responses", method: "get", class: "btn btn-danger", id: "reviews_button", remote: true) %>
+    <%= link_to("Discussion", "/artists/#{@artist.id}/reviews/show_responses", method: "get", class: "btn btn-danger", id: "discussion_button", remote: true) %>
+  </div>
+
   <div class="row reviews_container" id="reviews_container">
-    <%= render @reviews %>
-    <%= paginate @reviews %>
+    <%= render partial: 'reviews/review', collection: @reviews, locals: {responses_shown: false}%>
+  </div>
+  <div class="row" id="paginator">
+    <%= paginate @reviews, remote: true %>
   </div>
 
   <div class="row">
