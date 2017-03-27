@@ -14,7 +14,7 @@ class ArtistsController < ApplicationController
         @review = Review.find_by(artist_id: @artist.id, user_id: current_user.id)
         @review.nil? ? @review = Review.new : @review
     end
-    @reviews = @artist.reviews.page(params[:page]).order('created_at DESC').per(25)
+    @reviews = @artist.reviews.page(params[:page]).order('updated_at DESC').per(25)
     respond_to do |format|
       format.html
       format.js {render :action => '../reviews/show.js'}

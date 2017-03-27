@@ -8,7 +8,11 @@
 
     <div class="row">
       <div class="col-12">
-        <h4 class="review_username"><strong><%= response.user.name %></strong></h4>
+        <h4 class="review_username">
+          <strong>
+            <%= link_to(response.user.name, user_path(response.user)) %>
+          </strong>
+        </h4>
       </div>
     </div>
 

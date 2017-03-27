@@ -64,12 +64,12 @@
   <% if user_signed_in? && @review.artist_id.nil? %>
     <button onclick="loadReviewForm()" id="review_load_button" class="btn btn-danger" style="display: none">Edit Review</button>
     <div class="row" id="review_form">
-  <% else %>
+  <% elsif user_signed_in? %>
     <button onclick="loadReviewForm()" id="review_load_button" class="btn btn-danger">Edit Review</button>
     <div class="row" id="review_form" style="display: none">
-  <% end %>
       <%= render partial: 'reviews/review_form', locals: {artist: @artist, review: @review} %>
     </div>
+  <% end %>
 
   <div class="row">
     <%= link_to("Reviews", "/artists/#{@artist.id}/reviews/hide_responses", method: "get", class: "btn btn-danger", id: "reviews_button", remote: true) %>
