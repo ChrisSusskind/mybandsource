@@ -6,12 +6,56 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+genre_list = [
+	"Blues",
+	"Comedy",
+	"Children's Music",
+	"Classical",
+	"Country",
+	"Electronic",
+	"Holiday",
+	"Opera",
+	"Singer Songwriter",
+	"Jazz",
+	"Latino",
+	"New Age",
+	"Pop",
+	"R&B/Soul",
+	"Soundtrack",
+	"Dance",
+	"Hip-Hop & Rap",
+	"World",
+	"Alternative",
+	"Rock",
+	"Christian & Gospel",
+	"Vocal",
+	"Reggae",
+	"Easy Listening",
+	"J-Pop",
+	"Enka",
+	"Anime",
+	"Kayokyoko",
+	"Fitness & Workout",
+	"K-Pop",
+	"Karaoke",
+	"Instrumental",
+	"Brazilian",
+	"Spoken Word",
+	"Disney",
+	"French Pop",
+	"German Pop",
+	"German Folk"
+]
+
 [User, Artist, Genre].each(&:delete_all)
 
 User.create(email: "eric@turtle.com", bio: "", name: "Eric", location: "Cornholeville", password: "turtle", picture: Faker::LoremPixel.image("150x150", true, 'people'), confirmed_at: Time.now)
 
-Genre.populate 20 do |genre|
-	genre.name 				= Faker::Lorem.unique.word
+
+genre_index = 0
+Genre.populate genre_list.length do |genre|
+	genre.name 				= genre_list[genre_index]
+	genre_index += 1
 	genre.description 		= Faker::Lorem.sentence
 end
 
