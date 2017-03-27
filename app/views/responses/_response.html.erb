@@ -23,11 +23,11 @@
         <%= response.upvotes %>
         <% if user_signed_in? %>
             <% if response.upvotes_userlist.nil? || !current_user.id.to_s.in?(response.upvotes_userlist) %>
-                <%= link_to(image_tag('rockon_icon.png', alt: 'Rockon Icon', size: '20x20', class: "review_icon"), "/artists/#{review.artist.id}/reviews/#{review.id}/responses/#{response.id}/upvote", method: :post, remote: true) %>
+                <%= link_to(image_tag('rockon_icon.png', alt: 'Rockon Icon', size: '20x20', class: "review_icon"), "/artists/#{review.artist.id}/reviews/#{review.id}/responses/#{response.id}/upvote", method: :post, data: {user_profile: user_profile}, remote: true) %>
             <% elsif !response.upvotes_userlist.nil? %>
-                <%= link_to(image_tag('rockon_icon.png', alt: 'Rockon Icon', size: '20x20', class: "review_icon rockon_icon_flipped"), "/artists/#{review.artist.id}/reviews/#{review.id}/responses/#{response.id}/remove_upvote", method: :delete, remote: true) unless response.upvotes_userlist.nil? %>
+                <%= link_to(image_tag('rockon_icon.png', alt: 'Rockon Icon', size: '20x20', class: "review_icon rockon_icon_flipped"), "/artists/#{review.artist.id}/reviews/#{review.id}/responses/#{response.id}/remove_upvote", method: :delete, data: {user_profile: user_profile}, remote: true) unless response.upvotes_userlist.nil? %>
             <% end %>
-            <%= link_to(image_tag('trashcan_icon.png', alt: "Trashcan Icon", size: "20x20", class: "review_icon"), [review.artist, review, response], method: :delete, remote: true) if response.user == current_user %>
+            <%= link_to(image_tag('trashcan_icon.png', alt: "Trashcan Icon", size: "20x20", class: "review_icon"), [review.artist, review, response], method: :delete, data: {user_profile: user_profile}, remote: true) if response.user == current_user %>
             <%= link_to(image_tag('share_icon.png', alt: "Share Icon", size: "20x20", class:"review_icon"), '') %>Share
         <% else %>
             <%= image_tag('rockon_icon.png', alt: 'Rockon Icon', size: '20x20', class: "review_icon") %>

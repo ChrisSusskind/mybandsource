@@ -1,5 +1,5 @@
 var review_id = '<%= escape_javascript(@review.id.to_s) %>';
-if (getReviewOrder()){
+if (isDiscussionView()){
   $("[data-review_id=" + review_id + "]").replaceWith('<%= escape_javascript(render partial: 'reviews/review', object: @review, locals: {responses_shown: true})%>');
 }
 else{

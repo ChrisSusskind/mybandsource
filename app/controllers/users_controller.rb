@@ -12,6 +12,11 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @reviews = @user.reviews.page(params[:page]).order('created_at DESC').per(25)
+    respond_to do |format|
+      format.html
+      format.js {render :action => '../reviews/user_profile/show.js'}
+    end
   end
 
   def following

@@ -25,6 +25,16 @@ Rails.application.routes.draw do
     member do
       get :following, :followers
     end
+    resources :reviews, only: [] do
+      member do
+        delete 'destroy_userprofile'
+        post 'upvote_userprofile'
+        delete 'remove_upvote_userprofile'
+      end
+    end
+    get '/reviews/reorder/:recent_order', to: 'reviews#reorder_userprofile'
+    get '/reviews/show_responses', to: 'reviews#show_responses_userprofile'
+    get '/reviews/hide_responses', to: 'reviews#hide_responses_userprofile'
   end
 
   #User relationship create and destroy routes

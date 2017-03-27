@@ -1,5 +1,4 @@
 class ResponsesController < ApplicationController
-  before_action :set_artist
   before_action :set_review
   before_action :set_response, only: [:destroy, :upvote, :remove_upvote]
   def create
@@ -7,14 +6,16 @@ class ResponsesController < ApplicationController
     unless @response.valid?
       flash[:alert] = "Response creation failed"
     end
-    render :action => 'response_display'
+    render :action => 'response_display' if params[:user_profile] == "false"
+    render :action => 'user_profile/response_display'
   end
 
   def destroy
     unless @response.destroy
       flash[:alert] = "Response deletion failed"
     end
-    render :action => 'response_display'
+    render :action => 'response_display' if params[:user_profile] == "false"
+    render :action => 'user_profile/response_display'
   end
 
   def upvote
@@ -25,7 +26,8 @@ class ResponsesController < ApplicationController
     unless @response.save
       flash[:alert] = "Response upvote failed"
     end
-    render :action => 'response_display'
+    render :action => 'response_display' if params[:user_profile] == "false"
+    render :action => 'user_profile/response_display'
   end
 
   def remove_upvote
@@ -34,14 +36,11 @@ class ResponsesController < ApplicationController
     unless @response.save
       flash[:alert] = "Response upvote failed"
     end
-    render :action => 'response_display'
+    render :action => 'response_display' if params[:user_profile] == "false"
+    render :action => 'user_profile/response_display'
   end
 
   private
-
-  def set_artist
-    @artist = Artist.find(params[:artist_id])
-  end
 
   def set_review
     @review = Review.find(params[:review_id])

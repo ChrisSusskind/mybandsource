@@ -1,0 +1,4 @@
+$('#reviews_container').html('<%= escape_javascript(render partial: 'reviews/user_profile/review_user_profile', collection: @reviews, locals: {responses_shown: false}) %>');
+$('#paginator').html('<%= escape_javascript(paginate(@reviews, :remote => true).to_s) %>');
+loadRatingsStyle();
+changeTimeDisplays();
