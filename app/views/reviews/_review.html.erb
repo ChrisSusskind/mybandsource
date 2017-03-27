@@ -44,6 +44,6 @@
   </div>
 
   <% if responses_shown %>
-    <%= render partial: 'responses/response', collection: review.responses.order('CREATED_AT DESC'), locals: {review: review, user_profile: false} %>
+    <%= render partial: 'responses/response', collection: review.responses.order('CREATED_AT ASC'), locals: {review: review, user_profile: false} %>
   <% end %>
 </div>

@@ -7,7 +7,7 @@ class ResponsesController < ApplicationController
       flash[:alert] = "Response creation failed"
     end
     render :action => 'response_display' if params[:user_profile] == "false"
-    render :action => 'user_profile/response_display'
+    render :action => 'user_profile/response_display' if params[:user_profile] == "true"
   end
 
   def destroy
@@ -15,7 +15,7 @@ class ResponsesController < ApplicationController
       flash[:alert] = "Response deletion failed"
     end
     render :action => 'response_display' if params[:user_profile] == "false"
-    render :action => 'user_profile/response_display'
+    render :action => 'user_profile/response_display' if params[:user_profile] == "true"
   end
 
   def upvote
@@ -27,7 +27,7 @@ class ResponsesController < ApplicationController
       flash[:alert] = "Response upvote failed"
     end
     render :action => 'response_display' if params[:user_profile] == "false"
-    render :action => 'user_profile/response_display'
+    render :action => 'user_profile/response_display' if params[:user_profile] == "true"
   end
 
   def remove_upvote
@@ -37,7 +37,7 @@ class ResponsesController < ApplicationController
       flash[:alert] = "Response upvote failed"
     end
     render :action => 'response_display' if params[:user_profile] == "false"
-    render :action => 'user_profile/response_display'
+    render :action => 'user_profile/response_display' if params[:user_profile] == "true"
   end
 
   private

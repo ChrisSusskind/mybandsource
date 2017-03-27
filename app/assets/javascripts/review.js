@@ -123,13 +123,15 @@ function showReplyForm(node){
     var wrapper = document.createElement('div');
     wrapper.innerHTML = '<form id="reply_form"><textarea id="reply"></textarea><input type="submit" value="Submit"></form>';
     review.append(wrapper);
+    var user_profile = (artist_id == null);
     $('#reply_form').submit(function(e){
        e.preventDefault();
        $.ajax({
            type: 'POST',
            url: '/artists/' + artist_id + '/reviews/' + review_id + '/responses',
            data: {
-               comment: $('#reply').val()
+               comment: $('#reply').val(),
+               user_profile: user_profile
            },
            dataType: 'script'
        })
@@ -137,6 +139,6 @@ function showReplyForm(node){
 }
 
 //Function that returns show_responses global variable that identifies whether current view is reviews (no comments) or discussion (comments shown)
-function getReviewOrder(){
+function isDiscussionView(){
     return show_responses;
 }
