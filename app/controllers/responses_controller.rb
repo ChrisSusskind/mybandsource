@@ -7,23 +7,25 @@ class ResponsesController < ApplicationController
     unless @response.valid?
       flash[:alert] = "Response creation failed"
     end
-    redirect_to @artist
+    render :action => 'response_display'
   end
 
   def destroy
     unless @response.destroy
       flash[:alert] = "Response deletion failed"
     end
-    redirect_to @artist
+    render :action => 'response_display'
   end
 
   def upvote
     @response.upvotes+=1
-    @response.upvotes_userlist+=[current_user.id]
+    @response.upvotes_userlist.nil? ?
+    @response.upvotes_userlist = [current_user.id] :
+    @response.upvotes_userlist += [current_user.id]
     unless @response.save
       flash[:alert] = "Response upvote failed"
     end
-    redirect_to @artist
+    render :action => 'response_display'
   end
 
   def remove_upvote
@@ -32,7 +34,7 @@ class ResponsesController < ApplicationController
     unless @response.save
       flash[:alert] = "Response upvote failed"
     end
-    redirect_to @artist
+    render :action => 'response_display'
   end
 
   private

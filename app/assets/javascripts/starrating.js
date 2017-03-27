@@ -8,29 +8,16 @@ var ratings_list = [];
 
 /*
  Performs following actions when document is ready
- 1. Loads style for ratings list being displayed
- 2. Changes timestamp displayed for rating to english representation
- 3. Loads style for already entered review (if being given option to update)
- 4. Adds star id (data_count), mouseenter, mouseleave, and click handler events for stars (used to change style when rating is being entered)
+ 1. Loads info and style for already entered review (if being given option to update)
+ 2. Loads style for ratings list being displayed
+ 3. Changes timestamp displayed for rating to english representation
  */
 $(document).ready(function(){
+    loadRatingEntry();
+
     loadRatingsStyle();
 
     changeTimeDisplays();
-
-    var temp = $('#leave_rating');
-    stars = temp.find('span');
-    selected_rating = parseInt($('#rating_field').val());
-    if(selected_rating != -1){
-        loadRatingEntryStyling(selected_rating);
-    }
-
-    for(var i=0; i<stars.length; i++){
-        stars[i].setAttribute('data_count', i);
-        stars[i].addEventListener('mouseenter', fillStars);
-        stars[i].addEventListener('mouseleave', emptyStars);
-        stars[i].addEventListener('click', onStarClick);
-    }
 });
 
 //Function that adds hover class to stars when they should be shown full
@@ -62,10 +49,21 @@ function onStarClick(e){
     fillStars(e);
 }
 
-//Function used to add hover class to fill in stars for previous rating made by user (when update review view is shown)
-function loadRatingEntryStyling(rating){
-    for(var i=0; i < rating; i++){
-        stars[i].classList.add('hover');
+//Function used to get previously entered rating info and to add styling to that rating (from create/update review form)
+function loadRatingEntry(){
+    var temp = $('#leave_rating');
+    stars = temp.find('span');
+    selected_rating = parseInt($('#rating_field').val());
+
+    for(var i=0; i<stars.length; i++){
+        stars[i].setAttribute('data_count', i);
+        stars[i].addEventListener('mouseenter', fillStars);
+        stars[i].addEventListener('mouseleave', emptyStars);
+        stars[i].addEventListener('click', onStarClick);
+    }
+
+    for(var j=0; j < selected_rating; j++){
+        stars[j].classList.add('hover');
     }
 }
 

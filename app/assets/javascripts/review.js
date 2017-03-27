@@ -88,13 +88,19 @@ function showReplyForm(node){
     var wrapper = document.createElement('div');
     wrapper.innerHTML = '<form id="reply_form"><textarea id="reply"></textarea><input type="submit" value="Submit"></form>';
     review.append(wrapper);
-    $('#reply_form').submit(function(){
+    $('#reply_form').submit(function(e){
+       e.preventDefault();
        $.ajax({
            type: 'POST',
            url: '/artists/' + artist_id + '/reviews/' + review_id + '/responses',
            data: {
                comment: $('#reply').val()
-           }
+           },
+           dataType: 'script'
        })
     });
+}
+
+function getReviewOrder(){
+    return show_responses;
 }

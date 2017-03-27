@@ -1,0 +1,20 @@
+<div class="col-4" id="leave_rating">
+  <span>&starf;</span>
+  <span>&starf;</span>
+  <span>&starf;</span>
+  <span>&starf;</span>
+  <span>&starf;</span>
+</div>
+<div class="col-4" id="review_form_for">
+  <%= form_for([artist, review], remote: true) do |f| %>
+      <p>
+        <%= f.label :comment %><br>
+        <%= f.text_area :comment, :value=>review.nil? ? "" : review.comment %>
+      </p>
+      <%= f.hidden_field :rating, :id=>"rating_field", :value=>review.nil? ? 6 : review.rating%>
+      <%= f.submit review.rating == -1 ? "Leave Review" : "Update Review" %>
+  <% end %>
+</div>
+<div class="col-4">
+  <%= link_to(image_tag('trashcan_icon.png', alt: "Trashcan Icon", size: "20x20", class: "review_icon"), [review.artist, review], method: :delete, remote: true) if review.user == current_user %>
+</div>
