@@ -8,10 +8,7 @@
 		<!-- Search block -->
 		<div class="row justify-content-center p-4">
 			<div class="col-8 text-center">
-				<div class="input-group input-group-lg">
-					<input type="text" class="form-control search-bar" placeholder="Search for a band...">
-				</div>
-				<button class="btn btn-danger button-home mx-auto m-3">Search</button>
+          <%= react_component "ArtistSearchContainerComponent", {searchPath: search_artists_path, submitPath: submit_search_path} %>
 			</div>
 		</div>
 	</div>

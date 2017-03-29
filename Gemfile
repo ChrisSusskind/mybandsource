@@ -48,7 +48,13 @@ gem 'cloudinary'
 gem 'puma'
 gem 'rest-client'
 
+#Use kaminari for pagination
 gem 'kaminari'
+
+#Using react for interactive search on homepage
+gem 'react-rails'
+
+gem 'bower-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

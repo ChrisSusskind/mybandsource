@@ -70,6 +70,20 @@ class ArtistsController < ApplicationController
     end
   end
 
+  def search_artists
+    @artists = Artist.where("name ILIKE ?", "%#{params[:query]}%")
+    respond_to do |format|
+      format.json {render json: @artists.to_json}
+    end
+  end
+
+  def get_artist
+    @artist = Artist.find_by({name: params[:query]})
+    redirect_to artist_path(@artist) if @artist
+    flash[:alert] = "No artist found by that name" unless @artist
+    redirect_to root_path unless @artist
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_artist

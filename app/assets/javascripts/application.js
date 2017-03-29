@@ -17,3 +17,7 @@
 //= require 'starrating.js'
 //= require 'review.js'
 //= require 'jquery.timeago.js'
+//= require 'jquery.debounce.js'
+//= require react
+//= require react_ujs
+//= require components

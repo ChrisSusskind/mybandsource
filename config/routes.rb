@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     get '/reviews/show_responses', to: 'reviews#show_responses'
     get '/reviews/hide_responses', to: 'reviews#hide_responses'
   end
+  post '/search_artists', to: 'artists#search_artists'
+  post '/submit_search', to: 'artists#get_artist'
   devise_for :users, controllers: {sessions: 'users/sessions', registrations: 'users/registrations'}
 
 
