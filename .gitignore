@@ -47,3 +47,4 @@ bower.json
 
 #Ignore Rubymine ide files
 .idea/*
+/node_modules

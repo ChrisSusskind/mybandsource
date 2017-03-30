@@ -1,0 +1,53 @@
+<div class="container review_content" data-review_id=<%=review_user_profile.id.to_s%>>
+  <%# @user.image %>
+  <img src="<%= Faker::LoremPixel.image("50x50", true, 'people') %>" class="rounded rounded-circle float-left">
+
+  <div class="row">
+    <div class="col-12">
+      <h4 class="review_username">
+        <strong>
+          <%= link_to(review_user_profile.artist.name, artist_path(review_user_profile.artist)) %>
+        </strong>
+      </h4>
+
+      <span class="ratings_list" data-rating=<%=review_user_profile.rating%>>
+        <span>&starf;</span>
+        <span>&starf;</span>
+        <span>&starf;</span>
+        <span>&starf;</span>
+        <span>&starf;</span>
+      </span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <%= review_user_profile.comment %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <%= review_user_profile.upvotes %>
+      <% if user_signed_in? %>
+          <% if review_user_profile.upvotes_userlist.nil? || !current_user.id.to_s.in?(review_user_profile.upvotes_userlist) %>
+              <%= link_to(image_tag('rockon_icon.png', alt: 'Rockon Icon', size: '20x20', class: "review_icon"), "/users/#{review_user_profile.user.id}/reviews/#{review_user_profile.id}/upvote_userprofile", method: :post, remote: true) %>
+          <% elsif !review_user_profile.upvotes_userlist.nil? %>
+              <%= link_to(image_tag('rockon_icon.png', alt: 'Rockon Icon', size: '20x20', class: "review_icon rockon_icon_flipped"), "/users/#{review_user_profile.user.id}/reviews/#{review_user_profile.id}/remove_upvote_userprofile", method: :delete, remote: true) unless review_user_profile.upvotes_userlist.nil? %>
+          <% end %>
+          <%= image_tag('reply_icon.png', alt: "Reply Icon", size: "20x20", class: "review_icon reply_icon", id: "reply_icon", onclick: "showReplyForm(this)") %>
+          <%= link_to(image_tag('trashcan_icon.png', alt: "Trashcan Icon", size: "20x20", class: "review_icon"), "/users/#{review_user_profile.user.id}/reviews/#{review_user_profile.id}/destroy_userprofile", method: :delete, remote: true) if review_user_profile.user == current_user %>
+          <%= link_to(image_tag('share_icon.png', alt: "Share Icon", size: "20x20", class:"review_icon"), '') %>Share
+      <% else %>
+          <%= image_tag('rockon_icon.png', alt: 'Rockon Icon', size: '20x20', class: "review_icon") %>
+      <% end %>
+      <abbr class="timeago" title="<%= review_user_profile.updated_at.getutc.iso8601 %>">
+        <%= review_user_profile.updated_at.to_s %>
+      </abbr>
+    </div>
+  </div>
+
+  <% if responses_shown %>
+      <%= render partial: 'responses/response', collection: review_user_profile.responses.order('CREATED_AT ASC'), locals: {review: review_user_profile, user_profile: true} %>
+  <% end %>
+</div>

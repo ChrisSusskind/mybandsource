@@ -14,3 +14,18 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
+//= require 'starrating.js'
+//= require 'review.js'
+//= require 'jquery.timeago.js'
+//= require 'jquery.debounce.js'
+//= require react
+//= require cloudinary
+//= require cloudinary/processing
+//= require react_ujs
+//= require components
+
+$(function() {
+  if($.fn.cloudinary_fileupload !== undefined) {
+    $("input.cloudinary-fileupload[type=file]").cloudinary_fileupload();
+  }
+});

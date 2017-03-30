@@ -1,0 +1,242 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ */
+
+
+// Custom bootstrap variables must be set or imported *before* bootstrap.
+@import "bootstrap";
+
+
+/* Homepage styling */
+.jumbotron-main {
+	background-image: url(<%= Cloudinary::Utils.cloudinary_url("static/home_header.png") %>);
+  background-size: cover;
+	color: white;
+	height: 500px;
+	border-radius: 0;
+}
+
+.artist-card {
+	color: white;
+	border-radius: 0;
+	border: none;
+	background: #242424;
+}
+
+.artist-card-image {
+  width: 100%;
+}
+
+.genre-card {
+	height: 300px;
+	color: white;
+	border: none;
+	border-radius: 0;
+	background-image: url(<%= image_path 'genre1.png' %>);
+  background-size: cover;
+}
+
+.search-bar {
+	/* This doesnt work. Not high enough priority */
+	border-radius: 50px;
+}
+
+.section-title-block {
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+.button-home {
+	background: #AA182A;
+	border: 1px solid #AA182A;
+	border-radius: 100px;
+}
+
+
+/* Profile Styling */
+.jumbotron-profile {
+	background-color: gray;
+	color: white;
+}
+
+.profile-picture {
+	margin: 25px;
+}
+
+.follow-button {
+	background-color: rgb(184,0,25);
+	box-shadow: none;
+	border: none !important;
+}
+
+.follow-button:hover,
+.follow-button:focus,
+.follow-button:active {
+	background-color: blue;
+}
+
+.share_button {
+	background-color: transparent;
+	border: none !important;
+}
+
+.right_align {
+	text-align: right;
+}
+
+.followers_text {
+	margin-bottom: 0;
+}
+
+.follow_count {
+	position: relative;
+	top: 20px;
+}
+
+.bio_margin {
+	margin-bottom: 20px;
+}
+
+.profile-genres-left-padding {
+	padding-left: 50px;
+	border-left: 1px solid lightgray;
+}
+
+/*
+Artist page leave review styling
+*/
+
+#leave_rating {
+  text-align: center;
+  perspective: 250px;
+  top: 40%;
+  width: 100%
+}
+
+#leave_rating span {
+  cursor: pointer;
+  color: black;
+  font-size: 35px;
+  padding: 0 5px;
+  opacity: .5;
+  transition: all 150ms;
+  display: inline-block;
+  transform: rotateX(45deg);
+  transform-origin: center bottom;
+}
+
+#leave_rating span.hover {
+  color: #AA182A;
+  opacity: 1;
+  transform: rotateX(0deg);
+  text-shadow: 0 0 30px #AA182A;
+}
+
+.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #3e8e41;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+
+/*
+Review display (partial view) styling
+*/
+
+.ratings_list {
+  text-align: center;
+  perspective: 250px;
+  top: 40%;
+  width: 100%
+}
+
+.ratings_list span {
+  cursor: pointer;
+  color: black;
+  font-size: 25px;
+  padding: 0 5px;
+  opacity: .5;
+  transition: all 150ms;
+  display: inline-block;
+  transform: rotateX(45deg);
+  transform-origin: center bottom;
+}
+
+.ratings_list span.hover {
+  color: #AA182A;
+  opacity: 1;
+  transform: rotateX(0deg);
+  text-shadow: 0 0 30px #AA182A;
+}
+
+.review_username {
+  float: left;
+}
+
+.review_icon {
+  margin: 0 5px;
+}
+
+.review_icon:hover {
+  box-shadow: 5px 5px 50px black;
+}
+
+.rockon_icon_flipped {
+  -o-transform: scaleY(-1);
+  -webkit-transform: scaleY(-1);
+  transform: scaleY(-1);
+  filter: FlipV;
+  -ms-filter: "FlipV";
+}
+
+.search_result {
+
+}
+

@@ -10,6 +10,15 @@ class ArtistsController < ApplicationController
   # GET /artists/1
   # GET /artists/1.json
   def show
+    if user_signed_in?
+        @review = Review.find_by(artist_id: @artist.id, user_id: current_user.id)
+        @review.nil? ? @review = Review.new : @review
+    end
+    @reviews = @artist.reviews.page(params[:page]).order('updated_at DESC').per(25)
+    respond_to do |format|
+      format.html
+      format.js {render :action => '../reviews/show.js'}
+    end
   end
 
   # GET /artists/new
@@ -59,6 +68,20 @@ class ArtistsController < ApplicationController
       format.html { redirect_to artists_url, notice: 'Artist was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def search_artists
+    @artists = Artist.where("name ILIKE ?", "%#{params[:query]}%")
+    respond_to do |format|
+      format.json {render json: @artists.to_json}
+    end
+  end
+
+  def get_artist
+    @artist = Artist.find_by({name: params[:query]})
+    redirect_to artist_path(@artist) if @artist
+    flash[:alert] = "No artist found by that name" unless @artist
+    redirect_to root_path unless @artist
   end
 
   private

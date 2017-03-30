@@ -1,0 +1,7 @@
+$('#reviews_container').html('<%= escape_javascript(render partial: 'reviews/review', collection: @reviews, locals: {responses_shown: false}) %>');
+$('#paginator').html('<%= escape_javascript(paginate(@reviews, :remote => true).to_s) %>');
+$('#review_form').html('<%= escape_javascript(render partial: 'reviews/review_form', locals: {artist: @artist, review: review}) %>').hide();
+$('#review_load_button').show();
+loadRatingsStyle();
+loadRatingEntry();
+changeTimeDisplays();

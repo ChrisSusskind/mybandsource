@@ -1,54 +1,101 @@
-<div class="container">
-  <div class="jumbotron m-3">
-    <div class="row">
-      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-        <%= image_tag(@user.picture, :alt => "User Image", class: "rounded") %>
+<%= cloudinary_js_config %>
+
+<div class="jumbotron jumbotron-fluid vertical-center jumbotron-profile">
+	<div class="container" id="user_id_container" data-user_id=<%=@user.id%>>
+
+		<div class="row align-items-end justify-content-center">
+
+			<div class="col-xl-6 col-lg-6 col-md-8 col-sm-10 col-xs-10">
+				<%= image_tag(@user.picture_url, :alt => "Avatar", class: "profile-picture rounded-circle float-left img-circle") if @user.picture %>
+				<%= image_tag("blank_user.png", size: "150x150" , :alt => "User Image", class: "profile-picture rounded-circle float-left img-circle") if !@user.picture %> 
+        
+        <%= form_tag("/users/#{@user.id}/profile_picture", :method => "patch") do %>
+          <%= cl_image_upload_tag(:picture, :html => {:class => "image_upload"}) %>
+          <%= submit_tag(value = "Save") %>
+        <% end %>
+
+				<h2>
+					<%= @user.name %> <br/>
+					<small class="text-muted"><%= @user.location %></small>
+				</h2>
+				<p class="lead">Member since <%= Date::MONTHNAMES[@user.created_at.month] %> <%= @user.created_at.year %></p>
+				<div class="row">
+					<div class="col-sm-4">
+            <div>
+              <% if user_signed_in? && current_user != @user && !current_user.following?(@user) %>
+                <div>
+                  <%= link_to("Follow", "/userrelationship/#{@user.id}", method: "post", class: "btn btn-primary btn-lg btn-danger follow-button") %>
+                </div>
+              <% end %>
+
+              <% if user_signed_in? && !current_user != @user && current_user.following?(@user) %>
+                <div>
+                  <%= link_to("Unfollow", "/userrelationship/#{@user.id}", method: "delete", class: "btn btn-primary btn-lg btn-danger follow-button") %>
+                </div>
+              <% end %>
+            </div>
+					</div>
+					<div class="col-sm-4">
+						<button type="button" class="btn btn-danger share-button">Share</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-2 col-md-4 col-sm-4 offset-xl-1 offset-lg-1">
+				<div class="follow_count">
+          <p class="followers_text right_align">Followers</p>
+          <p class="right_align"><%= link_to("#{@user.followers.count} followers", "/users/#{@user.id}/followers", method: "get") %></p>
+          <p class="followers_text right_align">Following</p>
+          <p class="right_align"><%= link_to("#{@user.following.count + @user.artists.count} following", "/users/#{@user.id}/following", method: "get") %></p>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+<div class="container row">
+	<div class="col-xl-2 col-lg-2 col-md-1 col-sm-0 col-xs-0">
+
+  </div>
+	<div class="col-xl-6 col-lg-6">
+		<div class="row">
+			<h1 class="bio_margin">About</h1>
+			<h4 class="bio margin"><%= @user.bio %></h4>
+		</div>
+		<hr>
+		<div class="row">
+			<div class="col-xl-3 col-lg-3 offset-xl-1 offset-lg-1">
+          <%= link_to("Reviews", user_reviews_hide_responses_path(@user.id), method: "get", class: "btn btn-danger", id: "reviews_button", remote: true) %>
       </div>
-      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-        <div class="row">
-          <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
-            <h3><%= @user.name %></h3>
-          </div>
-          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <p class="lead">Email: <a href="mailto:<%= @user.email %>"><%= @user.email %></a></p>
-          </div>
-          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <p class="lead"><%= @user.location %></p>
-            <p class="lead"><%= @user.artists.size %> follows</p>
-          </div>
-        </div>
+			<div class="col-x1-3 col-lg-3 offset-xl-2 offset-lg-2">
+        <%= link_to("Discussion", user_reviews_show_responses_path(@user.id), method: "get", class: "btn btn-danger", id: "discussion_button", remote: true) %>
       </div>
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-        <%= link_to 'Edit User Profile', edit_user_registration_path(@user), class: "row m-0 float-right btn btn-primary" if current_user == @user %>
+		</div>
+		<div class="row reviews_container" id="reviews_container"">
+        <%= render partial: 'reviews/user_profile/review_user_profile', collection: @reviews, locals: {responses_shown: false}%>
+    </div>
+    <div class="row" id="paginator">
+      <%= paginate @reviews, remote: true %>
+    </div>
+</div>
+
+<div class="col-xl-4 col-lg-4 profile-genres-left-padding">
+  <p>Favorite Genres</p>
+  <!-- Replace with Ruby code that fetches all of a user's favorite genres with links and arrange them by length-->
+  <p>Sadboy Tunes</p>
+  <p>Electronic</p>
+  <p>Rap</p>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <div class="dropdown">
+      <button onclick="toggleDropdown()" class="dropbtn">Arrange Reviews By</button>
+      <div id="reviews_dropdown" class="dropdown-content">
+        <a href="#" onclick="orderReviewsByAgeUserProfile(event)">Most Recent</a>
+        <a href="#" onclick="orderReviewsByUpvotesUserProfile(event)">Most Upvoted</a>
       </div>
     </div>
-  </div>
-  <div class="row m-2">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      <h1>About</h1>
-      <p>About section populated here</p>
-      <%# <p>= @user.about %>
-    </div>
-  </div>
-
-  <div class="row">
-    <% @user.artists.limit(6).each do |artist| %>
-        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 m-3">
-          <%= image_tag(artist.picture, :alt => "User Image", class: "rounded") %>
-          <h3><%= artist.name %></h3>
-        </div>
-    <% end %>
-  </div>
-
-  <div class="row m-3">
-    <% @user.reviews.each do |review| %>
-      <%= render partial: "shared/review", locals:{user: @user, review: review} %>
-    <% end %>
-  </div>
-
-  <div class="row m-3">
-    <% 3.times do %>
-        <%= render partial: "shared/review" %>
-    <% end %>
   </div>
 </div>

@@ -1,37 +1,61 @@
 <div class="container-fluid">
 
-	<div class="row justify-content-center">
-		<h1 class="display-2 text-center">Reinventing Music Conversation</h1>
-	</div>
+	<div class="jumbotron jumbotron-main">
+		<div class="row justify-content-center">
+			<h3 class="display-4 text-center">Reinventing Music Conversation</h3>
+		</div>
 
-	<!-- Search block -->
-	<div class="row justify-content-center p-4">
-		<div class="col-8">
-			<div class="input-group input-group-lg">
-				<input type="text" class="form-control" placeholder="Search for something">
+		<!-- Search block -->
+		<div class="row justify-content-center p-4">
+			<div class="col-8 text-center">
+          <%= react_component "ArtistSearchContainerComponent", {searchPath: search_artists_path, submitPath: submit_search_path} %>
 			</div>
 		</div>
 	</div>
 	
 	<hr>
 
+	<!-- Artist Cards -->
 	<div class="container-fluid">
-		<div class="row">
+
+		<div class="section-title-block text-center">
+			<h3>Featured Artists</h3>
+			<p>Discover and explore conversations around artists.</p>
+		</div>
+
+		<div class="card-columns">
 			<% @artists.each do |artist| %>
-				<div class="col-sm-4">
-					<h4><%= artist.name %></h4>
-					<h5><%= artist.genre.name %></h5>
-				</div>
+					<div class="card artist-card">
+						<%= image_tag("artist1.png", class: "card-img-top img-fluid artist-card-image") %>
+						<div class="card-block">
+							<h4><%= artist.name %></h4>
+							<h5><%= artist.genre.name %></h5>
+
+							<ul class="list-inline">
+								<li>Item 1</li>
+								<li>Item 2</li>
+								<li>Item 3</li>
+								<li>Item 4</li>
+							</ul>
+						</div>
+					</div>
 			<% end %>
 		</div>
 	</div>
 
-	<!-- Browser Section -->
-	<div class="container">
-		<div class="card-columns">
+	
+	<!-- Genre Cards -->
+	<div class="container-fluid">
 
+		<div class="section-title-block text-center">
+			<h3>Popular Genres</h3>
+			<p>Explore artists by genre.</p>
+		</div>
+
+		<div class="card-columns">
 			<% @genres.each do |genre| %>
-				<div class="card">
+
+				<div class="card text-center genre-card">
 					<div class="card-block">
 						<h4 class="card-title"><%= genre.name %></h4>
 						<p class="card-text"><%= genre.description %></p>
@@ -40,5 +64,24 @@
 			<% end %>
 
 		</div>
+
+		<div class="text-center">
+			<button class="btn btn-danger button-home">View all genres</button>
+		</div>
+	</div>
+
+	<div class="container-fluid">
+		<div class="container text-center section-title-block">
+			<h1>Join the Conversation</h1>
+			<p class="lead">Rate, Review, and Discuss.</p>
+			<button class="btn btn-danger button-home">Sign up</button>
+		</div>
+	</div>
+
+	<hr>
+
+	<div>
+		<p>Copyright mybandsource LLC</p>
+		<p>About Terms Privacy etc</p>
 	</div>
 </div>

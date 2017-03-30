@@ -1,0 +1,9 @@
+var review_id = '<%= escape_javascript(@review.id.to_s) %>';
+if (isDiscussionView()){
+  $("[data-review_id=" + review_id + "]").replaceWith('<%= escape_javascript(render partial: 'reviews/user_profile/review_user_profile', object: @review, locals: {responses_shown: true})%>');
+}
+else{
+  $("[data-review_id=" + review_id + "]").replaceWith('<%= escape_javascript(render partial: 'reviews/user_profile/review_user_profile', object: @review, locals: {responses_shown: false})%>');
+}
+loadRatingsStyle();
+changeTimeDisplays();

@@ -11,8 +11,6 @@ end
 gem 'rails', '~> 5.0.1'
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
-# Use Puma as the app server
-gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -43,6 +41,21 @@ gem 'devise'
 # Foundation CSS Framework – https://github.com/zurb/foundation-rails
 gem 'bootstrap', '~> 4.0.0.alpha6'
 
+# Use Cloudinary for image hosting CDN
+gem 'carrierwave'
+gem 'cloudinary'
+
+gem 'puma'
+gem 'rest-client'
+
+#Use kaminari for pagination
+gem 'kaminari'
+
+#Using react for interactive search on homepage
+gem 'react-rails'
+
+gem 'bower-rails'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
@@ -69,5 +82,3 @@ group :test do
   gem 'guard-minitest'
 end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-# gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
