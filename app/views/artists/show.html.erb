@@ -1,3 +1,5 @@
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 <div class="container" id="artist_id_container" data-artist_id=<%=@artist.id%>>
 	<div class="row">
 		<div class="col-sm-3">
@@ -18,24 +20,16 @@
 	</div>
 
 	<div class="row">
-		<div class="col-sm-2 card">
+		<div class="col-sm-3 card">
 			<div class="card-block">
-				<h5>Twitter Link</h5>
+        <a href="https://twitter.com/intent/tweet?text=Some%20ad%20bullshit%20here" class="twitter-share-button" data-show-count="false" onclick="window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=350,height=250');return false;">
+          <%= cl_image_tag("static/twitter_icon.png", :width => 50, :height => 50, :crop => :fill) %>
+        </a>
 			</div>
 		</div>
-		<div class="col-sm-2 card">
-			<div class="card-block">
-				<h5>Soundcloud Link</h5>
-			</div>
-		</div>
-		<div class="col-sm-2 card">
+		<div class="col-sm-3 card">
 			<div class="card-block">
 				<h5>Facebook Link</h5>
-			</div>
-		</div>
-		<div class="col-sm-2 card">
-			<div class="card-block">
-				<h5>Spotify Link</h5>
 			</div>
 		</div>
 	</div>
@@ -64,6 +58,8 @@
   <% if user_signed_in? && @review.artist_id.nil? %>
     <button onclick="loadReviewForm()" id="review_load_button" class="btn btn-danger" style="display: none">Edit Review</button>
     <div class="row" id="review_form">
+      <%= render partial: 'reviews/review_form', locals: {artist: @artist, review: @review} %>
+    </div>
   <% elsif user_signed_in? %>
     <button onclick="loadReviewForm()" id="review_load_button" class="btn btn-danger">Edit Review</button>
     <div class="row" id="review_form" style="display: none">
