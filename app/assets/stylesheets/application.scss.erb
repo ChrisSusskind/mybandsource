@@ -19,7 +19,8 @@
 
 /* Homepage styling */
 .jumbotron-main {
-	background-image: url(<%= image_path 'home-header.png' %>);
+	background-image: url(<%= Cloudinary::Utils.cloudinary_url("static/home_header.png") %>);
+  background-size: cover;
 	color: white;
 	height: 500px;
 	border-radius: 0;
@@ -32,12 +33,17 @@
 	background: #242424;
 }
 
+.artist-card-image {
+  width: 100%;
+}
+
 .genre-card {
 	height: 300px;
 	color: white;
 	border: none;
 	border-radius: 0;
 	background-image: url(<%= image_path 'genre1.png' %>);
+  background-size: cover;
 }
 
 .search-bar {

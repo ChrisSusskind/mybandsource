@@ -1,46 +1,57 @@
+<%= cloudinary_js_config %>
+
 <div class="jumbotron jumbotron-fluid vertical-center jumbotron-profile">
 	<div class="container" id="user_id_container" data-user_id=<%=@user.id%>>
-			<div class="row align-items-end justify-content-center">
-				<div class="col-xl-6 col-lg-6 col-md-8 col-sm-10 col-xs-10">
-					<%= image_tag(@user.picture, :alt => "User Image", class: "profile-picture rounded-circle float-left img-circle") if @user.picture %>
-					<%= image_tag("blank_user.png", size: "150x150" , :alt => "User Image", class: "profile-picture rounded-circle float-left img-circle") if !@user.picture %> 
-					<h2>
-						<%= @user.name %> <br/>
-						<small class="text-muted"><%= @user.location %></small>
-					</h2>
-					<p class="lead">Member since <%= Date::MONTHNAMES[@user.created_at.month] %> <%= @user.created_at.year %></p>
-					<div class="row">
-						<div class="col-sm-4">
-              <div>
-                <% if user_signed_in? && current_user != @user && !current_user.following?(@user) %>
+
+		<div class="row align-items-end justify-content-center">
+
+			<div class="col-xl-6 col-lg-6 col-md-8 col-sm-10 col-xs-10">
+				<%= image_tag(@user.picture_url, :alt => "Avatar", class: "profile-picture rounded-circle float-left img-circle") if @user.picture %>
+				<%= image_tag("blank_user.png", size: "150x150" , :alt => "User Image", class: "profile-picture rounded-circle float-left img-circle") if !@user.picture %> 
+        
+        <%= form_tag("/users/#{@user.id}/profile_picture", :method => "patch") do %>
+          <%= cl_image_upload_tag(:picture, :html => {:class => "image_upload"}) %>
+          <%= submit_tag(value = "Save") %>
+        <% end %>
+
+				<h2>
+					<%= @user.name %> <br/>
+					<small class="text-muted"><%= @user.location %></small>
+				</h2>
+				<p class="lead">Member since <%= Date::MONTHNAMES[@user.created_at.month] %> <%= @user.created_at.year %></p>
+				<div class="row">
+					<div class="col-sm-4">
+            <div>
+              <% if user_signed_in? && current_user != @user && !current_user.following?(@user) %>
                 <div>
                   <%= link_to("Follow", "/userrelationship/#{@user.id}", method: "post", class: "btn btn-primary btn-lg btn-danger follow-button") %>
                 </div>
-                <% end %>
+              <% end %>
 
-                <% if user_signed_in? && !current_user != @user && current_user.following?(@user) %>
+              <% if user_signed_in? && !current_user != @user && current_user.following?(@user) %>
                 <div>
                   <%= link_to("Unfollow", "/userrelationship/#{@user.id}", method: "delete", class: "btn btn-primary btn-lg btn-danger follow-button") %>
                 </div>
-                <% end %>
-              </div>
-						</div>
-						<div class="col-sm-4">
-							<button type="button" class="btn btn-danger share-button">Share</button>
-						</div>
-						
-						
+              <% end %>
+            </div>
+					</div>
+					<div class="col-sm-4">
+						<button type="button" class="btn btn-danger share-button">Share</button>
 					</div>
 				</div>
-				<div class="col-lg-2 col-md-4 col-sm-4 offset-xl-1 offset-lg-1">
-					<div class="follow_count">
-            <p class="followers_text right_align">Followers</p>
-            <p class="right_align"><%= link_to("#{@user.followers.count} followers", "/users/#{@user.id}/followers", method: "get") %></p>
-            <p class="followers_text right_align">Following</p>
-            <p class="right_align"><%= link_to("#{@user.following.count + @user.artists.count} following", "/users/#{@user.id}/following", method: "get") %></p>
-					</div>
 			</div>
+
+			<div class="col-lg-2 col-md-4 col-sm-4 offset-xl-1 offset-lg-1">
+				<div class="follow_count">
+          <p class="followers_text right_align">Followers</p>
+          <p class="right_align"><%= link_to("#{@user.followers.count} followers", "/users/#{@user.id}/followers", method: "get") %></p>
+          <p class="followers_text right_align">Following</p>
+          <p class="right_align"><%= link_to("#{@user.following.count + @user.artists.count} following", "/users/#{@user.id}/following", method: "get") %></p>
+				</div>
+			</div>
+
 		</div>
+
 	</div>
 </div>
 <div class="container row">

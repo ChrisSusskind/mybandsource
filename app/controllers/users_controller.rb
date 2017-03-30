@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   include UsersHelper
-  before_action :set_user, only: [:show, :following, :followers]
+  before_action :set_user, only: [:show, :following, :followers, :upload_avatar]
   before_action :authenticate_user!, only: [:following, :followers]
 
   # GET /users
@@ -31,6 +31,11 @@ class UsersController < ApplicationController
     @title = "Followers"
     @users = @user.followers
     render 'show_follow'
+  end
+
+  def upload_avatar
+    @user.update_attributes({picture: params[:picture]})
+    redirect_to user_path(@user)
   end
 
   private
