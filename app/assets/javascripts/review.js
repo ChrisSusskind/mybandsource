@@ -138,6 +138,14 @@ function showReplyForm(node){
     });
 }
 
+function showSharePage(){
+    $('#share_page').show();
+}
+
+function hideSharePage(){
+    $('#share_page').hide();
+}
+
 //Function that returns show_responses global variable that identifies whether current view is reviews (no comments) or discussion (comments shown)
 function isDiscussionView(){
     return show_responses;

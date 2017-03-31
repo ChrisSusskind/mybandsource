@@ -54,7 +54,9 @@ gem 'kaminari'
 #Using react for interactive search on homepage
 gem 'react-rails'
 
-gem 'bower-rails'
+#Using following gem for social media links
+
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

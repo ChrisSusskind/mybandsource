@@ -1,3 +1,5 @@
+<%= render partial: 'shared/share_page', locals: {review: review} %>
+
 <div class="row response_content">
   <div class="col-3">
 
@@ -27,14 +29,14 @@
         <%= response.upvotes %>
         <% if user_signed_in? %>
             <% if response.upvotes_userlist.nil? || !current_user.id.to_s.in?(response.upvotes_userlist) %>
-                <%= link_to(image_tag('rockon_icon.png', alt: 'Rockon Icon', size: '20x20', class: "review_icon"), "/artists/#{review.artist.id}/reviews/#{review.id}/responses/#{response.id}/upvote?user_profile=#{user_profile}", method: :post, remote: true) %>
+                <%= link_to(cl_image_tag('static/rockon_icon.png', alt: 'Rockon Icon', width: 20, height: 20, crop: :fill, class: "review_icon"), "/artists/#{review.artist.id}/reviews/#{review.id}/responses/#{response.id}/upvote?user_profile=#{user_profile}", method: :post, remote: true) %>
             <% elsif !response.upvotes_userlist.nil? %>
-                <%= link_to(image_tag('rockon_icon.png', alt: 'Rockon Icon', size: '20x20', class: "review_icon rockon_icon_flipped"), "/artists/#{review.artist.id}/reviews/#{review.id}/responses/#{response.id}/remove_upvote?user_profile=#{user_profile}", method: :delete, remote: true) unless response.upvotes_userlist.nil? %>
+                <%= link_to(cl_image_tag('static/rockon_icon.png', alt: 'Rockon Icon', width: 20, height: 20, crop: :fill, class: "review_icon rockon_icon_flipped"), "/artists/#{review.artist.id}/reviews/#{review.id}/responses/#{response.id}/remove_upvote?user_profile=#{user_profile}", method: :delete, remote: true) unless response.upvotes_userlist.nil? %>
             <% end %>
-            <%= link_to(image_tag('trashcan_icon.png', alt: "Trashcan Icon", size: "20x20", class: "review_icon"), artist_review_response_path(review.artist, review, response, user_profile: user_profile), method: :delete, remote: true) if response.user == current_user %>
-            <%= link_to(image_tag('share_icon.png', alt: "Share Icon", size: "20x20", class:"review_icon"), '') %>Share
+            <%= link_to(cl_image_tag('static/trashcan_icon.png', alt: "Trashcan Icon", width: 20, height: 20, crop: :fill, class: "review_icon"), artist_review_response_path(review.artist, review, response, user_profile: user_profile), method: :delete, remote: true) if response.user == current_user %>
+            <%= link_to(cl_image_tag('static/share_icon.png', alt: "Share Icon", width: 20, height: 20, crop: :fill, class:"review_icon"), '') %>Share
         <% else %>
-            <%= image_tag('rockon_icon.png', alt: 'Rockon Icon', size: '20x20', class: "review_icon") %>
+            <%= cl_image_tag('static/rockon_icon.png', alt: 'Rockon Icon', width: 20, height: 20, crop: :fill, class: "review_icon") %>
         <% end %>
         <abbr class="timeago" title="<%= response.created_at.getutc.iso8601 %>">
           <%= response.updated_at.to_s %>

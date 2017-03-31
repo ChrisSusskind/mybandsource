@@ -1,0 +1,4 @@
+<div id="share_page" style="display: none" >
+  <%= cl_image_tag("static/facebook_icon.png", :width => 50, :height => 50, :crop => :fill, onclick: "shareFacebook(`#{artist_path(review.artist)}`)") %>
+  <%= link_to(cl_image_tag("static/twitter_icon.png", :width => 50, :height => 50, :crop => :fill), "https://twitter.com/intent/tweet?text=localhost:3000#{artist_path(review.artist)}", onclick: "window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=350,height=250');hideSharePage();return false;") %>
+</div>

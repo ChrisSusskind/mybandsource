@@ -16,5 +16,5 @@
   <% end %>
 </div>
 <div class="col-4">
-  <%= link_to(image_tag('trashcan_icon.png', alt: "Trashcan Icon", size: "20x20", class: "review_icon"), [review.artist, review], method: :delete, remote: true) if review.user == current_user %>
+  <%= link_to(cl_image_tag('static/trashcan_icon.png', alt: "Trashcan Icon", width: 20, height: 20, crop: :fill, class: "review_icon"), [review.artist, review], method: :delete, remote: true) if review.user == current_user %>
 </div>
