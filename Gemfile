@@ -45,6 +45,7 @@ gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'carrierwave'
 gem 'cloudinary'
 
+# Use Puma for the webserver
 gem 'puma'
 gem 'rest-client'
 
@@ -53,8 +54,10 @@ gem 'kaminari'
 
 #Using react for interactive search on homepage
 gem 'react-rails'
-
 gem 'bower-rails'
+
+# Transactional email service through MailChimp
+gem 'mandrill-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
