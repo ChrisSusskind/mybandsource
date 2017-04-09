@@ -57,13 +57,14 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "mybandsource_#{Rails.env}"
   config.action_mailer.perform_caching = false
 
+  # Combine this with the development config block in development and production, but not test.
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     :address              =>  "smtp.mandrillapp.com",
     :port                 =>  25,
     :enable_starttls_auto =>  true,
     :user_name            =>  ENV["MANDRILL_USERNAME"],
-    :password             =>  ENV["MANDRILL_PASSWORD"], # SMTP password is any valid API key
+    :password             =>  ENV["MANDRILL_API_KEY"], # SMTP password is any valid API key
     :authentication       => 'login', # Mandrill supports 'plain' or 'login'
     :domain               => 'mybandsource.com'
   }
