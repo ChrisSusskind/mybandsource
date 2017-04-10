@@ -15,6 +15,37 @@
 
 	<body>
 
+  <script>
+    console.log("Running init script");
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '444853392519445',
+        xfbml      : true
+      });
+      //FB.AppEvents.logPageView();
+
+      function shareFacebook() {
+        FB.ui({
+          method: 'share',
+          href: 'https://developers.facebook.com/docs/'
+        }, function (response) {
+        });
+
+        console.log("Inside shareFacebook");
+      }
+
+      console.log("Initialized");
+    };
+
+    (function(d, s, id){
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+
 		<%= render 'layouts/header' %>
 		
 		<% if notice or alert %>

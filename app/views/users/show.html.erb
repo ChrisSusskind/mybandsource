@@ -36,12 +36,14 @@
             </div>
 					</div>
 					<div class="col-sm-4">
-						<button type="button" class="btn btn-danger share-button">Share</button>
+						<button type="button" class="btn btn-danger share-button" onclick="showUserSharePage()">Share</button>
 					</div>
 				</div>
 			</div>
 
-			<div class="col-lg-2 col-md-4 col-sm-4 offset-xl-1 offset-lg-1">
+      <%= render partial: 'users/share_page', locals: {user: @user} %>
+
+      <div class="col-lg-2 col-md-4 col-sm-4 offset-xl-1 offset-lg-1">
 				<div class="follow_count">
           <p class="followers_text right_align">Followers</p>
           <p class="right_align"><%= link_to("#{@user.followers.count} followers", "/users/#{@user.id}/followers", method: "get") %></p>

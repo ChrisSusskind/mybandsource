@@ -1,4 +1,4 @@
-<%= render partial: 'shared/share_page', locals: {review: review} %>
+<%= render partial: 'reviews/share_page', locals: {review: review} %>
 
 <div class="container review_content" data-review_id=<%=review.id.to_s%>>
   <%# @user.image %>
@@ -38,7 +38,7 @@
         <% end %>
           <%= cl_image_tag('static/reply_icon.png', alt: "Reply Icon", width: 20, height: 20, crop: :fill, class: "review_icon reply_icon", id: "reply_icon", onclick: "showReplyForm(this)") %>
           <%= link_to(cl_image_tag('static/trashcan_icon.png', alt: "Trashcan Icon", width: 20, height: 20, crop: :fill, class: "review_icon"), [review.artist, review], method: :delete, remote: true) if review.user == current_user %>
-        <%= cl_image_tag('static/share_icon.png', alt: "Share Icon", width: 20, height: 20, crop: :fill, class:"review_icon", onclick: "showSharePage()")%>
+        <%= cl_image_tag('static/share_icon.png', alt: "Share Icon", width: 20, height: 20, crop: :fill, class:"review_icon", onclick: "showReviewSharePage()")%>
       <% else %>
           <%= cl_image_tag('static/rockon_icon.png', alt: 'Rockon Icon', width: 20, height: 20, crop: :fill, class: "review_icon") %>
       <% end %>

@@ -1,4 +1,4 @@
-<%= render partial: 'shared/share_page', locals: {review: review} %>
+<%= render partial: 'reviews/share_page', locals: {review: review} %>
 
 <div class="row response_content">
   <div class="col-3">
@@ -34,7 +34,7 @@
                 <%= link_to(cl_image_tag('static/rockon_icon.png', alt: 'Rockon Icon', width: 20, height: 20, crop: :fill, class: "review_icon rockon_icon_flipped"), "/artists/#{review.artist.id}/reviews/#{review.id}/responses/#{response.id}/remove_upvote?user_profile=#{user_profile}", method: :delete, remote: true) unless response.upvotes_userlist.nil? %>
             <% end %>
             <%= link_to(cl_image_tag('static/trashcan_icon.png', alt: "Trashcan Icon", width: 20, height: 20, crop: :fill, class: "review_icon"), artist_review_response_path(review.artist, review, response, user_profile: user_profile), method: :delete, remote: true) if response.user == current_user %>
-            <%= link_to(cl_image_tag('static/share_icon.png', alt: "Share Icon", width: 20, height: 20, crop: :fill, class:"review_icon"), '') %>Share
+            <%= cl_image_tag('static/share_icon.png', alt: "Share Icon", width: 20, height: 20, crop: :fill, class:"review_icon", onclick: "showReviewSharePage()") %>Share
         <% else %>
             <%= cl_image_tag('static/rockon_icon.png', alt: 'Rockon Icon', width: 20, height: 20, crop: :fill, class: "review_icon") %>
         <% end %>

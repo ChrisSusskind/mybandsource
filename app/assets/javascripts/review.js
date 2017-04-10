@@ -138,12 +138,28 @@ function showReplyForm(node){
     });
 }
 
-function showSharePage(){
-    $('#share_page').show();
+function showReviewSharePage(){
+    $('#share_page_review').show();
 }
 
-function hideSharePage(){
-    $('#share_page').hide();
+function hideReviewSharePage(){
+    $('#share_page_review').hide();
+}
+
+function showArtistSharePage(){
+    $('#share_page_artist').show();
+}
+
+function hideArtistSharePage(){
+    $('#share_page_artist').hide();
+}
+
+function showUserSharePage(){
+    $('#share_page_user').show();
+}
+
+function hideUserSharePage(){
+    $('#share_page_user').hide();
 }
 
 //Function that returns show_responses global variable that identifies whether current view is reviews (no comments) or discussion (comments shown)

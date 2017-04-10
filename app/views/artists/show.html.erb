@@ -17,22 +17,10 @@
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="col-sm-3 card">
-			<div class="card-block">
-        <a href="https://twitter.com/" onclick="window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=350,height=250');return false;">
-          <%= cl_image_tag("static/twitter_icon.png", :width => 50, :height => 50, :crop => :fill) %>
-        </a>
-			</div>
-		</div>
-		<div class="col-sm-3 card">
-			<div class="card-block">
-        <a href="https://facebook.com/" onclick="window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=350,height=250');return false;">
-          <%= cl_image_tag("static/facebook_icon.png", :width => 50, :height => 50, :crop => :fill) %>
-        </a>
-			</div>
-		</div>
-	</div>
+  <%= cl_image_tag('static/share_icon.png', alt: "Share Icon", width: 20, height: 20, crop: :fill, class:"review_icon", onclick: "showArtistSharePage()")%>Share
+  <%= render partial: 'artists/share_page', locals: {artist: @artist} %>
+
+  <%= render partial: 'shared/social_media_buttons' %>
 
   <div class="row">
     <div class="col-4">
