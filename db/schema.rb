@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 20170403210534) do
     t.datetime "updated_at",                    null: false
     t.integer  "user_id",                       null: false
     t.integer  "artist_id",                     null: false
-    t.integer  "rating"
+    t.integer  "rating",           default: -1
     t.integer  "upvotes",          default: 0
     t.text     "upvotes_userlist", default: [],              array: true
     t.index ["artist_id"], name: "index_reviews_on_artist_id", using: :btree

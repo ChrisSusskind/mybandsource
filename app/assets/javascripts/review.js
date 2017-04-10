@@ -166,3 +166,13 @@ function hideUserSharePage(){
 function isDiscussionView(){
     return show_responses;
 }
+
+function shareFacebook(url) {
+    FB.ui({
+        method: 'share',
+        href: url
+    }, function (response) {
+    });
+
+    console.log("Inside shareFacebook");
+}

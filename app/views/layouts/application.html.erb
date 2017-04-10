@@ -20,19 +20,8 @@
     window.fbAsyncInit = function() {
       FB.init({
         appId      : '444853392519445',
-        xfbml      : true
+        xfbml      : false
       });
-      //FB.AppEvents.logPageView();
-
-      function shareFacebook() {
-        FB.ui({
-          method: 'share',
-          href: 'https://developers.facebook.com/docs/'
-        }, function (response) {
-        });
-
-        console.log("Inside shareFacebook");
-      }
 
       console.log("Initialized");
     };
