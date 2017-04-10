@@ -59,7 +59,8 @@ Genre.populate genre_list.length do |genre|
 	genre.description 		= Faker::Lorem.sentence
 end
 
-Artist.populate 100 do |artist|
+artist_count = 100
+Artist.populate artist_count do |artist|
 	artist.name				= Faker::RockBand.name
 	artist.real_name		= Faker::Name.name
 	artist.profile			= Faker::Lorem.paragraph
@@ -85,29 +86,31 @@ User.populate 50 do |user|
 	user.sign_in_count		= 0
 	user.picture			= Faker::LoremPixel.image("150x150", true, 'people')
 
+	# Populate fake subscriptions
 	sub_count = 10 # Number of subscriptions to be seeded
 	artist_list = Artist.limit(sub_count).order("RANDOM()")
-	counter = 0
+	counter = 0	
 	Subscription.populate sub_count do |subscription|
 		subscription.user_id 		= user.id	
 		subscription.artist_id 		= artist_list[counter].id
 		counter += 1
-  end
+	end
 
-  Review.populate 1 do |review|
-		review.artist_id = 23
+	Review.populate Faker::Number.between(1, 20) do |review|
+		review.artist_id = Faker::Number.unique.between(1, 100)
 		review.user_id = user.id
-		review.comment = "FUCK YA" + user.id.to_s
-		review.rating = 3
-    review.upvotes = user.id
-    review.upvotes_userlist = []
+		review.comment = Faker::Hipster.sentence
+		review.rating = Faker::Number.between(1, 5)
+		review.upvotes = Faker::Number.number(3)
+		review.upvotes_userlist = []
 
-    Response.populate 1 do |response|
-      response.review_id = review.id
-      response.comment = "Response" + user.id.to_s
-      response.user_id = user.id
-      response.upvotes = user.id
-      response.upvotes_userlist = []
-    end
-  end
+		Response.populate 1 do |response|
+			response.review_id = review.id
+			response.comment = Faker::Hipster.sentence
+			response.user_id = user.id
+			response.upvotes = Faker::Number.number(2)
+			response.upvotes_userlist = []
+		end
+	end
+	Faker::UniqueGenerator.clear
 end

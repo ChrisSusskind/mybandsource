@@ -15,7 +15,7 @@ Devise.setup do |config|
   config.mailer_sender = 'accounts@mybandsource.com'
 
   # Configure the class responsible to send e-mails.
-  # config.mailer = 'AccountMailer'
+  config.mailer = 'AccountMailer'
 
   # Configure the parent class responsible to send e-mails.
   # config.parent_mailer = 'ActionMailer::Base'
@@ -247,7 +247,7 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
+  config.omniauth :facebook, "243060176100394", "c7a89e4201587c7cc688a8e751f4c98a" # App ID, App Secret
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

@@ -57,21 +57,16 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "mybandsource_#{Rails.env}"
   config.action_mailer.perform_caching = false
 
-
-  require 'rest-client'
-  require 'json'
-  response = RestClient.get "https://mailtrap.io/api/v1/inboxes.json?api_token=#{ENV['MAILTRAP_API_TOKEN']}"
-
-  first_inbox = JSON.parse(response)[0] # get first inbox
-
+  # Combine this with the development config block in development and production, but not test.
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :user_name => '209858c18ee2bf',
-    :password => 'ad4fcbd6b6f2e7',
-    :address => 'smtp.mailtrap.io',
-    :domain => 'smtp.mailtrap.io',
-    :port => '2525',
-    :authentication => :cram_md5
+    :address              =>  "smtp.mandrillapp.com",
+    :port                 =>  25,
+    :enable_starttls_auto =>  true,
+    :user_name            =>  ENV["MANDRILL_USERNAME"],
+    :password             =>  ENV["MANDRILL_API_KEY"], # SMTP password is any valid API key
+    :authentication       => 'login', # Mandrill supports 'plain' or 'login'
+    :domain               => 'mybandsource.com'
   }
 
   config.action_mailer.default_url_options = { host: ENV["DEFAULT_HOST"] }

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
   resources :genres
+
   resources :artists do
     resources :reviews, only: [:create, :update, :destroy] do
       member do
@@ -20,8 +21,8 @@ Rails.application.routes.draw do
   end
   post '/search_artists', to: 'artists#search_artists'
   post '/submit_search', to: 'artists#get_artist'
-  devise_for :users, controllers: {sessions: 'users/sessions', registrations: 'users/registrations'}
 
+  devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations', :omniauth_callbacks => "users/omniauth_callbacks" }
 
   #User and user relationship routes
   resources :users, only: [:index, :show] do

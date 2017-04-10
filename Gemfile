@@ -36,8 +36,12 @@ gem 'jbuilder', '~> 2.5'
 
 # Use PostgreSQL as the database for Active Record
 gem 'pg'
+
 # Login system
 gem 'devise'
+# OmniAuth providers for Devise
+gem 'omniauth-facebook'
+
 # Foundation CSS Framework – https://github.com/zurb/foundation-rails
 gem 'bootstrap', '~> 4.0.0.alpha6'
 
@@ -45,6 +49,7 @@ gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'carrierwave'
 gem 'cloudinary'
 
+# Use Puma for the webserver
 gem 'puma'
 gem 'rest-client'
 
@@ -54,9 +59,8 @@ gem 'kaminari'
 #Using react for interactive search on homepage
 gem 'react-rails'
 
-#Using following gem for social media links
-
-
+# Transactional email service through MailChimp
+gem 'mandrill-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -75,6 +79,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'dotenv-rails'
 end
 
 group :test do

@@ -33,8 +33,18 @@ Rails.application.configure do
 
   # For Devise. In production, :host should be set to the actual host of application.
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  
+  # Mandrill SMTP settings
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {:address => "localhost", :port => 1025}
+  config.action_mailer.smtp_settings = {
+    :address              =>  "smtp.mandrillapp.com",
+    :port                 =>  25,
+    :enable_starttls_auto =>  true,
+    :user_name            =>  ENV["MANDRILL_USERNAME"],
+    :password             =>  ENV["MANDRILL_API_KEY"], # SMTP password is any valid API key
+    :authentication       => 'login', # Mandrill supports 'plain' or 'login'
+    :domain               => 'mybandsource.com'
+  }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
