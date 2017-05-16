@@ -4,5 +4,7 @@ class Review < ApplicationRecord
 
   has_many :responses, dependent: :destroy
 
+  has_many :notifications, dependent: :destroy
+
   validates :user_id, :artist_id, presence: true
 end

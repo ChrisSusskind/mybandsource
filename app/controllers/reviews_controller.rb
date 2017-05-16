@@ -10,6 +10,7 @@ class ReviewsController < ApplicationController
     unless @review.valid?
       flash[:alert] = "Review creation failed"
     end
+    create_notification(current_user, @artist, @review)
     create_review_display(@review)
   end
 
@@ -21,6 +22,7 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
+    destroy_notification(current_user, @artist, @review)
     unless @review.destroy
       flash[:alert] = "Review deletion failed"
     end
@@ -156,5 +158,13 @@ class ReviewsController < ApplicationController
 
   def set_review
     @review = @artist.reviews.find(params[:id])
+  end
+
+  def create_notification(generating_user, receiving_artist, review)
+    Notification.create(generating_user_id: generating_user.id, receiving_artist_id: receiving_artist.id, review_id: review.id, notification_type: 'review')
+  end
+
+  def destroy_notification(generating_user, receiving_artist, review)
+    Notification.where(generating_user_id: generating_user.id, receiving_artist_id: receiving_artist.id, review_id: review.id, notification_type: 'review').destroy_all
   end
 end

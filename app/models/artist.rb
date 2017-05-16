@@ -9,5 +9,8 @@ class Artist < ApplicationRecord
 	#For artist to review associations
 	has_many :reviews, dependent: :destroy
 
+	#For artist to notification associations
+	has_many :notifications, foreign_key: "receiving_artist_id", dependent: :destroy
+
 	validates :name, :data_quality, presence: true 
 end

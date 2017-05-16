@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170403210534) do
+ActiveRecord::Schema.define(version: 20170516204427) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,23 @@ ActiveRecord::Schema.define(version: 20170403210534) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["name"], name: "index_genres_on_name", unique: true, using: :btree
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer  "generating_user_id",                  null: false
+    t.integer  "receiving_user_id"
+    t.integer  "receiving_artist_id"
+    t.integer  "review_id"
+    t.integer  "response_id"
+    t.string   "notification_type"
+    t.boolean  "viewed",              default: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.index ["generating_user_id"], name: "index_notifications_on_generating_user_id", using: :btree
+    t.index ["receiving_artist_id"], name: "index_notifications_on_receiving_artist_id", using: :btree
+    t.index ["receiving_user_id"], name: "index_notifications_on_receiving_user_id", using: :btree
+    t.index ["response_id"], name: "index_notifications_on_response_id", using: :btree
+    t.index ["review_id"], name: "index_notifications_on_review_id", using: :btree
   end
 
   create_table "responses", force: :cascade do |t|
@@ -115,4 +132,9 @@ ActiveRecord::Schema.define(version: 20170403210534) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "notifications", "artists", column: "receiving_artist_id"
+  add_foreign_key "notifications", "responses"
+  add_foreign_key "notifications", "reviews"
+  add_foreign_key "notifications", "users", column: "generating_user_id"
+  add_foreign_key "notifications", "users", column: "receiving_user_id"
 end

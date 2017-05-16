@@ -6,11 +6,13 @@ class ResponsesController < ApplicationController
     unless @response.valid?
       flash[:alert] = "Response creation failed"
     end
+    create_notification(current_user, @review.artist_id, @response)
     render :action => 'response_display' if params[:user_profile] == "false"
     render :action => 'user_profile/response_display' if params[:user_profile] == "true"
   end
 
   def destroy
+    destroy_notification(current_user, @review.artist_id, @response)
     unless @response.destroy
       flash[:alert] = "Response deletion failed"
     end
@@ -48,5 +50,13 @@ class ResponsesController < ApplicationController
 
   def set_response
     @response = @review.responses.find(params[:id])
+  end
+
+  def create_notification(generating_user, receiving_artist_id, response)
+    Notification.create(generating_user_id: generating_user.id, receiving_artist_id: receiving_artist_id, response_id: response.id, notification_type: 'response')
+  end
+
+  def destroy_notification(generating_user, receiving_artist_id, response)
+    Notification.where(generating_user_id: generating_user.id, receiving_artist_id: receiving_artist_id, response_id: response.id, notification_type: 'response').destroy_all
   end
 end

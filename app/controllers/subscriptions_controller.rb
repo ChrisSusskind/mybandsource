@@ -3,6 +3,7 @@ class SubscriptionsController < ApplicationController
     @subscription = Subscription.new({user_id: current_user.id, artist_id: params[:artist_id]})
 
     if @subscription.save
+      create_notification(current_user, params[:artist_id])
       redirect_back(fallback_location: root_path)
     else
       flash[:alert] = "Subscription failed"
@@ -13,6 +14,7 @@ class SubscriptionsController < ApplicationController
   def destroy
     @subscription = Subscription.find_by({user_id: current_user.id, artist_id: params[:artist_id]})
     @subscription.destroy
+    destroy_notification(current_user, params[:artist_id])
     redirect_back(fallback_location: root_path)
   end
 
@@ -32,5 +34,15 @@ class SubscriptionsController < ApplicationController
       @artists.append(subscription.artist)
     end
     render :action => 'index'
+  end
+
+  private
+
+  def create_notification(generating_user, receiving_artist_id)
+    Notification.create(generating_user_id: generating_user.id, receiving_artist_id: receiving_artist_id, notification_type: 'follow')
+  end
+
+  def destroy_notification(generating_user, receiving_artist_id)
+    Notification.where(generating_user_id: generating_user.id, receiving_artist_id: receiving_artist_id, notification_type: 'follow').destroy_all
   end
 end
