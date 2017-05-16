@@ -1,18 +1,21 @@
 <%# Add conditionals to check if user has the specified social media account before %>
 
 <div class="container">
-  <div class="row m-0 float-right">
+  <div class="row">
     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
-      <%= link_to(image_tag("soundcloud_icon.png", size: "50x50", class: "rounded"), "http://www.soundcloud.com") %>
+      <a href="https://facebook.com/" onclick="window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=1000,height=750');return false;">
+        <%= cl_image_tag("static/facebook_icon.png", :width => 50, :height => 50, :crop => :fill) %>
+      </a>
     </div>
     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
-      <%= link_to(image_tag("facebook_icon.png", size: "50x50", class: "rounded"), "http://www.facebook.com") %>
+      <a href="https://twitter.com/" onclick="window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=1000,height=750');return false;">
+        <%= cl_image_tag("static/twitter_icon.png", :width => 50, :height => 50, :crop => :fill) %>
+      </a>
     </div>
     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
-      <%= link_to(image_tag("twitter_icon.png", size: "50x50", class: "rounded"), "http://www.twitter.com") %>
-    </div>
-    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
-      <%= link_to(image_tag("instagram_icon.png", size: "50x50", class: "rounded"), "http://www.instagram.com") %>
+      <a href="https://instagram.com/" onclick="window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=1000,height=750');return false;">
+        <%= cl_image_tag("static/instagram_icon.png", :width => 50, :height => 50, :crop => :fill) %>
+      </a>
     </div>
   </div>
 </div>

@@ -3,12 +3,15 @@
 Master: [![Build Status](https://travis-ci.com/rikola/mybandsource.svg?token=UFA1wpQtMzhtTiyRH67s&branch=master)](https://travis-ci.com/rikola/mybandsource)  
 
 Dev: [![Build Status](https://travis-ci.com/rikola/mybandsource.svg?token=UFA1wpQtMzhtTiyRH67s&branch=dev)](https://travis-ci.com/rikola/mybandsource)
-  
+
 This is a band social networking website for people to get more out of the listening experience.
 
-
-
 ## Info
+
+### Images
+
+All images are hosted on [Cloudinary](https://cloudinary.com)  
+
 
 ### Requirements
 * PostgreSQL 9.0+

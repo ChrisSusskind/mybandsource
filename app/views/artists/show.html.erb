@@ -17,28 +17,10 @@
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="col-sm-2 card">
-			<div class="card-block">
-				<h5>Twitter Link</h5>
-			</div>
-		</div>
-		<div class="col-sm-2 card">
-			<div class="card-block">
-				<h5>Soundcloud Link</h5>
-			</div>
-		</div>
-		<div class="col-sm-2 card">
-			<div class="card-block">
-				<h5>Facebook Link</h5>
-			</div>
-		</div>
-		<div class="col-sm-2 card">
-			<div class="card-block">
-				<h5>Spotify Link</h5>
-			</div>
-		</div>
-	</div>
+  <%= cl_image_tag('static/share_icon.png', alt: "Share Icon", width: 20, height: 20, crop: :fill, class:"review_icon", onclick: "showArtistSharePage()")%>Share
+  <%= render partial: 'artists/share_page', locals: {artist: @artist} %>
+
+  <%= render partial: 'shared/social_media_buttons' %>
 
   <div class="row">
     <div class="col-4">
@@ -64,6 +46,8 @@
   <% if user_signed_in? && @review.artist_id.nil? %>
     <button onclick="loadReviewForm()" id="review_load_button" class="btn btn-danger" style="display: none">Edit Review</button>
     <div class="row" id="review_form">
+      <%= render partial: 'reviews/review_form', locals: {artist: @artist, review: @review} %>
+    </div>
   <% elsif user_signed_in? %>
     <button onclick="loadReviewForm()" id="review_load_button" class="btn btn-danger">Edit Review</button>
     <div class="row" id="review_form" style="display: none">

@@ -2,7 +2,8 @@ class User < ApplicationRecord
 	# Include default devise modules. Others available are:
 	# :lockable, :timeoutable and :omniauthable
 	devise :database_authenticatable, :registerable,
-		 :recoverable, :rememberable, :trackable, :validatable, :confirmable
+		 :recoverable, :rememberable, :trackable, :validatable, :confirmable, 
+		 :omniauthable, :omniauth_providers => [:facebook]
 
 	#For user to artist associations
 	has_many :subscriptions
@@ -34,6 +35,18 @@ class User < ApplicationRecord
 
 	def following?(other_user)
 		following.include?(other_user)
+	end
+
+	def self.from_omniauth(auth)
+		where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+			user.email = auth.info.email
+			user.password = Devise.friendly_token[0, 20]
+			user.name = auth.info.name  	# Assuming the user model has a name
+			user.image = auth.info.image 	# Assuming the user model has an image
+			# If you are using confirmable and the providers you use validate emails,
+			# Uncomment the line below to skip the confirmation emails
+			user.skip_confirmation!
+		end
 	end
 
 end

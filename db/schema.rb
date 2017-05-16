@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170324005533) do
+ActiveRecord::Schema.define(version: 20170403210534) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 20170324005533) do
     t.datetime "updated_at",                    null: false
     t.integer  "user_id",                       null: false
     t.integer  "artist_id",                     null: false
-    t.integer  "rating"
+    t.integer  "rating",           default: -1
     t.integer  "upvotes",          default: 0
     t.text     "upvotes_userlist", default: [],              array: true
     t.index ["artist_id"], name: "index_reviews_on_artist_id", using: :btree
@@ -107,6 +107,8 @@ ActiveRecord::Schema.define(version: 20170324005533) do
     t.string   "location"
     t.string   "picture"
     t.text     "bio",                    default: ""
+    t.string   "provider"
+    t.string   "uid"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["location"], name: "index_users_on_location", using: :btree

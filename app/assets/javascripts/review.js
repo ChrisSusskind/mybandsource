@@ -138,7 +138,41 @@ function showReplyForm(node){
     });
 }
 
+function showReviewSharePage(){
+    $('#share_page_review').show();
+}
+
+function hideReviewSharePage(){
+    $('#share_page_review').hide();
+}
+
+function showArtistSharePage(){
+    $('#share_page_artist').show();
+}
+
+function hideArtistSharePage(){
+    $('#share_page_artist').hide();
+}
+
+function showUserSharePage(){
+    $('#share_page_user').show();
+}
+
+function hideUserSharePage(){
+    $('#share_page_user').hide();
+}
+
 //Function that returns show_responses global variable that identifies whether current view is reviews (no comments) or discussion (comments shown)
 function isDiscussionView(){
     return show_responses;
+}
+
+function shareFacebook(url) {
+    FB.ui({
+        method: 'share',
+        href: url
+    }, function (response) {
+    });
+
+    console.log("Inside shareFacebook");
 }
