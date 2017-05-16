@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  
   resources :genres
 
   resources :artists do
@@ -24,7 +23,6 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations', :omniauth_callbacks => "users/omniauth_callbacks" }
 
-  #User and user relationship routes
   resources :users, only: [:index, :show] do
     member do
       get :following, :followers
@@ -56,4 +54,8 @@ Rails.application.routes.draw do
   delete '/subscriptions/:artist_id', to: 'subscriptions#destroy'
   get '/users/:user_id/subscriptions', to: 'subscriptions#user_subscriptions'
   get '/artists/:artist_id/subscriptions', to: 'subscriptions#artist_subscriptions'
+
+  #Notification routes
+  post '/notifications/mark_viewed_user', to: 'notifications#mark_viewed_user'
+  post '/notifications/mark_viewed_artist', to: 'notifications#mark_viewed_artist'
 end

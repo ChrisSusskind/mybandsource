@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170516204427) do
+ActiveRecord::Schema.define(version: 20170516210929) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,15 +44,17 @@ ActiveRecord::Schema.define(version: 20170516204427) do
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.integer  "generating_user_id",                  null: false
+    t.integer  "generating_user_id",                      null: false
     t.integer  "receiving_user_id"
     t.integer  "receiving_artist_id"
     t.integer  "review_id"
     t.integer  "response_id"
     t.string   "notification_type"
-    t.boolean  "viewed",              default: false
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.boolean  "viewed",                  default: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.string   "generating_user_name",                    null: false
+    t.string   "generating_user_picture"
     t.index ["generating_user_id"], name: "index_notifications_on_generating_user_id", using: :btree
     t.index ["receiving_artist_id"], name: "index_notifications_on_receiving_artist_id", using: :btree
     t.index ["receiving_user_id"], name: "index_notifications_on_receiving_user_id", using: :btree

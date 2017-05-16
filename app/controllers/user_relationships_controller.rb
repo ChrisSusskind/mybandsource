@@ -21,7 +21,7 @@ class UserRelationshipsController < ApplicationController
   end
 
   def create_notification(generating_user, receiving_user)
-    Notification.create(generating_user_id: generating_user.id, receiving_user_id: receiving_user.id, notification_type: 'follow')
+    Notification.create(generating_user_id: generating_user.id, receiving_user_id: receiving_user.id, notification_type: 'follow', generating_user_name: generating_user.name, generating_user_picture: generating_user.picture)
   end
 
   def destroy_notification(generating_user, receiving_user)

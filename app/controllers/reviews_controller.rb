@@ -161,7 +161,7 @@ class ReviewsController < ApplicationController
   end
 
   def create_notification(generating_user, receiving_artist, review)
-    Notification.create(generating_user_id: generating_user.id, receiving_artist_id: receiving_artist.id, review_id: review.id, notification_type: 'review')
+    Notification.create(generating_user_id: generating_user.id, receiving_artist_id: receiving_artist.id, review_id: review.id, notification_type: 'review', generating_user_name: generating_user.name, generating_user_picture: generating_user.picture)
   end
 
   def destroy_notification(generating_user, receiving_artist, review)

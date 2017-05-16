@@ -53,7 +53,7 @@ class ResponsesController < ApplicationController
   end
 
   def create_notification(generating_user, receiving_artist_id, response)
-    Notification.create(generating_user_id: generating_user.id, receiving_artist_id: receiving_artist_id, response_id: response.id, notification_type: 'response')
+    Notification.create(generating_user_id: generating_user.id, receiving_artist_id: receiving_artist_id, response_id: response.id, notification_type: 'response', generating_user_name: generating_user.name, generating_user_picture: generating_user.picture)
   end
 
   def destroy_notification(generating_user, receiving_artist_id, response)

@@ -1,0 +1,20 @@
+<li>
+  <div class="media">
+    <div class="media-left">
+      <div class="media-object">
+        <img src="<%= Faker::LoremPixel.image("50x50") %>" class="rounded">
+      </div>
+    </div>
+    <div class="media-body">
+      <strong>
+        <%= link_to(notification.generating_user_name,  user_path(notification.generating_user_id), method: :get) %>
+        just <%= notification.notification_type %>ed your profile
+      </strong>
+      <div>
+        <abbr class="timeago" title="<%= notification.created_at.getutc.iso8601 %>">
+          <small><%= notification.created_at.to_s %></small>
+        </abbr>
+      </div>
+    </div>
+  </div>
+</li>

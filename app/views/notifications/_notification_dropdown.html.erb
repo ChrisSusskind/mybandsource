@@ -1,0 +1,11 @@
+<div class="btn-group">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+    <i class="glyphicon glyphicon-bell"></i>
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <% notifications.each do |notification| %>
+      <%= render partial: 'notifications/notification', locals:{notification: notification} %>
+    <% end %>
+  </ul>
+</div>

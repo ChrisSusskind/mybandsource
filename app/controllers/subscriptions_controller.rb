@@ -39,7 +39,7 @@ class SubscriptionsController < ApplicationController
   private
 
   def create_notification(generating_user, receiving_artist_id)
-    Notification.create(generating_user_id: generating_user.id, receiving_artist_id: receiving_artist_id, notification_type: 'follow')
+    Notification.create(generating_user_id: generating_user.id, receiving_artist_id: receiving_artist_id, notification_type: 'follow', generating_user_name: generating_user.name, generating_user_picture: generating_user.picture)
   end
 
   def destroy_notification(generating_user, receiving_artist_id)
