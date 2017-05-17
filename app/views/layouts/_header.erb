@@ -8,7 +8,7 @@
 		<div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
 			<div class="navbar-nav">
         <% if current_user %>
-          <%= render partial: 'notifications/notification_dropdown', locals: {notifications: current_user.notifications} %>
+          <%= render partial: 'notifications/notification_dropdown' %>
         <% end %>
 				<%= link_to "Home", root_path, class: "nav-link nav-item" %>
 				<%= link_to "Browse", artists_path, class: "nav-link nav-item" %>

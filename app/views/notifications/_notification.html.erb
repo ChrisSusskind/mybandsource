@@ -7,8 +7,18 @@
     </div>
     <div class="media-body">
       <strong>
-        <%= link_to(notification.generating_user_name,  user_path(notification.generating_user_id), method: :get) %>
-        just <%= notification.notification_type %>ed your profile
+        <% case notification.notification_type %>
+          <% when 'follow' %>
+            <%= link_to(notification.generating_user_name,  user_path(notification.generating_user_id), method: :get) %>
+            just followed your profile
+          <% when 'review' %>
+            <%= link_to(notification.generating_user_name,  user_path(notification.generating_user_id), method: :get) %>
+            just reviewed your profile
+          <% when 'response' %>
+            <%= link_to(notification.generating_user_name,  user_path(notification.generating_user_id), method: :get) %>
+            just left a comment on your profile
+          <% else %>
+        <% end %>
       </strong>
       <div>
         <abbr class="timeago" title="<%= notification.created_at.getutc.iso8601 %>">

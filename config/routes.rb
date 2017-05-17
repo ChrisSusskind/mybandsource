@@ -56,6 +56,7 @@ Rails.application.routes.draw do
   get '/artists/:artist_id/subscriptions', to: 'subscriptions#artist_subscriptions'
 
   #Notification routes
+  resources :notifications, only: [:index]
   post '/notifications/mark_viewed_user', to: 'notifications#mark_viewed_user'
   post '/notifications/mark_viewed_artist', to: 'notifications#mark_viewed_artist'
 end
