@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  # Homepage route
+  root 'home#index'
+
+  # Genre routes
   resources :genres
 
+  # Artist routes and review (shown on artist profile page) routes
   resources :artists do
     resources :reviews, only: [:create, :update, :destroy] do
       member do
@@ -18,11 +25,15 @@ Rails.application.routes.draw do
     get '/reviews/show_responses', to: 'reviews#show_responses'
     get '/reviews/hide_responses', to: 'reviews#hide_responses'
   end
+
+  # Searchbar routes
   post '/search_artists', to: 'artists#search_artists'
   post '/submit_search', to: 'artists#get_artist'
 
+  # Devise routes
   devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations', :omniauth_callbacks => "users/omniauth_callbacks" }
 
+  # Non-devise user routes and review (shown on user profile page) routes
   resources :users, only: [:index, :show] do
     member do
       get :following, :followers
@@ -43,11 +54,8 @@ Rails.application.routes.draw do
   post '/userrelationship/:id', to: 'user_relationships#create'
   delete '/userrelationship/:id', to: 'user_relationships#destroy'
 
+  # User uploading images (using cloudinary) routes
   patch '/users/:id/profile_picture', to: 'users#upload_avatar'
-
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
-  root 'home#index'
 
   #Subscription routes
   post '/subscriptions/:artist_id', to: 'subscriptions#create'
