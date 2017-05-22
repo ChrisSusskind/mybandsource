@@ -45,8 +45,9 @@
   background-size: cover;
 }
 
-.search-bar {
-	/* This doesnt work. Not high enough priority */
+/* Search bar */
+.search-box {
+  margin: 0 auto;
 	border-radius: 50px;
 }
 
@@ -63,6 +64,10 @@
 
 
 /* Profile Styling */
+
+/* Profile – Page Structure */
+
+
 .jumbotron-profile {
 	background-color: gray;
 	color: white;
@@ -143,10 +148,6 @@ Artist page leave review styling
 
 .dropbtn {
   background-color: #4CAF50;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
   cursor: pointer;
 }
 
@@ -229,10 +230,65 @@ Review display (partial view) styling
   -ms-filter: "FlipV";
 }
 
-.search_result {
+.search_result {}
 
+
+/* Footer */
+footer {
+    border-top: solid 1px #ddd;
+    padding: 0 30px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
 }
 
+.footer_copyright {
+    flex-basis: 200px;
+    order: 0;
+}
+
+.footer_links {
+    order: 1;
+    text-align:center;
+}
+
+.footer_links a {
+    padding: 0 5px;
+    display: inline-block;
+    font-family: Montserrat, Helvetica, sans-serif;
+    font-size: .65em;
+    font-weight: 900;
+    line-height: 2em;
+    color: black;
+    text-decoration: none;
+}
+
+.footer_social {
+    order: 2;
+}
+
+@media (max-width: 800px) {
+    
+    footer {
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+    }
+    
+    .footer_copyright {
+        order: 3;
+        flex-basis: auto;
+    }
+    
+    .footer_links {
+        padding: 20px 0;
+        
+    }
+    
+    .footer_social {
+    }
+    
+}
 
 
 

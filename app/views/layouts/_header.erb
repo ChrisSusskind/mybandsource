@@ -5,16 +5,14 @@
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<a class="navbar-brand" href="/">MyBandSource</a>
+		<input type="text" name="search" class="form-control search-box" placeholder="search...">
 		<div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
 			<div class="navbar-nav">
-        <% if current_user %>
-          <%= render partial: 'notifications/notification_dropdown' %>
-        <% end %>
-				<%= link_to "Home", root_path, class: "nav-link nav-item" %>
-				<%= link_to "Browse", artists_path, class: "nav-link nav-item" %>
-
+		        <% if current_user %>
+		          <%= render partial: 'notifications/notification_dropdown' %>
+		        <% end %>
 				<% if current_user %>
-          <%= link_to "Hi " + (current_user.name.presence || "Lone Wanderer"), user_path(current_user), class: "nav-link nav-item" %>
+          			<%= link_to "Hi " + (current_user.name.presence || "Lone Wanderer"), user_path(current_user), class: "nav-link nav-item" %>
 					<%= link_to "Logout", destroy_user_session_path, :method => :delete, class: "nav-link nav-item" %>
 				<% else %>
 					<%= link_to "Login", new_user_session_path, class: "nav-link nav-item" %>
