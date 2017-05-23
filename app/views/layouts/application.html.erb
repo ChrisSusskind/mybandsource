@@ -40,6 +40,8 @@
 		<% if notice or alert %>
 			<%= render 'layouts/alerts' %>
 		<% end %>
+
+    <%= render "shared/login_modal" %>
 		
 		<%= yield %>
 		

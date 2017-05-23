@@ -248,6 +248,12 @@ h1,h2,h3,h4,h5,h6,p,.h-smallcaps {font-family: 'Montserrat', Helvetica, sans-ser
   text-transform: uppercase;
 }
 
+// Font used when returning error message for login or signup
+.modal-error-text {
+  font-size: 20px;
+  color: black;
+}
+
 // Edit user info, forgot password, password reset, resend confirmation link, unlock account page styles
 
 .content-container {
@@ -300,7 +306,7 @@ h1,h2,h3,h4,h5,h6,p,.h-smallcaps {font-family: 'Montserrat', Helvetica, sans-ser
     width: 100%;
     border: none;
     border-bottom: solid 1px black;
-    padding-bottom: 8px;
+    padding-bottom: 4px;
     font-size: .7em;
     font-weight: 300;
     letter-spacing: 1px;
@@ -350,6 +356,31 @@ h1,h2,h3,h4,h5,h6,p,.h-smallcaps {font-family: 'Montserrat', Helvetica, sans-ser
   top: 40px;
 }
 
+.center-align {
+  position: relative;
+  margin: 0 auto;
+}
+
+.modal-image-center {
+  text-align: center;
+}
+
+.login-btn-container {
+  height: 25px;
+}
+
+.login-btn-modal {
+  position: relative;
+  bottom: 20px;
+  width: 300px;
+}
+
+.fb-btn-login {
+  width: 300px;
+  background-color: #3B5998;
+  color: white;
+}
+
 // Form used on edit page
 .edit_user {
   position: relative;
@@ -362,6 +393,10 @@ h1,h2,h3,h4,h5,h6,p,.h-smallcaps {font-family: 'Montserrat', Helvetica, sans-ser
 .new_user {
   position: relative;
   width: 300px;
+}
+
+.modal-error {
+  background-color: lightgray;
 }
 
 #error_explanation {
