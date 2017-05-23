@@ -13,15 +13,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
      if resource.save
        if resource.active_for_authentication?
-         set_flash_message :notice, :signed_up if is_navigational_format?
+         set_flash_message :notice, :signed_up
          sign_up(resource_name, resource)
          redirect_to root_path
        else
-         set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_navigational_format?
+         set_flash_message :notice, :signed_up_but_unconfirmed
+         redirect_to root_path
        end
      else
        clean_up_passwords resource
-
        render :action => 'signup_failure.js.erb'
      end
    end
