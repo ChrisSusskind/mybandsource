@@ -7,8 +7,8 @@
         </button>
       </div>
       <div class="modal-body center-align">
-        <h1 class="modal-image-center">FUCK</h1>
-        <div class="settings-form">
+        <%= cl_image_tag("static/logo_v2_padded", :width => 175, :height => 40, :crop => :fill, class: "modal-image-center") %>
+        <div class="login-signup-form">
           <%= form_for(resource, as: resource_name, url: session_path(resource_name), remote: true) do |f| %>
               <div class="form-group">
                 <%= f.label :email, class: "h-smallcaps" %>
@@ -34,6 +34,10 @@
           <% end %>
 
           <%= button_to "Log In with Facebook", user_facebook_omniauth_authorize_path, class: "btn btn-primary btn-pill fb-btn-login" %>
+          <div class="row login-message-signup-modal">
+            <p class="h-smallcaps">Don't have an account?&nbsp;&nbsp;</p>
+            <%= link_to "Sign Up", "#signup_modal", "data-toggle": "modal", class: "h-smallcaps bottom-modal-message", onclick: "loginToSignupModal()" %>
+          </div>
         </div>
       </div>
     </div>

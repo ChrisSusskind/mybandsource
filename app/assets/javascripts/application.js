@@ -37,3 +37,11 @@ function markNotificationsViewed(){
        url: '/notifications/mark_viewed_user'
     });
 }
+
+function signupToLoginModal(){
+    $('#signup_modal').modal('hide');
+}
+
+function loginToSignupModal(){
+    $('#login_modal').modal('hide');
+}
