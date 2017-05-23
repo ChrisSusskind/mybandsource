@@ -16,7 +16,9 @@
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
 
+
 /* Homepage styling */
+
 .jumbotron-main {
 	background-image: url(<%= Cloudinary::Utils.cloudinary_url("static/home_header.png") %>);
   background-size: cover;
@@ -45,7 +47,9 @@
   background-size: cover;
 }
 
+
 /* Search bar */
+
 .search-box {
   margin: 0 auto;
 	border-radius: 50px;
@@ -65,16 +69,121 @@
 
 /* Profile Styling */
 
-/* Profile – Page Structure */
-
-
-.jumbotron-profile {
+.profile-banner {
+  height: 334px;
+  position: relative;
+  overflow: hidden;
 	background-color: gray;
 	color: white;
+  display: flex;
+  align-items: flex-end;
 }
 
-.profile-picture {
-	margin: 25px;
+.profile-banner-content {
+  align-items: flex-end;
+  position: relative;
+  bottom: 25px;
+  display: flex;
+  height: 175px;
+  padding: 0 15%;
+  width: 100%;
+}
+
+.profile-banner-avatar {
+  height: 175px;
+  width: 175px;
+}
+
+.profile-banner-info {
+  flex-grow: 2;
+  padding-left: 20px;
+  line-height: .9em;
+  font-family: 'Montserrat', Helvetica, sans-serif;
+
+  h1 {
+    font-size: 1.7em;
+    font-weight: 600;
+    text-transform: none;
+  }
+  h2 {
+    font-size: .6em;
+    font-weight: 500;
+    opacity: .6;
+    text-transform: uppercase;
+    letter-spacing: .15em;
+  }
+  h4 {
+    font-weight: 200;
+  }
+}
+
+.profile-banner-stats {
+  h3 {
+    font-size: .55em;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  h4 {
+    font-weight: 200;
+  }
+}
+
+.profile-content {
+  display: flex;
+  align-items: flex-start;
+  max-width: 750px;
+  margin: 60px auto;
+}
+
+.profile-content-column {
+  border-bottom: 1px solid #DDD;
+  margin-right: 20px;
+  display: flex;
+  flex-direction: vertical;
+  p {
+    font-size: 1.1em;
+    font-weight: 200;
+    letter-spacing: .05em;
+    line-height: 1.4em;
+    color: #888;
+  }
+}
+
+.profile-section {
+  width: 100%;
+  display: block;
+  h1 {
+    font-size: 1.1em;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  p {
+    font-size: 1.1em;
+    font-weight: 200;
+    letter-spacing: .05em;
+    line-height: 1.4em;
+    color: #888;
+  }
+}
+
+.profile-sidebar {
+  border-left: 1px solid #DDD;
+  padding-left: 20px;
+  float: left;
+}
+
+.profile-sidebar-group {
+  h3 {
+    font-size: .55em;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  h4 {
+    text-transform: uppercase;
+    font-size: .6em;
+    font-weight: 200;
+    color: #AAA;
+  }
 }
 
 .follow-button {
@@ -116,9 +225,7 @@
 	border-left: 1px solid lightgray;
 }
 
-/*
-Artist page leave review styling
-*/
+/* Artist page leave review styling */
 
 #leave_rating {
   text-align: center;

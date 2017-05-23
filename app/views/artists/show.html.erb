@@ -1,56 +1,60 @@
 <div class="container content-container" id="artist_id_container" data-artist_id=<%=@artist.id%>>
-	
 
-	<div class="banner--profile">
-		<img class="img-back-blur" src="http://placehold.it/1000/31dbdb/000000">
-		<div class="banner--profile_content">
-			<div class="banner--profile_avatar">
-				<img src="http://placehold.it/175/31dbdb/000000" style="border-radius: 100px;">
+	<!-- Colorful header to artist profile -->
+	<div class="profile-banner">
+		<div class="profile-banner-content">
+			
+			<div class="profile-banner-avatar">
+				<%= image_tag(@artist.picture, :alt => "Avatar", class: "profile-picture rounded-circle float-left img-circle") if @artist.picture %>
+				<%= image_tag("blank_user.png", size: "175x175" , :alt => "User Image", class: "profile-picture rounded-circle float-left img-circle") if !@artist.picture %> 
 			</div>
-			<div class="banner--profile_info">
-				<h1>Joyce Gardner</h1>
-				<h2>Los Angeles</h2>
-				<h4>Member since February 2018</h4>
-				<div class="follow-and-share">
-					<button class="pill" id="button--profileFollow">Follow</button>
-					<button id="button--profileShare"><span style="padding-right: 5px;" class="fa fa-share-alt"></span>Share</button>
+
+			<div class="profile-banner-info">
+				<h1><%= @artist.name %></h1>
+				<h2><%= @artist.location %></h2>
+				<h4><%= @artist.genre.name %></h4>
+				<div class="profile-banner-buttons">
+					<button class="btn btn-danger">Follow</button>
+					<button class="btn share-button">Share</button>
 				</div>
 			</div>
-			<div class="banner--profile_follow-stats">
-				<span class="h-smallcaps" style="color: white;">Followers</span>
-				<h4>4k</h4><span class="h-smallcaps" style="color: white;">Following</span>
+
+			<div class="profile-banner-stats">
+				<h3>FOLLOWERS</h3>
+				<h4>4k</h4>
+				<h3>FOLLOWING</h3>
 				<h4>249</h4>
 			</div>
-		</div>
-		
-	</div>
 
-	
-	<!-- Colorful header to artist profile -->
-	<div class="container profile-jumbotron">
-		<div class="row">
-			<div class="col-sm-3">
-				<img src="<%= Faker::LoremPixel.image("200x200") %>" class="rounded">
-			</div>
-			<div class="col-sm-9">
-				<h1><%= @artist.name %></h1>
-				<p class="lead">Real Name: <%= @artist.real_name %></p>
-				<p class="lead">Location: <%= @artist.location %></p>
-				<p class="lead">Genre: <%= @artist.genre.name %></p>
-			</div>
 		</div>
 	</div> <!-- End colorful header to artist profile -->
 	
 
-	<div class="row">
-		<div class="col-sm-6">
-			<p class="lead"><%= @artist.profile %></p>
+	<div class="profile-content">
+		<div class="profile-content-column">
+			<div class="profile-section">
+				<h1>About</h1>
+				<p><%= @artist.profile %></p>
+			</div>
+			<!-- Reviews -->
+			
+		</div>
+
+		<div class="profile-sidebar">
+			<div class="profile-sidebar-group">
+				<h3>Favorite Genres</h3>
+				<h4>Alternative</h4>
+				<h4>Electronic</h4>
+				<h4>Hip-Hop</h4>
+				<h4>Indie</h4>
+			</div>
+			<div class="profile-sidebar-group">
+				<h3>Social Profiles</h3>
+				<h4>Twitter</h4>
+				<h4>Facebook</h4>
+			</div>
 		</div>
 	</div>
-
-	<%= cl_image_tag('static/share_icon.png', alt: "Share Icon", width: 20, height: 20, crop: :fill, class:"review_icon", onclick: "showArtistSharePage()")%>Share
-	<%= render partial: 'artists/share_page', locals: {artist: @artist} %>
-	<%= render partial: 'shared/social_media_buttons' %>
 
 	<div class="row">
 		<div class="col-4">
