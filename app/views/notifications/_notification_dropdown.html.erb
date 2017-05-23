@@ -9,7 +9,9 @@
     <span id="unviewed_notification_number" class="badge badge-notify"><%= unviewed %></span>
   </button>
   <ul class="dropdown-menu" role="menu">
-    <%= render current_user.notifications.order('created_at DESC').first(3) %>
+    <% current_user.notifications.order('created_at DESC').first(3).each do |notification| %>
+      <%= render partial: 'notifications/notification', locals: {notification: notification}  %>
+    <% end %>
     <li>
       <strong>
         <%= link_to('View All Notifications',  notifications_path, method: :get) %>

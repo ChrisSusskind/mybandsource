@@ -1,16 +1,27 @@
-<h2>Resend unlock instructions</h2>
+<div class="container">
+  <div class="page-container">
+    <div class="content-container">
+      <div class="content-slim">
+        <%= devise_error_messages! %>
+        <h3>
+          <span style="text-transform: uppercase;">Resend unlock instructions</span>
+        </h3>
+        <div class="settings-form">
+          <%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
+            <div class="form-group">
+              <%= f.label :email, class: "h-smallcaps" %><br />
+              <%= f.email_field :email, autofocus: true, class: "field-editpage" %>
+            </div>
 
-<%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+            <div class="submit-btn-unlockpage">
+              <%= f.submit "Resend unlock instructions", class: "btn btn-primary btn-pill" %>
+            </div>
+          <% end %>
+        </div>
+        <div class="devise-links">
+          <%= render "devise/shared/links" %>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Resend unlock instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

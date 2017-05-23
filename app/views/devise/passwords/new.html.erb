@@ -1,22 +1,27 @@
 <div class="container">
-	
-	<h2 class="display-4">Forgot your password?</h2>
+  <div class="page-container">
+    <div class="content-container">
+      <div class="content-slim">
+        <%= devise_error_messages! %>
+        <h3>
+          <span style="text-transform: uppercase;">Forgot your password?</span>
+        </h3>
+        <div class="settings-form">
+          <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+            <div class="form-group">
+              <%= f.label :email, class: "h-smallcaps" %><br />
+              <%= f.email_field :email, autofocus: true, class: "field-editpage" %>
+            </div>
 
-	<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-	<%= devise_error_messages! %>
-
-		<div class="field form-group">
-			<%= f.label :email %><br />
-			<%= f.email_field :email, autofocus: true, class: "form-control" %>
-		</div>
-
-		<div class="actions form-group">
-			<%= f.submit "Reset Password", class: "btn btn-primary" %>
-		</div>
-	<% end %>
-
-	<%= render "devise/shared/links" %>
-
-
+              <div class="submit-btn-forgotpasswordpage">
+                <%= f.submit "Reset Password", class: "btn btn-primary btn-pill" %>
+              </div>
+          <% end %>
+        </div>
+        <div class="devise-links">
+          <%= render "devise/shared/links" %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-

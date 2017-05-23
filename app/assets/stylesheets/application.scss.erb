@@ -232,7 +232,155 @@ Review display (partial view) styling
 .search_result {
 
 }
+// Typography
 
+h1,h2,h3,h4,h5,h6,p,.h-smallcaps {font-family: 'Montserrat', Helvetica, sans-serif;}
 
+.h-smallcaps {
+  font-size: .55em;
+  font-weight: 500;
+  text-transform: uppercase;
+}
 
+.h-largecaps {
+  font-size: .75em;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+// Edit user info, forgot password, password reset, resend confirmation link, unlock account page styles
+
+.content-container {
+  position: relative;
+  width: 100%
+}
+
+.page-container {
+  position: relative;
+  top: 50px;
+  margin: 0 auto;
+  max-width: 1050px;
+  padding-bottom: 6em;
+  min-height: 100%;
+}
+
+.content-slim {
+  width:70%;
+  margin: 0 auto;
+}
+
+.settings-form {
+  position: relative;
+  border-top: solid 1px #ddd;
+  padding-top: 20px;
+  width: 100%;
+  padding-bottom: 15px;
+}
+
+.btn-pill {
+  margin: 5px auto;
+  height: 35px;
+  border-radius: 20px;
+  border: none;
+  color: white;
+  font-family: 'Montserrat', Helvetica, sans-serif;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.form-group {
+  font-size: 1em;
+  line-height: 1.5em;
+  width: 300px;
+}
+
+.field-editpage {
+    position: relative;
+    width: 100%;
+    border: none;
+    border-bottom: solid 1px black;
+    padding-bottom: 8px;
+    font-size: .7em;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+.field-editpage:focus {
+  border-bottom: solid 2px black;
+}
+
+.field-editpage ::-webkit-input-placeholder {
+  font-family: Montserrat, Helvetica, sans-serif;
+  color: black;
+}
+
+.connected-editpage {
+  padding-bottom: 4px;
+}
+
+.submit-btn-editpage {
+  position: absolute;
+  left: 40%;
+
+}
+
+.submit-btn-forgotpasswordpage {
+  position: absolute;
+  left: 30%;
+}
+
+.submit-btn-changepasswordpage {
+  position: absolute;
+  left: 20%;
+}
+
+.submit-btn-resendconfirmationpage {
+  position: absolute;
+  left: 15%;
+}
+
+.submit-btn-unlockpage {
+  position: absolute;
+  left: 20%;
+}
+
+.devise-links {
+  position: relative;
+  top: 40px;
+}
+
+// Form used on edit page
+.edit_user {
+  position: relative;
+  margin-top: 15px;
+  width: 300px;
+
+}
+
+// Form used on forgot password page
+.new_user {
+  position: relative;
+  width: 300px;
+}
+
+#error_explanation {
+  color: red;
+  white-space: nowrap;
+
+  h2 {
+    font-size: 15px;
+    display: none;
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  li {
+    text-transform: uppercase;
+    font-size: 20px;
+  }
+}
 
