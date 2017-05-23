@@ -9,7 +9,21 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
    def create
-     super
+     build_resource(sign_up_params)
+
+     if resource.save
+       if resource.active_for_authentication?
+         set_flash_message :notice, :signed_up if is_navigational_format?
+         sign_up(resource_name, resource)
+         redirect_to root_path
+       else
+         set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_navigational_format?
+       end
+     else
+       clean_up_passwords resource
+
+       render :action => 'signup_failure.js.erb'
+     end
    end
 
   # GET /resource/edit
@@ -36,7 +50,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
+
+  def sign_up(resource_name, resource)
+    sign_in(resource_name, resource)
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
@@ -65,6 +83,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
  def user_params
    params.fetch(:user, {})
    params.require(:user).permit(:name, :email, :location, :bio, :password, :password_confirmation)
+ end
+
+ def signup_params
+   devise_parameter_sanitizer.sanitize(:sign_up)
  end
 end
 

@@ -1,6 +1,6 @@
 <div class="modal hide fade" id="login_modal" tabindex="-1">
   <div class="modal-dialog">
-    <div class="modal-content" id="login-modal-body">
+    <div class="modal-content" id="login-modal-start">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -11,7 +11,7 @@
         <div class="settings-form">
           <%= form_for(resource, as: resource_name, url: session_path(resource_name), remote: true) do |f| %>
               <div class="form-group">
-                <%= f.label :email, class: "h-smallcaps" %><br />
+                <%= f.label :email, class: "h-smallcaps" %>
                 <%= f.email_field :email, autofocus: true, class: "field-editpage" %>
               </div>
 
@@ -29,7 +29,8 @@
 
               <div class="login-btn-container">
                 <%= f.submit "Log in", class: "btn btn-danger button-home btn-pill login-btn-modal" %>
-              </div><hr />
+              </div>
+              <hr />
           <% end %>
 
           <%= button_to "Log In with Facebook", user_facebook_omniauth_authorize_path, class: "btn btn-primary btn-pill fb-btn-login" %>
