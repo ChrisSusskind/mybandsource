@@ -15,36 +15,40 @@
 
 	<body>
 
-  <script>
-    console.log("Running init script");
-    window.fbAsyncInit = function() {
-      FB.init({
-        appId      : '444853392519445',
-        xfbml      : false
-      });
+		<script>
+			console.log("Running init script");
+			window.fbAsyncInit = function() {
+			  FB.init({
+			    appId      : '444853392519445',
+			    xfbml      : false
+			  });
+			  console.log("Initialized");
+			};
+			(function(d, s, id){
+			  var js, fjs = d.getElementsByTagName(s)[0];
+			  if (d.getElementById(id)) {return;}
+			  js = d.createElement(s); js.id = id;
+			  js.src = "//connect.facebook.net/en_US/all.js";
+			  fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+		</script>
 
-      console.log("Initialized");
-    };
-
-    (function(d, s, id){
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) {return;}
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/all.js";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-  </script>
-
-		<%= render 'layouts/header' %>
+		<div class="container">
 		
-		<% if notice or alert %>
-			<%= render 'layouts/alerts' %>
-		<% end %>
+			<%= render 'layouts/header' %>
+			
+			<% if notice or alert %>
+				<%= render 'layouts/alerts' %>
+			<% end %>
 
-    <%= render "shared/login_modal" %>
-    <%= render "shared/signup_modal" %>
-		
-		<%= yield %>
+			<%= render "shared/login_modal" %>
+	    	<%= render "shared/signup_modal" %>
+			
+			<%= yield %>
+
+			<%= render 'layouts/footer' %>
+
+		</div>
 		
 	</body>
 </html>

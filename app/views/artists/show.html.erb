@@ -1,81 +1,115 @@
-<div class="container" id="artist_id_container" data-artist_id=<%=@artist.id%>>
-	<div class="row">
-		<div class="col-sm-3">
-			<img src="<%= Faker::LoremPixel.image("200x200") %>" class="rounded">
+<div class="container content-container" id="artist_id_container" data-artist_id=<%=@artist.id%>>
+
+	<!-- Colorful header to artist profile -->
+	<div class="profile-banner">
+		<div class="profile-banner-content">
+			
+			<div class="profile-banner-avatar">
+				<%= image_tag(@artist.picture, :alt => "Avatar", class: "profile-picture rounded-circle float-left img-circle") if @artist.picture %>
+				<%= image_tag("blank_user.png", size: "175x175" , :alt => "User Image", class: "profile-picture rounded-circle float-left img-circle") if !@artist.picture %> 
+			</div>
+
+			<div class="profile-banner-info">
+				<h1><%= @artist.name %></h1>
+				<h2><%= @artist.location %></h2>
+				<h4><%= @artist.genre.name %></h4>
+				<div class="profile-banner-buttons">
+					<button class="btn btn-danger">Follow</button>
+					<button class="btn share-button">Share</button>
+				</div>
+			</div>
+
+			<div class="profile-banner-stats">
+				<h3>FOLLOWERS</h3>
+				<h4>4k</h4>
+				<h3>FOLLOWING</h3>
+				<h4>249</h4>
+			</div>
+
 		</div>
-		<div class="col-sm-9">
-			<h1><%= @artist.name %></h1>
-			<p class="lead">Real Name: <%= @artist.real_name %></p>
-			<p class="lead">Location: <%= @artist.location %></p>
-			<p class="lead">Genre: <%= @artist.genre.name %></p>
+	</div> <!-- End colorful header to artist profile -->
+	
+
+	<div class="profile-content">
+		<div class="profile-content-column">
+			<div class="profile-section">
+				<h1>About</h1>
+				<p><%= @artist.profile %></p>
+			</div>
+			<!-- Reviews -->
+			
+		</div>
+
+		<div class="profile-sidebar">
+			<div class="profile-sidebar-group">
+				<h3>Favorite Genres</h3>
+				<h4>Alternative</h4>
+				<h4>Electronic</h4>
+				<h4>Hip-Hop</h4>
+				<h4>Indie</h4>
+			</div>
+			<div class="profile-sidebar-group">
+				<h3>Social Profiles</h3>
+				<h4>Twitter</h4>
+				<h4>Facebook</h4>
+			</div>
 		</div>
 	</div>
 
 	<div class="row">
-		<div class="col-sm-6">
-			<p class="lead"><%= @artist.profile %></p>
+		<div class="col-4">
+			<% if user_signed_in? && !Subscription.exists?({user_id: current_user.id, artist_id: @artist.id}) %>
+			<div>
+				<%= link_to("Subscribe", "/subscriptions/#{@artist.id}", method: "post", class: "btn btn-primary") %>
+			</div>
+			<% end %>
+
+			<% if user_signed_in? && Subscription.exists?({user_id: current_user.id, artist_id: @artist.id}) %>
+			<div>
+				<%= link_to("Unsubscribe", "/subscriptions/#{@artist.id}", method: "delete", class: "btn btn-primary") %>
+			</div>
+			<% end %>
+		</div>
+
+		<div class="col-4">
+			<p>Followers</p>
+			<%= link_to("#{@artist.users.size}", "/artists/#{@artist.id}/subscriptions", method: "get", class: "lead") %>
 		</div>
 	</div>
 
-  <%= cl_image_tag('static/share_icon.png', alt: "Share Icon", width: 20, height: 20, crop: :fill, class:"review_icon", onclick: "showArtistSharePage()")%>Share
-  <%= render partial: 'artists/share_page', locals: {artist: @artist} %>
+	<% if user_signed_in? && @review.artist_id.nil? %>
+	<button onclick="loadReviewForm()" id="review_load_button" class="btn btn-danger button-home" style="display: none">Edit Review</button>
+	<div class="row" id="review_form">
+		<%= render partial: 'reviews/review_form', locals: {artist: @artist, review: @review} %>
+	</div>
+	<% elsif user_signed_in? %>
+	<button onclick="loadReviewForm()" id="review_load_button" class="btn btn-danger button-home">Edit Review</button>
+	<div class="row" id="review_form" style="display: none">
+		<%= render partial: 'reviews/review_form', locals: {artist: @artist, review: @review} %>
+	</div>
+	<% end %>
 
-  <%= render partial: 'shared/social_media_buttons' %>
+	<div class="row">
+		<%= link_to("Reviews", "/artists/#{@artist.id}/reviews/hide_responses", method: "get", class: "btn btn-danger", id: "reviews_button", remote: true) %>
+		<%= link_to("Discussion", "/artists/#{@artist.id}/reviews/show_responses", method: "get", class: "btn btn-danger", id: "discussion_button", remote: true) %>
+	</div>
 
-  <div class="row">
-    <div class="col-4">
-      <% if user_signed_in? && !Subscription.exists?({user_id: current_user.id, artist_id: @artist.id}) %>
-      <div>
-        <%= link_to("Subscribe", "/subscriptions/#{@artist.id}", method: "post", class: "btn btn-primary") %>
-      </div>
-      <% end %>
+	<div class="row reviews_container" id="reviews_container">
+		<%= render partial: 'reviews/review', collection: @reviews, locals: {responses_shown: false}%>
+	</div>
+	<div class="row" id="paginator">
+		<%= paginate @reviews, remote: true %>
+	</div>
 
-      <% if user_signed_in? && Subscription.exists?({user_id: current_user.id, artist_id: @artist.id}) %>
-      <div>
-        <%= link_to("Unsubscribe", "/subscriptions/#{@artist.id}", method: "delete", class: "btn btn-primary") %>
-      </div>
-      <% end %>
-    </div>
-
-    <div class="col-4">
-      <p>Followers</p>
-      <%= link_to("#{@artist.users.size}", "/artists/#{@artist.id}/subscriptions", method: "get", class: "lead") %>
-    </div>
-  </div>
-
-  <% if user_signed_in? && @review.artist_id.nil? %>
-    <button onclick="loadReviewForm()" id="review_load_button" class="btn btn-danger" style="display: none">Edit Review</button>
-    <div class="row" id="review_form">
-      <%= render partial: 'reviews/review_form', locals: {artist: @artist, review: @review} %>
-    </div>
-  <% elsif user_signed_in? %>
-    <button onclick="loadReviewForm()" id="review_load_button" class="btn btn-danger">Edit Review</button>
-    <div class="row" id="review_form" style="display: none">
-      <%= render partial: 'reviews/review_form', locals: {artist: @artist, review: @review} %>
-    </div>
-  <% end %>
-
-  <div class="row">
-    <%= link_to("Reviews", "/artists/#{@artist.id}/reviews/hide_responses", method: "get", class: "btn btn-danger", id: "reviews_button", remote: true) %>
-    <%= link_to("Discussion", "/artists/#{@artist.id}/reviews/show_responses", method: "get", class: "btn btn-danger", id: "discussion_button", remote: true) %>
-  </div>
-
-  <div class="row reviews_container" id="reviews_container">
-    <%= render partial: 'reviews/review', collection: @reviews, locals: {responses_shown: false}%>
-  </div>
-  <div class="row" id="paginator">
-    <%= paginate @reviews, remote: true %>
-  </div>
-
-  <div class="row">
-    <div class="col-12">
-      <div class="dropdown">
-        <button onclick="toggleDropdown()" class="dropbtn">Arrange Reviews By</button>
-        <div id="reviews_dropdown" class="dropdown-content">
-          <a href="#" onclick="orderReviewsByAge(event)">Most Recent</a>
-          <a href="#" onclick="orderReviewsByUpvotes(event)">Most Upvoted</a>
-        </div>
-      </div>
-    </div>
-  </div>
+	<div class="row">
+		<div class="col-12">
+			<div class="dropdown">
+				<button onclick="toggleDropdown()" class="btn btn-primary dropbtn">Arrange Reviews By</button>
+				<div id="reviews_dropdown" class="dropdown-content">
+					<a href="#" onclick="orderReviewsByAge(event)">Most Recent</a>
+					<a href="#" onclick="orderReviewsByUpvotes(event)">Most Upvoted</a>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
