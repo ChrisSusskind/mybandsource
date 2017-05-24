@@ -10,13 +10,13 @@
         <h3 class="follow-title">Following</h3>
 
         <% followings.each do |following| %>
-            <div class="row follow-row">
-              <div class="follow-row-content">
-                <%= image_tag(following.picture, size: "50x50", :alt => "Avatar", class: "follow-pic rounded-circle img-circle") if following.picture %>
-                <%= image_tag("blank_user.png", size: "50x50" , :alt => "User Image", class: "follow-pic rounded-circle img-circle") if !following.picture %> 
-                <h5><%= link_to following.name, "/users/#{following.id}", method: "get", class: "follow-name" %></h5>
-              </div>
+          <div class="row follow-row">
+            <div class="follow-row-content">
+              <%= image_tag(following.picture, size: "50x50", :alt => "Avatar", class: "follow-pic rounded-circle img-circle") if following.picture %>
+              <%= image_tag("blank_user.png", size: "50x50" , :alt => "User Image", class: "follow-pic rounded-circle img-circle") if !following.picture %> 
+              <h5><%= link_to following.name, "/users/#{following.id}", method: "get", class: "follow-name" %></h5>
             </div>
+          </div>
         <% end %>
       </div>
     </div>

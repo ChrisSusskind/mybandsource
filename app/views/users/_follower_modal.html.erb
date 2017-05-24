@@ -7,17 +7,17 @@
         </button>
       </div>
       <div class="modal-body follow-body">
-          <h3 class="follow-title">Followers</h3>
+        <h3 class="follow-title">Followers</h3>
 
-          <% followers.each do |follower| %>
-            <div class="row follow-row">
-              <div class="follow-row-content">
-                <%= image_tag(follower.picture, size: "50x50", :alt => "Avatar", class: "follow-pic rounded-circle img-circle") if follower.picture %>
-                <%= image_tag("blank_user.png", size: "50x50" , :alt => "User Image", class: "follow-pic rounded-circle img-circle") if !follower.picture %> 
-                <h5><%= link_to follower.name, "/users/#{follower.id}", method: "get", class: "follow-name" %></h5>
-              </div>
+        <% followers.each do |follower| %>
+          <div class="row follow-row">
+            <div class="follow-row-content">
+              <%= image_tag(follower.picture, size: "50x50", :alt => "Avatar", class: "follow-pic rounded-circle img-circle") if follower.picture %>
+              <%= image_tag("blank_user.png", size: "50x50" , :alt => "User Image", class: "follow-pic rounded-circle img-circle") if !follower.picture %> 
+              <h5><%= link_to follower.name, "/users/#{follower.id}", method: "get", class: "follow-name" %></h5>
             </div>
-          <% end %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
