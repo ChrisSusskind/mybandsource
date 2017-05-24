@@ -45,3 +45,13 @@ function signupToLoginModal(){
 function loginToSignupModal(){
     $('#login_modal').modal('hide');
 }
+
+function shareFacebook(url) {
+    FB.ui({
+        method: 'share',
+        href: url
+    }, function (response) {
+    });
+
+    console.log("Inside shareFacebook");
+}

@@ -36,12 +36,11 @@
             </div>
 					</div>
 					<div class="col-sm-4">
-						<button type="button" class="btn btn-danger share-button" onclick="showUserSharePage()">Share</button>
+						<%= link_to "Share", "#share_modal", "data-toggle": "modal", class: "btn btn-danger share-button" %>
 					</div>
 				</div>
 			</div>
 
-      <%= render partial: 'users/share_page', locals: {user: @user} %>
 
       <div class="col-lg-2 col-md-4 col-sm-4 offset-xl-1 offset-lg-1">
 				<div class="follow_count">
@@ -104,4 +103,4 @@
 
 <%= render partial: "follower_modal", locals: {followers: @user.followers} %>
 <%= render partial: "following_modal", locals: {followings: @user.following} %>
-
+<%= render partial: "share_modal", locals: {link: root_url[0...-1] + user_path(@user) } %>
