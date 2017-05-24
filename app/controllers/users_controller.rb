@@ -19,20 +19,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def following
-    @title = "Following"
-    users = @user.following
-    artists = @user.artists
-    @combined = safe_zip(artists, users)
-    render 'show_follow'
-  end
-
-  def followers
-    @title = "Followers"
-    @users = @user.followers
-    render 'show_follow'
-  end
-
   def upload_avatar
     @user.update_attributes({picture: params[:picture]})
     redirect_to user_path(@user)

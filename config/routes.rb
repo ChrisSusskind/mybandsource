@@ -35,9 +35,6 @@ Rails.application.routes.draw do
 
   # Non-devise user routes and review (shown on user profile page) routes
   resources :users, only: [:index, :show] do
-    member do
-      get :following, :followers
-    end
     resources :reviews, only: [] do
       member do
         delete 'destroy_userprofile'
