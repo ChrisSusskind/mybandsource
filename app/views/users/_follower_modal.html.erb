@@ -1,0 +1,24 @@
+<div class="modal hide fade" id="follower_modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="border: none">
+        <button type="button" class="close modal-close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body follow-body">
+          <h3 class="follow-title">Followers</h3>
+
+          <% followers.each do |follower| %>
+            <div class="row follow-row">
+              <div class="follow-row-content">
+                <%= image_tag(follower.picture, size: "50x50", :alt => "Avatar", class: "follow-pic rounded-circle img-circle") if follower.picture %>
+                <%= image_tag("blank_user.png", size: "50x50" , :alt => "User Image", class: "follow-pic rounded-circle img-circle") if !follower.picture %> 
+                <h5><%= link_to follower.name, "/users/#{follower.id}", method: "get", class: "follow-name" %></h5>
+              </div>
+            </div>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>

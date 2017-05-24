@@ -46,9 +46,9 @@
       <div class="col-lg-2 col-md-4 col-sm-4 offset-xl-1 offset-lg-1">
 				<div class="follow_count">
           <p class="followers_text right_align">Followers</p>
-          <p class="right_align"><%= link_to("#{@user.followers.count} followers", "/users/#{@user.id}/followers", method: "get") %></p>
+          <p class="right_align"> <%= link_to "#{@user.followers.count} followers", "#follower_modal", "data-toggle": "modal" %> </p>
           <p class="followers_text right_align">Following</p>
-          <p class="right_align"><%= link_to("#{@user.following.count + @user.artists.count} following", "/users/#{@user.id}/following", method: "get") %></p>
+          <p class="right_align"> <%= link_to "#{@user.following.count + @user.artists.count} following", "#following_modal", "data-toggle": "modal" %> </p>
 				</div>
 			</div>
 
@@ -74,7 +74,7 @@
         <%= link_to("Discussion", user_reviews_show_responses_path(@user.id), method: "get", class: "btn btn-danger", id: "discussion_button", remote: true) %>
       </div>
 		</div>
-		<div class="row reviews_container" id="reviews_container"">
+		<div class="row reviews_container" id="reviews_container">
         <%= render partial: 'reviews/user_profile/review_user_profile', collection: @reviews, locals: {responses_shown: false}%>
     </div>
     <div class="row" id="paginator">
@@ -101,3 +101,7 @@
     </div>
   </div>
 </div>
+
+<%= render partial: "follower_modal", locals: {followers: @user.followers} %>
+<%= render partial: "following_modal", locals: {followings: @user.following} %>
+
