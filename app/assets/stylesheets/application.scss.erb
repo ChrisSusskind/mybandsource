@@ -225,7 +225,7 @@
 	border-left: 1px solid lightgray;
 }
 
-/* Artist page leave review styling */
+/* Artist page review styling */
 
 #leave_rating {
   text-align: center;
@@ -263,6 +263,12 @@
   background-color: #3e8e41;
 }
 
+// Review Display
+.rating-stars {
+
+}
+
+
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
   display: none;
@@ -282,21 +288,30 @@
 }
 
 /* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #f1f1f1}
+.dropdown-content a:hover { background-color: #f1f1f1 }
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-.show {display:block;}
+.show { display:block; }
 
 /* Review display (partial view) styling */
 
-.ratings_list {
-  text-align: center;
-  perspective: 250px;
-  top: 40%;
-  width: 100%
+.review-entry {
+  margin: 25px;
+
+  .review-user-image {
+    margin-right: 10px;
+  }
 }
 
-.ratings_list span {
+.review-section-title {
+  font-size: 1.1em;
+  font-weight: 600;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.review-top-row span {
   cursor: pointer;
   color: black;
   font-size: 25px;
@@ -308,15 +323,40 @@
   transform-origin: center bottom;
 }
 
-.ratings_list span.hover {
+.review-top-row span:hover {
   color: #AA182A;
   opacity: 1;
   transform: rotateX(0deg);
   text-shadow: 0 0 30px #AA182A;
 }
 
-.review_username {
+.review-top-row {
+  h4 {
+    float: left;
+    a {
+      color: black;
+    }
+    
+  }
+  .rating-stars {  
+  }
+}
+
+.review-bottom-row {
+  width: 100%;
   float: left;
+  clear: both;
+  .timeago {
+    float: right;
+  }
+}
+
+.rating-stars {
+  float: left;
+  clear: none;
+  span {
+    font-size: 2em;
+  }
 }
 
 .review_icon {
@@ -367,11 +407,6 @@ footer {
     color: black;
     text-decoration: none;
 }
-// Typography
-
-h1,h2,h3,h4,h5,h6,p,.h-smallcaps {
-  font-family: 'Montserrat', Helvetica, sans-serif;
-}
 
 .footer_social {
     order: 2;
@@ -398,6 +433,13 @@ h1,h2,h3,h4,h5,h6,p,.h-smallcaps {
     .footer_social {
     }
     
+}
+
+
+// Typography
+
+h1,h2,h3,h4,h5,h6,p,.h-smallcaps {
+  font-family: 'Montserrat', Helvetica, sans-serif;
 }
 
 .h-smallcaps {
