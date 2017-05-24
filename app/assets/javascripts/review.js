@@ -117,25 +117,26 @@ function loadReviewForm(){
 Function that creates a response creation form when reply button is clicked
 Submit action of this form is to send an ajax request to server w/ content to create a new response
  */
-function showReplyForm(node){
+function showReplyForm(node) {
     var review = node.parentElement.parentElement.parentElement;
     var review_id = review.getAttribute('data-review_id');
     var wrapper = document.createElement('div');
     wrapper.innerHTML = '<form id="reply_form"><textarea id="reply"></textarea><input type="submit" value="Submit"></form>';
     review.append(wrapper);
     var user_profile = (artist_id == null);
-    $('#reply_form').submit(function(e){
-       e.preventDefault();
-       $.ajax({
-           type: 'POST',
-           url: '/artists/' + artist_id + '/reviews/' + review_id + '/responses',
-           data: {
-               comment: $('#reply').val(),
-               user_profile: user_profile
-           },
-           dataType: 'script'
-       })
+    $('#reply_form').submit(function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: '/artists/' + artist_id + '/reviews/' + review_id + '/responses',
+            data: {
+                comment: $('#reply').val(),
+                user_profile: user_profile
+            },
+            dataType: 'script'
+        })
     });
+    node.onclick = null;
 }
 
 //Function that returns show_responses global variable that identifies whether current view is reviews (no comments) or discussion (comments shown)
