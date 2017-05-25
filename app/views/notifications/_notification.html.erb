@@ -1,30 +1,31 @@
 <li>
-  <div class="media">
+  <div class="media notification-container">
     <div class="media-left">
       <div class="media-object">
-        <img src="<%= Faker::LoremPixel.image("50x50") %>" class="rounded">
+        <%= image_tag(notification.generating_user_picture, size: "30x30", :alt => "Avatar", class: "notification-pic rounded-circle img-circle") if notification.generating_user_picture %>
+        <%= image_tag("blank_user.png", size: "30x30" , :alt => "User Image", class: "notification-pic rounded-circle img-circle") if !notification.generating_user_picture %> 
       </div>
     </div>
-    <div class="media-body">
-      <strong>
+    <div class="media-body notification-text-container">
         <% case notification.notification_type %>
           <% when 'follow' %>
-            <%= link_to(notification.generating_user_name,  user_path(notification.generating_user_id), method: :get) %>
-            just followed your profile
+            <p class="notification-text">
+              <%= link_to(notification.generating_user_name,  user_path(notification.generating_user_id), method: :get) %>
+              just followed your profile
           <% when 'review' %>
-            <%= link_to(notification.generating_user_name,  user_path(notification.generating_user_id), method: :get) %>
-            just reviewed your profile
+            <p class="notification-text">
+              <%= link_to(notification.generating_user_name,  user_path(notification.generating_user_id), method: :get) %>
+              just reviewed your profile
           <% when 'response' %>
-            <%= link_to(notification.generating_user_name,  user_path(notification.generating_user_id), method: :get) %>
-            just left a comment on your profile
+            <p class="notification-text">
+              <%= link_to(notification.generating_user_name,  user_path(notification.generating_user_id), method: :get) %>
+              just left a comment on your profile
           <% else %>
-        <% end %>
-      </strong>
-      <div>
-        <abbr class="timeago" title="<%= notification.created_at.getutc.iso8601 %>">
-          <small><%= notification.created_at.to_s %></small>
-        </abbr>
-      </div>
+        <% end %><br/>
+              <abbr class="timeago notification-text-time" title="<%= notification.created_at.getutc.iso8601 %>">
+                <%= notification.created_at.to_s %>
+              </abbr>
+            </p>
     </div>
   </div>
 </li>

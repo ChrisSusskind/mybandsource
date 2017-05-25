@@ -13,9 +13,9 @@
       <%= render partial: 'notifications/notification', locals: {notification: notification}  %>
     <% end %>
     <li>
-      <strong>
-        <%= link_to('View All Notifications',  notifications_path, method: :get) %>
-      </strong>
+        <div class="view-all-notifications">
+          <%= link_to('View All Notifications',  notifications_path, method: :get) %>
+        </div>
     </li>
   </ul>
 </div>
