@@ -1,1 +1,2 @@
-$('#signup-modal-start').prepend('<div class="modal-error"><h1 class="modal-error-text">Signup failed</h1></div>');
+$('#signup-error-message').remove();
+$('#signup-modal-body-start').prepend('<div class="alert alert-danger" id="signup-error-message"><strong>Signup Failed!  </strong><%= escape_javascript message %></div>');

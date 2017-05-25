@@ -20,7 +20,12 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def failure
-    render :action => 'login_failure.js.erb'
+    # Checks done for missing parameters, email exists in database, correct password entered
+    return render :action => 'login_failure.js.erb', :locals => {message: missing_params} if params[:user][:email] == "" || params[:user][:password] == ""
+    user = User.find_by(email: params[:user][:email])
+    return render :action => 'login_failure.js.erb', :locals => {message: incorrect_email} if user == nil
+    return render :action => 'login_failure.js.erb', :locals => {message: incorrect_password} if user.password != params[:user][:password]
+    render :action => 'login_failure.js.erb', :locals => {message: server_error}
   end
 
   # DELETE /resource/sign_out
@@ -28,10 +33,26 @@ class Users::SessionsController < Devise::SessionsController
   #   super
   # end
 
-  # protected
+  protected
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
+
+  def missing_params
+    "Please make sure you enter all required information."
+  end
+
+  def incorrect_email
+    "No account exists under the provided email address."
+  end
+
+  def incorrect_password
+    "Incorrect password."
+  end
+
+  def server_error
+    "Please try again later."
+  end
 end

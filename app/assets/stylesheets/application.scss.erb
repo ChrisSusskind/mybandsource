@@ -454,10 +454,10 @@ h1,h2,h3,h4,h5,h6,p,.h-smallcaps {
   text-transform: uppercase;
 }
 
-// Font used when returning error message for login or signup
-.modal-error-text {
-  font-size: 20px;
-  color: black;
+// Override for bootsrap modal class to fix scrolling issue
+
+.modal {
+  overflow-y: auto
 }
 
 // Edit user info, forgot password, password reset, resend confirmation link, unlock account page styles
@@ -493,6 +493,7 @@ h1,h2,h3,h4,h5,h6,p,.h-smallcaps {
   position: relative;
   padding-top: 20px;
   width: 100%;
+  left: 18%;
   padding-bottom: 15px;
 }
 
@@ -569,14 +570,9 @@ h1,h2,h3,h4,h5,h6,p,.h-smallcaps {
   top: 40px;
 }
 
-.center-align {
-  position: relative;
-  margin: 0 auto;
-}
-
 .modal-image-center {
   position: relative;
-  left: 20%;
+  left: 30%;
   top: 5px;
 }
 
@@ -596,7 +592,7 @@ h1,h2,h3,h4,h5,h6,p,.h-smallcaps {
 
 .login-message-signup-modal {
   position: relative;
-  left: 25%;
+  left: 17%;
   top: 20px;
 }
 
@@ -623,10 +619,6 @@ h1,h2,h3,h4,h5,h6,p,.h-smallcaps {
 .new_user {
   position: relative;
   width: 300px;
-}
-
-.modal-error {
-  background-color: lightgray;
 }
 
 #error_explanation {

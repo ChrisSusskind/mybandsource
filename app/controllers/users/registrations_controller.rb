@@ -9,6 +9,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
    def create
+     # Checks done for missing parameters, password length, password/password confirmation match, and email not already existing in database
+     return render :action => 'signup_failure.js.erb', :locals => {message: missing_params_error} if params[:user][:name] == "" || params[:user][:email] == "" || params[:user][:password] == "" || params[:user][:password_confirmation] == ""
+     return render :action => 'signup_failure.js.erb', :locals => {message: password_length_error} if params[:user][:password].length < 6
+     return render :action => 'signup_failure.js.erb', :locals => {message: password_confirmation_error} if params[:user][:password] != params[:user][:password_confirmation]
+     return render :action => 'signup_failure.js.erb', :locals => {message: existing_email_error} if User.find_by(email: params[:user][:email]) != nil
+
      build_resource(sign_up_params)
 
      if resource.save
@@ -22,7 +28,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
        end
      else
        clean_up_passwords resource
-       render :action => 'signup_failure.js.erb'
+       render :action => 'signup_failure.js.erb', :locals => {message: server_error}
      end
    end
 
@@ -33,12 +39,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   #PUT /resource
   def update
-      super
+    super
   end
 
   # DELETE /resource
   def destroy
-    super
+     super
   end
 
   # GET /resource/cancel
@@ -87,6 +93,26 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
  def signup_params
    devise_parameter_sanitizer.sanitize(:sign_up)
+ end
+
+ def missing_params_error
+   "Please make sure you enter all required information."
+ end
+
+ def password_length_error
+   "Please choose a password that is at least 6 characters long."
+ end
+
+ def password_confirmation_error
+   "Make sure your password and password confirmation match exactly."
+ end
+
+ def existing_email_error
+   "Email already exists."
+ end
+
+ def server_error
+   "Please try again later."
  end
 end
 
