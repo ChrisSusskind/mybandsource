@@ -24,7 +24,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   test "should register user" do
     assert_difference('User.count') do
-      post user_registration_path, params: { user: {name: 'Peter', email: 'test@test.com', password: 'password'} }
+      post user_registration_path, params: { user: {name: 'Peter', email: 'test@test.com', password: 'password', password_confirmation: 'password'} }
     end
     assert_redirected_to root_path
   end
