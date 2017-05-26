@@ -52,15 +52,9 @@
 			<p>Explore artists by genre.</p>
 		</div>
 
-		<div class="card-columns">
+		<div class="row">
 			<% @genres.each do |genre| %>
-
-				<div class="card text-center genre-card">
-					<div class="card-block">
-						<h4 class="card-title"><%= genre.name %></h4>
-						<p class="card-text"><%= genre.description %></p>
-					</div>
-				</div>
+        <%= render partial: 'genres/genre_card', locals: {genre: genre, column: 3, class_name:"genre-card-homepage"} %>
 			<% end %>
 
 		</div>

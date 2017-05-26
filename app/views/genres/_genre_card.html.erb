@@ -1,5 +1,5 @@
-<div class="genre-card col-4">
-  <%= link_to(cl_image_tag(genre.picture, :width => 300, :height => 300, :crop => :fill, class: ""), genre_path(genre), method: :get) %>
+<div class="genre-card col-<%= column %> <%= class_name %>">
+  <%= link_to(cl_image_tag(genre.picture), genre_path(genre), method: :get) %>
   <div>
     <h5><%= genre.name %></h5>
   </div>
