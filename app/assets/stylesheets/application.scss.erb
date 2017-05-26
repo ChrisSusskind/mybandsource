@@ -38,13 +38,35 @@
   width: 100%;
 }
 
+// Genre styling
+
+.genre-index-container {
+  h3 {
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+}
+
 .genre-card {
-	height: 300px;
-	color: white;
-	border: none;
+  width: 300px;
+  height: 300px;
+  border: none;
 	border-radius: 0;
-	background-image: url(<%= image_path 'genre1.png' %>);
-  background-size: cover;
+  position: relative;
+  margin-bottom: 15px;
+
+  div {
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    bottom: 150px;
+
+    h5 {
+      color: white;
+      z-index: 100;
+    }
+  }
 }
 
 

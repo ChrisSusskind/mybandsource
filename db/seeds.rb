@@ -7,44 +7,14 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 genre_list = [
-	"Blues",
-	"Comedy",
-	"Children's Music",
-	"Classical",
-	"Country",
-	"Electronic",
-	"Holiday",
-	"Opera",
-	"Singer Songwriter",
-	"Jazz",
-	"Latino",
-	"New Age",
 	"Pop",
-	"R&B/Soul",
-	"Soundtrack",
-	"Dance",
-	"Hip-Hop & Rap",
-	"World",
-	"Alternative",
-	"Rock",
-	"Christian & Gospel",
-	"Vocal",
-	"Reggae",
-	"Easy Listening",
-	"J-Pop",
-	"Enka",
-	"Anime",
-	"Kayokyoko",
-	"Fitness & Workout",
-	"K-Pop",
-	"Karaoke",
-	"Instrumental",
-	"Brazilian",
-	"Spoken Word",
-	"Disney",
-	"French Pop",
-	"German Pop",
-	"German Folk"
+  "Rock",
+  "Alternative",
+  "HipHop",
+  "RnB",
+  "Electronic",
+  "Country",
+  "Indie"
 ]
 
 [User, Artist, Genre].each(&:delete_all)
@@ -54,9 +24,10 @@ User.create(email: "eric@turtle.com", bio: "", name: "Eric", location: "Cornhole
 
 genre_index = 0
 Genre.populate genre_list.length do |genre|
-	genre.name 				= genre_list[genre_index]
-	genre_index += 1
+  genre.name 				= genre_list[genre_index]
 	genre.description 		= Faker::Lorem.sentence
+  genre.picture = "static/" +  genre_list[genre_index] + "_card_image"
+	genre_index += 1
 end
 
 artist_count = 100

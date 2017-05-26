@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   # Genre routes
-  resources :genres
+  resources :genres, only: [:show, :index]
 
   # Artist routes and review (shown on artist profile page) routes
   resources :artists do
