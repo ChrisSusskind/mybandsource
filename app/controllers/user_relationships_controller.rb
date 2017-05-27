@@ -5,13 +5,20 @@ class UserRelationshipsController < ApplicationController
   def create
     current_user.follow(@user)
     create_notification(current_user, @user)
-    redirect_to @user
+
+    respond_to do |format|
+      format.html { redirect_to @user }
+      format.js { render action: 'follow.js.erb', locals: {id: params[:id]} }
+    end
   end
 
   def destroy
     current_user.unfollow(@user)
     destroy_notification(current_user, @user)
-    redirect_to @user
+    respond_to do |format|
+      format.html { redirect_to @user }
+      format.js { render action: 'unfollow.js.erb', locals: {id: params[:id]} }
+    end
   end
 
   private

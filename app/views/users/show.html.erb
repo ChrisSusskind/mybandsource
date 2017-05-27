@@ -102,5 +102,5 @@
 </div>
 
 <%= render partial: "follower_modal", locals: {followers: @user.followers} %>
-<%= render partial: "following_modal", locals: {followings: @user.following} %>
+<%= render partial: "following_modal", locals: {followings: @user.artists} %>
 <%= render partial: "share_modal", locals: {link: root_url[0...-1] + user_path(@user) } %>
