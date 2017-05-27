@@ -15,12 +15,14 @@
               <%= image_tag(following.picture, size: "50x50", :alt => "Avatar", class: "follow-pic rounded-circle img-circle") unless following.picture == "" %>
               <%= image_tag("blank_user.png", size: "50x50" , :alt => "User Image", class: "follow-pic rounded-circle img-circle") if following.picture == "" %> 
               <h5><%= link_to following.name, "/users/#{following.id}", method: "get", class: "follow-name" %></h5>
-              <% if current_user.following.exists?(following.id) && current_user.id != following.id %>
-                <%= button_to "Unfollow", "/userrelationship/#{following.id}", method: :delete, remote: true, id: "unfollow-btn#{following.id}", class: "btn btn-outline-secondary btn-pill unfollower-btn" %>
-                <%= button_to "Follow", "/userrelationship/#{following.id}", method: :post, remote: true, id: "follow-btn#{following.id}", class: "btn btn-danger button-home btn-pill follower-btn", style: "display: none" %>
-              <% elsif current_user.id != following.id %>
-                <%= button_to "Follow", "/userrelationship/#{following.id}", method: :post, remote: true, id: "follow-btn#{following.id}", class: "btn btn-danger button-home btn-pill follower-btn" %>
-                <%= button_to "Unfollow", "/userrelationship/#{following.id}", method: :delete, remote: true, id: "unfollow-btn#{following.id}", class: "btn btn-outline-secondary btn-pill unfollower-btn", style: "display: none" %>
+              <% if current_user %>
+                <% if current_user.following.exists?(following.id) && current_user.id != following.id %>
+                  <%= button_to "Unfollow", "/userrelationship/#{following.id}", method: :delete, remote: true, id: "unfollow-btn#{following.id}", class: "btn btn-outline-secondary btn-pill unfollower-btn" %>
+                  <%= button_to "Follow", "/userrelationship/#{following.id}", method: :post, remote: true, id: "follow-btn#{following.id}", class: "btn btn-danger button-home btn-pill follower-btn", style: "display: none" %>
+                <% elsif current_user.id != following.id %>
+                  <%= button_to "Follow", "/userrelationship/#{following.id}", method: :post, remote: true, id: "follow-btn#{following.id}", class: "btn btn-danger button-home btn-pill follower-btn" %>
+                  <%= button_to "Unfollow", "/userrelationship/#{following.id}", method: :delete, remote: true, id: "unfollow-btn#{following.id}", class: "btn btn-outline-secondary btn-pill unfollower-btn", style: "display: none" %>
+                <% end %>
               <% end %>
             </div>
           </div>
