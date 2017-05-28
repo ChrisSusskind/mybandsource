@@ -10,30 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170526202707) do
+ActiveRecord::Schema.define(version: 20170528222415) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "artists", force: :cascade do |t|
-    t.string   "name",           null: false
-    t.string   "real_name"
-    t.text     "profile"
-    t.string   "data_quality",   null: false
-    t.string   "location"
-    t.string   "facebook_url"
-    t.string   "soundcloud_url"
-    t.string   "spotify_url"
-    t.string   "itunes_url"
-    t.string   "twitter_url"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.integer  "genre_id"
-    t.string   "picture"
-    t.index ["genre_id"], name: "index_artists_on_genre_id", using: :btree
-    t.index ["location"], name: "index_artists_on_location", using: :btree
-    t.index ["name"], name: "index_artists_on_name", using: :btree
-  end
 
   create_table "genres", force: :cascade do |t|
     t.string   "name",                     null: false
@@ -47,7 +27,6 @@ ActiveRecord::Schema.define(version: 20170526202707) do
   create_table "notifications", force: :cascade do |t|
     t.integer  "generating_user_id",                      null: false
     t.integer  "receiving_user_id"
-    t.integer  "receiving_artist_id"
     t.integer  "review_id"
     t.integer  "response_id"
     t.string   "notification_type"
@@ -57,7 +36,6 @@ ActiveRecord::Schema.define(version: 20170526202707) do
     t.string   "generating_user_name",                    null: false
     t.string   "generating_user_picture"
     t.index ["generating_user_id"], name: "index_notifications_on_generating_user_id", using: :btree
-    t.index ["receiving_artist_id"], name: "index_notifications_on_receiving_artist_id", using: :btree
     t.index ["receiving_user_id"], name: "index_notifications_on_receiving_user_id", using: :btree
     t.index ["response_id"], name: "index_notifications_on_response_id", using: :btree
     t.index ["review_id"], name: "index_notifications_on_review_id", using: :btree
@@ -76,24 +54,15 @@ ActiveRecord::Schema.define(version: 20170526202707) do
 
   create_table "reviews", force: :cascade do |t|
     t.text     "comment"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-    t.integer  "user_id",                       null: false
-    t.integer  "artist_id",                     null: false
-    t.integer  "rating",           default: -1
-    t.integer  "upvotes",          default: 0
-    t.text     "upvotes_userlist", default: [],              array: true
-    t.index ["artist_id"], name: "index_reviews_on_artist_id", using: :btree
-    t.index ["user_id", "artist_id"], name: "index_reviews_on_user_id_and_artist_id", unique: true, using: :btree
-    t.index ["user_id"], name: "index_reviews_on_user_id", using: :btree
-  end
-
-  create_table "subscriptions", force: :cascade do |t|
-    t.integer "user_id",   null: false
-    t.integer "artist_id", null: false
-    t.index ["artist_id"], name: "index_subscriptions_on_artist_id", using: :btree
-    t.index ["user_id", "artist_id"], name: "index_subscriptions_on_user_id_and_artist_id", unique: true, using: :btree
-    t.index ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "rating",            default: -1
+    t.integer  "upvotes",           default: 0
+    t.text     "upvotes_userlist",  default: [],              array: true
+    t.integer  "receiving_user_id"
+    t.integer  "leaving_user_id"
+    t.index ["leaving_user_id"], name: "index_reviews_on_leaving_user_id", using: :btree
+    t.index ["receiving_user_id"], name: "index_reviews_on_receiving_user_id", using: :btree
   end
 
   create_table "user_relationships", force: :cascade do |t|
@@ -129,15 +98,31 @@ ActiveRecord::Schema.define(version: 20170526202707) do
     t.text     "bio",                    default: ""
     t.string   "provider"
     t.string   "uid"
+    t.boolean  "artist?"
+    t.string   "real_name"
+    t.string   "data_quality"
+    t.string   "facebook_url"
+    t.string   "soundcloud_url"
+    t.string   "spotify_url"
+    t.string   "itunes_url"
+    t.string   "twitter_url"
+    t.integer  "genre_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["genre_id"], name: "index_users_on_genre_id", using: :btree
     t.index ["location"], name: "index_users_on_location", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
-  add_foreign_key "notifications", "artists", column: "receiving_artist_id"
   add_foreign_key "notifications", "responses"
   add_foreign_key "notifications", "reviews"
   add_foreign_key "notifications", "users", column: "generating_user_id"
   add_foreign_key "notifications", "users", column: "receiving_user_id"
+  add_foreign_key "responses", "reviews"
+  add_foreign_key "responses", "users"
+  add_foreign_key "reviews", "users", column: "leaving_user_id"
+  add_foreign_key "reviews", "users", column: "receiving_user_id"
+  add_foreign_key "user_relationships", "users", column: "followed_id"
+  add_foreign_key "user_relationships", "users", column: "follower_id"
+  add_foreign_key "users", "genres"
 end

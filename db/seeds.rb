@@ -57,16 +57,6 @@ User.populate 50 do |user|
 	user.sign_in_count		= 0
 	user.picture			= Faker::LoremPixel.image("150x150", true, 'people')
 
-	# Populate fake subscriptions
-	sub_count = 10 # Number of subscriptions to be seeded
-	artist_list = Artist.limit(sub_count).order("RANDOM()")
-	counter = 0	
-	Subscription.populate sub_count do |subscription|
-		subscription.user_id 		= user.id	
-		subscription.artist_id 		= artist_list[counter].id
-		counter += 1
-	end
-
 	Review.populate Faker::Number.between(1, 20) do |review|
 		review.artist_id = Faker::Number.unique.between(1, 100)
 		review.user_id = user.id
