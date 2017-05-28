@@ -6,5 +6,5 @@ class Review < ApplicationRecord
 
   has_many :notifications, dependent: :destroy
 
-  validates :receiving_user_id, :leaving_user_id presence: true
+  validates :receiving_user_id, :leaving_user_id, presence: true
 end

@@ -17,10 +17,7 @@ genre_list = [
   "Indie"
 ]
 
-[User, Artist, Genre].each(&:delete_all)
-
 User.create(email: "eric@turtle.com", bio: "", name: "Eric", location: "Cornholeville", password: "turtle", picture: Faker::LoremPixel.image("150x150", true, 'people'), confirmed_at: Time.now)
-
 
 genre_index = 0
 Genre.populate genre_list.length do |genre|
@@ -30,11 +27,12 @@ Genre.populate genre_list.length do |genre|
 	genre_index += 1
 end
 
-artist_count = 100
-Artist.populate artist_count do |artist|
-	artist.name				= Faker::RockBand.name
+# Artist users
+User.populate 50 do |artist|
+	artist.email = Faker::Internet.unique.safe_email
+  artist.name				= Faker::RockBand.name
 	artist.real_name		= Faker::Name.name
-	artist.profile			= Faker::Lorem.paragraph
+	artist.bio			= Faker::Lorem.paragraph
 	artist.data_quality		= Faker::Music.instrument
 	artist.location			= Faker::Address.city
 	artist.facebook_url		= Faker::Internet.url('facebook.com')
@@ -44,11 +42,12 @@ Artist.populate artist_count do |artist|
 	artist.twitter_url		= Faker::Internet.url('twitter.com')
 	artist.created_at		= Faker::Time.between(DateTime.now-1, DateTime.now)
 	artist.updated_at		= DateTime.now
-	artist.genre_id			= Genre.first.id
 	artist.picture			= Faker::LoremPixel.image("150x150", true, 'people')
+	artist.genre_id			= Genre.first.id
+	artist.sign_in_count		= 0
 end
 
-
+# Regular users
 User.populate 50 do |user|
 	user.email				= Faker::Internet.unique.safe_email
 	user.name 				= Faker::Name.name
@@ -58,8 +57,8 @@ User.populate 50 do |user|
 	user.picture			= Faker::LoremPixel.image("150x150", true, 'people')
 
 	Review.populate Faker::Number.between(1, 20) do |review|
-		review.artist_id = Faker::Number.unique.between(1, 100)
-		review.user_id = user.id
+		review.receiving_user_id = Faker::Number.unique.between(2, 51)
+		review.leaving_user_id = user.id
 		review.comment = Faker::Hipster.sentence
 		review.rating = Faker::Number.between(1, 5)
 		review.upvotes = Faker::Number.number(3)
