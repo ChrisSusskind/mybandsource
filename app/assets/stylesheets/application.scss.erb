@@ -17,14 +17,43 @@
 @import "bootstrap";
 
 
+.main-container {
+  width: 100%;
+}
+
+/* Navbar Custom Styles */
+.main-navbar {
+  background-color: white;
+}
+
+#login-btn {
+  color: black;
+}
+
+#signup-btn {
+  color: #AA182A;
+}
+
 /* Homepage styling */
 
 .jumbotron-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 	background-image: url(<%= Cloudinary::Utils.cloudinary_url("static/home_header.png") %>);
   background-size: cover;
 	color: white;
 	height: 500px;
 	border-radius: 0;
+}
+
+.home-title-container {
+  margin-top: 60%;
+
+  h4 {
+    clear: left;
+    margin-bottom: 50px;
+  }
 }
 
 .artist-card {
@@ -85,6 +114,10 @@
 
 
 /* Search bar */
+
+.search-bar {
+  border-radius: 50px !important;
+}
 
 .search-box {
   margin: 0 auto;
@@ -426,11 +459,12 @@ footer {
 .footer_copyright {
     flex-basis: 200px;
     order: 0;
+    white-space: nowrap;
 }
 
 .footer_links {
     order: 1;
-    text-align:center;
+    text-align: center;
 }
 
 .footer_links a {

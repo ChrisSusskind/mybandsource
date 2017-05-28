@@ -33,24 +33,24 @@
 			}(document, 'script', 'facebook-jssdk'));
 		</script>
 
-		<div class="container">
+		<div class="container main-container">
 		
 			<%= render 'layouts/header' %>
 
-      <div class="container-fluid">
-        <% if resource.errors.any? %>
-            <div class="alert alert-danger">
-              <%= devise_error_messages! %>
-            </div>
-        <% end %>
-      </div>
+			<div class="container-fluid">
+				<% if resource.errors.any? %>
+				    <div class="alert alert-danger">
+				    	<%= devise_error_messages! %>
+				    </div>
+				<% end %>
+			</div>
 
 			<% if notice or alert %>
 				<%= render 'layouts/alerts' %>
 			<% end %>
 
 			<%= render "shared/login_modal" %>
-      <%= render "shared/signup_modal" %>
+			<%= render "shared/signup_modal" %>
 			
 			<%= yield %>
 

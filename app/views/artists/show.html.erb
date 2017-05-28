@@ -3,7 +3,7 @@
 	<!-- Colorful header to artist profile -->
 	<div class="profile-banner">
 		<div class="profile-banner-content">
-			
+			<img src="" class="">
 			<div class="profile-banner-avatar">
 				<%= image_tag(@artist.picture, :alt => "Avatar", class: "profile-picture rounded-circle float-left img-circle") if @artist.picture %>
 				<%= image_tag("blank_user.png", size: "175x175" , :alt => "User Image", class: "profile-picture rounded-circle float-left img-circle") if !@artist.picture %> 
@@ -86,9 +86,7 @@
 			</div>
 		<% end %>
 
-		<div class="row">
-			<h1 class="review-section-title">Reviews</h1>
-		</div>
+		<h1 class="review-section-title">Reviews</h1>
 
 		<div class="row review-list" id="reviews_container">
 			<%= render partial: 'reviews/review', collection: @reviews, locals: {responses_shown: false}%>
