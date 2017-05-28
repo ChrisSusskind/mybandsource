@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   include UsersHelper
-  before_action :set_user, only: [:show, :following, :followers, :upload_avatar]
-  before_action :authenticate_user!, only: [:following, :followers]
+  before_action :set_user, only: [:show, :upload_avatar]
 
   # GET /users
   # GET /users.json

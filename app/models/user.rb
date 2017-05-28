@@ -5,6 +5,8 @@ class User < ApplicationRecord
 		 :recoverable, :rememberable, :trackable, :validatable, :confirmable, 
 		 :omniauthable, :omniauth_providers => [:facebook]
 
+	# Artist users scope
+	scope :artists, -> { where(is_artist: true)}
 
 	#For user to review associations
 	has_many :reviews, foreign_key: "receiving_user_id", dependent: :destroy

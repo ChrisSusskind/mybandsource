@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170528224226) do
+ActiveRecord::Schema.define(version: 20170528230030) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(version: 20170528224226) do
     t.text     "bio",                    default: ""
     t.string   "provider"
     t.string   "uid"
-    t.boolean  "artist?"
+    t.boolean  "is_artist"
     t.string   "real_name"
     t.string   "data_quality"
     t.string   "facebook_url"
