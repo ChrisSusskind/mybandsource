@@ -30,7 +30,8 @@ end
 # Artist users
 User.populate 50 do |artist|
 	artist.email = Faker::Internet.unique.safe_email
-  artist.name				= Faker::RockBand.name
+	artist.encrypted_password	= Faker::Crypto.sha1
+	artist.name				= Faker::RockBand.name
 	artist.real_name		= Faker::Name.name
 	artist.bio			= Faker::Lorem.paragraph
 	artist.data_quality		= Faker::Music.instrument

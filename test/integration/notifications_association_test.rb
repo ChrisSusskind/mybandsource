@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ArtistGenreAssociationTest < ActionDispatch::IntegrationTest
+class NotificationsAssociationTest < ActionDispatch::IntegrationTest
   test "create_user_notification_association" do
     user = User.create(name: 'peter', email: 'peter@test.com', password: 'xxxxxxx', password_confirmation: 'xxxxxxx')
     assert_difference('user.notifications.count', 1) do

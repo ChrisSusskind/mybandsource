@@ -27,7 +27,7 @@ class User < ApplicationRecord
 	#For user to notification relationships
 	has_many :notifications, foreign_key: "receiving_user_id", dependent: :destroy
 
-	validates :name, :email, :password, presence: true
+	validates :name, :email, presence: true
 
 	mount_uploader :picture, AvatarUploader
 
