@@ -8,15 +8,28 @@ class NotificationTest < ActiveSupport::TestCase
   test "invalid notification" do
     notification = Notification.new
     notification2 = Notification.new
+    notification3 = Notification.new
     @user = User.first
     @user2 = User.second
+
+    # Empty notification
     refute notification.valid?
+
+    # Notification missing receiving_user_id
     notification.generating_user_name = "Eric"
     notification.generating_user_id = @user.id
     refute notification.valid?
+
+    # Notification missing generating_user_id
     notification2.generating_user_name = "Eric"
     notification2.receiving_user_id = @user.id
     refute notification2.valid?
+
+    # Notification missing generating_user_name
+    notification3.generating_user_id = @user.id
+    notification3.receiving_user_id = @user.id
+    refute notification3.valid?
+
   end
 
   test "valid following notification" do
