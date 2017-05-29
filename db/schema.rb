@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(version: 20170529061107) do
     t.text     "bio",                    default: ""
     t.string   "provider"
     t.string   "uid"
-    t.boolean  "is_artist",                           null: false
+    t.boolean  "is_artist"
     t.string   "real_name"
     t.string   "data_quality"
     t.string   "facebook_url"
