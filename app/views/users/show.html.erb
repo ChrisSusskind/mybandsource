@@ -20,8 +20,20 @@
         <h1><%= @user.name %></h1>
         <h2><%= @user.location %></h2>
         <div class="profile-banner-buttons">
-          <button class="btn btn-danger button-home">Follow</button>
           <%= link_to "Share", "#share_modal", "data-toggle": "modal", class: "btn btn-danger share-button" %>
+        </div>
+        <div>
+          <% if user_signed_in? && current_user != @user && !current_user.following?(@user) %>
+          <div>
+            <%= link_to("Follow", "/userrelationship/#{@user.id}", method: "post", class: "btn btn-primary btn-lg btn-danger follow-button") %>
+          </div>
+          <% end %>
+
+          <% if user_signed_in? && current_user != @user && current_user.following?(@user) %>
+          <div>
+            <%= link_to("Unfollow", "/userrelationship/#{@user.id}", method: "delete", class: "btn btn-primary btn-lg btn-danger follow-button") %>
+          </div>
+          <% end %>
         </div>
       </div>
 
@@ -61,20 +73,6 @@
         <h4>Facebook</h4>
       </div>
     </div>
-  </div>
-
-  <div>
-    <% if user_signed_in? && current_user != @user && !current_user.following?(@user) %>
-    <div>
-      <%= link_to("Follow", "/userrelationship/#{@user.id}", method: "post", class: "btn btn-primary btn-lg btn-danger follow-button") %>
-    </div>
-    <% end %>
-
-    <% if user_signed_in? && !current_user != @user && current_user.following?(@user) %>
-    <div>
-      <%= link_to("Unfollow", "/userrelationship/#{@user.id}", method: "delete", class: "btn btn-primary btn-lg btn-danger follow-button") %>
-    </div>
-    <% end %>
   </div>
 
   <div class="container review-container">
