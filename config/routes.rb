@@ -7,12 +7,19 @@ Rails.application.routes.draw do
   # Genre routes
   resources :genres, only: [:show, :index]
 
-  # Artist routes and review (shown on artist profile page) routes
-  resources :artists do
-    resources :reviews, only: [:create, :update, :destroy] do
+  # Searchbar routes
+  post '/search_artists', to: 'users#search_artists'
+  post '/submit_search', to: 'users#get_artist'
+
+  # Devise routes
+  devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations', :omniauth_callbacks => "users/omniauth_callbacks" }
+
+  # Non-devise user routes and review/response routes
+  resources :users, only: [:index, :show] do
+    resources :reviews, only: [:create, :destroy, :update] do
       member do
-        post 'upvote'
-        delete 'remove_upvote'
+        post 'upvote/:responses_shown', to: 'reviews#upvote'
+        delete 'remove_upvote/:responses_shown', to: 'reviews#remove_upvote'
       end
       resources :responses, only: [:create, :destroy] do
         member do
@@ -26,39 +33,12 @@ Rails.application.routes.draw do
     get '/reviews/hide_responses', to: 'reviews#hide_responses'
   end
 
-  # Searchbar routes
-  post '/search_artists', to: 'artists#search_artists'
-  post '/submit_search', to: 'artists#get_artist'
-
-  # Devise routes
-  devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations', :omniauth_callbacks => "users/omniauth_callbacks" }
-
-  # Non-devise user routes and review (shown on user profile page) routes
-  resources :users, only: [:index, :show] do
-    resources :reviews, only: [] do
-      member do
-        delete 'destroy_userprofile'
-        post 'upvote_userprofile'
-        delete 'remove_upvote_userprofile'
-      end
-    end
-    get '/reviews/reorder/:recent_order', to: 'reviews#reorder_userprofile'
-    get '/reviews/show_responses', to: 'reviews#show_responses_userprofile'
-    get '/reviews/hide_responses', to: 'reviews#hide_responses_userprofile'
-  end
-
   #User relationship create and destroy routes
   post '/userrelationship/:id', to: 'user_relationships#create'
   delete '/userrelationship/:id', to: 'user_relationships#destroy'
 
   # User uploading images (using cloudinary) routes
   patch '/users/:id/profile_picture', to: 'users#upload_avatar'
-
-  #Subscription routes
-  post '/subscriptions/:artist_id', to: 'subscriptions#create'
-  delete '/subscriptions/:artist_id', to: 'subscriptions#destroy'
-  get '/users/:user_id/subscriptions', to: 'subscriptions#user_subscriptions'
-  get '/artists/:artist_id/subscriptions', to: 'subscriptions#artist_subscriptions'
 
   #Notification routes
   resources :notifications, only: [:index]

@@ -2,7 +2,6 @@
  * Created by Peter on 3/21/17.
  */
 
-var artist_id;
 var user_id;
 var show_responses = false;
 
@@ -13,9 +12,7 @@ Performs following actions when document is ready
 3. Adds click listeners to review/discussion toggle buttons
  */
 $(document).on('turbolinks:load', function(){
-    artist_id = $('#artist_id_container').attr('data-artist_id');
     user_id = $('#user_id_container').attr('data-user_id');
-    console.log(artist_id);
     console.log(user_id);
 
     window.onclick = function(e){
@@ -52,7 +49,7 @@ Removes all reviews currently shown on the screen and reloads 10 initial ones us
 */
 function orderReviewsByAge(e) {
     e.preventDefault();
-    reorderReviews(true, true);
+    reorderReviews(true);
 }
 
 /*
@@ -61,50 +58,21 @@ function orderReviewsByAge(e) {
  */
 function orderReviewsByUpvotes(e) {
     e.preventDefault();
-    reorderReviews(false, true)
-}
-
-/*
- Function that is called when user selects dropdown option of ordering shown reviews by age (updated_at time) on user page
- Removes all reviews currently shown on the screen and reloads 10 initial ones using helper function show_more_reviews()
- */
-function orderReviewsByAgeUserProfile(e){
-    e.preventDefault();
-    reorderReviews(true, false)
-}
-
-/*
- Function that is called when user selects dropdown option of ordering shown reviews by upvotes on user page
- Removes all reviews currently shown on the screen and reloads 10 initial ones using helper function show_more_reviews()
- */
-function orderReviewsByUpvotesUserProfile(e){
-    e.preventDefault();
-    reorderReviews(false, false)
+    reorderReviews(false)
 }
 
 /*
 Helper function called by orderReviewsBy() functions (above)
 Submits ajax request to server to reorder reviews by age/upvote (depends on recent ordered) and specifies whether to show responses (discussion view) based on previous view
  */
-function reorderReviews(recent_ordered, artist_profile) {
-    if(artist_profile){
-        $.ajax({
-            method: 'GET',
-            url: '/artists/' + artist_id + '/reviews/reorder/' + recent_ordered,
-            data: {
-                show_responses: show_responses
-            }
-        });
-    }
-    else{
-        $.ajax({
-            method: 'GET',
-            url: '/users/' + user_id + '/reviews/reorder/' + recent_ordered,
-            data: {
-                show_responses: show_responses
-            }
-        });
-    }
+function reorderReviews(recent_ordered) {
+    $.ajax({
+        method: 'GET',
+        url: '/users/' + user_id + '/reviews/reorder/' + recent_ordered,
+        data: {
+            show_responses: show_responses
+        }
+    });
 }
 
 //Function that loads review form on artists page after "update review" button is clicked
@@ -123,23 +91,16 @@ function showReplyForm(node) {
     var wrapper = document.createElement('div');
     wrapper.innerHTML = '<form id="reply_form"><textarea id="reply"></textarea><input type="submit" value="Submit"></form>';
     review.append(wrapper);
-    var user_profile = (artist_id == null);
     $('#reply_form').submit(function (e) {
         e.preventDefault();
         $.ajax({
             type: 'POST',
-            url: '/artists/' + artist_id + '/reviews/' + review_id + '/responses',
+            url: '/users/' + user_id + '/reviews/' + review_id + '/responses',
             data: {
-                comment: $('#reply').val(),
-                user_profile: user_profile
+                comment: $('#reply').val()
             },
             dataType: 'script'
         })
     });
     node.onclick = null;
-}
-
-//Function that returns show_responses global variable that identifies whether current view is reviews (no comments) or discussion (comments shown)
-function isDiscussionView(){
-    return show_responses;
 }

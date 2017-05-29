@@ -1,16 +1,13 @@
 class ReviewsController < ApplicationController
-  before_action :set_artist, only: [:create, :update, :destroy, :reorder, :hide_responses, :show_responses, :create_review_display, :update_review_display, :destroy_review_display, :upvote, :remove_upvote]
-  before_action :set_user, only: [:destroy_userprofile, :upvote_userprofile, :remove_upvote_userprofile, :show_responses_userprofile, :hide_responses_userprofile, :reorder_userprofile]
+  before_action :set_user
   before_action :set_review, only: [:update, :destroy]
 
-  #Actions for reviews displayed on artist profile
-
   def create
-    @review = @artist.reviews.create({user_id: current_user.id, comment: params[:review][:comment], rating: params[:review][:rating]})
+    @review = Review.create({receiving_user_id: @user.id, leaving_user_id: current_user.id, comment: params[:review][:comment], rating: params[:review][:rating]})
     unless @review.valid?
       flash[:alert] = "Review creation failed"
     end
-    create_notification(current_user, @artist, @review)
+    create_notification(current_user, @user, @review)
     create_review_display(@review)
   end
 
@@ -22,7 +19,7 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
-    destroy_notification(current_user, @artist, @review)
+    destroy_notification(current_user, @user, @review)
     unless @review.destroy
       flash[:alert] = "Review deletion failed"
     end
@@ -30,7 +27,7 @@ class ReviewsController < ApplicationController
   end
 
   def upvote
-    @review = @artist.reviews.find(params[:id])
+    @review = Review.find(params[:id])
     @review.upvotes+=1
     @review.upvotes_userlist.nil? ?
       @review.upvotes_userlist = [current_user.id] :
@@ -38,109 +35,81 @@ class ReviewsController < ApplicationController
     unless @review.save(touch: false)
       flash[:alert] = "Review upvote failed"
     end
-    render :action => 'upvote_display.js.erb'
+    render :action => 'upvote_display.js.erb', locals: {is_artist: @user.is_artist, responses_shown: params[:responses_shown]}
   end
 
   def remove_upvote
-    @review = @artist.reviews.find(params[:id])
+    @review = Review.find(params[:id])
     @review.upvotes-=1
     @review.upvotes_userlist-=[current_user.id.to_s]
 
     unless @review.save(touch: false)
       flash[:alert] = "Review remove upvote failed"
     end
-    render :action => 'upvote_display.js.erb'
+    render :action => 'upvote_display.js.erb', locals: {is_artist: @user.is_artist, responses_shown: params[:responses_shown]}
   end
 
   def reorder
-    (params[:recent_order] == "false") ?
-      @reviews = @artist.reviews.page(params[:page]).order('upvotes DESC').per(25) :
-      @reviews = @artist.reviews.page(params[:page]).order('updated_at DESC').per(25)
+    if @user.is_artist
+      (params[:recent_order] == "false") ?
+        @reviews = Review.where(receiving_user_id: @user.id).page(params[:page]).order('upvotes DESC').per(25) :
+        @reviews = Review.where(receiving_user_id: @user.id).page(params[:page]).order('updated_at DESC').per(25)
+    else
+      (params[:recent_order] == "false") ?
+          @reviews = Review.where(leaving_user_id: @user.id).page(params[:page]).order('upvotes DESC').per(25) :
+          @reviews = Review.where(leaving_user_id: @user.id).page(params[:page]).order('updated_at DESC').per(25)
+    end
     if params[:show_responses] == "false"
-      render :action => 'show.js'
+      render :action => 'show_without_responses.js'
     else
       render :action => 'show_with_responses.js'
     end
   end
 
   def show_responses
-    @reviews = @artist.reviews.page(params[:page]).order('updated_at DESC').per(25)
+    if @user.is_artist
+      @reviews = Review.where(receiving_user_id: @user.id).page(params[:page]).order('updated_at DESC').per(25)
+    else
+      @reviews = Review.where(leaving_user_id: @user.id).page(params[:page]).order('updated_at DESC').per(25)
+    end
     render :action => 'show_with_responses.js'
   end
 
   def hide_responses
-    @reviews = @artist.reviews.page(params[:page]).order('updated_at DESC').per(25)
-    render :action => 'show.js'
+    if @user.is_artist
+      @reviews = Review.where(receiving_user_id: @user.id).page(params[:page]).order('updated_at DESC').per(25)
+    else
+      @reviews = Review.where(leaving_user_id: @user.id).page(params[:page]).order('updated_at DESC').per(25)
+    end
+    render :action => 'show_without_responses.js'
   end
 
   def create_review_display (review)
-    @reviews = @artist.reviews.page(params[:page]).order('updated_at DESC').per(25)
-    render :action => 'create_review_display.js.erb', locals: {artist: @artist, review: review}
+    if @user.is_artist
+      @reviews = Review.where(receiving_user_id: @user.id).page(params[:page]).order('updated_at DESC').per(25)
+    else
+      @reviews = Review.where(leaving_user_id: @user.id).page(params[:page]).order('updated_at DESC').per(25)
+    end
+    render :action => 'create_review_display.js.erb', locals: {user: @user, review: review}
   end
 
   def update_review_display
-    @reviews = @artist.reviews.page(params[:page]).order('updated_at DESC').per(25)
-    render :action => 'update_review_display.js.erb'
+    if @user.is_artist
+      @reviews = Review.where(receiving_user_id: @user.id).page(params[:page]).order('updated_at DESC').per(25)
+    else
+      @reviews = Review.where(leaving_user_id: @user.id).page(params[:page]).order('updated_at DESC').per(25)
+    end
+    render :action => 'update_review_display.js.erb', locals: {user: @user}
   end
 
   def destroy_review_display
-    @reviews = @artist.reviews.page(params[:page]).order('updated_at DESC').per(25)
-    @review = Review.new
-    render :action => 'destroy_review_display.js.erb', locals: {artist: @artist, review: @review}
-  end
-
-  #Actions for reviews displayed on user profile
-
-  def destroy_userprofile
-    @review = @user.reviews.find(params[:id])
-    unless @review.destroy
-      flash[:alert] = "Review deletion failed"
-    end
-    @reviews = @user.reviews.page(params[:page]).order('updated_at DESC').per(25)
-    render :action => 'user_profile/destroy_review_display'
-  end
-
-  def upvote_userprofile
-    @review = @user.reviews.find(params[:id])
-    @review.upvotes+=1
-    @review.upvotes_userlist.nil? ?
-        @review.upvotes_userlist = [current_user.id] :
-        @review.upvotes_userlist += [current_user.id]
-    unless @review.save(touch: false)
-      flash[:alert] = "Review upvote failed"
-    end
-      render :action => 'user_profile/upvote_display'
-  end
-
-  def remove_upvote_userprofile
-    @review = Review.find(params[:id])
-    @review.upvotes -= 1
-    @review.upvotes_userlist -= [current_user.id.to_s]
-    unless @review.save(touch: false)
-      flash[:alert] = "Review upvote failed"
-    end
-    render :action => 'user_profile/upvote_display'
-  end
-
-  def show_responses_userprofile
-    @reviews = @user.reviews.page(params[:page]).order('updated_at DESC').per(25)
-    render :action => 'user_profile/show_with_responses'
-  end
-
-  def hide_responses_userprofile
-    @reviews = @user.reviews.page(params[:page]).order('updated_at DESC').per(25)
-    render :action => 'user_profile/show'
-  end
-
-  def reorder_userprofile
-    (params[:recent_order] == "false") ?
-        @reviews = @user.reviews.page(params[:page]).order('upvotes DESC').per(25) :
-        @reviews = @user.reviews.page(params[:page]).order('updated_at DESC').per(25)
-    if params[:show_responses] == "false"
-      render :action => 'user_profile/show'
+    if @user.is_artist
+      @reviews = Review.where(receiving_user_id: @user.id).page(params[:page]).order('updated_at DESC').per(25)
     else
-      render :action => 'user_profile/show_with_responses'
+      @reviews = Review.where(leaving_user_id: @user.id).page(params[:page]).order('updated_at DESC').per(25)
     end
+    @review = Review.new
+    render :action => 'destroy_review_display.js.erb', locals: {user: @user, review: @review}
   end
 
   private
@@ -148,23 +117,19 @@ class ReviewsController < ApplicationController
     params.require(:review).permit(:comment, :rating)
   end
 
-  def set_artist
-    @artist = Artist.find(params[:artist_id])
-  end
-
   def set_user
     @user = User.find(params[:user_id])
   end
 
   def set_review
-    @review = @artist.reviews.find(params[:id])
+    @review = Review.find(params[:id])
   end
 
-  def create_notification(generating_user, receiving_artist, review)
-    Notification.create(generating_user_id: generating_user.id, receiving_artist_id: receiving_artist.id, review_id: review.id, notification_type: 'review', generating_user_name: generating_user.name, generating_user_picture: generating_user.picture)
+  def create_notification(generating_user, receiving_user, review)
+    Notification.create(generating_user_id: generating_user.id, receiving_user_id: receiving_user.id, review_id: review.id, notification_type: 'review', generating_user_name: generating_user.name, generating_user_picture: generating_user.picture)
   end
 
-  def destroy_notification(generating_user, receiving_artist, review)
-    Notification.where(generating_user_id: generating_user.id, receiving_artist_id: receiving_artist.id, review_id: review.id, notification_type: 'review').destroy_all
+  def destroy_notification(generating_user, receiving_user, review)
+    Notification.where(generating_user_id: generating_user.id, receiving_user_id: receiving_user.id, review_id: review.id, notification_type: 'review').destroy_all
   end
 end

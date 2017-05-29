@@ -5,15 +5,18 @@ class User < ApplicationRecord
 		 :recoverable, :rememberable, :trackable, :validatable, :confirmable, 
 		 :omniauthable, :omniauth_providers => [:facebook]
 
-	#For user to artist associations
-	has_many :subscriptions
-	has_many :artists, through: :subscriptions
+	# Artist users scope
+	scope :artists, -> { where(is_artist: true)}
 
 	#For user to review associations
-	has_many :reviews, dependent: :destroy
+	has_many :received_reviews, class_name: "Review", foreign_key: "receiving_user_id", dependent: :destroy
+	has_many :left_reviews, class_name: "Review", foreign_key: "leaving_user_id", dependent: :destroy
 
 	#For user to response associations
 	has_many :responses, dependent: :destroy
+
+	#For user to genre associations
+	belongs_to :genre
 
 	#For user to user relationships
 	has_many :active_relationships, class_name: "UserRelationship", foreign_key: "follower_id", dependent: :destroy
@@ -24,7 +27,7 @@ class User < ApplicationRecord
 	#For user to notification relationships
 	has_many :notifications, foreign_key: "receiving_user_id", dependent: :destroy
 
-	validates :name, presence: true
+	validates :name, :email, presence: true
 
 	mount_uploader :picture, AvatarUploader
 
