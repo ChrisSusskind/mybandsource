@@ -17,7 +17,7 @@ genre_list = [
   "Indie"
 ]
 
-User.create(email: "eric@turtle.com", bio: "", name: "Eric", location: "Cornholeville", password: "turtle", picture: Faker::LoremPixel.image("150x150", true, 'people'), confirmed_at: Time.now)
+User.create(email: "eric@turtle.com", bio: "", name: "Eric", location: "Cornholeville", password: "turtle", picture: Faker::LoremPixel.image("150x150", true, 'people'), confirmed_at: Time.now, is_artist: false)
 
 genre_index = 0
 Genre.populate genre_list.length do |genre|
