@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170529055254) do
+ActiveRecord::Schema.define(version: 20170529060513) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,8 +59,8 @@ ActiveRecord::Schema.define(version: 20170529055254) do
     t.integer  "rating",            default: -1
     t.integer  "upvotes",           default: 0
     t.text     "upvotes_userlist",  default: [],              array: true
-    t.integer  "receiving_user_id"
-    t.integer  "leaving_user_id"
+    t.integer  "receiving_user_id",              null: false
+    t.integer  "leaving_user_id",                null: false
     t.index ["leaving_user_id"], name: "index_reviews_on_leaving_user_id", using: :btree
     t.index ["receiving_user_id"], name: "index_reviews_on_receiving_user_id", using: :btree
   end
