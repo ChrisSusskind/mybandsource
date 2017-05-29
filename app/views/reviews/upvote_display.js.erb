@@ -1,9 +1,8 @@
 var review_id = '<%= escape_javascript(@review.id.to_s) %>';
-if (isDiscussionView()){
-  $("[data-review_id=" + review_id + "]").replaceWith('<%= escape_javascript(render partial: 'reviews/review', object: @review, locals: {responses_shown: true})%>');
-}
-else{
-  $("[data-review_id=" + review_id + "]").replaceWith('<%= escape_javascript(render partial: 'reviews/review', object: @review, locals: {responses_shown: false})%>');
-}
+<% if responses_shown == "true" %>
+  $("[data-review_id=" + review_id + "]").replaceWith('<%= escape_javascript(render partial: 'reviews/review', object: @review, locals: {responses_shown: true, is_artist: is_artist})%>');
+<% else %>
+  $("[data-review_id=" + review_id + "]").replaceWith('<%= escape_javascript(render partial: 'reviews/review', object: @review, locals: {responses_shown: false, is_artist: is_artist})%>');
+<% end %>
 loadRatingsStyle();
 changeTimeDisplays();

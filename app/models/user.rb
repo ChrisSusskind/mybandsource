@@ -9,8 +9,8 @@ class User < ApplicationRecord
 	scope :artists, -> { where(is_artist: true)}
 
 	#For user to review associations
-	has_many :reviews, foreign_key: "receiving_user_id", dependent: :destroy
-	has_many :reviews, foreign_key: "leaving_user_id", dependent: :destroy
+	has_many :received_reviews, class_name: "Review", foreign_key: "receiving_user_id", dependent: :destroy
+	has_many :left_reviews, class_name: "Review", foreign_key: "leaving_user_id", dependent: :destroy
 
 	#For user to response associations
 	has_many :responses, dependent: :destroy

@@ -14,9 +14,7 @@ var ratings_list = [];
  */
 $(document).on('turbolinks:load', function(){
     loadRatingEntry();
-
     loadRatingsStyle();
-
     changeTimeDisplays();
 });
 
