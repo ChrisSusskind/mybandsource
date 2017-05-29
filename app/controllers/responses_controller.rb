@@ -7,12 +7,12 @@ class ResponsesController < ApplicationController
     unless @response.valid?
       flash[:alert] = "Response creation failed"
     end
-    create_notification(current_user, @review.receiving_user_id, @response)
+    create_notification(current_user, @review.leaving_user_id, @response)
     render :action => 'response_display', locals: {is_artist: @user.is_artist}
   end
 
   def destroy
-    destroy_notification(current_user, @review.receiving_user_id, @response)
+    destroy_notification(current_user, @review.leaving_user_id, @response)
     unless @response.destroy
       flash[:alert] = "Response deletion failed"
     end
