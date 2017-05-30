@@ -55,4 +55,17 @@ class User < ApplicationRecord
 		end
 	end
 
+	def get_rating
+		sum = 0.0
+		count = 0.0
+		received_reviews.each do |review|
+			count += 1
+			sum += review.rating
+		end
+		unless count == 0
+			return (sum / count).round(2)
+		end
+		0
+	end
+
 end

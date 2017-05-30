@@ -1,0 +1,17 @@
+<div class="artist-card">
+  <%= cl_image_tag("lahey") %>
+
+  <div>
+    <h5><%= artist.name %></h5>
+    <h6><%= artist.genre.name %></h6>
+  </div>
+
+  <span>
+    &#9733
+    <%= artist.get_rating %>
+  </span>
+  <span>
+    <%= material_icon.message.md_18 %>
+    <%= number_to_human artist.received_reviews.count%>
+  </span>
+</div>

@@ -12,6 +12,7 @@
  *
  */
 
+//= require material_icons
 
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
@@ -54,17 +55,6 @@
     clear: left;
     margin-bottom: 50px;
   }
-}
-
-.artist-card {
-	color: white;
-	border-radius: 0;
-	border: none;
-	background: #242424;
-}
-
-.artist-card-image {
-  width: 100%;
 }
 
 // Genre styling
@@ -863,5 +853,47 @@ h1,h2,h3,h4,h5,h6,p,.h-smallcaps {
       text-align: left;
       color: black;
     }
+  }
+}
+
+// Styles user for artist card (shown on homepage, genre show page, search results page)
+
+.artist-card {
+  width: 275px;
+  height: 400px;
+  background-color: #252525;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  img {
+    width: 100%;
+    height: 270px;
+  }
+
+  div {
+    margin-left: 20px;
+    margin-top: 20px;
+  }
+
+  span {
+    color: white;
+    position: relative;
+    top: 20px;
+    margin-left: 20px;
+
+    i {
+      position: relative;
+      top: 3px;
+    }
+  }
+
+  h5 {
+    color: white;
+  }
+
+  h6 {
+    color: #929292;
   }
 }
