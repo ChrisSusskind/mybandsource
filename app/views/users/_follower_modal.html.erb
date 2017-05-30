@@ -1,5 +1,5 @@
 <div class="modal hide fade" id="follower_modal" tabindex="-1">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header" style="border: none">
         <button type="button" class="close modal-close" data-dismiss="modal" aria-label="Close">
@@ -11,20 +11,24 @@
 
         <% followers.each do |follower| %>
           <div class="row follow-row">
-            <div class="follow-row-content">
-              <%= image_tag(follower.picture, size: "50x50", :alt => "Avatar", class: "follow-pic rounded-circle img-circle") unless follower.picture == "" %>
-              <%= image_tag("blank_user.png", size: "50x50" , :alt => "User Image", class: "follow-pic rounded-circle img-circle") if follower.picture == "" %> 
-              <h5><%= link_to follower.name, "/users/#{follower.id}", method: "get", class: "follow-name" %></h5>
-              <% if current_user %>
-                <% if current_user.following.exists?(follower.id) && current_user.id != follower.id %>
-                  <%= button_to "Unfollow", "/userrelationship/#{follower.id}", method: :delete, remote: true, id: "unfollow-btn#{follower.id}", class: "btn btn-outline-secondary btn-pill unfollower-btn" %>
-                  <%= button_to "Follow", "/userrelationship/#{follower.id}", method: :post, remote: true, id: "follow-btn#{follower.id}", class: "btn btn-danger button-home btn-pill follower-btn", style: "display: none" %>
-                <% elsif current_user.id != follower.id %>
-                  <%= button_to "Follow", "/userrelationship/#{follower.id}", method: :post, remote: true, id: "follow-btn#{follower.id}", class: "btn btn-danger button-home btn-pill follower-btn" %>
-                  <%= button_to "Unfollow", "/userrelationship/#{follower.id}", method: :delete, remote: true, id: "unfollow-btn#{follower.id}", class: "btn btn-outline-secondary btn-pill unfollower-btn", style: "display: none" %>
+              <div class="col-1">
+                <%= image_tag(follower.picture, size: "50x50", :alt => "Avatar", class: "follow-pic rounded-circle img-circle") unless follower.picture == "" %>
+                <%= image_tag("blank_user.png", size: "50x50" , :alt => "User Image", class: "follow-pic rounded-circle img-circle") if follower.picture == "" %> 
+              </div>
+              <div class="col-8">
+                <h5><%= link_to follower.name, "/users/#{follower.id}", method: "get", class: "follow-name" %></h5>
+              </div>
+              <div class="col-3">
+                <% if current_user %>
+                  <% if current_user.following.exists?(follower.id) && current_user.id != follower.id %>
+                    <%= link_to "Unfollow", "/userrelationship/#{follower.id}", method: :delete, remote: true, id: "unfollow-btn"+follower.id.to_s, class: "btn btn-outline-secondary btn-pill unfollower-btn" %>
+                    <%= link_to "Follow", "/userrelationship/#{follower.id}", method: :post, remote: true, id: "follow-btn"+follower.id.to_s, class: "btn btn-danger button-home btn-pill follower-btn", style: "display: none" %>
+                  <% elsif current_user.id != follower.id %>
+                    <%= link_to "Follow", "/userrelationship/#{follower.id}", method: :post, remote: true, id: "follow-btn"+follower.id.to_s, class: "btn btn-danger button-home btn-pill follower-btn" %>
+                    <%= link_to "Unfollow", "/userrelationship/#{follower.id}", method: :delete, remote: true, id: "unfollow-btn"+follower.id.to_s, class: "btn btn-outline-secondary btn-pill unfollower-btn", style: "display: none" %>
+                  <% end %>
                 <% end %>
-              <% end %>
-            </div>
+              </div>
           </div>
         <% end %>
       </div>
