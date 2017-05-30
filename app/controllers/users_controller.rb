@@ -40,10 +40,12 @@ class UsersController < ApplicationController
   end
 
   def get_artist
-    @artist = User.artists.find_by({name: params[:query]})
-    return redirect_to user_path(@artist) if @artist
-    flash[:alert] = "No artist found by that name" unless @artist
-    redirect_to root_path unless @artist
+    redirect_to "/search_results?query="+params[:query]
+  end
+
+  def render_search_page
+    @artists = User.where("is_artist = ? and name ILIKE ?", true, "%#{params[:query]}%")
+    render 'search_results', locals: { query: params[:query] }
   end
 
   private

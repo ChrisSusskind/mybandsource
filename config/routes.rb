@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   # Searchbar routes
   post '/search_artists', to: 'users#search_artists'
   post '/submit_search', to: 'users#get_artist'
+  get '/search_results', to: 'users#render_search_page'
 
   # Devise routes
   devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations', :omniauth_callbacks => "users/omniauth_callbacks" }
