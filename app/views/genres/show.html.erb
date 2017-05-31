@@ -1,6 +1,11 @@
-<div class="container">
+<div class="genre-show-container">
 	
-	<h1>This is a genre page!</h1>
-  <h1><%= @genre.name %></h1>
+	<h3><%= link_to "ALL GENRES / ", genres_path, method: :get %></h3>
+  <h3><%= @genre.name.upcase%></h3>
 
+  <div class="row cards">
+    <% @genre.users.each do |artist| %>
+      <%= render partial: 'shared/artist_card', locals: {artist: artist} %>
+    <% end %>
+  </div>
 </div>

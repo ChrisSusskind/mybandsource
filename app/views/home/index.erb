@@ -18,23 +18,10 @@
 			<p>Discover and explore conversations around artists.</p>
 		</div>
 
-		<div class="card-columns">
-			<% @artists.each do |artist| %>
-					<div class="card artist-card">
-						<%= image_tag("artist1.png", class: "card-img-top img-fluid artist-card-image") %>
-						<div class="card-block">
-							<h4><%= artist.name %></h4>
-							<h5><%= artist.genre.name %></h5>
-
-							<ul class="list-inline">
-								<li>Item 1</li>
-								<li>Item 2</li>
-								<li>Item 3</li>
-								<li>Item 4</li>
-							</ul>
-						</div>
-					</div>
-			<% end %>
+		<div class="row">
+      <% @artists.each do |artist| %>
+        <%= render partial: 'shared/artist_card', locals: {artist: artist} %>
+      <% end %>
 		</div>
 	</div>
 

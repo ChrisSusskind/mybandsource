@@ -12,6 +12,7 @@
  *
  */
 
+//= require material_icons
 
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
@@ -56,29 +57,23 @@
   }
 }
 
-.artist-card {
-	color: white;
-	border-radius: 0;
-	border: none;
-	background: #242424;
-}
-
-.artist-card-image {
-  width: 100%;
-}
-
 // Genre styling
 
 .genre-index-container {
-  h3 {
-    margin-top: 50px;
-    margin-bottom: 50px;
+
+  margin-top: 40px;
+  margin-left: 30px;
+
+  div.cards {
+    margin-top: 40px;
+    position: relative;
+    left: 3px;
   }
 }
 
 .genre-card {
-  width: 300px;
-  height: 300px;
+  width: 295px;
+  height: 275px;
   border: none;
 	border-radius: 0;
   position: relative;
@@ -108,8 +103,28 @@
 }
 
 .genre-card-homepage {
-  width: 200px!important;
-  height: 200px!important;
+  width: 220px;
+  height: 200px;
+}
+
+.genre-show-container {
+
+  margin-left: 30px;
+  margin-top: 40px;
+
+  a {
+    color: #AA182A;
+  }
+
+  h3 {
+    display: inline;
+  }
+
+  div.cards {
+    position: relative;
+    left: 3px;
+    margin-top: 30px;
+  }
 }
 
 
@@ -726,59 +741,57 @@ h1,h2,h3,h4,h5,h6,p,.h-smallcaps {
   border: none;
   position: relative;
   bottom: 10px;
-}
 
-.follow-title {
-  text-transform: uppercase;
-  text-align: left;
-  position: relative;
-  bottom: 20px;
-}
+  h3 {
+    text-transform: uppercase;
+    text-align: left;
+    position: relative;
+    bottom: 20px;
+  }
 
-.follow-row {
-  border-bottom: solid thin #e5e5e5;
-  border-top: solid thin #e5e5e5;
-  height: 85px;
-}
+  div.follow-row {
+    border-bottom: solid thin #e5e5e5;
+    border-top: solid thin #e5e5e5;
+    height: 85px;
+    padding-left: 20px;
+    padding-right: 20px;
+    white-space: nowrap;
 
-.follow-row-content {
-  padding-bottom: 15px;
-  padding-top: 15px;
-  position: relative;
-  left: 20px;
-  width: 500px;
-  height: 100%;
-}
+    img {
+      position: relative;
+      top: 17.5px;
+    }
 
-.follow-pic {
-  float: left;
-  vertical-align: middle;
-}
+    h5 {
+      color: black;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 85px;
+      margin-right: 20px;
+    }
+  }
 
-.follow-name {
-  position: relative;
-  left: 20px;
-  bottom: 6px;
-  color: black;
-}
+  .follower-btn {
+    width: 150px;
+    position: relative;
+    top: 20px;
+    padding-top: 12px;
+    padding-bottom: 4px;
+  }
 
-.follower-btn {
-  width: 150px;
-  position: relative;
-  left: 60%;
-  bottom: 50px;
-}
+  .unfollower-btn {
+    width: 150px;
+    position: relative;
+    top: 20px;
+    padding-top: 12px;
+    padding-bottom: 4px;
 
-.unfollower-btn {
-  width: 150px;
-  position: relative;
-  left: 60%;
-  bottom: 50px;
-  color: black;
-  background-color: white;
-  border-style: solid;
-  border-width: 1px;
-  border-color: black;
+    color: black;
+    background-color: white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+  }
 }
 
 // Styles used for share page modal
@@ -874,5 +887,60 @@ h1,h2,h3,h4,h5,h6,p,.h-smallcaps {
       text-align: left;
       color: black;
     }
+  }
+}
+
+// Styles used for search results page
+
+.search-results-container {
+  margin-left: 30px;
+  margin-top: 40px;
+
+  div.cards {
+    position: relative;
+    left: 3px;
+    margin-top: 30px;
+  }
+}
+
+// Styles user for artist card (shown on homepage, genre show page, search results page)
+
+.artist-card {
+  width: 275px;
+  height: 400px;
+  background-color: #252525;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  img {
+    width: 100%;
+    height: 270px;
+  }
+
+  div {
+    margin-left: 20px;
+    margin-top: 20px;
+  }
+
+  span {
+    color: white;
+    display: inline-block;
+    margin-bottom: 10px;
+    margin-left: 20px;
+
+    i {
+      position: relative;
+      top: 3px;
+    }
+  }
+
+  h5 {
+    color: white;
+  }
+
+  h6 {
+    color: #929292;
   }
 }

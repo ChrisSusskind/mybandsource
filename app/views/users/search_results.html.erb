@@ -1,0 +1,9 @@
+<div class="search-results-container">
+  <h3>SEARCH RESULTS: <%= query.upcase %></h3>
+
+  <div class="row cards">
+    <% @artists.each do |artist| %>
+        <%= render partial: 'shared/artist_card', locals: {artist: artist} %>
+    <% end %>
+  </div>
+</div>

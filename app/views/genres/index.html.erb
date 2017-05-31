@@ -1,6 +1,7 @@
 <div class="genre-index-container">
 	<h3>All Genres</h3>
-  <div class="row">
+
+  <div class="row cards">
     <% @genres.each do |genre| %>
         <%= render partial: 'genre_card', locals: {genre: genre, column: 4, class_name: ""} %>
     <% end %>
