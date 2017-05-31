@@ -12,15 +12,51 @@
  *
  */
 
+// Special icons used
 //= require material_icons
 
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
 
+// Importing google fonts pack
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700,800,900');
 
 .main-container {
   width: 100%;
 }
+
+// Typography
+
+h1,h2,h3,h4,h5,h6,p, .h-largecaps {
+  font-family: 'Montserrat', Helvetica, sans-serif;
+}
+
+.h-smallcaps {
+  font-size: .55em;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+.h-largecaps {
+  font-size: .75em;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+// Button pill style used for all buttons
+
+.btn-pill {
+  margin: 5px auto;
+  height: 35px;
+  border-radius: 20px;
+  border: none;
+  color: white;
+  font-family: 'Montserrat', Helvetica, sans-serif;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
 
 /* Navbar Custom Styles */
 .main-navbar {
@@ -56,77 +92,6 @@
     margin-bottom: 50px;
   }
 }
-
-// Genre styling
-
-.genre-index-container {
-
-  margin-top: 40px;
-  margin-left: 30px;
-
-  div.cards {
-    margin-top: 40px;
-    position: relative;
-    left: 3px;
-  }
-}
-
-.genre-card {
-  width: 295px;
-  height: 275px;
-  border: none;
-	border-radius: 0;
-  position: relative;
-  margin-bottom: 20px;
-  padding-left: 10px;
-  padding-right: 10px;
-
-  a {
-    display: block;
-    height: 100%;
-    width: 100%;
-    color: white;
-  }
-
-  img {
-    height: 100%;
-    width: 100%;
-  }
-
-  h5 {
-    text-align: center;
-    color: white;
-    height: 20px;
-    position: relative;
-    bottom: 50%;
-  }
-}
-
-.genre-card-homepage {
-  width: 220px;
-  height: 200px;
-}
-
-.genre-show-container {
-
-  margin-left: 30px;
-  margin-top: 40px;
-
-  a {
-    color: #AA182A;
-  }
-
-  h3 {
-    display: inline;
-  }
-
-  div.cards {
-    position: relative;
-    left: 3px;
-    margin-top: 30px;
-  }
-}
-
 
 /* Search bar */
 
@@ -521,23 +486,7 @@ footer {
 }
 
 
-// Typography
-
-h1,h2,h3,h4,h5,h6,p,.h-smallcaps {
-  font-family: 'Montserrat', Helvetica, sans-serif;
-}
-
-.h-smallcaps {
-  font-size: .55em;
-  font-weight: 500;
-  text-transform: uppercase;
-}
-
-.h-largecaps {
-  font-size: .75em;
-  font-weight: 500;
-  text-transform: uppercase;
-}
+// PETER STYLING STARTS HERE
 
 // Override for bootsrap modal class to fix scrolling issue
 
@@ -545,54 +494,7 @@ h1,h2,h3,h4,h5,h6,p,.h-smallcaps {
   overflow-y: auto
 }
 
-// Edit user info, forgot password, password reset, resend confirmation link, unlock account page styles
-
-.content-container {
-  position: relative;
-  width: 100%
-}
-
-.page-container {
-  position: relative;
-  top: 20px;
-  margin: 0 auto;
-  max-width: 1050px;
-  padding-bottom: 6em;
-  min-height: 100%;
-}
-
-.content-slim {
-  width:70%;
-  margin: 0 auto;
-}
-
-.settings-form {
-  position: relative;
-  border-top: solid 1px #ddd;
-  padding-top: 20px;
-  width: 100%;
-  padding-bottom: 15px;
-}
-
-.login-signup-form {
-  position: relative;
-  padding-top: 20px;
-  width: 100%;
-  left: 18%;
-  padding-bottom: 15px;
-}
-
-.btn-pill {
-  margin: 5px auto;
-  height: 35px;
-  border-radius: 20px;
-  border: none;
-  color: white;
-  font-family: 'Montserrat', Helvetica, sans-serif;
-  font-size: 9px;
-  font-weight: 500;
-  letter-spacing: 1px;
-}
+// Form styling used for all forms
 
 .form-group {
   font-size: 1em;
@@ -601,15 +503,16 @@ h1,h2,h3,h4,h5,h6,p,.h-smallcaps {
 }
 
 .field-editpage {
-    position: relative;
-    width: 100%;
-    border: none;
-    border-bottom: solid 1px black;
-    padding-bottom: 4px;
-    font-size: .7em;
-    font-weight: 300;
-    letter-spacing: 1px;
+  position: relative;
+  width: 100%;
+  border: none;
+  border-bottom: solid 1px black;
+  padding-bottom: 4px;
+  font-size: .7em;
+  font-weight: 300;
+  letter-spacing: 1px;
 }
+
 
 .field-editpage:focus {
   border-bottom: solid 2px black;
@@ -620,14 +523,98 @@ h1,h2,h3,h4,h5,h6,p,.h-smallcaps {
   color: black;
 }
 
-.connected-editpage {
-  padding-bottom: 4px;
+// Login and Signup modal styles
+
+.modal-image-center {
+  position: relative;
+  left: 30%;
+  top: 5px;
+}
+
+.login-signup-form {
+  position: relative;
+  padding-top: 20px;
+  width: 100%;
+  left: 18%;
+  padding-bottom: 15px;
+
+  div.login-btn-container {
+    height: 25px;
+
+    .login-btn-modal {
+      position: relative;
+      bottom: 20px;
+      width: 300px;
+    }
+  }
+
+  .signup-btn-modal {
+    width: 300px;
+  }
+
+  .fb-btn-login {
+    width: 300px;
+    background-color: #3B5998;
+    color: white;
+  }
+
+  div.login-message-signup-modal {
+    position: relative;
+    left: 17%;
+    top: 20px;
+
+    .bottom-modal-message {
+      color: black;
+      font-weight: bold;
+    }
+  }
+}
+
+// Edit user info, forgot password, password reset, resend confirmation link, unlock account page styles
+
+.page-container {
+  position: relative;
+  top: 20px;
+  margin: 0 auto;
+  max-width: 1050px;
+  padding-bottom: 6em;
+  min-height: 100%;
+
+  div.content-container {
+    position: relative;
+    width: 100%;
+
+    div.content-slim {
+      width: 80%;
+      margin: 0 auto;
+
+      h3 {
+        text-transform: uppercase;
+      }
+
+      div.settings-form {
+        position: relative;
+        border-top: solid 1px #ddd;
+        padding-top: 20px;
+        width: 100%;
+        padding-bottom: 15px;
+
+        div.connected-editpage {
+          padding-bottom: 4px;
+        }
+      }
+
+      div.devise-links {
+        position: relative;
+        top: 40px;
+      }
+    }
+  }
 }
 
 .submit-btn-editpage {
   position: absolute;
   left: 40%;
-
 }
 
 .submit-btn-forgotpasswordpage {
@@ -648,62 +635,6 @@ h1,h2,h3,h4,h5,h6,p,.h-smallcaps {
 .submit-btn-unlockpage {
   position: absolute;
   left: 20%;
-}
-
-.devise-links {
-  position: relative;
-  top: 40px;
-}
-
-.modal-image-center {
-  position: relative;
-  left: 30%;
-  top: 5px;
-}
-
-.login-btn-container {
-  height: 25px;
-}
-
-.login-btn-modal {
-  position: relative;
-  bottom: 20px;
-  width: 300px;
-}
-
-.signup-btn-modal {
-  width: 300px;
-}
-
-.login-message-signup-modal {
-  position: relative;
-  left: 17%;
-  top: 20px;
-}
-
-.bottom-modal-message {
-  color: black;
-  font-weight: bold;
-}
-
-.fb-btn-login {
-  width: 300px;
-  background-color: #3B5998;
-  color: white;
-}
-
-// Form used on edit page
-.edit_user {
-  position: relative;
-  margin-top: 15px;
-  width: 300px;
-
-}
-
-// Form used on forgot password page
-.new_user {
-  position: relative;
-  width: 300px;
 }
 
 #error_explanation {
@@ -736,6 +667,7 @@ h1,h2,h3,h4,h5,h6,p,.h-smallcaps {
     text-align: left;
     position: relative;
     bottom: 20px;
+    font-weight: 600;
   }
 
   div.follow-row {
@@ -787,6 +719,7 @@ h1,h2,h3,h4,h5,h6,p,.h-smallcaps {
 
 .title-sharepage {
   text-align: center;
+  font-weight: 500;
 }
 
 .share-icon-row {
@@ -879,19 +812,6 @@ h1,h2,h3,h4,h5,h6,p,.h-smallcaps {
   }
 }
 
-// Styles used for search results page
-
-.search-results-container {
-  margin-left: 30px;
-  margin-top: 40px;
-
-  div.cards {
-    position: relative;
-    left: 3px;
-    margin-top: 30px;
-  }
-}
-
 // Styles user for artist card (shown on homepage, genre show page, search results page)
 
 .artist-card {
@@ -927,9 +847,106 @@ h1,h2,h3,h4,h5,h6,p,.h-smallcaps {
 
   h5 {
     color: white;
+    font-weight: 500;
   }
 
   h6 {
     color: #929292;
+    font-weight: 500;
+  }
+}
+
+// Genre card styling
+
+.genre-card {
+  width: 295px;
+  height: 275px;
+  border: none;
+  border-radius: 0;
+  position: relative;
+  margin-bottom: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  a {
+    display: block;
+    height: 100%;
+    width: 100%;
+    color: white;
+  }
+
+  img {
+    height: 100%;
+    width: 100%;
+  }
+
+  h5 {
+    text-align: center;
+    color: white;
+    height: 20px;
+    position: relative;
+    bottom: 50%;
+    font-weight: 500;
+  }
+}
+
+.genre-card-homepage {
+  width: 220px;
+  height: 200px;
+}
+
+// Genre pages styling
+
+.genre-index-container {
+
+  margin-top: 40px;
+  margin-left: 30px;
+
+  h3 {
+    font-weight: 500;
+  }
+
+  div.cards {
+    margin-top: 40px;
+    position: relative;
+    left: 3px;
+  }
+}
+
+.genre-show-container {
+
+  margin-left: 30px;
+  margin-top: 40px;
+
+  a {
+    color: #AA182A;
+  }
+
+  h3 {
+    display: inline;
+    font-weight: 500;
+  }
+
+  div.cards {
+    position: relative;
+    left: 3px;
+    margin-top: 30px;
+  }
+}
+
+// Styles used for search results page
+
+.search-results-container {
+  margin-left: 30px;
+  margin-top: 40px;
+
+  h3 {
+    font-weight: 500;
+  }
+
+  div.cards {
+    position: relative;
+    left: 3px;
+    margin-top: 30px;
   }
 }
