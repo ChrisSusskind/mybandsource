@@ -21,6 +21,9 @@
 // Importing google fonts pack
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700,800,900');
 
+// Importing glyphicons
+@import "glyphicons";
+
 .main-container {
   width: 100%;
 }
@@ -59,17 +62,154 @@ h1,h2,h3,h4,h5,h6,p, .h-largecaps {
 
 
 /* Navbar Custom Styles */
+
 .main-navbar {
   background-color: white;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 #login-btn {
   color: black;
+  font-weight: 800;
+  font-size: .75em;
 }
 
 #signup-btn {
   color: #AA182A;
+  font-weight: 800;
+  font-size: .75em;
 }
+
+.search-box {
+  border-radius: 50px;
+  position: relative;
+  left: 15%;
+  width: 100%;
+}
+
+@media (max-width: 995px) {
+  .search-box {
+    display: none;
+  }
+
+  .user-dropdown {
+    padding-left: 0!important;
+    padding-top: 10px!important;
+  }
+
+  .notification-dropdown {
+    padding-top: 10px!important;
+  }
+}
+
+.user-dropdown {
+
+  padding-left: 20px;
+
+  button {
+    background-color: white;
+    border: none;
+  }
+
+  ul {
+    width: 200px;
+
+    li {
+      padding-left: 20px;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      border-bottom: solid thin #e5e5e5;
+
+      a {
+        color: black;
+        font-weight: 800;
+      }
+    }
+  }
+}
+
+/* Footer */
+
+footer {
+  border-top: solid 1px #ddd;
+  padding: 0 30px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.footer_copyright {
+  flex-basis: 200px;
+  order: 0;
+  white-space: nowrap;
+
+  p {
+    font-weight: 300;
+    font-size: .65em;
+  }
+}
+
+.footer_links {
+  order: 1;
+  text-align: center;
+}
+
+.footer_links a {
+  padding: 0 5px;
+  display: inline-block;
+  font-family: Montserrat, Helvetica, sans-serif;
+  font-size: .65em;
+  font-weight: 900;
+  line-height: 2em;
+  color: black;
+  text-decoration: none;
+}
+
+.footer_social {
+  order: 2;
+}
+
+@media (max-width: 800px) {
+
+  footer {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .footer_copyright {
+    order: 3;
+    flex-basis: auto;
+  }
+
+  .footer_links {
+    padding: 20px 0;
+
+  }
+
+  .footer_social {
+  }
+
+}
+
+/* Search bar */
+
+.search-bar {
+  border-radius: 50px !important;
+}
+
+.section-title-block {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.button-home {
+  background: #AA182A;
+  border: 1px solid #AA182A;
+  border-radius: 100px;
+}
+
 
 /* Homepage styling */
 
@@ -92,29 +232,6 @@ h1,h2,h3,h4,h5,h6,p, .h-largecaps {
     margin-bottom: 50px;
   }
 }
-
-/* Search bar */
-
-.search-bar {
-  border-radius: 50px !important;
-}
-
-.search-box {
-  margin: 0 auto;
-	border-radius: 50px;
-}
-
-.section-title-block {
-	margin-top: 50px;
-	margin-bottom: 50px;
-}
-
-.button-home {
-	background: #AA182A;
-	border: 1px solid #AA182A;
-	border-radius: 100px;
-}
-
 
 /* Profile Styling */
 
@@ -427,65 +544,6 @@ h1,h2,h3,h4,h5,h6,p, .h-largecaps {
 .search_result {}
 
 
-/* Footer */
-footer {
-    border-top: solid 1px #ddd;
-    padding: 0 30px;
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-}
-
-.footer_copyright {
-    flex-basis: 200px;
-    order: 0;
-    white-space: nowrap;
-}
-
-.footer_links {
-    order: 1;
-    text-align: center;
-}
-
-.footer_links a {
-    padding: 0 5px;
-    display: inline-block;
-    font-family: Montserrat, Helvetica, sans-serif;
-    font-size: .65em;
-    font-weight: 900;
-    line-height: 2em;
-    color: black;
-    text-decoration: none;
-}
-
-.footer_social {
-    order: 2;
-}
-
-@media (max-width: 800px) {
-    
-    footer {
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-around;
-    }
-    
-    .footer_copyright {
-        order: 3;
-        flex-basis: auto;
-    }
-    
-    .footer_links {
-        padding: 20px 0;
-        
-    }
-    
-    .footer_social {
-    }
-    
-}
-
-
 // PETER STYLING STARTS HERE
 
 // Override for bootsrap modal class to fix scrolling issue
@@ -748,6 +806,26 @@ footer {
   list-style: none;
 }
 
+.notification-dropdown {
+  span {
+    color: white;
+    font-size: .6em;
+    position: absolute;
+    left: 25px;
+    top: 7px;
+    z-index: 1000;
+  }
+
+  button {
+    width: 50px;
+    height: 50px;
+    background-color: black;
+    border: none;
+    @extend %glyphicon-bell;
+    color: white;
+  }
+}
+
 .notification-container {
   padding: 10px 10px 10px 10px;
   border-bottom: solid thin #e5e5e5;
@@ -766,7 +844,7 @@ footer {
 
     a {
       color: black;
-      font-weight: bold;
+      font-weight: 800;
     }
 
     abbr {
@@ -782,7 +860,7 @@ footer {
 
   a {
     color: black;
-    font-weight: bold;
+    font-weight: 800;
   }
 }
 

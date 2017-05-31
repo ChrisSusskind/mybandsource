@@ -65,6 +65,9 @@ gem 'mandrill-rails'
 #Google icons gem
 gem 'material_icons'
 
+#Glyphicons gem
+gem 'glyphicons-rails'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

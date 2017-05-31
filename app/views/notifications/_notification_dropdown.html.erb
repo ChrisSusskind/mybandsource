@@ -1,14 +1,13 @@
-<div class="btn-group">
-  <button type="button" id="notification_dropdown_button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" onclick="markNotificationsViewed()">
-    <i class="glyphicon glyphicon-bell"></i>
-    <% unviewed = 0
-      current_user.notifications.order('created_at DESC').each do |notification|
-        unviewed+=1 unless notification.viewed
-        break if notification.viewed
-      end %>
-    <span id="unviewed_notification_number" class="badge badge-notify"><%= unviewed %></span>
-  </button>
-  <ul class="dropdown-menu" role="menu">
+<% unviewed = 0
+   current_user.notifications.order('created_at DESC').each do |notification|
+     unviewed+=1 unless notification.viewed
+     break if notification.viewed
+   end %>
+
+<div class="btn-group notification-dropdown">
+  <span id="unviewed_notification_number" class="badge badge-notify"><%= unviewed %></span>
+  <button type="button" id="notification_dropdown_button" class= "rounded-circle" data-toggle="dropdown" onclick="markNotificationsViewed()"></button>
+  <ul class="dropdown-menu dropdown-menu-right" role="menu">
     <% current_user.notifications.order('created_at DESC').first(3).each do |notification| %>
       <%= render partial: 'notifications/notification', locals: {notification: notification}  %>
     <% end %>
