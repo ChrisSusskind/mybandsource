@@ -12,8 +12,8 @@
         <% followers.each do |follower| %>
           <div class="row follow-row">
               <div class="col-1">
-                <%= image_tag(follower.picture, size: "50x50", :alt => "Avatar", class: "follow-pic rounded-circle img-circle") if follower.picture? %>
-                <%= image_tag("blank_user.png", size: "50x50" , :alt => "User Image", class: "follow-pic rounded-circle img-circle") unless follower.picture? %> 
+                <%= cl_image_tag(follower.picture, :width => 50, :height => 50, :crop => :fill, :alt => "Avatar", class: "follow-pic rounded-circle img-circle") if follower.picture? %>
+                <%= cl_image_tag("static/blank_user.png", :width => 50, :height => 50, :crop => :fill, :alt => "User Image", class: "follow-pic rounded-circle img-circle") unless follower.picture? %> 
               </div>
               <div class="col-8">
                 <h5><%= link_to follower.name, "/users/#{follower.id}", method: "get", class: "follow-name" %></h5>
