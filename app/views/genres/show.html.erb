@@ -3,7 +3,7 @@
 	<h3><%= link_to "ALL GENRES / ", genres_path, method: :get %></h3>
   <h3><%= @genre.name.upcase%></h3>
 
-  <div class="row cards">
+  <div class="cards artist-card-row">
     <% @genre.users.each do |artist| %>
       <%= render partial: 'shared/artist_card', locals: {artist: artist} %>
     <% end %>

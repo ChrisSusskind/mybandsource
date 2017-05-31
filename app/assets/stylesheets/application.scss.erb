@@ -233,6 +233,18 @@ footer {
   }
 }
 
+.genre-card-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.artist-card-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 /* Profile Styling */
 
 .profile-banner {
@@ -902,8 +914,10 @@ footer {
 // Styles user for artist card (shown on homepage, genre show page, search results page)
 
 .artist-card {
-  width: 275px;
-  height: 400px;
+
+  flex: 25%;
+  min-width: 200px;
+  max-width: 300px;
   background-color: #252525;
   margin-left: 10px;
   margin-right: 10px;
@@ -946,8 +960,11 @@ footer {
 // Genre card styling
 
 .genre-card {
-  width: 295px;
-  height: 275px;
+
+  flex: 20%;
+  min-width: 200px;
+  max-width: 300px;
+  max-height: 200px;
   border: none;
   border-radius: 0;
   position: relative;

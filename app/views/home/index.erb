@@ -18,7 +18,7 @@
 			<p>Discover and explore conversations around artists.</p>
 		</div>
 
-		<div class="row">
+		<div class="artist-card-row">
       <% @artists.each do |artist| %>
         <%= render partial: 'shared/artist_card', locals: {artist: artist} %>
       <% end %>
@@ -34,11 +34,10 @@
 			<p>Explore artists by genre.</p>
 		</div>
 
-		<div class="row">
+		<div class="genre-card-row">
 			<% @genres.each do |genre| %>
         <%= render partial: 'genres/genre_card', locals: {genre: genre, column: 3, class_name:"genre-card-homepage"} %>
 			<% end %>
-
 		</div>
 
 		<div class="text-center">
