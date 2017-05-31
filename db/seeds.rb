@@ -28,6 +28,7 @@ Genre.populate genre_list.length do |genre|
 end
 
 # Artist users
+count = 0
 User.populate 50 do |artist|
 	artist.email = Faker::Internet.unique.safe_email
 	artist.encrypted_password	= Faker::Crypto.sha1
@@ -43,10 +44,11 @@ User.populate 50 do |artist|
 	artist.twitter_url		= Faker::Internet.url('twitter.com')
 	artist.created_at		= Faker::Time.between(DateTime.now-1, DateTime.now)
 	artist.updated_at		= DateTime.now
-	artist.picture			= Faker::LoremPixel.image("150x150", true, 'people')
 	artist.genre_id			= Genre.first.id
 	artist.sign_in_count		= 0
   artist.is_artist = true
+  artist.picture = "monkey" if count == 1
+  count += 1
 end
 
 # Regular users
@@ -56,7 +58,6 @@ User.populate 50 do |user|
 	user.location 			= Faker::Address.city
 	user.encrypted_password	= Faker::Crypto.sha1
 	user.sign_in_count		= 0
-	user.picture			= Faker::LoremPixel.image("150x150", true, 'people')
 	user.is_artist = false
 
 	Review.populate Faker::Number.between(1, 20) do |review|
