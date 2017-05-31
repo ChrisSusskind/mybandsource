@@ -9,5 +9,7 @@ class ActiveSupport::TestCase
   #fixtures :all
 
   # Add more helper methods to be used by all tests here...
-  Rails.application.load_seed
+  if User.first == nil
+      Rails.application.load_seed
+  end
 end

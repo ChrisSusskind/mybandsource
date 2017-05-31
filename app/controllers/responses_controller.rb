@@ -1,4 +1,5 @@
 class ResponsesController < ApplicationController
+  before_action :set_user
   before_action :set_review
   before_action :set_response, only: [:destroy, :upvote, :remove_upvote]
   def create
@@ -6,18 +7,16 @@ class ResponsesController < ApplicationController
     unless @response.valid?
       flash[:alert] = "Response creation failed"
     end
-    create_notification(current_user, @review.artist_id, @response)
-    render :action => 'response_display' if params[:user_profile] == "false"
-    render :action => 'user_profile/response_display' if params[:user_profile] == "true"
+    create_notification(current_user, @review.leaving_user_id, @response)
+    render :action => 'response_display', locals: {is_artist: @user.is_artist}
   end
 
   def destroy
-    destroy_notification(current_user, @review.artist_id, @response)
+    destroy_notification(current_user, @review.leaving_user_id, @response)
     unless @response.destroy
       flash[:alert] = "Response deletion failed"
     end
-    render :action => 'response_display' if params[:user_profile] == "false"
-    render :action => 'user_profile/response_display' if params[:user_profile] == "true"
+    render :action => 'response_display', locals: {is_artist: @user.is_artist}
   end
 
   def upvote
@@ -28,8 +27,7 @@ class ResponsesController < ApplicationController
     unless @response.save
       flash[:alert] = "Response upvote failed"
     end
-    render :action => 'response_display' if params[:user_profile] == "false"
-    render :action => 'user_profile/response_display' if params[:user_profile] == "true"
+    render :action => 'response_display', locals: {is_artist: @user.is_artist}
   end
 
   def remove_upvote
@@ -38,11 +36,14 @@ class ResponsesController < ApplicationController
     unless @response.save
       flash[:alert] = "Response upvote failed"
     end
-    render :action => 'response_display' if params[:user_profile] == "false"
-    render :action => 'user_profile/response_display' if params[:user_profile] == "true"
+    render :action => 'response_display', locals: {is_artist: @user.is_artist}
   end
 
   private
+
+  def set_user
+    @user = User.find(params[:user_id]);
+  end
 
   def set_review
     @review = Review.find(params[:review_id])
@@ -52,11 +53,11 @@ class ResponsesController < ApplicationController
     @response = @review.responses.find(params[:id])
   end
 
-  def create_notification(generating_user, receiving_artist_id, response)
-    Notification.create(generating_user_id: generating_user.id, receiving_artist_id: receiving_artist_id, response_id: response.id, notification_type: 'response', generating_user_name: generating_user.name, generating_user_picture: generating_user.picture)
+  def create_notification(generating_user, receiving_user_id, response)
+    Notification.create(generating_user_id: generating_user.id, receiving_user_id: receiving_user_id, response_id: response.id, notification_type: 'response', generating_user_name: generating_user.name, generating_user_picture: generating_user.picture)
   end
 
-  def destroy_notification(generating_user, receiving_artist_id, response)
-    Notification.where(generating_user_id: generating_user.id, receiving_artist_id: receiving_artist_id, response_id: response.id, notification_type: 'response').destroy_all
+  def destroy_notification(generating_user, receiving_user_id, response)
+    Notification.where(generating_user_id: generating_user.id, receiving_user_id: receiving_user_id, response_id: response.id, notification_type: 'response').destroy_all
   end
 end

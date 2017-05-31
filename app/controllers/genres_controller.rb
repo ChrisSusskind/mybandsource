@@ -10,7 +10,7 @@ class GenresController < ApplicationController
   # GET /genres/1
   # GET /genres/1.json
   def show
-    @artists = @genre.artists
+    @artists = @genre.users.merge(User.artists)
   end
 
   # GET /genres/new

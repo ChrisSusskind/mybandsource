@@ -1,5 +1,6 @@
 <%= cloudinary_js_config %>
 
+<<<<<<< HEAD
 <div class="container" id="user_id_container" data-user_id=<%=@user.id%>>
 
     <div class=" align-items-end justify-content-center">
@@ -39,8 +40,46 @@
       </div>
   </div>
 </div>
+=======
+<div class="container content-container" id="user_id_container" data-user_id=<%=@user.id%>>
+>>>>>>> 4e50ff68bae9ce19653a53a983632b0ffe9b1d71
 
+  <!-- Colorful header to artist profile -->
+  <div class="profile-banner">
+    <div class="profile-banner-content">
+      <img src="" class="">
+      <div class="profile-banner-avatar">
+        <%= image_tag(@user.picture, :alt => "Avatar", class: "profile-picture rounded-circle float-left img-circle") if @user.picture %>
+        <%= image_tag("blank_user.png", size: "175x175" , :alt => "User Image", class: "profile-picture rounded-circle float-left img-circle") if !@user.picture %> 
+      </div>
 
+      <%= form_tag("/users/#{@user.id}/profile_picture", :method => "patch") do %>
+      <%= cl_image_upload_tag(:picture, :html => {:class => "image_upload"}) %>
+      <%= submit_tag(value = "Save") %>
+      <% end %>
+
+      <div class="profile-banner-info">
+        <h1><%= @user.name %></h1>
+        <h2><%= @user.location %></h2>
+        <div class="profile-banner-buttons">
+          <%= link_to "Share", "#share_modal", "data-toggle": "modal", class: "btn btn-danger share-button" %>
+        </div>
+        <div>
+          <% if user_signed_in? && current_user != @user && !current_user.following?(@user) %>
+          <div>
+            <%= link_to("Follow", "/userrelationship/#{@user.id}", method: "post", class: "btn btn-primary btn-lg btn-danger follow-button") %>
+          </div>
+          <% end %>
+
+          <% if user_signed_in? && current_user != @user && current_user.following?(@user) %>
+          <div>
+            <%= link_to("Unfollow", "/userrelationship/#{@user.id}", method: "delete", class: "btn btn-primary btn-lg btn-danger follow-button") %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+
+<<<<<<< HEAD
 <div class="col-lg-2 col-md-4 col-sm-4 offset-xl-1 offset-lg-1">
     <div class="follow_count">
       <p class="followers_text right_align">Followers</p>
@@ -56,8 +95,46 @@
 
 <div class="container row">
 	<div class="col-xl-2 col-lg-2 col-md-1 col-sm-0 col-xs-0">
+=======
+      <div class="col-lg-2 col-md-4 col-sm-4 offset-xl-1 offset-lg-1">
+        <div class="follow_count">
+          <p class="followers_text right_align">Followers</p>
+          <p class="right_align"> <%= link_to "#{@user.followers.count} followers", "#follower_modal", "data-toggle": "modal" %> </p>
+          <p class="followers_text right_align">Following</p>
+          <p class="right_align"> <%= link_to "#{@user.following.count} following", "#following_modal", "data-toggle": "modal" %> </p>
+        </div>
+      </div>
 
+    </div>
+  </div> <!-- End colorful header to artist profile -->
+
+>>>>>>> 4e50ff68bae9ce19653a53a983632b0ffe9b1d71
+
+  <div class="profile-content">
+    <div class="profile-content-column">
+      <div class="profile-section">
+        <h1>About</h1>
+        <p><%= @user.bio %></p>
+      </div>
+
+    </div>
+
+    <div class="profile-sidebar">
+      <div class="profile-sidebar-group">
+        <h3>Favorite Genres</h3>
+        <h4>Alternative</h4>
+        <h4>Electronic</h4>
+        <h4>Hip-Hop</h4>
+        <h4>Indie</h4>
+      </div>
+      <div class="profile-sidebar-group">
+        <h3>Social Profiles</h3>
+        <h4>Twitter</h4>
+        <h4>Facebook</h4>
+      </div>
+    </div>
   </div>
+<<<<<<< HEAD
   <div class="col-xl-6 col-lg-6">
       <div class="row">
          <h1 class="bio_margin">About</h1>
@@ -98,8 +175,58 @@
     </div>
 </div>
 </div>
+=======
+
+  <div class="container review-container">
+
+    <div class="row">
+      <div class="col-xl-3 col-lg-3 offset-xl-1 offset-lg-1">
+        <%= link_to("Reviews", user_reviews_hide_responses_path(@user.id), method: "get", class: "btn btn-danger", id: "reviews_button", remote: true) %>
+      </div>
+      <div class="col-x1-3 col-lg-3 offset-xl-2 offset-lg-2">
+        <%= link_to("Discussion", user_reviews_show_responses_path(@user.id), method: "get", class: "btn btn-danger", id: "discussion_button", remote: true) %>
+      </div>
+    </div>
+
+    <% if user_signed_in? && @user.is_artist && @review.receiving_user_id.nil? %>
+    <button onclick="loadReviewForm()" id="review_load_button" class="btn btn-danger button-home" style="display: none">Edit Review</button>
+    <div class="row" id="review_form">
+      <%= render partial: 'reviews/review_form', locals: {artist: @user, review: @review} %>
+    </div>
+    <% elsif user_signed_in? && @user.is_artist %>
+    <button onclick="loadReviewForm()" id="review_load_button" class="btn btn-danger button-home">Edit Review</button>
+    <div class="row" id="review_form" style="display: none">
+      <%= render partial: 'reviews/review_form', locals: {artist: @user, review: @review} %>
+    </div>
+    <% end %>
+
+    <h1 class="review-section-title">Reviews</h1>
+
+    <div class="row review-list" id="reviews_container">
+      <%= render partial: 'reviews/review', collection: @reviews, locals: {responses_shown: false, is_artist: @user.is_artist}%>
+    </div>
+
+    <div class="row" id="paginator">
+      <%= paginate @reviews, remote: true %>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="dropdown">
+          <button onclick="toggleDropdown()" class="btn btn-primary dropbtn">Arrange Reviews By</button>
+          <div id="reviews_dropdown" class="dropdown-content">
+            <a href="#" onclick="orderReviewsByAge(event)">Most Recent</a>
+            <a href="#" onclick="orderReviewsByUpvotes(event)">Most Upvoted</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+>>>>>>> 4e50ff68bae9ce19653a53a983632b0ffe9b1d71
 </div>
 
 <%= render partial: "follower_modal", locals: {followers: @user.followers} %>
-<%= render partial: "following_modal", locals: {followings: @user.artists} %>
+<%= render partial: "following_modal", locals: {followings: @user.following} %>
 <%= render partial: "share_modal", locals: {link: root_url[0...-1] + user_path(@user) } %>

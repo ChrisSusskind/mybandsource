@@ -1,42 +1,42 @@
-<div class="container review-entry" data-review_id=<%=review.id.to_s%>>
+<div class="container review_content" data-review_id=<%=review.id.to_s%>>
   <%# @user.image %>
-  <img src="<%= Faker::LoremPixel.image("50x50", true, 'people') %>" class="rounded rounded-circle float-left review-user-image">
+  <img src="<%= Faker::LoremPixel.image("50x50", true, 'people') %>" class="rounded rounded-circle float-left">
 
-  <div class=" review-top-row">
-    <h4><%= link_to(review.user.name, user_path(review.user)) %></h4>
-    <span class="rating-stars" data-rating=<%=review.rating%>>
-      <span>&starf;</span>
-      <span>&starf;</span>
-      <span>&starf;</span>
-      <span>&starf;</span>
-      <span>&starf;</span>
-    </span>
+  <div class="row">
+    <div class="col-12">
+      <h4 class="review_username">
+        <strong>
+          <% if is_artist %>
+              <%= link_to(review.leaving_user.name, user_path(review.leaving_user)) %>
+        <% else %>
+              <%= link_to(review.receiving_user.name, user_path(review.receiving_user)) %>
+          <% end %>
+        </strong>
+      </h4>
+
+      <span class="ratings_list" data-rating=<%=review.rating%>>
+        <span>&starf;</span>
+        <span>&starf;</span>
+        <span>&starf;</span>
+        <span>&starf;</span>
+        <span>&starf;</span>
+      </span>
+    </div>
   </div>
 
-  <div class="review-bottom-row">
-    <%= review.comment %>
+  <div class="row">
+    <div class="col-12">
+      <%= review.comment %>
+    </div>
   </div>
 
-  <div class="review-bottom-row">
-    <%= review.upvotes %>
-    <% if user_signed_in? %>
-      <% if review.upvotes_userlist.nil? || !current_user.id.to_s.in?(review.upvotes_userlist) %>
-        <%= link_to(cl_image_tag('static/rockon_icon.png', alt: 'Rockon Icon', width: 20, height: 20, crop: :fill, class: "review_icon"), "/artists/#{review.artist.id}/reviews/#{review.id}/upvote", method: :post, remote: true) %>
-      <% elsif !review.upvotes_userlist.nil? %>
-        <%= link_to(cl_image_tag('static/rockon_icon.png', alt: 'Rockon Icon', width: 20, height: 20, crop: :fill, class: "review_icon rockon_icon_flipped"), "/artists/#{review.artist.id}/reviews/#{review.id}/remove_upvote", method: :delete, remote: true) unless review.upvotes_userlist.nil? %>
-      <% end %>
-        <%= cl_image_tag('static/reply_icon.png', alt: "Reply Icon", width: 20, height: 20, crop: :fill, class: "review_icon reply_icon", id: "reply_icon", onclick: "showReplyForm(this)") %>
-        <%= link_to(cl_image_tag('static/trashcan_icon.png', alt: "Trashcan Icon", width: 20, height: 20, crop: :fill, class: "review_icon"), [review.artist, review], method: :delete, remote: true) if review.user == current_user %>
-      <%= link_to(cl_image_tag('static/share_icon.png', alt: "Share Icon", width: 20, height: 20, crop: :fill, class:"review_icon"), "#share_modal", "data-toggle": "modal") %>
-    <% else %>
-        <%= cl_image_tag('static/rockon_icon.png', alt: 'Rockon Icon', width: 20, height: 20, crop: :fill, class: "review_icon") %>
-    <% end %>
-    <abbr class="timeago" title="<%= review.updated_at.getutc.iso8601 %>">
-      <%= review.updated_at.to_s %>
-    </abbr>
-  </div>
+  <% if is_artist %>
+    <%= render partial: 'reviews/review_info_bar', locals: {review: review, user_id: review.receiving_user_id, responses_shown: responses_shown} %>
+  <% else %>
+    <%= render partial: 'reviews/review_info_bar', locals: {review: review, user_id: review.leaving_user_id, responses_shown: responses_shown} %>
+  <% end %>
 
   <% if responses_shown %>
-    <%= render partial: 'responses/response', collection: review.responses.order('CREATED_AT ASC'), locals: {review: review, user_profile: false} %>
+    <%= render partial: 'responses/response', collection: review.responses.order('CREATED_AT ASC'), locals: {review: review, is_artist: is_artist} %>
   <% end %>
 </div>
