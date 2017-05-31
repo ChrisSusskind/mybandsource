@@ -28,7 +28,6 @@ Genre.populate genre_list.length do |genre|
 end
 
 # Artist users
-count = 0
 User.populate 50 do |artist|
 	artist.email = Faker::Internet.unique.safe_email
 	artist.encrypted_password	= Faker::Crypto.sha1
@@ -47,8 +46,6 @@ User.populate 50 do |artist|
 	artist.genre_id			= Genre.first.id
 	artist.sign_in_count		= 0
   artist.is_artist = true
-  artist.picture = "monkey" if count == 1
-  count += 1
 end
 
 # Regular users
