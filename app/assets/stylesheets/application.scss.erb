@@ -247,6 +247,34 @@ footer {
 
 /* Profile Styling */
 
+.image_upload {
+  display: none;
+}
+
+.upload-profile-pic-label {
+  opacity:0;
+  transition:opacity 1s ease;
+  position: relative;
+  bottom: 105px;
+  left: 38px;
+  color: black;
+  font-weight: 600;
+  max-width: 150px;
+}
+
+div.profile-banner-avatar:hover {
+  -webkit-filter: brightness(70%);
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
+}
+
+div.profile-banner-avatar:hover > label {
+  opacity: 1;
+
+}
+
 .profile-banner {
   height: 334px;
   position: relative;
