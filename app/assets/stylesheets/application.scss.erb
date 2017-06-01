@@ -262,32 +262,46 @@ footer {
   max-width: 150px;
 }
 
-div.profile-banner-avatar:hover {
-  -webkit-filter: brightness(70%);
-  -webkit-transition: all 1s ease;
-  -moz-transition: all 1s ease;
-  -o-transition: all 1s ease;
-  transition: all 1s ease;
+.profile-picture:hover {
+  opacity: .5;
+  transition:opacity 1s ease;
 }
 
 div.profile-banner-avatar:hover > label {
   opacity: 1;
+}
 
+.banner-image-label {
+  z-index: 1000;
+  white-space: nowrap;
+  position: relative;
+  bottom: 250px;
+  left: 35%;
+  opacity:0;
+  transition:opacity 1s ease;
+}
+
+@media(max-width:500px){
+  left: 25%;
 }
 
 .profile-banner {
   height: 334px;
   position: relative;
   overflow: hidden;
-	background-color: gray;
 	color: white;
   display: flex;
   align-items: flex-end;
 }
 
+.profile-banner:hover >  .banner-image-label{
+  opacity: 1;
+}
+
 .profile-banner-content {
   align-items: flex-end;
   position: relative;
+  right: 217px;
   bottom: 25px;
   display: flex;
   height: 175px;
