@@ -45,7 +45,7 @@ User.populate 50 do |artist|
 	artist.updated_at		= DateTime.now
 	artist.genre_id			= Genre.first.id
 	artist.sign_in_count		= 0
-  artist.is_artist = true
+  	artist.is_artist = true
 end
 
 # Regular users
@@ -58,7 +58,7 @@ User.populate 50 do |user|
 	user.is_artist = false
 
 	Review.populate Faker::Number.between(1, 20) do |review|
-		review.receiving_user_id = Faker::Number.unique.between(2, 51)
+		review.receiving_user_id = Faker::Number.between(2, 51)
 		review.leaving_user_id = user.id
 		review.comment = Faker::Hipster.sentence
 		review.rating = Faker::Number.between(1, 5)
@@ -73,8 +73,8 @@ User.populate 50 do |user|
 			response.upvotes_userlist = []
 		end
 	end
-	Faker::UniqueGenerator.clear
 end
+Faker::UniqueGenerator.clear
 
 UserRelationship.populate 50 do |user_relationship|
   user_relationship.follower_id = Faker::Number.unique.between(1, 100)
