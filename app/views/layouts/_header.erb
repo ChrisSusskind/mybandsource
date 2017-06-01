@@ -1,20 +1,24 @@
 <header class="container-fluid">
-	<nav class="navbar navbar-toggleable-md navbar-light bg-faded main-navbar">
-		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-    <%= link_to(cl_image_tag("static/logo_v2_padded", :width => 175, :height => 40, :crop => :fill), '/', method: :get) %>
-    <input type="text" name="search" class="form-control search-box" placeholder="Search Artist">
-		<div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
-			<div class="navbar-nav">
+  <nav class="navbar navbar-toggleable-sm navbar-light bg-faded main-navbar">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <%= link_to(cl_image_tag("static/logo_v2_padded", :width => 175, :height => 40, :crop => :fill), '/', method: :get, class: "navbar-header") %>
+
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
+      <input type="text" name="search" class="mx-auto search-box" placeholder="Search Artist">
+
+      <ul class="nav navbar-nav">
         <% if current_user %>
             <%= render partial: 'notifications/notification_dropdown' %>
             <%= render partial: 'layouts/user_dropdown' %>
-				<% else %>
-					<%= link_to "Log In", "#login_modal", "data-toggle": "modal", class: "nav-link nav-item", id: "login-btn" %>
-					<%= link_to "Sign up", "#signup_modal", "data-toggle": "modal", class: "nav-link nav-item", id: "signup-btn" %>
-				<% end %>
-			</div>
-		</div>
-	</nav>
+        <% else %>
+            <%= link_to "Log In", "#login_modal", "data-toggle": "modal", class: "nav-link nav-item", id: "login-btn" %>
+            <%= link_to "Sign up", "#signup_modal", "data-toggle": "modal", class: "nav-link nav-item", id: "signup-btn" %>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
 </header>
