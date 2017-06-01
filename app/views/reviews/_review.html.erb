@@ -1,4 +1,4 @@
-<div class="container review_content" data-review_id=<%=review.id.to_s%>>
+<div class="review_content" data-review_id=<%=review.id.to_s%>>
   <%= cl_image_tag(review.leaving_user.picture, :width => 50, :height => 50, :crop => :fill, :alt => "Avatar", class: "rounded rounded-circle float-left") if review.leaving_user.picture? %>
   <%= cl_image_tag("static/blank_user.png", :width => 50, :height => 50, :crop => :fill, :alt => "User Image", class: "rounded rounded-circle float-left") unless review.leaving_user.picture? %> 
 
