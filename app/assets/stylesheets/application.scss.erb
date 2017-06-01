@@ -85,10 +85,15 @@ h1,h2,h3,h4,h5,h6,p, .h-largecaps {
   font-size: .75em;
 }
 
+.navbar-search-container{
+  position: relative;
+  width: 50%;
+}
+
 .search-box {
   display: block;
   border-radius: 50px;
-  width: 300px;
+  width: 100%;
 }
 
 @media (max-width: 500px) {
@@ -198,6 +203,10 @@ footer {
 
 /* Search bar */
 
+.homepage-search-container {
+  position: relative;
+}
+
 .search-bar {
   border-radius: 50px !important;
 }
@@ -228,7 +237,8 @@ footer {
 }
 
 .home-title-container {
-  margin-top: 300px;
+
+  width: auto;
 
   h4 {
     clear: left;
@@ -934,9 +944,12 @@ div.profile-banner-avatar:hover > label {
 // Styles used for live search results
 
 .live-search-results {
-  height: 250px;
+  position: absolute;
+  height: 200px;
   overflow: auto;
   padding-left: 0;
+  z-index: 1000;
+  width: 100%;
 
   div {
     background-color: rgba(255, 255, 255, 0.5);

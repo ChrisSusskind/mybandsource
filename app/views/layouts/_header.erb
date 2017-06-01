@@ -8,10 +8,16 @@
 
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 
-      <input type="text" name="search" class="mx-auto search-box" placeholder="Search Artist">
-
+      <% unless current_page?(controller: 'home', action: 'index') %>
+        <%= react_component "ArtistSearchContainerComponent", {searchPath: search_artists_path, submitPath: submit_search_path, navbar: true}, class: "mx-auto navbar-search-container" %>
       <ul class="nav navbar-nav">
-        <% if current_user %>
+      <% end %>
+
+      <% if current_page?(controller: 'home', action: 'index') %>
+      <ul class="nav navbar-nav ml-auto">
+      <% end %>
+
+      <% if current_user %>
             <%= render partial: 'notifications/notification_dropdown' %>
             <%= render partial: 'layouts/user_dropdown' %>
         <% else %>
