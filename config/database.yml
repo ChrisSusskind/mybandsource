@@ -23,10 +23,10 @@ test:
 
 production:
   <<: *default
-  host: <%= ENV["RDS_HOSTNAME"] %>
+  host: <%= ENV["RDS_HOST"] %>
   database: <%= ENV["RDS_DB_NAME"] %>
   username: <%= ENV["RDS_USERNAME"] %>
   password: <%= ENV["RDS_PASSWORD"] %>
   port: <%= ENV["RDS_PORT"] %>
-  pool: 15
+  pool: 5
 
