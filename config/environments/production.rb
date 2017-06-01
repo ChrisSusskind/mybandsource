@@ -61,7 +61,7 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     :address              =>  "smtp.mandrillapp.com",
-    :port                 =>  25,
+    :port                 =>  587,
     :enable_starttls_auto =>  true,
     :user_name            =>  ENV["MANDRILL_USERNAME"],
     :password             =>  ENV["MANDRILL_API_KEY"], # SMTP password is any valid API key
@@ -73,7 +73,8 @@ Rails.application.configure do
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_deliveries = true
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
