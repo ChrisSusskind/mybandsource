@@ -1,8 +1,7 @@
 const ArtistsComponent = props => {
     const showArtists = (artist) => {
-        let url = "/artists/"+artist.id;
+        let url = "/users/"+artist.id;
         let image_url;
-        console.log(artist);
         if(artist.picture.url != null && artist.picture.url != ""){
             image_url = "http://res.cloudinary.com/mybandsource/image/upload/v1/ " + artist.picture.url;
         }

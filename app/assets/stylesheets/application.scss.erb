@@ -69,6 +69,10 @@ h1,h2,h3,h4,h5,h6,p, .h-largecaps {
   padding-bottom: 20px;
 }
 
+.navbar-logo {
+  width: 175px;
+}
+
 #login-btn {
   color: black;
   font-weight: 800;
@@ -81,14 +85,18 @@ h1,h2,h3,h4,h5,h6,p, .h-largecaps {
   font-size: .75em;
 }
 
-.search-box {
-  border-radius: 50px;
+.navbar-search-container{
   position: relative;
-  left: 15%;
+  width: 50%;
+}
+
+.search-box {
+  display: block;
+  border-radius: 50px;
   width: 100%;
 }
 
-@media (max-width: 995px) {
+@media (max-width: 500px) {
   .search-box {
     display: none;
   }
@@ -195,6 +203,10 @@ footer {
 
 /* Search bar */
 
+.homepage-search-container {
+  position: relative;
+}
+
 .search-bar {
   border-radius: 50px !important;
 }
@@ -225,7 +237,8 @@ footer {
 }
 
 .home-title-container {
-  margin-top: 300px;
+
+  width: auto;
 
   h4 {
     clear: left;
@@ -262,32 +275,46 @@ footer {
   max-width: 150px;
 }
 
-div.profile-banner-avatar:hover {
-  -webkit-filter: brightness(70%);
-  -webkit-transition: all 1s ease;
-  -moz-transition: all 1s ease;
-  -o-transition: all 1s ease;
-  transition: all 1s ease;
+.profile-picture:hover {
+  opacity: .5;
+  transition:opacity 1s ease;
 }
 
 div.profile-banner-avatar:hover > label {
   opacity: 1;
+}
 
+.banner-image-label {
+  z-index: 1000;
+  white-space: nowrap;
+  position: relative;
+  bottom: 250px;
+  left: 35%;
+  opacity:0;
+  transition:opacity 1s ease;
+}
+
+@media(max-width:500px){
+  left: 25%;
 }
 
 .profile-banner {
   height: 334px;
   position: relative;
   overflow: hidden;
-	background-color: gray;
 	color: white;
   display: flex;
   align-items: flex-end;
 }
 
+.profile-banner:hover >  .banner-image-label{
+  opacity: 1;
+}
+
 .profile-banner-content {
   align-items: flex-end;
   position: relative;
+  right: 217px;
   bottom: 25px;
   display: flex;
   height: 175px;
@@ -917,9 +944,12 @@ div.profile-banner-avatar:hover > label {
 // Styles used for live search results
 
 .live-search-results {
-  height: 250px;
+  position: absolute;
+  height: 200px;
   overflow: auto;
   padding-left: 0;
+  z-index: 1000;
+  width: 100%;
 
   div {
     background-color: rgba(255, 255, 255, 0.5);

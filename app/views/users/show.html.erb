@@ -1,13 +1,21 @@
 <%= cloudinary_js_config %>
 
 <div class="container content-container" id="user_id_container" data-user_id=<%=@user.id%>>
-
   <!-- Colorful header to artist profile -->
-  <div class="profile-banner">
-    <div class="profile-banner-content">
-      <!-- Background image -->
-      <img src="" class="">
-      <div class="profile-banner-avatar", id="profile-picture">
+  <% if @user.banner_picture? %>
+    <div class="profile-banner" style="background-image: <%= Cloudinary::Utils.cloudinary_url(@user.banner_picture) %>">
+  <% else %>
+    <div class="profile-banner" style="background-color: gray;">
+  <% end %>
+    <h6 class="banner-image-label">
+      <label>
+        Change Your Banner Image
+        <%= cl_image_upload_tag(:banner_picture, :html => {:class => "image_upload"}) %>
+      </label>
+    </h6>
+     <div class="profile-banner-content">
+  <!-- Background image -->
+      <div class="profile-banner-avatar" id="profile-picture">
         <%= cl_image_tag(@user.picture, :alt => "Avatar", :width => 175, :height => 175, class: "profile-picture rounded-circle float-left img-circle") if @user.picture? %>
         <%= cl_image_tag("static/blank_user.png", :width => 175, :height => 175 , :alt => "User Image", class: "profile-picture rounded-circle float-left img-circle") unless @user.picture? %>
         <label class="upload-profile-pic-label" id="upload-profile-pic-label">

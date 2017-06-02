@@ -47,11 +47,21 @@ class ArtistSearchContainerComponent extends React.Component {
     }
 
     render(){
-        return(
-            <div>
-                <ArtistSearchComponent searchPath={this.onChange} submitSearch={this.submitSearch} showButton={this.state.showButton} />
-                <ArtistsComponent artists={this.state.artists} showButton={this.state.showButton} entry={this.state.entry} submitSearch={this.submitSearch}/>
-            </div>
-        );
+        if(this.props.navbar){
+            return(
+                <div>
+                    <ArtistSearchNavBarComponent searchPath={this.onChange} submitSearch={this.submitSearch} />
+                    <ArtistsComponent artists={this.state.artists} showButton={this.state.showButton} entry={this.state.entry} submitSearch={this.submitSearch}/>
+                </div>
+            )
+        }
+        else {
+            return(
+                <div>
+                    <ArtistSearchComponent searchPath={this.onChange} submitSearch={this.submitSearch} showButton={this.state.showButton} />
+                    <ArtistsComponent artists={this.state.artists} showButton={this.state.showButton} entry={this.state.entry} submitSearch={this.submitSearch}/>
+                </div>
+            );
+        }
     }
 }

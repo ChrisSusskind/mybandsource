@@ -1,10 +1,10 @@
 <div class="container-fluid">
 
 	<div class="jumbotron jumbotron-main">
-		<div class="home-title-container">
+		<div class="home-title-container my-auto">
 			<h3 class="display-4 text-center">Reinventing Music Conversation</h3>
 			<h4 class="text-center">Rate, Review, & Discuss Artists</h4>
-			<%= react_component "ArtistSearchContainerComponent", {searchPath: search_artists_path, submitPath: submit_search_path} %>
+			<%= react_component "ArtistSearchContainerComponent", {searchPath: search_artists_path, submitPath: submit_search_path, navbar: false}, class: "homepage-search-container" %>
 		</div>
 	</div>
 	

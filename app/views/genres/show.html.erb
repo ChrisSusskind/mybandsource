@@ -4,7 +4,7 @@
   <h3><%= @genre.name.upcase%></h3>
 
   <div class="cards artist-card-row">
-    <% @genre.users.each do |artist| %>
+    <% @genre.users.order(:name).each do |artist| %>
       <%= render partial: 'shared/artist_card', locals: {artist: artist} %>
     <% end %>
   </div>
