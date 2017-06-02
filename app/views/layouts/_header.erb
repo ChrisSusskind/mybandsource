@@ -8,12 +8,12 @@
 
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 
-      <% unless current_page?(controller: 'home', action: 'index') %>
+      <% unless current_page?('/') %>
         <%= react_component "ArtistSearchContainerComponent", {searchPath: search_artists_path, submitPath: submit_search_path, navbar: true}, class: "mx-auto navbar-search-container" %>
       <ul class="nav navbar-nav">
       <% end %>
 
-      <% if current_page?(controller: 'home', action: 'index') %>
+      <% if current_page?('/') %>
       <ul class="nav navbar-nav ml-auto">
       <% end %>
 
