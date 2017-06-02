@@ -1,4 +1,4 @@
-<div class="artist-card">
+<div class="artist-card mx-auto">
   <%= link_to cl_image_tag(artist.picture), user_path(artist), method: :get if artist.picture? %>
   <%= link_to cl_image_tag("static/blank_user"), user_path(artist), method: :get unless artist.picture? %>
 

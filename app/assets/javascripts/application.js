@@ -13,12 +13,12 @@
 //= require tether
 //= require jquery
 //= require jquery_ujs
+//= require 'jquery.timeago.js'
+//= require 'jquery.debounce.js'
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require 'starrating.js'
 //= require 'review.js'
-//= require 'jquery.timeago.js'
-//= require 'jquery.debounce.js'
 //= require react
 //= require cloudinary
 //= require cloudinary/processing
@@ -26,7 +26,28 @@
 //= require components
 
 $(document).on('ready page: load', function() {
-  console.log("Should be seeing this dick 0=======(-)");
+
+    $('#carouselExample').on('slide.bs.carousel', function (e) {
+
+        var $e = $(e.relatedTarget);
+        var idx = $e.index();
+
+        var itemsPerSlide = 3;
+        var totalItems = $('.carousel-item').length;
+
+        if (idx >= totalItems-(itemsPerSlide-1)) {
+            var it = itemsPerSlide - (totalItems - idx);
+            for (var i=0; i<it; i++) {
+                // append slides to end
+                if (e.direction=="left") {
+                    $('.carousel-item').eq(i).appendTo('.carousel-inner');
+                }
+                else {
+                    $('.carousel-item').eq(0).appendTo('.carousel-inner');
+                }
+            }
+        }
+    });
 
     if($.fn.cloudinary_fileupload !== undefined) {
     $("input.cloudinary-fileupload[type=file]").cloudinary_fileupload();

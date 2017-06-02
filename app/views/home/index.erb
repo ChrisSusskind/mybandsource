@@ -18,11 +18,7 @@
 			<p>Discover and explore conversations around artists.</p>
 		</div>
 
-		<div class="artist-card-row">
-      <% @artists.each do |artist| %>
-        <%= render partial: 'shared/artist_card', locals: {artist: artist} %>
-      <% end %>
-		</div>
+    <%= render partial: 'artist_carousel' %>
 	</div>
 
 	
