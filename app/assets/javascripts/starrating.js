@@ -12,7 +12,7 @@ var ratings_list = [];
  2. Loads style for ratings list being displayed
  3. Changes timestamp displayed for rating to english representation
  */
-$(document).on('turbolinks:load', function(){
+$(document).on('ready page:load', function(){
     loadRatingEntry();
     loadRatingsStyle();
     changeTimeDisplays();

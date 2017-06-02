@@ -24,7 +24,7 @@
 //= require react_ujs
 //= require components
 
-$(function() {
+$(document).on('ready page: load', function() {
   console.log("Should be seeing this dick 0=======(-)");
 
     if($.fn.cloudinary_fileupload !== undefined) {

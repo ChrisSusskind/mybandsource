@@ -11,7 +11,7 @@ Performs following actions when document is ready
 2. Adds click listener to window that hides dropdown menu when user clicks anywhere else on the screen
 3. Adds click listeners to review/discussion toggle buttons
  */
-$(document).on('turbolinks:load', function(){
+$(document).on('ready page:load', function(){
     user_id = $('#user_id_container').attr('data-user_id');
     console.log(user_id);
 
