@@ -12,8 +12,13 @@
         <% followings.each do |following| %>
             <div class="row follow-row">
               <div class="col-1">
-                <%= cl_image_tag(following.picture, :width => 50, :height => 50, :crop => :fill, :alt => "Avatar", class: "follow-pic rounded-circle img-circle") if following.picture? %>
-                <%= cl_image_tag("static/blank_user.png", :width => 50, :height => 50, :crop => :fill, :alt => "User Image", class: "follow-pic rounded-circle img-circle") unless following.picture? %> 
+                <% if following.is_artist %>
+                    <%= cl_image_tag(following.picture, :width => 50, :height => 50, :crop => :fill, :alt => "Avatar", class: "follow-pic") if following.picture? %>
+                    <%= cl_image_tag("static/blank_user.png", :width => 50, :height => 50, :crop => :fill, :alt => "User Image", class: "follow-pic") unless following.picture? %> 
+                <% else %>
+                    <%= cl_image_tag(following.picture, :width => 50, :height => 50, :crop => :fill, :alt => "Avatar", class: "follow-pic rounded-circle img-circle") if following.picture? %>
+                    <%= cl_image_tag("static/blank_user.png", :width => 50, :height => 50, :crop => :fill, :alt => "User Image", class: "follow-pic rounded-circle img-circle") unless following.picture? %> 
+                <% end %>    
               </div>
               <div class="col-8">
                 <h5><%= link_to following.name, "/users/#{following.id}", method: "get", class: "follow-name" %></h5>
