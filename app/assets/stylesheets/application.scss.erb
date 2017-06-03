@@ -100,18 +100,21 @@ h1,h2,h3,h4,h5,h6,p, .h-largecaps {
   width: 100%;
 }
 
-@media (max-width: 500px) {
-  .search-box {
-    display: none;
-  }
+@media (max-width: 768px) {
 
   .user-dropdown {
     padding-left: 0!important;
     padding-top: 10px!important;
+    width: 100px;
   }
 
   .notification-dropdown {
     padding-top: 10px!important;
+    width: 100px;
+  }
+
+  #user_dropdown_button {
+    padding-left: 0!important;
   }
 }
 
@@ -328,11 +331,22 @@ footer {
 
 .home-title-container {
 
-  width: auto;
+  width: 100%;
 
   h4 {
     clear: left;
     margin-bottom: 50px;
+  }
+
+  @media(max-width: 500px) {
+
+    h3{
+        font-size: x-large;
+    }
+
+    h4{
+      font-size: large;
+    }
   }
 }
 
