@@ -3,7 +3,7 @@ class ArtistSearchContainerComponent extends React.Component {
         super(props);
         this.state = {entry: "", artists: [], showButton: true};
         this.onChange = this.onChange.bind(this);
-        this.searchArtists = $.throttle(1000, this.searchArtists.bind(this));
+        this.searchArtists = $.debounce(1000, this.searchArtists.bind(this));
         this.submitSearch = this.submitSearch.bind(this);
     }
 
