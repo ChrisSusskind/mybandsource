@@ -32,6 +32,10 @@ Rails.application.routes.draw do
     get '/reviews/reorder/:recent_order', to: 'reviews#reorder'
     get '/reviews/show_responses', to: 'reviews#show_responses'
     get '/reviews/hide_responses', to: 'reviews#hide_responses'
+
+    #Routes for sharing review and responses
+    post '/share/review/:id', to: 'reviews#share'
+    post '/share/reviews/:review_id/response', to: 'responses#share'
   end
 
   #User relationship create and destroy routes
