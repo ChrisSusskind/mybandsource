@@ -13,7 +13,7 @@
             <%= cl_image_tag("static/facebook_icon.png", :width => 50, :height => 50, :crop => :fill, class: "facebook-icon-sharepage", onclick: "shareFacebook('#{link}');") %>
           </div>
           <div class="col-2">
-            <%= link_to(cl_image_tag("static/twitter_icon.png", :width => 55, :height => 55, :crop => :fill, class: "twitter-icon-sharepage"), "https://twitter.com/intent/tweet?text=hey&url=#{link}", onclick: "window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=350,height=250');return false;") %>
+            <%= link_to(cl_image_tag("static/twitter_icon.png", :width => 55, :height => 55, :crop => :fill, class: "twitter-icon-sharepage"), "https://twitter.com/intent/tweet?text=Check+out+this+review+on+mybandsource&url=#{link}", onclick: "window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=350,height=250');return false;") %>
           </div>
         </div>
       </div>
