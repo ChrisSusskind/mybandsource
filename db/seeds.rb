@@ -10,8 +10,8 @@ genre_list = [
 	"Pop",
   "Rock",
   "Alternative",
-  "HipHop",
-  "RnB",
+  "Hip Hop",
+  "R&B",
   "Electronic",
   "Country",
   "Indie"
@@ -23,7 +23,13 @@ genre_index = 0
 Genre.populate genre_list.length do |genre|
   genre.name 				= genre_list[genre_index]
 	genre.description 		= Faker::Lorem.sentence
-  genre.picture = "static/" +  genre_list[genre_index] + "_card_image"
+  if genre_list[genre_index] == "Hip Hop"
+    genre.picture = "static/" + "HipHop" + "_card_image"
+  elsif genre_list[genre_indx] == "R&B"
+		genre.picture = "static/" + "RnB" + "_card_image"
+	else
+    genre.picture = "static/" +  genre_list[genre_index] + "_card_image"
+	end
 	genre_index += 1
 end
 

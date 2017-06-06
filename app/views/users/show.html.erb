@@ -57,9 +57,9 @@
       <div class="col-lg-2 col-md-4 col-sm-4 offset-xl-1 offset-lg-1">
         <div class="follow_count">
           <p class="followers_text right_align">Followers</p>
-          <p class="right_align"> <%= link_to "#{@user.followers.count} followers", "#follower_modal", "data-toggle": "modal" %> </p>
+          <p class="right_align"> <%= link_to "#{@user.followers.count} followers", "#follower_modal", "data-toggle": "modal", class: "follow-number" %> </p>
           <p class="followers_text right_align">Following</p>
-          <p class="right_align"> <%= link_to "#{@user.following.count} following", "#following_modal", "data-toggle": "modal" %> </p>
+          <p class="right_align"> <%= link_to "#{@user.following.count} following", "#following_modal", "data-toggle": "modal", class: "follow-number" %> </p>
         </div>
       </div>
 
@@ -136,8 +136,12 @@
       </div>
       <div class="profile-sidebar-group">
         <h3>Social Profiles</h3>
-        <h4>Twitter</h4>
-        <h4>Facebook</h4>
+        <% if @user.twitter_url? %>
+          <h4><%= link_to "Twitter", @user.twitter_url, target: "_blank" %></h4>
+        <% end %>
+        <% if @user.facebook_url? %>
+          <h4><%= link_to "Facebook", @user.facebook_url, target: "_blank" %></h4>
+        <% end %>
       </div>
     </div>
   </div>

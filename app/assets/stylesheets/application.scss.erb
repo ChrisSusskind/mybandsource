@@ -468,11 +468,14 @@ div.profile-banner-avatar:hover > label {
   display: flex;
   align-items: flex-start;
   max-width: 750px;
+  width: 100%;
   margin: 60px auto;
 }
 
 .profile-content-column {
   margin-right: 20px;
+  width: 100%;
+  max-width: 645px;
   p {
     font-size: 1.1em;
     font-weight: 200;
@@ -486,6 +489,7 @@ div.profile-banner-avatar:hover > label {
   display: block;
   border-bottom: 1px solid #DDD;
   margin-bottom: 20px;
+  width: 100%;
   h1 {
     font-size: 1.1em;
     font-weight: 600;
@@ -518,6 +522,9 @@ div.profile-banner-avatar:hover > label {
     font-weight: 200;
     color: #AAA;
   }
+  a {
+    color: #AAA;
+  }
 }
 
 .follow-button {
@@ -548,6 +555,10 @@ div.profile-banner-avatar:hover > label {
 .follow_count {
 	position: relative;
 	top: 20px;
+
+  a.follow-number {
+    color: black;
+  }
 }
 
 .bio_margin {
