@@ -112,6 +112,11 @@ class ReviewsController < ApplicationController
     render :action => 'destroy_review_display.js.erb', locals: {user: @user, review: @review}
   end
 
+  def share
+    link = root_url[0...-1] + user_path(@user) + "?review=" + params[:id] + "%23review" + params[:id]
+    render :action => 'share_review.js.erb', locals: {link: link}
+  end
+
   private
   def review_params
     params.require(:review).permit(:comment, :rating)

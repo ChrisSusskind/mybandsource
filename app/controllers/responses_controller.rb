@@ -39,6 +39,11 @@ class ResponsesController < ApplicationController
     render :action => 'response_display', locals: {is_artist: @user.is_artist}
   end
 
+  def share
+    link = root_url[0...-1] + user_path(@user) + "?review=" + params[:review_id] + "%26response_link=true" + "%23review" + params[:review_id]
+    render :action => 'share_response.js.erb', locals: {link: link}
+  end
+
   private
 
   def set_user

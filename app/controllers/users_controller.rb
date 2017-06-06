@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  include UsersHelper
   before_action :set_user, only: [:show, :upload_avatar]
 
   # GET /users
@@ -21,9 +20,16 @@ class UsersController < ApplicationController
     else
       @reviews = @user.left_reviews.page(params[:page]).order('updated_at DESC').per(25)
     end
-    respond_to do |format|
-      format.html
-      format.js {render :action => '../reviews/user_profile/show.js'}
+    if params[:review].present?
+      if params[:response_link].present?
+        top_review = Review.find(params[:review])
+        render 'show', locals: {top_review: top_review, response_link: true}
+      else
+        top_review = Review.find(params[:review])
+        render 'show', locals: {top_review: top_review}
+      end
+    else
+      render 'show'
     end
   end
 

@@ -8,7 +8,7 @@
             <%= link_to(cl_image_tag('static/rockon_icon.png', alt: 'Rockon Icon', width: 20, height: 20, crop: :fill, class: "review_icon rockon_icon_flipped"), "/users/#{user_id}/reviews/#{review.id}/responses/#{response.id}/remove_upvote", method: :delete, remote: true) unless response.upvotes_userlist.nil? %>
         <% end %>
         <%= link_to(cl_image_tag('static/trashcan_icon.png', alt: "Trashcan Icon", width: 20, height: 20, crop: :fill, class: "review_icon"), user_review_response_path(user_id, review, response), method: :delete, remote: true) if response.user == current_user %>
-        <%= link_to(cl_image_tag('static/share_icon.png', alt: "Share Icon", width: 20, height: 20, crop: :fill, class:"review_icon"), "#share_modal", "data-toggle": "modal") %>
+        <%= link_to(cl_image_tag('static/share_icon.png', alt: "Share Icon", width: 20, height: 20, crop: :fill, class:"review_icon"), "/users/#{user_id}/share/reviews/#{response.review_id}/response", method: :post, remote: true) %>
     <% else %>
         <%= cl_image_tag('static/rockon_icon.png', alt: 'Rockon Icon', width: 20, height: 20, crop: :fill, class: "review_icon") %>
     <% end %>
