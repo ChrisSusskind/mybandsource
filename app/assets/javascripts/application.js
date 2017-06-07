@@ -53,6 +53,18 @@ $(document).on('ready page: load', function() {
     $("input.cloudinary-fileupload[type=file]").cloudinary_fileupload();
   }
 
+  $('.profile-picture-overlay').hover(function(){
+      $(".change-profile-pic-text").css("opacity", 1);
+    }, function(){
+      $(".change-profile-pic-text").css("opacity", 0);
+  });
+
+  $('.header-picture-overlay').hover(function(){
+      $(".change-header-pic-text").css("opacity", 1);
+    }, function(){
+      $(".change-header-pic-text").css("opacity", 0);
+  });
+
   console.log("Running FB init script");
   window.fbAsyncInit = function() {
       FB.init({

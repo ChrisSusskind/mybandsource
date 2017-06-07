@@ -7,8 +7,26 @@
   <div class="profile-banner" style="background-color: purple;">
   <% end %>
 
+    <% if @user == current_user %>
+      <div class="header-picture-overlay">
+        <label class="change-header-pic-text">
+          Change your Header Photo
+          <%= cl_image_upload_tag(:banner_picture, :html => {:class => "image_upload"}) %>
+        </label>
+      </div>
+    <% end %>
+
     <div class="profile-banner-content">
       <div class="profile-banner-avatar" id="profile-picture">
+        <% if @user == current_user %>
+          <div class="profile-picture-overlay">
+            <label class="change-profile-pic-text">
+              Change your Profile Picture
+              <%= cl_image_upload_tag(:picture, :html => {:class => "image_upload"}) %>
+            </label>
+          </div>
+        <% end %>
+
         <% if @user.is_artist %>
             <%= cl_image_tag(@user.picture, :alt => "Avatar", :width => 246, :height => 246, class: "profile-picture float-left") if @user.picture? %>
             <%= cl_image_tag("static/blank_user.png", :width => 246, :height => 246 , :alt => "User Image", class: "profile-picture float-left") unless @user.picture? %>
@@ -66,7 +84,7 @@
       <div class="review-mode-toggle">
         <%= link_to("Reviews", "/users/#{@user.id}/reviews/hide_responses", method: "get", class: "review-toggle active", id: "reviews_button", remote: true) %>
         <%= link_to("Discussion", "/users/#{@user.id}/reviews/show_responses", method: "get", class: "discussion-toggle", id: "discussion_button", remote: true) %>
-        <div class="dropdown show order-dropdown">
+        <div class="dropdown order-dropdown">
           <a class="dropdown-toggle" href="#" id="order-dropdown-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Arrange Reviews By
           </a>
