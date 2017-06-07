@@ -25,7 +25,7 @@ Genre.populate genre_list.length do |genre|
 	genre.description 		= Faker::Lorem.sentence
   if genre_list[genre_index] == "Hip Hop"
     genre.picture = "static/" + "HipHop" + "_card_image"
-  elsif genre_list[genre_indx] == "R&B"
+  elsif genre_list[genre_index] == "R&B"
 		genre.picture = "static/" + "RnB" + "_card_image"
 	else
     genre.picture = "static/" +  genre_list[genre_index] + "_card_image"
