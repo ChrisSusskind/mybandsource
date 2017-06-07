@@ -98,12 +98,12 @@
       <div class="review-container">
         <% if user_signed_in? && @user.is_artist && @review.receiving_user_id.nil? %>
             <button onclick="loadReviewForm()" id="review_load_button" class="btn btn-danger button-home" style="display: none">Edit Review</button>
-            <div class="row" id="review_form">
+            <div id="review_form" class="review-form row">
               <%= render partial: 'reviews/review_form', locals: {artist: @user, review: @review} %>
             </div>
         <% elsif user_signed_in? && @user.is_artist %>
             <button onclick="loadReviewForm()" id="review_load_button" class="btn btn-danger button-home">Edit Review</button>
-            <div class="row" id="review_form" style="display: none">
+            <div id="review_form" class="review-form row" style="display: none">
               <%= render partial: 'reviews/review_form', locals: {artist: @user, review: @review} %>
             </div>
         <% end %>

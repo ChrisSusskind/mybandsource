@@ -1,20 +1,25 @@
-<div class="col-4" id="leave_rating">
-  <span>&starf;</span>
-  <span>&starf;</span>
-  <span>&starf;</span>
-  <span>&starf;</span>
-  <span>&starf;</span>
-</div>
-<div class="col-4" id="review_form_for">
-  <%= form_for([artist, review], remote: true) do |f| %>
-      <p>
-        <%= f.label :comment %><br>
-        <%= f.text_area :comment, :value=>review.nil? ? "" : review.comment %>
-      </p>
-      <%= f.hidden_field :rating, :id=>"rating_field", :value=>review.nil? ? 6 : review.rating%>
-      <%= f.submit review.rating == -1 ? "Leave Review" : "Update Review" %>
+<div class="picture-container col-2">
+  <% if current_user.is_artist %>
+      <%= cl_image_tag(current_user.picture, :alt => "Avatar", :width => 70, :height => 70, class: "review-form-picture") if current_user.picture? %>
+      <%= cl_image_tag("static/blank_user.png", :width => 70, :height => 70 , :alt => "User Image", class: "review-form-picture") unless current_user.picture? %>
+  <% else %>
+      <%= cl_image_tag(current_user.picture, :alt => "Avatar", :width => 70, :height => 70, class: "review-form-picture rounded-circle img-circle d-block mx-auto") if current_user.picture? %>
+      <%= cl_image_tag("static/blank_user.png", :width => 70, :height => 70 , :alt => "User Image", class: "review-form-picture rounded-circle img-circle d-block mx-auto") unless current_user.picture? %>
   <% end %>
 </div>
-<div class="col-4">
-  <%= link_to(cl_image_tag('static/trashcan_icon.png', alt: "Trashcan Icon", width: 20, height: 20, crop: :fill, class: "review_icon"), [review.receiving_user, review], method: :delete, remote: true) if review.leaving_user == current_user %>
+<div class="leave-rating-container col-8" id="leave_rating">
+  <div class="star-container mx-auto">
+    Leave a Review:&nbsp
+    <span>&starf;</span>
+    <span>&starf;</span>
+    <span>&starf;</span>
+    <span>&starf;</span>
+    <span>&starf;</span>
+  </div>
+  <div class="text-container">
+    <textarea id="review-form-text" class="review-form-text mx-auto" rows="4"></textarea>
+  </div>
+</div>
+<div class="submit-btn-container col-2">
+  <button class="btn btn-danger btn-pill submit-btn">Submit</button>
 </div>
