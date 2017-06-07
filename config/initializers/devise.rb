@@ -239,7 +239,7 @@ Devise.setup do |config|
   # should add them to the navigational formats lists.
   #
   # The "*/*" below is required to match Internet Explorer requests.
-   config.navigational_formats = ['*/*', :html, :json]
+  config.navigational_formats = ['*/*', :html, :json]
 
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete
@@ -249,7 +249,6 @@ Devise.setup do |config|
   # up on your models and hooks.
   config.omniauth :facebook, "243060176100394", "c7a89e4201587c7cc688a8e751f4c98a" # App ID, App Secret
 
-  # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
   #
