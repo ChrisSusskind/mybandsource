@@ -8,7 +8,7 @@ class ReviewTest < ActiveSupport::TestCase
   test "invalid reviews" do
     review = Review.new
     review2 = Review.new
-    @user = User.first
+    @user = User.create(name: 'peter', email: 'peter@test.com', password: 'xxxxxxx', password_confirmation: 'xxxxxxx')
 
     # Empty review
     refute review.valid?
@@ -24,8 +24,8 @@ class ReviewTest < ActiveSupport::TestCase
 
   test "valid review" do
     review = Review.new
-    @user = User.first
-    @user2 = User.second
+    @user = User.create(name: 'peter', email: 'peter@test.com', password: 'xxxxxxx', password_confirmation: 'xxxxxxx')
+    @user2 = User.create(name: 'peter', email: 'peter2@test.com', password: 'xxxxxxx', password_confirmation: 'xxxxxxx')
     review.receiving_user_id = @user.id
     review.leaving_user_id = @user2.id
     assert review.valid?

@@ -33,8 +33,8 @@ class NotificationTest < ActiveSupport::TestCase
   end
 
   test "valid following notification" do
-    @user = User.first
-    @user2 = User.second
+    @user = User.create(name: 'peter', email: 'peter@test.com', password: 'xxxxxxx', password_confirmation: 'xxxxxxx')
+    @user2 = User.create(name: 'peter', email: 'peter2@test.com', password: 'xxxxxxx', password_confirmation: 'xxxxxxx')
     notification = Notification.new
     notification.generating_user_id = @user.id
     notification.generating_user_name = "Eric"
@@ -46,9 +46,9 @@ class NotificationTest < ActiveSupport::TestCase
   end
 
   test "valid review notification" do
-    @user = User.first
-    @artist = User.artists.second
-    @review = Review.first
+    @user = User.create(name: 'peter', email: 'peter@test.com', password: 'xxxxxxx', password_confirmation: 'xxxxxxx')
+    @artist = User.create(name: 'peter', email: 'peter2@test.com', password: 'xxxxxxx', password_confirmation: 'xxxxxxx', is_artist: true)
+    @review = Review.create(receiving_user_id: @user.id, leaving_user_id: @artist.id)
     notification = Notification.new
     notification.generating_user_id = @user.id
     notification.generating_user_name = "Eric"
@@ -61,9 +61,9 @@ class NotificationTest < ActiveSupport::TestCase
   end
 
   test "valid response notification" do
-    @user = User.first
-    @artist = User.artists.second
-    @response = Response.first
+    @user = User.create(name: 'peter', email: 'peter@test.com', password: 'xxxxxxx', password_confirmation: 'xxxxxxx')
+    @artist = User.create(name: 'peter', email: 'peter2@test.com', password: 'xxxxxxx', password_confirmation: 'xxxxxxx', is_artist: true)
+    @response = Response.new
     notification = Notification.new
     notification.generating_user_id = @user.id
     notification.generating_user_name = "Eric"
