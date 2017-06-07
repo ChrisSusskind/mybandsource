@@ -9,8 +9,8 @@ class ResponseTest < ActiveSupport::TestCase
     response = Response.new
     response2 = Response.new
     response3 = Response.new
-    @user = User.first
-    @review = Review.first
+    @user = User.create(name: 'peter', email: 'peter@test.com', password: 'xxxxxxx', password_confirmation: 'xxxxxxx')
+    @review = Review.create(receiving_user_id: @user.id, leaving_user_id: @user.id)
 
     # Empty response
     refute response.valid?
@@ -33,8 +33,8 @@ class ResponseTest < ActiveSupport::TestCase
 
   test "valid response" do
     response = Response.new
-    @user = User.first
-    @review = Review.first
+    @user = User.create(name: 'peter', email: 'peter@test.com', password: 'xxxxxxx', password_confirmation: 'xxxxxxx')
+    @review = Review.create(receiving_user_id: @user.id, leaving_user_id: @user.id)
     response.comment = "Hey"
     response.user_id = @user.id
     response.review_id = @review.id

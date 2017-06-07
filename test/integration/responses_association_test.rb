@@ -2,8 +2,8 @@ require 'test_helper'
 
 class ResponsesAssociationTest < ActionDispatch::IntegrationTest
   test "create response review/user association" do
-    review = Review.first
-    user = User.first
+    user = User.create(name: 'peter', email: 'peter@test.com', password: 'xxxxxxx', password_confirmation: 'xxxxxxx')
+    review = Review.create(receiving_user_id: user.id, leaving_user_id: user.id)
     assert_difference('review.responses.count', 1) do
       Response.create(comment: "Test", user_id: user.id, review_id: review.id)
     end

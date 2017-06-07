@@ -2,7 +2,7 @@ require 'test_helper'
 
 class GenresControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @genre = Genre.first
+    @genre = Genre.create(name: "notevenmusic")
   end
 
   test "should get index" do

@@ -9,8 +9,8 @@ class NotificationTest < ActiveSupport::TestCase
     notification = Notification.new
     notification2 = Notification.new
     notification3 = Notification.new
-    @user = User.first
-    @user2 = User.second
+    @user = User.create(name: 'peter', email: 'peter@test.com', password: 'xxxxxxx', password_confirmation: 'xxxxxxx')
+    @user2 = User.create(name: 'peter', email: 'peter2@test.com', password: 'xxxxxxx', password_confirmation: 'xxxxxxx')
 
     # Empty notification
     refute notification.valid?
