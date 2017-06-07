@@ -8,4 +8,11 @@ class GenresAssociationTest < ActionDispatch::IntegrationTest
       genre.users << user
     end
   end
+
+  test "create_user_genre_association_pt2" do
+    user = User.create(name: 'peter', email: 'peter@test.com', password: 'xxxxxxx', password_confirmation: 'xxxxxxx')
+    genre = Genre.create(name: "notevenmusic")
+    user.genre = genre
+    assert user.genre == genre
+  end
 end
