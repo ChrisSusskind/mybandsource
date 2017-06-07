@@ -38,11 +38,6 @@ $(document).on('ready page:load', function(){
 
 });
 
-//Function that is called when dropdown menu button is clicked on (toggles whether options are shown)
-function toggleDropdown() {
-    document.getElementById('reviews_dropdown').classList.toggle("show");
-}
-
 /*
 Function that is called when user selects dropdown option of ordering shown reviews by age (updated_at time) on artist page
 Removes all reviews currently shown on the screen and reloads 10 initial ones using helper function show_more_reviews()

@@ -23,7 +23,7 @@
 @import "bootstrap";
 
 // Importing google fonts pack
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700,800,900');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700,800,900');
 
 // Importing glyphicons
 @import "glyphicons";
@@ -62,6 +62,7 @@ h1,h2,h3,h4,h5,h6,p, .h-largecaps {
   font-size: 9px;
   font-weight: 500;
   letter-spacing: 1px;
+  padding: 1.5em;
 }
 
 
@@ -398,59 +399,8 @@ div.profile-banner-avatar:hover > label {
   transition:opacity 1s ease;
 }
 
-@media(max-width:500px){
-  left: 25%;
-}
-
-.profile-banner {
-  height: 334px;
-  position: relative;
-  overflow: hidden;
-	color: white;
-  display: flex;
-  align-items: flex-end;
-}
-
 .profile-banner:hover >  .banner-image-label{
   opacity: 1;
-}
-
-.profile-banner-content {
-  align-items: flex-end;
-  position: relative;
-  bottom: 25px;
-  display: flex;
-  height: 175px;
-  padding: 0 15%;
-  width: 100%;
-}
-
-.profile-banner-avatar {
-  height: 175px;
-  width: 175px;
-}
-
-.profile-banner-info {
-  flex-grow: 2;
-  padding-left: 20px;
-  line-height: .9em;
-  font-family: 'Montserrat', Helvetica, sans-serif;
-
-  h1 {
-    font-size: 1.7em;
-    font-weight: 600;
-    text-transform: none;
-  }
-  h2 {
-    font-size: .6em;
-    font-weight: 500;
-    opacity: .6;
-    text-transform: uppercase;
-    letter-spacing: .15em;
-  }
-  h4 {
-    font-weight: 200;
-  }
 }
 
 .profile-banner-stats {
@@ -464,111 +414,279 @@ div.profile-banner-avatar:hover > label {
   }
 }
 
-.profile-content {
+
+div.profile-banner {
+  height: 457px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+
+  div.profile-banner-content {
+    position: relative;
+    bottom: 41px;
+    height: 246px;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 15%;
+    width: 100%;
+
+    div.profile-banner-avatar {
+      height: 246px;
+      width: 246px;
+    }
+
+    div.profile-banner-info {
+      font-family: 'Montserrat', Helvetica, sans-serif;
+      height: 205px;
+      width: 257px;
+      padding-left: 30px;
+
+      h1 {
+        height: 62px;
+        color: #ffffff;
+        font-size: 36px;
+        font-weight: bold;
+        line-height: 62px;
+        margin-bottom: 5px;
+      }
+
+      h2 {
+        height: 17px;
+        color: rgba(255,255,255,.5);
+        font-size: 14px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        line-height: 17px;
+        margin-bottom: 20px;
+      }
+
+      div.profile-numbers {
+        height: 37px;
+        margin-bottom: 16px;
+      }
+
+      div.profile-banner-buttons-container {
+        width: 257px;
+        height: 48px;
+        display: inline;
+        white-space: nowrap;
+        margin-right: 10px;
+
+        a.follow-button {
+          background-color: #AA182A;
+          box-shadow: none;
+          border: none !important;
+          width: 132px;
+          height: 48px;
+          padding: 15px 15px 15px 15px;
+          color: #ffffff;
+          font-size: 13px;
+          line-height: 16px;
+          text-align: center;
+          margin: 0 0 0 0;
+        }
+
+        div.share-link-container {
+          height: 16px;
+          width: 113px;
+          display: inline;
+          margin-left: 12px;
+
+          a.share-link {
+            background-color: transparent;
+            border: none !important;
+            height: 16px;
+            font-size: 13px;
+            line-height: 16px;
+            color: #ffffff;
+          }
+        }
+      }
+    }
+
+    div.follow-container {
+      white-space: nowrap;
+
+      div.follow_count {
+        position: relative;
+        top: 20px;
+
+        p.followers_text {
+          margin-bottom: 0;
+        }
+
+        a.follow-number {
+          color: black;
+        }
+      }
+    }
+
+    @media (max-width: 993px) {
+      div.follow-container {
+        display: none;
+      }
+    }
+  }
+}
+
+div.profile-content {
+  font-family: 'Montserrat', Helvetica, sans-serif;
   display: flex;
   align-items: flex-start;
-  max-width: 750px;
   width: 100%;
-  margin: 60px auto;
-}
+  margin: 60px 60px;
 
-.profile-content-column {
-  margin-right: 20px;
-  width: 100%;
-  max-width: 645px;
-  p {
-    font-size: 1.1em;
-    font-weight: 200;
-    letter-spacing: .05em;
-    line-height: 1.4em;
-    color: #888;
+  div.profile-content-column {
+    width: 100%;
+    border-right: 1px solid #DDD;
+    padding-right: 30px;
+
+    div.profile-section {
+      display: block;
+      border-bottom: 1px solid #DDD;
+      width: 100%;
+
+      // First section
+
+      h1 {
+        height: 62px;
+        line-height: 62px;
+        font-size: 24px;
+        font-weight: 600;
+        text-transform: uppercase;
+        margin-bottom: 0;
+      }
+
+      p {
+        font-size: 24px;
+        font-weight: 300;
+        letter-spacing: 1px;
+        line-height: 35px;
+        color: #707070;
+        margin-bottom: 41px;
+      }
+    }
+
+    div.review-mode-toggle {
+
+      margin-top: 28px;
+
+      a {
+        height: 62px;
+        color: black;
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 62px;
+        margin-bottom: 5px;
+      }
+
+      a.discussion-toggle {
+        margin-left: 60px;
+      }
+
+      a.active {
+        border-bottom: 2px solid #AA182A;
+      }
+
+      div.order-dropdown {
+        float: right;
+
+        a.dropdown-item {
+          height: 31px;
+          color: black;
+          font-size: 12px;
+          font-weight: 400;
+          line-height: 31px;
+          margin-bottom: 5px;
+        }
+      }
+    }
+  }
+
+  div.profile-sidebar {
+    padding-left: 30px;
+    float: left;
+    width: 310px;
+    margin-right: 60px;
+
+    div.profile-sidebar-group {
+
+      h3 {
+        height: 62px;
+        color: black;
+        font-size: 12px;
+        font-weight: 300;
+        line-height: 62px;
+        text-transform: uppercase;
+      }
+
+      h4 {
+        height: 17px;
+        color: rgba(0,0,0,.5);
+        font-size: 14px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        line-height: 17px;
+        text-transform: uppercase;
+        position: relative;
+        bottom: 10px;
+      }
+
+      a.profile-social-icon {
+        margin-right: 20px;
+      }
+
+      div.claim-artist-container {
+
+        margin-top: 50px;
+
+        h1 {
+          height: 28px;
+          color: black;
+          font-size: 18px;
+          font-weight: bold;
+          line-height: 24px;
+          margin-bottom: 0;
+        }
+
+        a.claim-artist-link {
+          height: 28px;
+          color: #AA182A;
+          font-size: 18px;
+          font-weight: bold;
+          line-height: 24px;
+        }
+      }
+    }
   }
 }
 
-.profile-section {
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
   display: block;
-  border-bottom: 1px solid #DDD;
-  margin-bottom: 20px;
-  width: 100%;
-  h1 {
-    font-size: 1.1em;
-    font-weight: 600;
-    text-transform: uppercase;
-  }
-  p {
-    font-size: 1.1em;
-    font-weight: 200;
-    letter-spacing: .05em;
-    line-height: 1.4em;
-    color: #888;
-  }
 }
 
-.profile-sidebar {
-  border-left: 1px solid #DDD;
-  padding-left: 20px;
-  float: left;
-}
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover { background-color: #f1f1f1 }
 
-.profile-sidebar-group {
-  h3 {
-    font-size: .55em;
-    font-weight: 500;
-    text-transform: uppercase;
-  }
-  h4 {
-    text-transform: uppercase;
-    font-size: .6em;
-    font-weight: 200;
-    color: #AAA;
-  }
-  a {
-    color: #AAA;
-  }
-}
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show { display:block; }
 
-.follow-button {
-	background-color: rgb(184,0,25);
-	box-shadow: none;
-	border: none !important;
-}
 
-.follow-button:hover,
-.follow-button:focus,
-.follow-button:active {
-	background-color: blue;
-}
-
-.share_button {
-	background-color: transparent;
-	border: none !important;
-}
-
-.right_align {
-	text-align: right;
-}
-
-.followers_text {
-	margin-bottom: 0;
-}
-
-.follow_count {
-	position: relative;
-	top: 20px;
-
-  a.follow-number {
-    color: black;
-  }
-}
-
-.bio_margin {
-	margin-bottom: 20px;
-}
-
-.profile-genres-left-padding {
-	padding-left: 50px;
-	border-left: 1px solid lightgray;
-}
 
 /* Artist page review styling */
 
@@ -598,45 +716,10 @@ div.profile-banner-avatar:hover > label {
   text-shadow: 0 0 30px #AA182A;
 }
 
-.dropbtn {
-  background-color: #4CAF50;
-  cursor: pointer;
-}
-
-/* Dropdown button on hover & focus */
-.dropbtn:hover, .dropbtn:focus {
-  background-color: #3e8e41;
-}
-
 // Review Display
 .rating-stars {
 
 }
-
-
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover { background-color: #f1f1f1 }
-
-/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-.show { display:block; }
 
 /* Review display (partial view) styling */
 
@@ -722,8 +805,6 @@ div.profile-banner-avatar:hover > label {
 
 .search_result {}
 
-
-// PETER STYLING STARTS HERE
 
 // Override for bootsrap modal class to fix scrolling issue
 

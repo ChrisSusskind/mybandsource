@@ -1,60 +1,51 @@
 <%= cloudinary_js_config %>
 
-<div class="container content-container" id="user_id_container" data-user_id=<%=@user.id%>>
-  <!-- Colorful header to artist profile -->
+<div class="container" id="user_id_container" data-user_id=<%=@user.id%> >
   <% if @user.banner_picture? %>
-    <div class="profile-banner" style="background-image: <%= Cloudinary::Utils.cloudinary_url(@user.banner_picture) %>">
+  <div class="profile-banner" style="background-image: <%= Cloudinary::Utils.cloudinary_url(@user.banner_picture) %>">
   <% else %>
-    <div class="profile-banner" style="background-color: gray;">
+  <div class="profile-banner" style="background-color: purple;">
   <% end %>
-    <h6 class="banner-image-label">
-      <% if current_user == @user %>
-        <label>
-          Change Your Banner Image
-          <%= cl_image_upload_tag(:banner_picture, :html => {:class => "image_upload"}) %>
-        </label>
-      <% end %>
-    </h6>
-     <div class="profile-banner-content">
-  <!-- Background image -->
+
+    <div class="profile-banner-content">
       <div class="profile-banner-avatar" id="profile-picture">
         <% if @user.is_artist %>
-            <%= cl_image_tag(@user.picture, :alt => "Avatar", :width => 175, :height => 175, class: "profile-picture float-left") if @user.picture? %>
-            <%= cl_image_tag("static/blank_user.png", :width => 175, :height => 175 , :alt => "User Image", class: "profile-picture float-left") unless @user.picture? %>
-      <% else %>
-            <%= cl_image_tag(@user.picture, :alt => "Avatar", :width => 175, :height => 175, class: "profile-picture rounded-circle float-left img-circle") if @user.picture? %>
-            <%= cl_image_tag("static/blank_user.png", :width => 175, :height => 175 , :alt => "User Image", class: "profile-picture rounded-circle float-left img-circle") unless @user.picture? %>
-      <% end %>
-        <% if current_user == @user %>
-          <label class="upload-profile-pic-label" id="upload-profile-pic-label">
-            Change Your Profile Picture
-            <%= cl_image_upload_tag(:picture, :html => {:class => "image_upload"}) %>
-          </label>
+            <%= cl_image_tag(@user.picture, :alt => "Avatar", :width => 246, :height => 246, class: "profile-picture float-left") if @user.picture? %>
+            <%= cl_image_tag("static/blank_user.png", :width => 246, :height => 246 , :alt => "User Image", class: "profile-picture float-left") unless @user.picture? %>
+        <% else %>
+            <%= cl_image_tag(@user.picture, :alt => "Avatar", :width => 246, :height => 246, class: "profile-picture rounded-circle float-left img-circle") if @user.picture? %>
+            <%= cl_image_tag("static/blank_user.png", :width => 246, :height => 246 , :alt => "User Image", class: "profile-picture rounded-circle float-left img-circle") unless @user.picture? %>
         <% end %>
       </div>
 
       <div class="profile-banner-info">
         <h1><%= @user.name %></h1>
-        <h2><%= @user.location %></h2>
-        <div class="profile-banner-buttons">
-          <%= link_to "Share", "#profile_share_modal", "data-toggle": "modal", class: "btn btn-danger share-button" %>
+        <% if @user.is_artist %>
+            <h2><%= @user.genre %></h2>
+      <% else %>
+          <h2><%= @user.location %></h2>
+        <% end %>
+
+        <div class="profile-numbers">
+          Rating stuff will go here
         </div>
-        <div>
+
+        <div class="profile-banner-buttons-container">
           <% if user_signed_in? && current_user != @user && !current_user.following?(@user) %>
-          <div>
-            <%= link_to("Follow", "/userrelationship/#{@user.id}", method: "post", class: "btn btn-primary btn-lg btn-danger follow-button") %>
-          </div>
+             <%= link_to("Follow", "/userrelationship/#{@user.id}", method: "post", class: "btn btn-danger btn-pill follow-button ") %>
+          <% end %>
+          <% if user_signed_in? && current_user != @user && current_user.following?(@user) %>
+             <%= link_to("Unfollow", "/userrelationship/#{@user.id}", method: "delete", class: "btn btn-danger btn-pill follow-button") %>
           <% end %>
 
-          <% if user_signed_in? && current_user != @user && current_user.following?(@user) %>
-          <div>
-            <%= link_to("Unfollow", "/userrelationship/#{@user.id}", method: "delete", class: "btn btn-primary btn-lg btn-danger follow-button") %>
+          <div class="share-link-container">
+            <%= cl_image_tag("static/share_icon", :width => 9, :height => 11 , :alt => "Share Icon", class: "") %>
+            <%= link_to "Share", "#profile_share_modal", "data-toggle": "modal", class: "share-link" %>
           </div>
-          <% end %>
         </div>
       </div>
 
-      <div class="col-lg-2 col-md-4 col-sm-4 offset-xl-1 offset-lg-1">
+      <div class="follow-container ml-auto">
         <div class="follow_count">
           <p class="followers_text right_align">Followers</p>
           <p class="right_align"> <%= link_to "#{@user.followers.count} followers", "#follower_modal", "data-toggle": "modal", class: "follow-number" %> </p>
@@ -62,10 +53,8 @@
           <p class="right_align"> <%= link_to "#{@user.following.count} following", "#following_modal", "data-toggle": "modal", class: "follow-number" %> </p>
         </div>
       </div>
-
     </div>
-  </div> <!-- End colorful header to artist profile -->
-
+  </div>
 
   <div class="profile-content">
     <div class="profile-content-column">
@@ -74,78 +63,89 @@
         <p><%= @user.bio %></p>
       </div>
 
-      <div class="profile-section">
-
-        <div class="review-container">
-
-          <% if user_signed_in? && @user.is_artist && @review.receiving_user_id.nil? %>
-          <button onclick="loadReviewForm()" id="review_load_button" class="btn btn-danger button-home" style="display: none">Edit Review</button>
-          <div class="row" id="review_form">
-            <%= render partial: 'reviews/review_form', locals: {artist: @user, review: @review} %>
+      <div class="review-mode-toggle">
+        <%= link_to("Reviews", "/users/#{@user.id}/reviews/hide_responses", method: "get", class: "review-toggle active", id: "reviews_button", remote: true) %>
+        <%= link_to("Discussion", "/users/#{@user.id}/reviews/show_responses", method: "get", class: "discussion-toggle", id: "discussion_button", remote: true) %>
+        <div class="dropdown show order-dropdown">
+          <a class="dropdown-toggle" href="#" id="order-dropdown-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Arrange Reviews By
+          </a>
+          <div class="dropdown-menu" aria-labelledby="order-dropdown-btn">
+            <a class="dropdown-item" href="#" onclick="orderReviewsByAge(event)">Most Recent</a>
+            <a class="dropdown-item" href="#" onclick="orderReviewsByUpvotes(event)">Most Upvoted</a>
           </div>
-          <% elsif user_signed_in? && @user.is_artist %>
-          <button onclick="loadReviewForm()" id="review_load_button" class="btn btn-danger button-home">Edit Review</button>
-          <div class="row" id="review_form" style="display: none">
-            <%= render partial: 'reviews/review_form', locals: {artist: @user, review: @review} %>
-          </div>
-          <% end %>
+        </div>
+      </div>
 
-          <div class="row">
-            <%= link_to("Reviews", "/users/#{@user.id}/reviews/hide_responses", method: "get", class: "btn btn-danger", id: "reviews_button", remote: true) %>
-            <%= link_to("Discussion", "/users/#{@user.id}/reviews/show_responses", method: "get", class: "btn btn-danger", id: "discussion_button", remote: true) %>
-          </div>
-
-          <h1 class="review-section-title">Reviews</h1>
-
-          <div class="row review-list" id="reviews_container">
-            <% if defined? top_review %>
-              <% if defined? response_link %>
-                <%= render partial: 'reviews/review', locals: {review: top_review, responses_shown: true, is_artist: @user.is_artist} %>
-              <% else %>
-                <%= render partial: 'reviews/review', locals: {review: top_review, responses_shown: false, is_artist: @user.is_artist} %>
-          <% end %>
-            <% end %>
-            <%= render partial: 'reviews/review', collection: @reviews, locals: {responses_shown: false, is_artist: @user.is_artist}%>
-          </div>
-
-          <div class="row" id="paginator">
-            <%= paginate @reviews, remote: true %>
-          </div>
-
-          <div class="dropdown">
-            <button onclick="toggleDropdown()" class="btn btn-primary dropbtn">Arrange Reviews By</button>
-            <div id="reviews_dropdown" class="dropdown-content">
-              <a href="#" onclick="orderReviewsByAge(event)">Most Recent</a>
-              <a href="#" onclick="orderReviewsByUpvotes(event)">Most Upvoted</a>
+      <div class="review-container">
+        <% if user_signed_in? && @user.is_artist && @review.receiving_user_id.nil? %>
+            <button onclick="loadReviewForm()" id="review_load_button" class="btn btn-danger button-home" style="display: none">Edit Review</button>
+            <div class="row" id="review_form">
+              <%= render partial: 'reviews/review_form', locals: {artist: @user, review: @review} %>
             </div>
-          </div>
+        <% elsif user_signed_in? && @user.is_artist %>
+            <button onclick="loadReviewForm()" id="review_load_button" class="btn btn-danger button-home">Edit Review</button>
+            <div class="row" id="review_form" style="display: none">
+              <%= render partial: 'reviews/review_form', locals: {artist: @user, review: @review} %>
+            </div>
+        <% end %>
 
+        <div class="row review-list" id="reviews_container">
+          <% if defined? top_review %>
+              <% if defined? response_link %>
+                  <%= render partial: 'reviews/review', locals: {review: top_review, responses_shown: true, is_artist: @user.is_artist} %>
+              <% else %>
+                  <%= render partial: 'reviews/review', locals: {review: top_review, responses_shown: false, is_artist: @user.is_artist} %>
+              <% end %>
+          <% end %>
+          <%= render partial: 'reviews/review', collection: @reviews, locals: {responses_shown: false, is_artist: @user.is_artist}%>
         </div>
 
+        <div class="row" id="paginator">
+          <%= paginate @reviews, remote: true %>
+        </div>
       </div>
-
     </div>
+
 
     <div class="profile-sidebar">
-      <div class="profile-sidebar-group">
-        <h3>Favorite Genres</h3>
-        <h4>Alternative</h4>
-        <h4>Electronic</h4>
-        <h4>Hip-Hop</h4>
-        <h4>Indie</h4>
-      </div>
+      <% if @user.is_artist %>
+        <div class="profile-sidebar-group">
+          <h3>Location</h3>
+          <h4><%= @user.location %></h4>
+        </div>
+      <% else %>
+        <div class="profile-sidebar-group">
+          <h3>Favorite Genres</h3>
+          <h4>Alternative</h4>
+          <h4>Electronic</h4>
+          <h4>Hip-Hop</h4>
+          <h4>Indie</h4>
+        </div>
+      <% end %>
+
       <div class="profile-sidebar-group">
         <h3>Social Profiles</h3>
-        <% if @user.twitter_url? %>
-          <h4><%= link_to "Twitter", @user.twitter_url, target: "_blank" %></h4>
-        <% end %>
-        <% if @user.facebook_url? %>
-          <h4><%= link_to "Facebook", @user.facebook_url, target: "_blank" %></h4>
-        <% end %>
+        <div class="profile-social-media-icons-container">
+          <% if @user.twitter_url? %>
+              <%= link_to cl_image_tag('static/twitter_icon_profile', alt: "Twitter", class: "profile-social-icon"), @user.twitter_url, target: "_blank" %>
+          <% end %>
+          <% if @user.facebook_url? %>
+              <%= link_to cl_image_tag('static/facebook_icon_profile', alt: "Facebook", class: "profile-social-icon"), @user.facebook_url, target: "_blank" %>
+          <% end %>
+        </div>
       </div>
+
+      <% if @user.is_artist %>
+        <div class="profile-sidebar-group">
+          <div class="claim-artist-container">
+            <h1>Is this you?</h1>
+            <a href="#" class="claim-artist-link">Claim Artist Profile</a>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
-
 </div>
 
 <%= render partial: "follower_modal", locals: {followers: @user.followers} %>
