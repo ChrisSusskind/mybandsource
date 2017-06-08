@@ -7,36 +7,35 @@
         </button>
       </div>
       <div class="modal-body" id="login-modal-body-start">
-        <%= cl_image_tag("static/logo_v2_padded", :width => 175, :height => 40, :crop => :fill, class: "modal-image-center") %>
-        <div class="login-signup-form">
+        <%= cl_image_tag("static/logo_v2_padded", :width => 175, :height => 40, :crop => :fill, class: "d-block mx-auto") %>
+        <span class="login-signup-form">
           <%= form_for(resource, as: resource_name, url: session_path(resource_name), remote: true) do |f| %>
-              <div class="form-group">
+              <div class="form-group mx-auto">
                 <%= f.label :email, class: "h-smallcaps" %>
                 <%= f.email_field :email, autofocus: true, class: "field-editpage" %>
               </div>
 
-              <div class="form-group">
+              <div class="form-group mx-auto">
                 <%= f.label :password, class: "h-smallcaps" %><br />
                 <%= f.password_field :password, autocomplete: "off", class: "field-editpage" %>
               </div>
 
               <% if devise_mapping.rememberable? -%>
-                  <div class="form-group">
+                  <div class="form-group mx-auto">
                     <%= f.check_box :remember_me %>
                     <%= f.label :remember_me, class: "h-smallcaps" %>
                   </div>
               <% end -%>
 
               <div class="login-btn-container">
-                <%= f.submit "Log in", class: "btn btn-danger button-home btn-pill login-btn-modal" %>
+                <%= f.submit "Log in", class: "btn btn-danger button-home btn-pill login-btn-modal d-block mx-auto" %>
               </div>
               <hr />
           <% end %>
 
-          <%= button_to "Log In with Facebook", user_facebook_omniauth_authorize_path, class: "btn btn-primary btn-pill fb-btn-login" %>
-          <div class="row login-message-signup-modal">
-            <p class="h-smallcaps">Don't have an account?&nbsp;&nbsp;</p>
-            <%= link_to "Sign Up", "#signup_modal", "data-toggle": "modal", class: "h-smallcaps bottom-modal-message", onclick: "loginToSignupModal()" %>
+          <%= button_to "Log In with Facebook", user_facebook_omniauth_authorize_path, class: "btn btn-primary btn-pill fb-btn-login d-block mx-auto" %>
+          <div class="login-message-signup-modal mx-auto">
+            <p>Don't have an account?&nbsp;&nbsp;<%= link_to "SIGN UP", "#signup_modal", "data-toggle": "modal", class: "bottom-modal-message", onclick: "loginToSignupModal()" %></p>
           </div>
         </div>
       </div>

@@ -964,6 +964,12 @@ div.review_content {
   width: 300px;
 }
 
+@media (max-width: 350px) {
+  .form-group {
+    width: 250px;
+  }
+}
+
 .field-editpage {
   position: relative;
   width: 100%;
@@ -997,7 +1003,6 @@ div.review_content {
   position: relative;
   padding-top: 20px;
   width: 100%;
-  left: 18%;
   padding-bottom: 15px;
 
   div.login-btn-container {
@@ -1005,13 +1010,25 @@ div.review_content {
 
     .login-btn-modal {
       position: relative;
-      bottom: 20px;
+      bottom: 10px;
       width: 300px;
+    }
+
+    @media (max-width: 350px){
+      .login-btn-modal {
+        width: 250px;
+      }
     }
   }
 
   .signup-btn-modal {
     width: 300px;
+  }
+
+  @media (max-width: 350px){
+    .signup-btn-modal {
+      width: 250px;
+    }
   }
 
   .fb-btn-login {
@@ -1020,10 +1037,19 @@ div.review_content {
     color: white;
   }
 
-  div.login-message-signup-modal {
+  @media (max-width: 350px) {
+    .fb-btn-login {
+      width: 250px;
+    }
+  }
+
+  .login-message-signup-modal {
     position: relative;
-    left: 17%;
     top: 20px;
+    text-align: center;
+    white-space: nowrap;
+    font-size: 13px;
+    line-height: 16px;
 
     .bottom-modal-message {
       color: black;
