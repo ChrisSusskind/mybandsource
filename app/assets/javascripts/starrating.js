@@ -4,7 +4,6 @@
 
 var stars;
 var selected_rating;
-var ratings_list = [];
 
 /*
  Performs following actions when document is ready
@@ -13,9 +12,7 @@ var ratings_list = [];
  3. Changes timestamp displayed for rating to english representation
  */
 $(document).on('ready page:load', function(){
-    loadRatingEntry();
-    loadRatingsStyle();
-    changeTimeDisplays();
+
 });
 
 //Function that adds hover class to stars when they should be shown full
@@ -62,24 +59,5 @@ function loadRatingEntry(){
 
     for(var j=0; j < selected_rating; j++){
         stars[j].classList.add('hover');
-    }
-}
-
-//Function that changes timestamps to english for display
-function changeTimeDisplays(){
-    $('abbr.timeago').timeago();
-}
-
-//Function used to fill stars for each displayed review in a list of displayed reviews
-function loadRatingsStyle(){
-    $(".ratings_list").each(function(){
-        ratings_list.push({rating: this.getAttribute('data-rating'), children: $(this).find('span')});
-    });
-
-
-    for(var i=0; i<ratings_list.length; i++){
-        for(var j=0; j < ratings_list[i].rating; j++){
-            ratings_list[i].children[j].classList.add('hover');
-        }
     }
 }

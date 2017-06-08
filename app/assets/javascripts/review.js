@@ -81,11 +81,12 @@ Function that creates a response creation form when reply button is clicked
 Submit action of this form is to send an ajax request to server w/ content to create a new response
  */
 function showReplyForm(node) {
-    var review = node.parentElement.parentElement.parentElement;
+    var review_text_container = node.parentElement.parentElement.parentElement;
+    var review = review_text_container.parentElement;
     var review_id = review.getAttribute('data-review_id');
     var wrapper = document.createElement('div');
-    wrapper.innerHTML = '<form id="reply_form"><textarea id="reply"></textarea><input type="submit" value="Submit"></form>';
-    review.append(wrapper);
+    wrapper.innerHTML = '<form id="reply_form" class="reply-form"><textarea id="reply"></textarea><input class="btn btn-danger btn-pill reply-form-btn" type="submit" value="Submit"></form>';
+    review_text_container.append(wrapper);
     $('#reply_form').submit(function (e) {
         e.preventDefault();
         $.ajax({

@@ -13,7 +13,6 @@
 //= require tether
 //= require jquery
 //= require jquery_ujs
-//= require 'jquery.timeago.js'
 //= require 'jquery.debounce.js'
 //= require turbolinks
 //= require bootstrap-sprockets

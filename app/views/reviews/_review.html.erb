@@ -1,47 +1,37 @@
 <div class="review_content" id=<%= "review" + review.id.to_s %> data-review_id=<%=review.id.to_s%>>
   <% if review.leaving_user.is_artist %>
-      <%= cl_image_tag(review.leaving_user.picture, :width => 50, :height => 50, :crop => :fill, :alt => "Avatar", class: "float-left") if review.leaving_user.picture? %>
-      <%= cl_image_tag("static/blank_user.png", :width => 50, :height => 50, :crop => :fill, :alt => "User Image", class: "float-left") unless review.leaving_user.picture? %> 
+      <%= cl_image_tag(review.leaving_user.picture, :width => 48, :height => 48, :crop => :fill, :alt => "Avatar", class: "float-left") if review.leaving_user.picture? %>
+      <%= cl_image_tag("static/blank_user.png", :width => 48, :height => 48, :crop => :fill, :alt => "User Image", class: "float-left") unless review.leaving_user.picture? %> 
   <% else %>
-      <%= cl_image_tag(review.leaving_user.picture, :width => 50, :height => 50, :crop => :fill, :alt => "Avatar", class: "rounded rounded-circle float-left") if review.leaving_user.picture? %>
-      <%= cl_image_tag("static/blank_user.png", :width => 50, :height => 50, :crop => :fill, :alt => "User Image", class: "rounded rounded-circle float-left") unless review.leaving_user.picture? %> 
+      <%= cl_image_tag(review.leaving_user.picture, :width => 48, :height => 48, :crop => :fill, :alt => "Avatar", class: "rounded rounded-circle float-left") if review.leaving_user.picture? %>
+      <%= cl_image_tag("static/blank_user.png", :width => 48, :height => 48, :crop => :fill, :alt => "User Image", class: "rounded rounded-circle float-left") unless review.leaving_user.picture? %> 
   <% end %>
-
-  <div class="row">
-    <div class="col-12">
-      <h4 class="review_username">
-        <strong>
-          <% if is_artist %>
-              <%= link_to(review.leaving_user.name, user_path(review.leaving_user)) %>
+  <div class="review-text-container">
+    <h4 class="review_username">
+        <% if is_artist %>
+          <%= link_to(review.leaving_user.name, user_path(review.leaving_user)) %>
         <% else %>
-              <%= link_to(review.receiving_user.name, user_path(review.receiving_user)) %>
-          <% end %>
-        </strong>
-      </h4>
+          <%= link_to(review.receiving_user.name, user_path(review.receiving_user)) %>
+        <% end %>
+    </h4>
 
-      <span class="ratings_list" data-rating=<%=review.rating%>>
-        <span>&starf;</span>
-        <span>&starf;</span>
-        <span>&starf;</span>
-        <span>&starf;</span>
-        <span>&starf;</span>
-      </span>
+    <div class="ratings_list" data-rating= <%= review.rating %>>
+      <% for i in 0...review.rating %>
+        <%= cl_image_tag("static/red_star", :width => 19, :height => 19, :crop => :fill, :alt => "Star") %>
+      <% end %>
+      <% for i in 0...5-review.rating %>
+        <%= cl_image_tag("static/grey_star", :width => 19, :height => 19, :crop => :fill, :alt => "Star") %>
+      <% end %>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col-12">
+    <div class="review-comment">
       <%= review.comment %>
     </div>
+
+    <% if is_artist && user_signed_in? %>
+      <%= render partial: 'reviews/review_info_bar', locals: {review: review, user_id: review.receiving_user_id, responses_shown: responses_shown} %>
+    <% else %>
+      <%= render partial: 'reviews/review_info_bar', locals: {review: review, user_id: review.leaving_user_id, responses_shown: responses_shown} %>
+    <% end %>
   </div>
-
-  <% if is_artist %>
-    <%= render partial: 'reviews/review_info_bar', locals: {review: review, user_id: review.receiving_user_id, responses_shown: responses_shown} %>
-  <% else %>
-    <%= render partial: 'reviews/review_info_bar', locals: {review: review, user_id: review.leaving_user_id, responses_shown: responses_shown} %>
-  <% end %>
-
-  <% if responses_shown %>
-    <%= render partial: 'responses/response', collection: review.responses.order('CREATED_AT ASC'), locals: {review: review, is_artist: is_artist} %>
-  <% end %>
 </div>

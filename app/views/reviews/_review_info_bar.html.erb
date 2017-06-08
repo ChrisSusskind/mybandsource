@@ -1,20 +1,53 @@
-<div class="row">
-  <div class="col-12">
-    <%= review.upvotes %>
+<div class="review-info-bar">
+  <span class="upvotes">
     <% if user_signed_in? %>
-        <% if review.upvotes_userlist.nil? || !current_user.id.to_s.in?(review.upvotes_userlist) %>
-            <%= link_to(cl_image_tag('static/rockon_icon.png', alt: 'Rockon Icon', width: 20, height: 20, crop: :fill, class: "review_icon"), "/users/#{user_id}/reviews/#{review.id}/upvote/#{responses_shown}", method: :post, remote: true) %>
-        <% elsif !review.upvotes_userlist.nil? %>
-            <%= link_to(cl_image_tag('static/rockon_icon.png', alt: 'Rockon Icon', width: 20, height: 20, crop: :fill, class: "review_icon rockon_icon_flipped"), "/users/#{user_id}/reviews/#{review.id}/remove_upvote/#{responses_shown}", method: :delete, remote: true) unless review.upvotes_userlist.nil? %>
-        <% end %>
-        <%= cl_image_tag('static/reply_icon.png', alt: "Reply Icon", width: 20, height: 20, crop: :fill, class: "review_icon reply_icon", id: "reply_icon", onclick: "showReplyForm(this)") %>
-        <%= link_to(cl_image_tag('static/trashcan_icon.png', alt: "Trashcan Icon", width: 20, height: 20, crop: :fill, class: "review_icon"), "/users/#{user_id}/reviews/#{review.id}", method: :delete, remote: true) if review.leaving_user == current_user %>
-        <%= link_to(cl_image_tag('static/share_icon.png', alt: "Share Icon", width: 20, height: 20, crop: :fill, class:"review_icon review_share"), "/users/#{user_id}/share/review/#{review.id}", method: :post, remote: true) %>
+      <% if review.upvotes_userlist.nil? || !current_user.id.to_s.in?(review.upvotes_userlist) %>
+          <%= link_to(cl_image_tag('static/rockon_icon.png', alt: 'Rockon', width: 14, height: 14, crop: :fill, class: "review_icon"), "/users/#{user_id}/reviews/#{review.id}/upvote/#{responses_shown}", method: :post, remote: true) %>
+      <% elsif !review.upvotes_userlist.nil? %>
+          <%= link_to(cl_image_tag('static/rockon_icon.png', alt: 'Rockon', width: 14, height: 14, crop: :fill, class: "review_icon rockon_icon_flipped"), "/users/#{user_id}/reviews/#{review.id}/remove_upvote/#{responses_shown}", method: :delete, remote: true) unless review.upvotes_userlist.nil? %>
+      <% end %>
     <% else %>
-        <%= cl_image_tag('static/rockon_icon.png', alt: 'Rockon Icon', width: 20, height: 20, crop: :fill, class: "review_icon") %>
+      <%= cl_image_tag('static/rockon_icon.png', alt: 'Rockon', width: 14, height: 14, crop: :fill) %>
     <% end %>
-    <abbr class="timeago" title="<%= review.updated_at.getutc.iso8601 %>">
-      <%= review.updated_at.to_s %>
-    </abbr>
-  </div>
+
+    <%= number_to_human review.upvotes %>
+  </span>
+
+  <span class="reply">
+    <% if user_signed_in? %>
+        <%= cl_image_tag('static/reply_icon.png', alt: "Reply", width: 13, height: 10, crop: :fill, class: "review_icon reply_icon", id: "reply_icon", onclick: "showReplyForm(this)") %>
+    <% else %>
+        <%= cl_image_tag('static/reply_icon.png', alt: "Reply", width: 13, height: 10, crop: :fill, class: "") %>
+    <% end %>
+
+    Reply
+  </span>
+
+  <span class="share">
+    <% if user_signed_in? %>
+      <%= link_to(cl_image_tag('static/share_icon_reply.png', alt: "Share", width: 9, height: 11, crop: :fill, class:"review_icon review_share"), "/users/#{user_id}/share/review/#{review.id}", method: :post, remote: true) %>
+    <% else %>
+      <%= cl_image_tag('static/share_icon_reply.png', alt: "Share", width: 9, height: 11, crop: :fill) %>
+    <% end %>
+
+    Share
+  </span>
+
+  <% if current_user == review.leaving_user %>
+    <span class="delete">
+      <%= link_to(cl_image_tag('static/trashcan_icon.png', alt: "Trashcan", width: 15, height: 15, crop: :fill, class: "review_icon"), "/users/#{user_id}/reviews/#{review.id}", method: :delete, remote: true) %>
+
+      Delete
+    </span>
+  <% end %>
+
+  <span class="report">
+    <%= cl_image_tag('static/flag_icon', alt: "Report", width: 9, height: 10, crop: :fill) %>
+
+    Report
+  </span>
+
+  <span class="timestamp">
+    <%= time_ago_in_words(review.updated_at.getutc.iso8601) %> ago
+  </span>
 </div>
