@@ -33,7 +33,7 @@
     Share
   </span>
 
-  <% if current_user == review.leaving_user %>
+  <% if user_signed_in? && current_user == review.leaving_user %>
     <span class="delete">
       <%= link_to(cl_image_tag('static/trashcan_icon.png', alt: "Trashcan", width: 15, height: 15, crop: :fill, class: "review_icon"), "/users/#{user_id}/reviews/#{review.id}", method: :delete, remote: true) %>
 

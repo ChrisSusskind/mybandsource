@@ -1,19 +1,43 @@
-<div class="row">
-  <div class="col-12">
-    <%= response.upvotes %>
+<div class="response-info-bar">
+  <span class="upvotes">
     <% if user_signed_in? %>
-        <% if response.upvotes_userlist.nil? || !current_user.id.to_s.in?(response.upvotes_userlist) %>
-            <%= link_to(cl_image_tag('static/rockon_icon.png', alt: 'Rockon Icon', width: 20, height: 20, crop: :fill, class: "review_icon"), "/users/#{user_id}/reviews/#{review.id}/responses/#{response.id}/upvote", method: :post, remote: true) %>
-        <% elsif !response.upvotes_userlist.nil? %>
-            <%= link_to(cl_image_tag('static/rockon_icon.png', alt: 'Rockon Icon', width: 20, height: 20, crop: :fill, class: "review_icon rockon_icon_flipped"), "/users/#{user_id}/reviews/#{review.id}/responses/#{response.id}/remove_upvote", method: :delete, remote: true) unless response.upvotes_userlist.nil? %>
-        <% end %>
-        <%= link_to(cl_image_tag('static/trashcan_icon.png', alt: "Trashcan Icon", width: 20, height: 20, crop: :fill, class: "review_icon"), user_review_response_path(user_id, review, response), method: :delete, remote: true) if response.user == current_user %>
-        <%= link_to(cl_image_tag('static/share_icon.png', alt: "Share Icon", width: 20, height: 20, crop: :fill, class:"review_icon"), "/users/#{user_id}/share/reviews/#{response.review_id}/response", method: :post, remote: true) %>
+      <% if response.upvotes_userlist.nil? || !current_user.id.to_s.in?(response.upvotes_userlist) %>
+        <%= link_to(cl_image_tag('static/rockon_icon.png', alt: 'Rockon', width: 14, height: 14, crop: :fill, class: "review_icon"), "/users/#{user_id}/reviews/#{review.id}/responses/#{response.id}/upvote", method: :post, remote: true) %>
+      <% elsif !response.upvotes_userlist.nil? %>
+        <%= link_to(cl_image_tag('static/rockon_icon.png', alt: 'Rockon', width: 14, height: 14, crop: :fill, class: "review_icon rockon_icon_flipped"), "/users/#{user_id}/reviews/#{review.id}/responses/#{response.id}/remove_upvote", method: :delete, remote: true) %>
+      <% end %>
     <% else %>
-        <%= cl_image_tag('static/rockon_icon.png', alt: 'Rockon Icon', width: 20, height: 20, crop: :fill, class: "review_icon") %>
+      <%= cl_image_tag('static/rockon_icon.png', alt: 'Rockon', width: 14, height: 14, crop: :fill) %>
+    <% end%>
+
+    <%= number_to_human response.upvotes %>
+  </span>
+
+  <span class="share">
+    <% if user_signed_in? %>
+      <%= link_to(cl_image_tag('static/share_icon_reply.png', alt: "Share", width: 9, height: 11, crop: :fill, class:"review_icon"), "/users/#{user_id}/share/reviews/#{response.review_id}/response", method: :post, remote: true) %>
+    <% else %>
+      <%= cl_image_tag('static/share_icon_reply.png', alt: "Share", width: 9, height: 11, crop: :fill) %>
     <% end %>
-    <abbr class="timeago" title="<%= response.created_at.getutc.iso8601 %>">
-      <%= response.updated_at.to_s %>
-    </abbr>
-  </div>
+
+    Share
+  </span>
+
+  <% if user_signed_in? && current_user == response.user %>
+    <span class="delete">
+      <%= link_to(cl_image_tag('static/trashcan_icon.png', alt: "Trashcan", width: 15, height: 15, crop: :fill, class: "review_icon"), user_review_response_path(user_id, review, response), method: :delete, remote: true) %>
+
+    Delete
+    </span>
+  <% end %>
+
+  <span class="report">
+    <%= cl_image_tag('static/flag_icon', alt: "Report", width: 9, height: 10, crop: :fill) %>
+
+    Report
+  </span>
+
+  <span class="timestamp">
+    <%= time_ago_in_words(response.updated_at.getutc.iso8601) %> ago
+  </span>
 </div>

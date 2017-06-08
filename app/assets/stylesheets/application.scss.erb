@@ -824,6 +824,77 @@ div.review_content {
 
 // Response styling
 
+.response-container {
+
+  margin-left: 116px;
+
+  .response-content {
+
+    .response-text-container {
+
+      margin-left: 68px;
+      position: relative;
+      bottom: 10px;
+
+      h4 {
+        height: 21px;
+        font-size: 18px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        line-height: 21px;
+        white-space: nowrap;
+        margin-bottom: 0;
+      }
+
+      a {
+        color: black;
+      }
+
+      div.response-comment {
+        width: 513px;
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 35px;
+      }
+
+      div.response-info-bar {
+
+        color: #707070;
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 34px;
+
+        span.upvotes {
+          .rockon_icon_flipped {
+            -o-transform: scaleY(-1);
+            -webkit-transform: scaleY(-1);
+            transform: scaleY(-1);
+            filter: FlipV;
+            -ms-filter: "FlipV";
+          }
+        }
+
+        span.share {
+          margin-left: 27px;
+        }
+
+        span.delete {
+          margin-left: 27px;
+        }
+
+        span.report {
+          margin-left: 27px;
+        }
+
+        .timestamp {
+          margin-left: 54px;
+        }
+      }
+    }
+
+  }
+
+}
 // Override for bootsrap modal class to fix scrolling issue
 
 .modal {

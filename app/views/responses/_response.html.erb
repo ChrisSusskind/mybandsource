@@ -1,31 +1,19 @@
-<div class="row response_content">
-  <div class="col-3">
+<div class="response-content">
+  <% if response.user.is_artist %>
+      <%= cl_image_tag(response.user.picture, :width => 48, :height => 48, :crop => :fill, :alt => "Avatar", class: "float-left") if response.user.picture? %>
+      <%= cl_image_tag("static/blank_user.png", :width => 48, :height => 48, :crop => :fill, :alt => "User Image", class: "float-left") unless response.user.picture? %> 
+  <% else %>
+      <%= cl_image_tag(response.user.picture, :width => 48, :height => 48, :crop => :fill, :alt => "Avatar", class: "rounded rounded-circle float-left") if response.user.picture? %>
+      <%= cl_image_tag("static/blank_user.png", :width => 48, :height => 48, :crop => :fill, :alt => "User Image", class: "rounded rounded-circle float-left") unless response.user.picture? %> 
+  <% end %>
 
-  </div>
+  <div class="response-text-container">
+    <h4 class="response-username">
+        <%= link_to(response.user.name, user_path(review.leaving_user)) %>
+    </h4>
 
-  <div class="col-6">
-    <% if response.user.is_artist %>
-        <%= cl_image_tag(response.user.picture, :width => 50, :height => 50, :crop => :fill, :alt => "Avatar", class: "float-left") if response.user.picture? %>
-        <%= cl_image_tag("static/blank_user.png", :width => 50, :height => 50, :crop => :fill, :alt => "User Image", class: "float-left") unless response.user.picture? %> 
-    <% else %>
-        <%= cl_image_tag(response.user.picture, :width => 50, :height => 50, :crop => :fill, :alt => "Avatar", class: "rounded rounded-circle float-left") if response.user.picture? %>
-        <%= cl_image_tag("static/blank_user.png", :width => 50, :height => 50, :crop => :fill, :alt => "User Image", class: "rounded rounded-circle float-left") unless response.user.picture? %> 
-    <% end %>
-
-    <div class="row">
-      <div class="col-12">
-        <h4 class="review_username">
-          <strong>
-            <%= link_to(response.user.name, user_path(response.user)) %>
-          </strong>
-        </h4>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-12">
-        <%= response.comment %>
-      </div>
+    <div class="response-comment">
+      <%= response.comment %>
     </div>
 
     <% if is_artist %>
