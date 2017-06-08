@@ -68,80 +68,155 @@ h1,h2,h3,h4,h5,h6,p, .h-largecaps {
 
 /* Navbar Custom Styles */
 
+
 .main-navbar {
   background-color: white;
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
-.navbar-logo {
-  width: 175px;
-}
-
-#login-btn {
-  color: black;
-  font-weight: 800;
-  font-size: .75em;
-}
-
-#signup-btn {
-  color: #AA182A;
-  font-weight: 800;
-  font-size: .75em;
-}
-
-.navbar-search-container{
-  position: relative;
-  width: 50%;
-}
-
-.search-box {
-  display: block;
-  border-radius: 50px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   width: 100%;
+  display: flex;
+  justify-content: space-between;
+  white-space: nowrap;
+
+  .navbar-header {
+    width: 175px;
+  }
+
+  .navbar-search-container{
+    position: relative;
+    width: 50%;
+    top: 5px;
+
+    .search-box {
+      display: block;
+      border-radius: 50px;
+      width: 100%;
+      height: 30px;
+    }
+  }
+
+  .close {
+    display: none;
+    position: relative;
+    left: 5px;
+    top: 8px;
+    color: black;
+  }
+
+  div.navbar-links {
+
+    @media (min-width: 800px) {
+      .search-icon {
+        display: none;
+      }
+    }
+
+    a {
+      line-height: 40px;
+      height: 40px;
+    }
+
+    .login-header {
+      color: black;
+      font-weight: 800;
+      font-size: .75em;
+    }
+
+    .signup-header {
+      color: #AA182A;
+      font-weight: 800;
+      font-size: .75em;
+      margin-left: 10px;
+    }
+
+    .user-dropdown {
+
+      z-index: 10000;
+      padding-left: 10px;
+
+      button {
+        background-color: white;
+        border: none;
+        cursor: pointer;
+      }
+
+      ul {
+        width: 200px;
+
+        li {
+          padding-left: 20px;
+          padding-top: 15px;
+          padding-bottom: 15px;
+          border-bottom: solid thin #e5e5e5;
+
+          a {
+            color: black;
+            font-weight: 800;
+          }
+        }
+      }
+    }
+  }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 799px) {
+  .search-icon {
+    display: inline;
+  }
+
+  .navbar-search-container {
+    display: none;
+    width: 90%!important;
+  }
+}
+
+@media (max-width: 350px) {
+  .navbar-logo {
+    width: 100px;
+    height: 25px;
+    margin-top: 8px;
+  }
+
+  .navbar-header {
+    width: 100px;
+  }
+
+  .search-icon {
+    outline: none;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    height: 35px;
+
+    i {
+      position: relative;
+      top: 10px;
+    }
+  }
 
   .user-dropdown {
+
     padding-left: 0!important;
-    padding-top: 10px!important;
-    width: 100px;
+    height: 35px!important;
+    width: 35px!important;
+
+    img {
+      width: 35px;
+      height: 35px;
+    }
   }
 
   .notification-dropdown {
-    padding-top: 10px!important;
-    width: 100px;
-  }
+    height: 35px;
 
-  #user_dropdown_button {
-    padding-left: 0!important;
-  }
-}
+    span {
+      left: 18px!important;
+      top: 3px!important;
+    }
 
-.user-dropdown {
-
-  z-index: 10000;
-  padding-left: 20px;
-
-  button {
-    background-color: white;
-    border: none;
-  }
-
-  ul {
-    width: 200px;
-
-    li {
-      padding-left: 20px;
-      padding-top: 15px;
-      padding-bottom: 15px;
-      border-bottom: solid thin #e5e5e5;
-
-      a {
-        color: black;
-        font-weight: 800;
-      }
+    button {
+      height: 35px!important;
+      width: 35px!important;
     }
   }
 }

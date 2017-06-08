@@ -107,3 +107,16 @@ function shareFacebook(url) {
     console.log("Inside shareFacebook");
 }
 
+function displaySearch(){
+    $('.navbar-links').hide();
+    $('.navbar-header').hide();
+    $('.navbar-search-container').show();
+    $('.close').show();
+}
+
+function hideSearch(){
+    $('.navbar-search-container').hide();
+    $('.close').hide();
+    $('.navbar-links').show();
+    $('.navbar-header').show();
+}
