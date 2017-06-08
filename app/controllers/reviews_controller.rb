@@ -7,7 +7,7 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = Review.create({receiving_user_id: @user.id, leaving_user_id: current_user.id, comment: params[:review][:comment], rating: params[:review][:rating]})
+    @review = Review.create({receiving_user_id: @user.id, leaving_user_id: current_user.id, comment: params[:comment], rating: params[:rating]})
     unless @review.valid?
       flash[:alert] = "Review creation failed"
     end
@@ -16,7 +16,7 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    unless @review.update(review_params)
+    unless @review.update(comment: params[:comment], rating: params[:rating])
       flash[:alert] = "Review update failed"
     end
     update_review_display

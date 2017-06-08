@@ -8,18 +8,17 @@ var selected_rating;
 /*
  Performs following actions when document is ready
  1. Loads info and style for already entered review (if being given option to update)
- 2. Loads style for ratings list being displayed
- 3. Changes timestamp displayed for rating to english representation
  */
 $(document).on('ready page:load', function(){
-
+    loadRatingEntry();
 });
 
 //Function that adds hover class to stars when they should be shown full
 function fillStars(e){
     for (var i=0; i < stars.length; i++){
         if(stars[i].getAttribute('data_count') <= e.target.getAttribute('data_count')){
-            stars[i].classList.add('hover');
+            stars[i].classList.remove('grey-star');
+            stars[i].classList.add('red-star');
         }
     }
 }
@@ -27,8 +26,9 @@ function fillStars(e){
 //Function that removes hover class from stars when they should be shown empty
 function emptyStars(e){
     for (var i=0; i < stars.length; i++){
-            if(stars[i].getAttribute('data_count') > selected_rating-1){
-            stars[i].classList.remove('hover');
+        if(stars[i].getAttribute('data_count') > selected_rating-1){
+            stars[i].classList.remove('red-star');
+            stars[i].classList.add('grey-star');
         }
     }
 }
@@ -52,12 +52,12 @@ function loadRatingEntry(){
 
     for(var i=0; i<stars.length; i++){
         stars[i].setAttribute('data_count', i);
-        stars[i].addEventListener('mouseenter', fillStars);
-        stars[i].addEventListener('mouseleave', emptyStars);
+        stars[i].addEventListener('mouseover', fillStars);
+        stars[i].addEventListener('mouseout', emptyStars);
         stars[i].addEventListener('click', onStarClick);
     }
 
     for(var j=0; j < selected_rating; j++){
-        stars[j].classList.add('hover');
+        stars[j].classList.add('red-star');
     }
 }

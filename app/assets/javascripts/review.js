@@ -76,6 +76,36 @@ function loadReviewForm(){
     $('#review_form').show();
 }
 
+//Function that sends an ajax request to server w/ content to create a new review
+function createReview() {
+    var selected_rating = parseInt($('#rating_field').val());
+    var comment = $('#review-form-text').val();
+
+    $.ajax({
+        type: 'POST',
+        url: '/users/' + user_id + '/reviews',
+        data: {
+            rating: selected_rating,
+            comment: comment
+        }
+    });
+}
+
+//Function that sends an ajax request to server w/ content to update an existing review
+function updateReview(review_id) {
+    var selected_rating = parseInt($('#rating_field').val());
+    var comment = $('#review-form-text').val();
+
+    $.ajax({
+        type: 'PUT',
+        url: '/users/' + user_id + '/reviews/' + review_id,
+        data: {
+            rating: selected_rating,
+            comment: comment
+        }
+    });
+}
+
 /*
 Function that creates a response creation form when reply button is clicked
 Submit action of this form is to send an ajax request to server w/ content to create a new response
