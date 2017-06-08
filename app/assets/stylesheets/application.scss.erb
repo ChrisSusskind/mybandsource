@@ -1140,7 +1140,7 @@ div.review_content {
   top: 20px;
   margin: 0 auto;
   max-width: 1050px;
-  padding-bottom: 6em;
+  padding-bottom: 3em;
   min-height: 100%;
 
   div.content-container {
@@ -1148,7 +1148,7 @@ div.review_content {
     width: 100%;
 
     div.content-slim {
-      width: 80%;
+      width: 90%;
       margin: 0 auto;
 
       h3 {
@@ -1176,28 +1176,19 @@ div.review_content {
 }
 
 .submit-btn-editpage {
-  position: absolute;
-  left: 40%;
+
+  width: 300px;
+
+  input {
+    background-color: #AA182A;
+    cursor: pointer;
+  }
 }
 
-.submit-btn-forgotpasswordpage {
-  position: absolute;
-  left: 30%;
-}
-
-.submit-btn-changepasswordpage {
-  position: absolute;
-  left: 20%;
-}
-
-.submit-btn-resendconfirmationpage {
-  position: absolute;
-  left: 15%;
-}
-
-.submit-btn-unlockpage {
-  position: absolute;
-  left: 20%;
+@media (max-width: 350px) {
+  .submit-btn-editpage {
+    width: 250px;
+  }
 }
 
 .devise-links {
@@ -1505,7 +1496,6 @@ div.review_content {
 .genre-index-container {
 
   margin-top: 40px;
-  margin-left: 30px;
 
   h3 {
     font-weight: 500;
@@ -1520,7 +1510,6 @@ div.review_content {
 
 .genre-show-container {
 
-  margin-left: 30px;
   margin-top: 40px;
 
   a {
@@ -1542,7 +1531,6 @@ div.review_content {
 // Styles used for search results page
 
 .search-results-container {
-  margin-left: 30px;
   margin-top: 40px;
 
   h3 {

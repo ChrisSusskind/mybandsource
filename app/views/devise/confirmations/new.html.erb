@@ -12,8 +12,8 @@
               <%= f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: "field-editpage" %>
             </div>
 
-            <div class="submit-btn-resendconfirmationpage">
-              <%= f.submit "Resend confirmation instructions", class: "btn btn-primary btn-pill" %>
+            <div class="submit-btn-editpage">
+              <%= f.submit "Resend confirmation instructions", class: "d-block mx-auto btn btn-danger btn-pill" %>
             </div>
           <% end %>
         </div>
