@@ -115,7 +115,13 @@ function showReplyForm(node) {
     var review = review_text_container.parentElement;
     var review_id = review.getAttribute('data-review_id');
     var wrapper = document.createElement('div');
-    wrapper.innerHTML = '<form id="reply_form" class="reply-form"><textarea id="reply"></textarea><input class="btn btn-danger btn-pill reply-form-btn" type="submit" value="Submit"></form>';
+    wrapper.innerHTML = '' +
+        '<div class="reply-form-container">' +
+        '<form id="reply_form" class="reply-form mx-auto">' +
+        '   <textarea id="reply"></textarea>' +
+        '   <input class="btn btn-danger btn-pill reply-form-btn" type="submit" value="Submit">' +
+        '</form>' +
+        '</div>';
     review_text_container.append(wrapper);
     $('#reply_form').submit(function (e) {
         e.preventDefault();
