@@ -1,10 +1,6 @@
 class ReviewsController < ApplicationController
-  before_action :set_user, except: [:show]
+  before_action :set_user
   before_action :set_review, only: [:update, :destroy]
-
-  def show
-    @review = Review.first
-  end
 
   def create
     @review = Review.create({receiving_user_id: @user.id, leaving_user_id: current_user.id, comment: params[:comment], rating: params[:rating]})

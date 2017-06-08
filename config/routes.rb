@@ -37,9 +37,7 @@ Rails.application.routes.draw do
     post '/share/review/:id', to: 'reviews#share'
     post '/share/reviews/:review_id/response', to: 'responses#share'
   end
-
-  resources :reviews, only: [:show]
-
+  
   #User relationship create and destroy routes
   post '/userrelationship/:id', to: 'user_relationships#create'
   delete '/userrelationship/:id', to: 'user_relationships#destroy'
