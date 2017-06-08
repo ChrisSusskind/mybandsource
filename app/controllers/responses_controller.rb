@@ -7,7 +7,9 @@ class ResponsesController < ApplicationController
     unless @response.valid?
       flash[:alert] = "Response creation failed"
     end
-    create_notification(current_user, @review.leaving_user_id, @response)
+    if current_user != @user
+      create_notification(current_user, @review.leaving_user_id, @response)
+    end
     render :action => 'response_display', locals: {is_artist: @user.is_artist}
   end
 

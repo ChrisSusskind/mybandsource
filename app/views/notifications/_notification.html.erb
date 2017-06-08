@@ -11,19 +11,19 @@
           <% when 'follow' %>
             <p class="notification-text">
               <%= link_to(notification.generating_user_name,  user_path(notification.generating_user_id), method: :get) %>
-              just followed your profile
+              followed your profile
           <% when 'review' %>
             <p class="notification-text">
               <%= link_to(notification.generating_user_name,  user_path(notification.generating_user_id), method: :get) %>
-              just reviewed your profile
+              reviewed your profile
           <% when 'response' %>
             <p class="notification-text">
               <%= link_to(notification.generating_user_name,  user_path(notification.generating_user_id), method: :get) %>
-              just left a comment on your profile
+              responded to your comment
           <% else %>
         <% end %><br/>
-              <abbr class="timeago notification-text-time" title="<%= notification.created_at.getutc.iso8601 %>">
-                <%= notification.created_at.to_s %>
+              <abbr class="timeago">
+                <%= time_ago_in_words(notification.created_at.getutc.iso8601) %> ago
               </abbr>
             </p>
     </div>
