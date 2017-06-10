@@ -47,6 +47,8 @@
                 <%= f.password_field :password_confirmation, autocomplete: "off", class: "field-editpage" %>
               </div>
 
+              <%= hidden_field :is_artist, value: true %>
+
               <div class="submit-btn-editpage create-artist-btn-container">
                 <%= f.submit "Add Artist Profile", class: "d-block mx-auto btn btn-danger btn-pill" %>
               </div>

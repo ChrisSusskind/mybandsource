@@ -15,7 +15,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
      return render :action => 'signup_failure.js.erb', :locals => {message: password_confirmation_error} if params[:user][:password] != params[:user][:password_confirmation]
      return render :action => 'signup_failure.js.erb', :locals => {message: existing_email_error} if User.find_by(email: params[:user][:email]) != nil
 
-     build_resource(sign_up_params)
+     if params[:commit] == "Add Artist Profile"
+       print "Artist"
+       build_resource(artist_params)
+     else
+       build_resource(sign_up_params)
+     end
 
      if resource.save
        if resource.active_for_authentication?
@@ -93,6 +98,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
  def signup_params
    devise_parameter_sanitizer.sanitize(:sign_up)
+ end
+
+ def artist_params
+   artist_params = params.require(:user).permit(:name, :email, :location, :label, :password, :password_confirmation, :is_artist).to_hash
+   artist_params["genre"] = Genre.find(params[:user][:genre].to_i)
+   artist_params[:is_artist] = true
+   artist_params
+ end
+
+ def artist_signup_params
+
  end
 
  def missing_params_error
