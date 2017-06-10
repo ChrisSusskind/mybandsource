@@ -33,6 +33,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def create_artist
+    render 'artist_signup'
+  end
+
   def upload_avatar
     @user.update_attributes({picture: params[:picture]})
     redirect_to user_path(@user)

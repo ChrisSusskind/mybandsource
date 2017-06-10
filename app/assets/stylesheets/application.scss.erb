@@ -105,7 +105,7 @@ h1,h2,h3,h4,h5,h6,p, .h-largecaps {
 
   div.navbar-links {
 
-    @media (min-width: 800px) {
+    @media (min-width: 751px) {
       .search-icon {
         display: none;
       }
@@ -159,7 +159,7 @@ h1,h2,h3,h4,h5,h6,p, .h-largecaps {
   }
 }
 
-@media (max-width: 799px) {
+@media (max-width: 750px) {
   .search-icon {
     display: inline;
   }
@@ -170,16 +170,19 @@ h1,h2,h3,h4,h5,h6,p, .h-largecaps {
   }
 }
 
-@media (max-width: 350px) {
+@media (max-width: 360px){
   .navbar-logo {
-    width: 100px;
-    height: 25px;
+    width: 110px;
+    height: 27px;
     margin-top: 8px;
   }
 
   .navbar-header {
     width: 100px;
   }
+}
+
+@media (max-width: 750px) {
 
   .search-icon {
     outline: none;
@@ -1150,6 +1153,22 @@ div.review_content {
   }
 }
 
+// Create artist page styling
+
+.create-artist-btn-container {
+  margin-top: 30px;
+
+  input {
+    width: 300px!important;
+  }
+
+  @media (max-width: 350px) {
+    input {
+      width: 250px!important;
+    }
+  }
+}
+
 // Edit user info, forgot password, password reset, resend confirmation link, unlock account page styles
 
 .page-container {
@@ -1175,6 +1194,15 @@ div.review_content {
         font-weight: 600;
         line-height: 62px;
         margin-bottom: 0;
+      }
+
+      @media (max-width: 500px) {
+        h3 {
+          height: 41px;
+          font-size: 16px;
+          font-weight: 600;
+          line-height: 41px;
+        }
       }
 
       div.settings-form {
