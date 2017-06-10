@@ -16,7 +16,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
      return render :action => 'signup_failure.js.erb', :locals => {message: existing_email_error} if User.find_by(email: params[:user][:email]) != nil
 
      if params[:commit] == "Add Artist Profile"
-       print "Artist"
        build_resource(artist_params)
      else
        build_resource(sign_up_params)
