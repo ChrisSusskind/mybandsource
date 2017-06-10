@@ -3,14 +3,14 @@
     <div class="content-container">
       <div class="content-slim">
         <h3>
-          <span class="h-largecaps">Change your password</span>
+          Change your password
         </h3>
         <div class="settings-form">
           <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
             <%= f.hidden_field :reset_password_token %>
 
             <div class="form-group">
-              <%= f.label :password, "New password", class: "h-smallcaps" %><br />
+              <%= f.label :password, "New password", class: "" %><br />
               <%= f.password_field :password, autofocus: true, autocomplete: "off", class: "field-editpage" %>
               <% if @minimum_password_length %>
                   <em>(<%= @minimum_password_length %> characters minimum)</em><br />
@@ -18,7 +18,7 @@
             </div>
 
             <div class="form-group">
-              <%= f.label :password_confirmation, "Confirm new password", class: "h-smallcaps" %><br />
+              <%= f.label :password_confirmation, "Confirm new password", class: "" %><br />
               <%= f.password_field :password_confirmation, autocomplete: "off", class: "field-editpage" %>
             </div>
 

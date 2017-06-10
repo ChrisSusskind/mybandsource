@@ -3,12 +3,12 @@
     <div class="content-container">
       <div class="content-slim">
         <h3>
-          <span class="h-largecaps">Resend confirmation instructions</span>
+          Resend confirmation instructions
         </h3>
         <div class="settings-form">
           <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
             <div class="form-group">
-              <%= f.label :email, class: "h-smallcaps" %><br />
+              <%= f.label :email, class: "" %><br />
               <%= f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: "field-editpage" %>
             </div>
 
