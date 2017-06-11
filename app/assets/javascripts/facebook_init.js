@@ -7,15 +7,17 @@ $(document).on('ready page: load', function() {
     window.fbAsyncInit = function() {
         FB.init({
             appId      : '444853392519445',
-            xfbml      : false
+            xfbml      : true,
+            version    : 'v2.9'
         });
+        FB.AppEvents.logPageView();
         console.log("FB Initialized");
     };
     (function(d, s, id){
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) {return;}
         js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/all.js";
+        js.src = "//connect.facebook.net/en_US/sdk.js";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 });
@@ -26,6 +28,5 @@ function shareFacebook(url) {
         href: url
     }, function (response) {
     });
-
     console.log("Inside shareFacebook");
 }
