@@ -39,7 +39,11 @@
       <div class="profile-banner-info">
         <h1><%= @user.name %></h1>
         <% if @user.is_artist %>
-            <h2><%= @user.genre.name %></h2>
+            <% if @user.genre.present? %>
+              <h2><%= @user.genre.name %></h2>
+            <% else %>
+                <h2></h2>
+            <% end %>
       <% else %>
           <h2><%= @user.location %></h2>
         <% end %>
@@ -78,17 +82,19 @@
     <div class="profile-content-column">
       <div class="profile-section">
         <h1>About</h1>
-        <% if @user.bio.length > 200 %>
-          <%= truncate(@user.bio, length: 200) %>
-          <%= link_to 'Read more', '', class: "read-more-link" %>
-          <script>
-            $('.read-more-link').on('click', function(e){
-              e.preventDefault();
-              $(this).parent().html('<h1>About</h1> <%= escape_javascript @user.bio %>')
-            });
-          </script>
-        <% else %>
-          <p><%= @user.bio %></p>
+        <% if @user.bio.present? %>
+          <% if @user.bio.length > 200 %>
+            <%= truncate(@user.bio, length: 200) %>
+            <%= link_to 'Read more', '', class: "read-more-link" %>
+            <script>
+              $('.read-more-link').on('click', function(e){
+                e.preventDefault();
+                $(this).parent().html('<h1>About</h1> <%= escape_javascript @user.bio %>')
+              });
+            </script>
+          <% else %>
+            <p><%= @user.bio %></p>
+          <% end %>
         <% end %>
       </div>
 
