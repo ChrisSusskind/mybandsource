@@ -1,3 +1,8 @@
+<meta property="og:url"                content=<%= user_url(@user) %> />
+<meta property="og:title"              content="dev.mybandsource.com" />
+<meta property="og:description"        content="Check out this profile on mybandsource.com" />
+<meta property="og:image"              content=<%= cl_image_tag("static/mbs_facebook_image") %> />
+
 <%= cloudinary_js_config %>
 
 <div class="container" id="user_id_container" data-user_id=<%=@user.id%> >

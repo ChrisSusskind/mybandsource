@@ -23,7 +23,7 @@
 //= require cloudinary/processing
 //= require react_ujs
 //= require components
-//= require 'facebook_init'
+//= require 'facebook_scripts'
 //= require 'carousel'
 //= require 'cloudinary_init'
 //= require 'navbar'

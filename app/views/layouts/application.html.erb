@@ -14,6 +14,21 @@
 	</head>
 
 	<body>
+    <script>
+      console.log("Running FB init script");
+      $(document).ready(function() {
+        $.ajaxSetup({ cache: true });
+        $.getScript('//connect.facebook.net/en_US/sdk.js', function(){
+          FB.init({
+            appId: '444853392519445',
+            version: 'v2.8'
+          });
+          FB.AppEvents.logPageView();
+          console.log("Facebook initialized");
+        });
+      });
+    </script>
+
 		<div class="container main-container">
 		
 			<%= render 'layouts/header' %>
