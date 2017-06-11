@@ -11,19 +11,26 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 		<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-	</head>
+
+    <meta property="og:url"                content="dev.mybandsource.com" />
+    <meta property="og:title"              content="MyBandSource" />
+    <meta property="og:description"        content="Check this out" />
+    <meta property="og:image"              content=<%= cl_image_tag("static/mbs_facebook_image") %> />
+  </head>
 
 	<body>
     <script>
       console.log("Running FB init script");
-      $.ajaxSetup({ cache: true });
-      $.getScript('//connect.facebook.net/en_US/sdk.js', function(){
-        FB.init({
-          appId: '444853392519445',
-          version: 'v2.8'
+      $(document).ready(function() {
+        $.ajaxSetup({ cache: true });
+        $.getScript('//connect.facebook.net/en_US/sdk.js', function(){
+          FB.init({
+            appId: '444853392519445',
+            version: 'v2.8'
+          });
+          FB.AppEvents.logPageView();
+          console.log("Facebook initialized");
         });
-        FB.AppEvents.logPageView();
-        console.log("Facebook initialized");
       });
     </script>
 
