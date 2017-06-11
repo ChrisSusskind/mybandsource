@@ -479,7 +479,12 @@ div.profile-banner {
       left: 35%;
       opacity:0;
       transition:opacity 1s ease;
+      cursor: pointer;
     }
+  }
+
+  div.header-picture-overlay:hover {
+    opacity: 1;
   }
 
   div.profile-banner-content {
@@ -503,6 +508,10 @@ div.profile-banner {
         height: 100%;
         z-index: 2000;
 
+        div.profile-picture-overlay:hover {
+          opacity: 1;
+        }
+
         .change-profile-pic-text {
           color: white;
           height: 42px;
@@ -518,6 +527,7 @@ div.profile-banner {
           left: 46.5px;
           opacity:0;
           transition:opacity 1s ease;
+          cursor: pointer;
         }
       }
     }
