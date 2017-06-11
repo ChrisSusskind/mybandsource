@@ -6,7 +6,8 @@ function shareFacebook(url) {
     if(FB){
         FB.ui({
             method: 'share',
-            href: url
+            href: url,
+            quote: "Check this out on MyBandSource"
         }, function (response) {
         });
         console.log("Inside shareFacebook");

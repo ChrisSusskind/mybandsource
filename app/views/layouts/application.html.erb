@@ -20,18 +20,27 @@
 
 	<body>
     <script>
+
       console.log("Running FB init script");
-      $(document).ready(function() {
-        $.ajaxSetup({ cache: true });
-        $.getScript('//connect.facebook.net/en_US/sdk.js', function(){
-          FB.init({
-            appId: '444853392519445',
-            version: 'v2.8'
-          });
-          FB.AppEvents.logPageView();
-          console.log("Facebook initialized");
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId            : '444853392519445',
+          autoLogAppEvents : true,
+          xfbml            : true,
+          version          : 'v2.9'
         });
-      });
+        FB.AppEvents.logPageView();
+        console.log("Facebook initialized");
+      };
+
+      (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+
     </script>
 
 		<div class="container main-container">
