@@ -71,6 +71,9 @@ gem 'glyphicons-rails'
 #Tether gem
 gem 'tether-rails'
 
+#Whenever gem for scheduling background jobs
+gem 'whenever'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
