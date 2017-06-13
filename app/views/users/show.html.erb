@@ -84,12 +84,21 @@
         <h1>About</h1>
         <% if @user.bio.present? %>
           <% if @user.bio.length > 200 %>
-            <%= truncate(@user.bio, length: 200) %>
+            <p id="bio-text"><%= truncate(@user.bio, length: 200) %></p>
             <%= link_to 'Read more', '', class: "read-more-link" %>
+            <%= link_to 'Read less', '', class: "read-less-link", style: "display: none" %>
             <script>
               $('.read-more-link').on('click', function(e){
                 e.preventDefault();
-                $(this).parent().html('<h1>About</h1> <%= escape_javascript @user.bio %>')
+                $('#bio-text').html('<%= escape_javascript @user.bio %>');
+                $(this).hide();
+                $('.read-less-link').show();
+              });
+              $('.read-less-link').on('click', function(e){
+                e.preventDefault();
+                $(this).hide();
+                $('.read-more-link').show();
+                $('#bio-text').html('<%= escape_javascript truncate(@user.bio, length: 200) %>');
               });
             </script>
           <% else %>
