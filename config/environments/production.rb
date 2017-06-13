@@ -66,10 +66,10 @@ Rails.application.configure do
     :user_name            =>  ENV["MANDRILL_USERNAME"],
     :password             =>  ENV["MANDRILL_API_KEY"], # SMTP password is any valid API key
     :authentication       => 'login', # Mandrill supports 'plain' or 'login'
-    :domain               => 'mybandsource.com'
+    :domain               => 'dev.mybandsource.com'
   }
 
-  config.action_mailer.default_url_options = { host: ENV["DEFAULT_HOST"] }
+  config.action_mailer.default_url_options = { host: ENV['DEFAULT_HOST'] }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
