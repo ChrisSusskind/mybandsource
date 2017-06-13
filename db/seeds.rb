@@ -24,11 +24,11 @@ Genre.populate genre_list.length do |genre|
   genre.name 				= genre_list[genre_index]
 	genre.description 		= Faker::Lorem.sentence
   if genre_list[genre_index] == "Hip Hop"
-    genre.picture = "static/" + "HipHop" + "_card"
+    genre.picture = "static/" + "HipHop" + "_card_image"
   elsif genre_list[genre_index] == "R&B"
-		genre.picture = "static/" + "RnB" + "_card"
+		genre.picture = "static/" + "RnB" + "_card_image"
 	else
-    genre.picture = "static/" +  genre_list[genre_index] + "_card"
+    genre.picture = "static/" +  genre_list[genre_index] + "_card_image"
 	end
 	genre_index += 1
 end
@@ -51,7 +51,8 @@ User.populate 50 do |artist|
 	artist.updated_at		= DateTime.now
 	artist.genre_id			= Genre.first.id
 	artist.sign_in_count		= 0
-  	artist.is_artist = true
+  artist.average_rating = 0.0
+  artist.is_artist = true
 end
 
 # Regular users

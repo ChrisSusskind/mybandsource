@@ -5,9 +5,11 @@
         <%= render partial: 'shared/artist_card', object: @artists.first %>
       </div>
 
-      <div class="carousel-item col-md-4 col-sm-6 mx-auto">
-        <%= render partial: 'shared/artist_card', collection: @artist[1...(@artist.length-1)] %>
-      </div>
+      <%  @artists[1...(@artists.length-1)].each do |artist| %>
+        <div class="carousel-item col-md-4 col-sm-6 mx-auto">
+          <%= render partial: 'shared/artist_card', object: artist %>
+        </div>
+      <% end %>
     </div>
     <a class="carousel-control-prev text-faded" href="#carouselExample" role="button" data-slide="prev">
       <%= cl_image_tag("static/left_arrow", :alt => "Left arrow", class: "") %>

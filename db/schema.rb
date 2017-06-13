@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170612003059) do
+ActiveRecord::Schema.define(version: 20170613200039) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,14 +77,14 @@ ActiveRecord::Schema.define(version: 20170612003059) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.string   "email",                  default: ""
     t.string   "encrypted_password",     default: ""
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,   null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -93,7 +93,7 @@ ActiveRecord::Schema.define(version: 20170612003059) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.string   "name",                   default: "", null: false
+    t.string   "name",                   default: "",  null: false
     t.string   "location"
     t.string   "picture"
     t.text     "bio",                    default: ""
@@ -110,7 +110,7 @@ ActiveRecord::Schema.define(version: 20170612003059) do
     t.integer  "genre_id"
     t.string   "banner_picture"
     t.string   "label"
-    t.float    "average_rating"
+    t.float    "average_rating",         default: 0.0
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["genre_id"], name: "index_users_on_genre_id", using: :btree
