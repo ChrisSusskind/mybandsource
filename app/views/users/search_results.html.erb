@@ -1,9 +1,28 @@
 <div class="search-results-container container">
   <h3>SEARCH RESULTS: <%= query.upcase %></h3>
 
-  <div class="row cards">
-    <% @artists.order(:name).each do |artist| %>
-        <%= render partial: 'shared/artist_card', locals: {artist: artist} %>
-    <% end %>
+  <div class="dropdown order-dropdown artist-card-order-dropdown">
+    <a class="dropdown-toggle" href="#" id="order-dropdown-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <h3>Arrange Artists By</h3>
+    </a>
+    <span class="dropdown-menu" aria-labelledby="order-dropdown-btn">
+        <a class="dropdown-item" href="#" onclick="orderByAlphabetical(event)">Alphabetical</a>
+        <a class="dropdown-item" href="#" onclick="orderByRating(event)">Highest Rating</a>
+      </span>
+  </div>
+
+  <script>
+    function orderByRating(e){
+      e.preventDefault();
+      $('.artist-card-row').html('<%= escape_javascript render partial: 'shared/artist_card', collection: @artists.order(average_rating: :desc) %>');
+    }
+    function orderByAlphabetical(e){
+      e.preventDefault();
+      $('.artist-card-row').html('<%= escape_javascript render partial: 'shared/artist_card', collection: @artists.order(:name) %>');
+    }
+  </script>
+
+  <div class="row cards artist-card-row">
+        <%= render partial: 'shared/artist_card', collection: @artists.order(:name) %>
   </div>
 </div>

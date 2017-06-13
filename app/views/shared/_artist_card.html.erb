@@ -1,21 +1,21 @@
 <div class="artist-card">
-  <%= link_to cl_image_tag(artist.picture), user_path(artist), method: :get if artist.picture? %>
-  <%= link_to cl_image_tag("static/blank_user"), user_path(artist), method: :get unless artist.picture? %>
+  <%= link_to cl_image_tag(artist_card.picture), user_path(artist_card), method: :get if artist_card.picture? %>
+  <%= link_to cl_image_tag("static/blank_user"), user_path(artist_card), method: :get unless artist_card.picture? %>
 
   <div>
-    <h5><%= artist.name %></h5>
-    <% if !artist.genre.nil? %>
-      <h6><%= artist.genre.name %></h6>
+    <h5><%= artist_card.name %></h5>
+    <% if !artist_card.genre.nil? %>
+      <h6><%= artist_card.genre.name %></h6>
     <% end %>
   </div>
 
   <span>
     &#9733
-    <%= artist.average_rating.round(2) %>
+    <%= artist_card.average_rating.round(2) %>
   </span>
 
   <span class="span-2">
     <%= material_icon.message.md_18 %>
-    <%= number_to_human artist.received_reviews.count%>
+    <%= number_to_human artist_card.received_reviews.count%>
   </span>
 </div>

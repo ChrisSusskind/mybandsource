@@ -1607,6 +1607,7 @@ div.review_content {
   margin-top: 40px;
 
   h3 {
+    display: inline;
     font-weight: 500;
   }
 
@@ -1651,5 +1652,39 @@ div.review_content {
 
   p {
     font-size: .5em;
+  }
+}
+
+
+// Styles used for artist card ordering (alphabetical or by rating) dropdown
+
+@media (min-width: 769px) {
+  .artist-card-order-dropdown {
+    width: 275px;
+    float: right;
+    white-space: nowrap;
+
+    .dropdown-toggle {
+      font-weight: 500;
+    }
+
+    a {
+      color: black!important;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .artist-card-order-dropdown {
+    width: 275px;
+    margin-top: 20px;
+
+    .dropdown-toggle {
+      font-weight: 500;
+    }
+
+    a {
+      color: black!important;
+    }
   }
 }
