@@ -1,6 +1,6 @@
 <div class="artist-card">
-  <%= link_to cl_image_tag(artist_card.picture), user_path(artist_card), method: :get if artist_card.picture? %>
-  <%= link_to cl_image_tag("static/blank_user"), user_path(artist_card), method: :get unless artist_card.picture? %>
+  <%= link_to cl_image_tag(artist_card.picture, class: "artist-image"), user_path(artist_card), method: :get if artist_card.picture? %>
+  <%= link_to cl_image_tag("static/blank_user", class: "artist-image"), user_path(artist_card), method: :get unless artist_card.picture? %>
 
   <div>
     <h5><%= artist_card.name %></h5>
@@ -10,12 +10,17 @@
   </div>
 
   <span>
-    &#9733
+    <%= cl_image_tag('static/white_star', :alt => "star", :width => 14, :height => 14, :class => "icon-image") %>
     <%= artist_card.average_rating.round(2) %>
   </span>
 
   <span class="span-2">
     <%= material_icon.message.md_18 %>
-    <%= number_to_human artist_card.received_reviews.count%>
+    <%= number_to_human artist_card.review_count%>
+  </span>
+
+  <span>
+    <%= cl_image_tag('static/response_icon', :alt => "response", :width => 14, :height => 14, :class => "icon-image") %>
+    <%= number_to_human artist_card.response_count %>
   </span>
 </div>

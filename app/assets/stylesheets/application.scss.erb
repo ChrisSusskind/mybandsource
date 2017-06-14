@@ -555,12 +555,30 @@ div.profile-banner {
         font-weight: bold;
         letter-spacing: 1px;
         line-height: 17px;
-        margin-bottom: 20px;
+        margin-bottom: 32px;
       }
 
       div.profile-numbers {
         height: 37px;
         margin-bottom: 16px;
+
+        span {
+          color: white;
+        }
+
+        span.not-left {
+          margin-left: 20px;
+        }
+
+        i {
+          position: relative;
+          top: 3px;
+        }
+
+        .icon-image {
+          position: relative;
+          bottom: 3px;
+        }
       }
 
       div.profile-banner-buttons-container {
@@ -1489,7 +1507,7 @@ div.review_content {
   margin-top: 10px;
   margin-bottom: 10px;
 
-  img {
+  img.artist-image {
     width: 100%;
     height: 270px;
   }
@@ -1503,11 +1521,15 @@ div.review_content {
     color: white;
     display: inline-block;
     margin-bottom: 10px;
-    margin-left: 20px;
 
     i {
       position: relative;
       top: 3px;
+    }
+
+    .icon-image {
+      position: relative;
+      bottom: 3px;
     }
   }
 
