@@ -31,6 +31,12 @@
   width: 100%;
 }
 
+@media (max-width: 767px) {
+  .main-container {
+    padding: 0 0;
+  }
+}
+
 // Typography
 
 h1,h2,h3,h4,h5,h6,p, .h-largecaps {
@@ -442,360 +448,660 @@ footer {
   justify-content: center;
 }
 
-/* Profile Styling */
+/* Profile Desktop Styling */
 
 .image_upload {
   display: none;
 }
 
-div.profile-banner {
-  height: 457px;
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: flex-end;
-
-  div.header-picture-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
+@media(min-width: 768px) {
+  div.profile-banner {
+    height: 457px;
     width: 100%;
-    height: 50%;
-    z-index: 1000;
-
-    .change-header-pic-text {
-      color: white;
-      height: 21px;
-      width: 334px;
-      font-size: 18px;
-      font-weight: bold;
-      letter-spacing: 1px;
-      line-height: 21px;
-      text-align: center;
-      margin-bottom: 0;
-      position: relative;
-      top: 109px;
-      left: 35%;
-      opacity:0;
-      transition:opacity 1s ease;
-      cursor: pointer;
-    }
-  }
-
-  div.header-picture-overlay:hover > .change-header-pic-text {
-    opacity: 1;
-  }
-
-  div.profile-banner-content {
     position: relative;
-    bottom: 41px;
-    height: 246px;
+    overflow: hidden;
     display: flex;
     align-items: flex-end;
-    padding: 0 15%;
-    width: 100%;
 
-    div.profile-banner-avatar {
-      height: 246px;
-      width: 246px;
-      position: relative;
+    div.header-picture-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 50%;
+      z-index: 1000;
 
-      div.profile-picture-overlay {
-        position: absolute;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 2000;
-
-        div.profile-picture-overlay:hover > .change-profile-pic-text {
-          opacity: 1;
-        }
-
-        .change-profile-pic-text {
-          color: white;
-          height: 42px;
-          width: 153px;
-          font-size: 18px;
-          font-weight: bold;
-          letter-spacing: 1px;
-          line-height: 21px;
-          text-align: center;
-          margin-bottom: 0;
-          position: relative;
-          top: 101px;
-          left: 46.5px;
-          opacity:0;
-          transition:opacity 1s ease;
-          cursor: pointer;
-        }
+      .change-header-pic-text {
+        color: white;
+        height: 21px;
+        width: 334px;
+        font-size: 18px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        line-height: 21px;
+        text-align: center;
+        margin-bottom: 0;
+        position: relative;
+        top: 109px;
+        left: 35%;
+        opacity:0;
+        transition:opacity 1s ease;
+        cursor: pointer;
       }
     }
 
-    div.profile-banner-info {
-      font-family: 'Montserrat', Helvetica, sans-serif;
-      height: 205px;
-      padding-left: 30px;
+    div.header-picture-overlay:hover > .change-header-pic-text {
+      opacity: 1;
+    }
 
-      h1 {
-        white-space: nowrap;
-        height: 62px;
-        color: #ffffff;
-        font-size: 36px;
-        font-weight: bold;
-        line-height: 62px;
-        margin-bottom: 5px;
+    div.profile-banner-content {
+      position: relative;
+      bottom: 41px;
+      height: 246px;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 15%;
+      width: 100%;
+
+      div.profile-banner-avatar {
+        height: 246px;
+        width: 246px;
+        position: relative;
+
+        div.profile-picture-overlay {
+          position: absolute;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 2000;
+
+          div.profile-picture-overlay:hover > .change-profile-pic-text {
+            opacity: 1;
+          }
+
+          .change-profile-pic-text {
+            color: white;
+            height: 42px;
+            width: 153px;
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            line-height: 21px;
+            text-align: center;
+            margin-bottom: 0;
+            position: relative;
+            top: 101px;
+            left: 46.5px;
+            opacity:0;
+            transition:opacity 1s ease;
+            cursor: pointer;
+          }
+        }
+
+        img {
+          float: left;
+        }
       }
 
-      h2 {
-        white-space: nowrap;
-        height: 17px;
-        color: rgba(255,255,255,.5);
-        font-size: 14px;
-        font-weight: bold;
-        letter-spacing: 1px;
-        line-height: 17px;
-        margin-bottom: 32px;
-      }
+      div.profile-banner-info {
+        font-family: 'Montserrat', Helvetica, sans-serif;
+        height: 205px;
+        padding-left: 30px;
 
-      div.profile-numbers {
-        height: 37px;
-        margin-bottom: 16px;
-
-        span {
-          color: white;
-        }
-
-        span.not-left {
-          margin-left: 20px;
-        }
-
-        i {
-          position: relative;
-          top: 3px;
-        }
-
-        .icon-image {
-          position: relative;
-          bottom: 3px;
-        }
-      }
-
-      div.profile-banner-buttons-container {
-        width: 257px;
-        height: 48px;
-        display: inline;
-        white-space: nowrap;
-        margin-right: 10px;
-
-        a.follow-button {
-          background-color: #AA182A;
-          box-shadow: none;
-          border: none !important;
-          width: 132px;
-          height: 48px;
-          padding: 15px 15px 15px 15px;
+        h1 {
+          white-space: nowrap;
+          height: 62px;
           color: #ffffff;
-          font-size: 13px;
-          line-height: 16px;
-          text-align: center;
-          margin: 0 0 0 0;
+          font-size: 36px;
+          font-weight: bold;
+          line-height: 62px;
+          margin-bottom: 5px;
         }
 
-        div.share-link-container {
-          height: 16px;
-          width: 113px;
-          display: inline;
-          margin-left: 12px;
+        h2 {
+          white-space: nowrap;
+          height: 17px;
+          color: rgba(255,255,255,.5);
+          font-size: 14px;
+          font-weight: bold;
+          letter-spacing: 1px;
+          line-height: 17px;
+          margin-bottom: 32px;
+        }
 
-          a.share-link {
-            background-color: transparent;
+        div.profile-numbers {
+          height: 37px;
+          margin-bottom: 16px;
+
+          span {
+            color: white;
+          }
+
+          span.not-left {
+            margin-left: 20px;
+          }
+
+          i {
+            position: relative;
+            top: 3px;
+          }
+
+          .icon-image {
+            position: relative;
+            bottom: 3px;
+          }
+        }
+
+        div.profile-banner-buttons-container {
+          width: 257px;
+          height: 48px;
+          display: inline;
+          white-space: nowrap;
+          margin-right: 10px;
+
+          a.follow-button {
+            background-color: #AA182A;
+            box-shadow: none;
             border: none !important;
-            height: 16px;
+            width: 132px;
+            height: 48px;
+            padding: 15px 15px 15px 15px;
+            color: #ffffff;
             font-size: 13px;
             line-height: 16px;
-            color: #ffffff;
+            text-align: center;
+            margin: 0 0 0 0;
+          }
+
+          div.share-link-container {
+            height: 16px;
+            width: 113px;
+            display: inline;
+            margin-left: 12px;
+
+            a.share-link {
+              background-color: transparent;
+              border: none !important;
+              height: 16px;
+              font-size: 13px;
+              line-height: 16px;
+              color: #ffffff;
+            }
           }
         }
       }
+
+      div.follow-container {
+        white-space: nowrap;
+        margin-left: auto;
+
+        div.follow_count {
+          position: relative;
+          top: 20px;
+
+          p.followers_text {
+            margin-bottom: 0;
+          }
+
+          a.follow-number {
+            color: white;
+          }
+        }
+      }
+
+      @media (max-width: 993px) {
+        div.follow-container {
+          display: none;
+        }
+      }
     }
+  }
 
-    div.follow-container {
-      white-space: nowrap;
+  div.profile-content {
+    font-family: 'Montserrat', Helvetica, sans-serif;
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    margin: 60px 60px;
 
-      div.follow_count {
-        position: relative;
-        top: 20px;
+    div.profile-content-column {
+      width: 100%;
+      border-right: 1px solid #DDD;
+      padding-right: 30px;
 
-        p.followers_text {
+      div.profile-section {
+        display: block;
+        border-bottom: 1px solid #DDD;
+        width: 100%;
+
+        // First section
+
+        font-size: 24px;
+        font-weight: 300;
+        letter-spacing: 1px;
+        line-height: 35px;
+        color: #707070;
+        padding-bottom: 41px;
+
+        h1 {
+          height: 62px;
+          line-height: 62px;
+          font-size: 24px;
+          font-weight: 600;
+          text-transform: uppercase;
           margin-bottom: 0;
+          color: black;
         }
 
-        a.follow-number {
-          color: white;
+        a.read-more-link {
+          color: black;
+          font-weight: 600;
+        }
+
+        a.read-less-link {
+          color: black;
+          font-weight: 600;
+        }
+      }
+
+      div.review-mode-toggle {
+
+        margin-top: 28px;
+        min-width: 620px;
+
+        a {
+          height: 62px;
+          color: black;
+          font-size: 24px;
+          font-weight: 600;
+          line-height: 62px;
+          margin-bottom: 5px;
+        }
+
+        a.discussion-toggle {
+          margin-left: 60px;
+        }
+
+        a.active {
+          border-bottom: 2px solid #AA182A;
+        }
+
+        div.order-dropdown {
+          float: right;
+
+          a.dropdown-item {
+            height: 31px;
+            color: black;
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 31px;
+            margin-bottom: 5px;
+          }
+        }
+      }
+
+      .review-container {
+
+        button.edit-btn {
+          display: block;
+          margin-top: 30px;
+          text-align: center;
+          cursor: pointer;
+        }
+
+        div.review-list {
+          margin-top: 30px;
         }
       }
     }
 
-    @media (max-width: 993px) {
-      div.follow-container {
-        display: none;
+    div.profile-sidebar {
+      padding-left: 30px;
+      float: left;
+      width: 310px;
+      margin-right: 60px;
+      min-width: 200px;
+
+      div.profile-sidebar-group {
+
+        h3 {
+          height: 62px;
+          color: black;
+          font-size: 12px;
+          font-weight: 300;
+          line-height: 62px;
+          text-transform: uppercase;
+        }
+
+        h4 {
+          height: 17px;
+          color: rgba(0,0,0,.5);
+          font-size: 14px;
+          font-weight: bold;
+          letter-spacing: 1px;
+          line-height: 17px;
+          text-transform: uppercase;
+          position: relative;
+          bottom: 10px;
+        }
+
+        a.profile-social-icon {
+          margin-right: 10px;
+        }
+
+        div.claim-artist-container {
+
+          margin-top: 50px;
+
+          h1 {
+            height: 28px;
+            color: black;
+            font-size: 18px;
+            font-weight: bold;
+            line-height: 24px;
+            margin-bottom: 0;
+          }
+
+          a.claim-artist-link {
+            height: 28px;
+            color: #AA182A;
+            font-size: 18px;
+            font-weight: bold;
+            line-height: 24px;
+          }
+        }
       }
     }
   }
 }
 
-div.profile-content {
-  font-family: 'Montserrat', Helvetica, sans-serif;
-  display: flex;
-  align-items: flex-start;
-  width: 100%;
-  margin: 60px 60px;
+// Profile tablet styling
 
-  div.profile-content-column {
-    width: 100%;
-    border-right: 1px solid #DDD;
-    padding-right: 30px;
+@media(min-width: 401px) and (max-width: 767px) {
 
-    div.profile-section {
-      display: block;
-      border-bottom: 1px solid #DDD;
+  div.profile-banner-info {
+    text-align: center;
+  }
+
+  div.follow_count {
+    margin: 0 auto;
+
+  }
+
+}
+
+// Profile mobile styling
+
+@media(max-width: 767px) {
+
+  div#user_id_container {
+
+    padding: 0 0 !important;
+
+    div.profile-banner {
+      height: 539px;
       width: 100%;
+      position: relative;
+      padding: 0 5%;
 
-      // First section
 
-      font-size: 24px;
-      font-weight: 300;
-      letter-spacing: 1px;
-      line-height: 35px;
-      color: #707070;
-      padding-bottom: 41px;
-
-      h1 {
-        height: 62px;
-        line-height: 62px;
-        font-size: 24px;
-        font-weight: 600;
-        text-transform: uppercase;
-        margin-bottom: 0;
-        color: black;
+      .header-picture-overlay {
+        display: none;
       }
 
-      a.read-more-link {
-        color: black;
-        font-weight: 600;
-      }
+      div.profile-banner-content {
+        position: relative;
+        width: 100%;
+        padding-top: 15px;
+        padding-bottom: 15px;
 
-      a.read-less-link {
-        color: black;
-        font-weight: 600;
-      }
-    }
+        div.profile-banner-avatar {
 
-    div.review-mode-toggle {
+          img {
+            height: 293px;
+            width: 293px;
+            display: block;
+            margin: 0 auto;
+          }
+        }
 
-      margin-top: 28px;
-      min-width: 620px;
+        div.profile-banner-info {
 
-      a {
-        height: 62px;
-        color: black;
-        font-size: 24px;
-        font-weight: 600;
-        line-height: 62px;
-        margin-bottom: 5px;
-      }
+          h1 {
+            height: 43.4px;
+            font-size: 25.2px;
+            font-weight: bold;
+            line-height: 43px;
+            color: #ffffff;
+            margin-bottom: 3.5px;
+          }
 
-      a.discussion-toggle {
-        margin-left: 60px;
-      }
+          h2 {
+            height: 12px;
+            color: rgba(255, 255, 255, .5);
+            font-size: 9.8px;
+            font-weight: bold;
+            line-height: 12px;
+            margin-bottom: 15px;
+          }
 
-      a.active {
-        border-bottom: 2px solid #AA182A;
-      }
+          div.profile-numbers {
 
-      div.order-dropdown {
-        float: right;
+            margin-bottom: 11px;
 
-        a.dropdown-item {
-          height: 31px;
-          color: black;
-          font-size: 12px;
-          font-weight: 400;
-          line-height: 31px;
-          margin-bottom: 5px;
+            span {
+              color: white;
+              height: 26.18px;
+              font-size: 10.78px;
+              font-weight: 300;
+              line-height: 26px;
+            }
+
+            span.not-left {
+              margin-left: 20px;
+            }
+
+            i {
+              position: relative;
+              top: 3px;
+            }
+
+            .icon-image {
+              position: relative;
+              bottom: 3px;
+            }
+          }
+
+          div.profile-banner-buttons-container {
+
+            margin-bottom: 29px;
+
+            a.follow-button {
+              background-color: #AA182A;
+              box-shadow: none;
+              border: none !important;
+              width: 92.5px;
+              height: 32.6px;
+              padding: 12px 12px 12px 12px;
+              color: #ffffff;
+              font-size: 9.1px;
+              line-height: 11px;
+              text-align: center;
+              margin: 0 0 0 0;
+            }
+
+            div.share-link-container {
+
+              display: inline;
+              margin-left: 20px;
+
+              a.share-link {
+                background-color: transparent;
+                border: none !important;
+                color: white;
+                height: 11px;
+                font-size: 9.1px;
+                line-height: 11px;
+              }
+            }
+          }
+        }
+
+        div.follow-container {
+
+          div.follow_count {
+
+            width: 126px;
+
+            p.followers_text {
+              font-size: 10px;
+              font-weight: 300;
+              margin-bottom: 0;
+              color: white;
+              width: 53px;
+            }
+
+            a.follow-number {
+              color: white;
+              font-size: 14px;
+              font-weight: 300;
+              display: block;
+              text-align: right;
+              position: relative;
+              right: 7px;
+              width: 53px;
+            }
+
+            div.following {
+              float: right;
+              position: relative;
+              bottom: 35px;
+            }
+          }
         }
       }
     }
 
-    .review-container {
+    div.profile-content {
+      padding-left: 13px;
+      padding-right: 13px;
+      width: 100%;
+      margin-top: 27px;
 
-      button.edit-btn {
-        display: block;
-        margin-top: 30px;
-        text-align: center;
-        cursor: pointer;
+      div.profile-content-column {
+
+        div.profile-section {
+
+          padding-bottom: 20px;
+          border-bottom: .7px solid rgba(0,0,0,.15);
+
+          h1 {
+            height: 43.4px;
+            font-size: 16.8px;
+            font-weight: 600;
+            line-height: 43px;
+          }
+
+          p {
+            font-size: 12px;
+            font-weight: 300;
+            line-height: 18px;
+            color: #707070;
+          }
+
+          a.read-more-link {
+            color: black;
+            font-weight: 600;
+          }
+
+          a.read-less-link {
+            color: black;
+            font-weight: 600;
+          }
+        }
+
+        div.review-mode-toggle {
+
+          a {
+            height: 31px;
+            color: black;
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 31px;
+            margin-bottom: 5px;
+          }
+
+          a.discussion-toggle {
+            margin-left: 20px;
+          }
+
+          a.active {
+            border-bottom: 2px solid #AA182A;
+          }
+
+          div.order-dropdown {
+            float: right;
+
+            div.dropdown-menu {
+              width: 125px;
+            }
+
+            a.dropdown-item {
+              height: 31px;
+              color: black;
+              font-size: 12px;
+              font-weight: 400;
+              line-height: 31px;
+              margin-bottom: 5px;
+              width: 90px;
+            }
+          }
+        }
       }
 
-      div.review-list {
-        margin-top: 30px;
-      }
-    }
-  }
+      div.profile-sidebar-group {
 
-  div.profile-sidebar {
-    padding-left: 30px;
-    float: left;
-    width: 310px;
-    margin-right: 60px;
-    min-width: 200px;
-
-    div.profile-sidebar-group {
-
-      h3 {
-        height: 62px;
-        color: black;
-        font-size: 12px;
-        font-weight: 300;
-        line-height: 62px;
-        text-transform: uppercase;
-      }
-
-      h4 {
-        height: 17px;
-        color: rgba(0,0,0,.5);
-        font-size: 14px;
-        font-weight: bold;
-        letter-spacing: 1px;
-        line-height: 17px;
-        text-transform: uppercase;
-        position: relative;
-        bottom: 10px;
-      }
-
-      a.profile-social-icon {
-        margin-right: 20px;
-      }
-
-      div.claim-artist-container {
-
-        margin-top: 50px;
-
-        h1 {
-          height: 28px;
-          color: black;
-          font-size: 18px;
-          font-weight: bold;
-          line-height: 24px;
+        h3 {
+          height: 39px;
+          font-size: 8.4px;
+          font-weight: 300;
+          line-height: 39px;
           margin-bottom: 0;
         }
 
-        a.claim-artist-link {
-          height: 28px;
-          color: #AA182A;
-          font-size: 18px;
+        h4 {
+          height: 12px;
+          color: rgba(0,0,0,.5);
+          font-size: 9.8px;
           font-weight: bold;
-          line-height: 24px;
+          line-height: 12px;
+        }
+
+        a.profile-social-icon {
+          margin-right: 10px;
+        }
+
+        div.claim-artist-container {
+
+          margin-top: 50px;
+          margin-bottom: 50px;
+
+          h1 {
+            height: 28px;
+            color: black;
+            font-size: 18px;
+            font-weight: bold;
+            line-height: 24px;
+            margin-bottom: 0;
+          }
+
+          a.claim-artist-link {
+            height: 28px;
+            color: #AA182A;
+            font-size: 18px;
+            font-weight: bold;
+            line-height: 24px;
+          }
         }
       }
     }
