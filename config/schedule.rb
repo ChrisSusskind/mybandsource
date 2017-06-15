@@ -19,3 +19,9 @@
 
 # Learn more: http://github.com/javan/whenever
 
+set :environment, "production"
+set :output, {:error => "log/cron_error_log.log", :standard => "log/cron_log.log"}
+
+every 6.hours do
+  rake "calculate_average_rating_and_counts"
+end
