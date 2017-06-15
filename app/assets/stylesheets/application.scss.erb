@@ -1122,66 +1122,158 @@ footer {
   }
 }
 
-// Review form styling
+// Review form desktop styling
 
-.review-form {
-  height: 146px;
-  width: 100%;
-  border: 1px solid #d9d9d9;
-  border-radius: 100px;
-  background-color: #f0f0f0;
-  margin-top: 30px;
+@media (min-width: 768px) {
+  .review-form {
+    height: 146px;
+    width: 100%;
+    border: 1px solid #d9d9d9;
+    border-radius: 100px;
+    background-color: #f0f0f0;
+    margin-top: 30px;
 
-  .picture-container {
-    position: relative;
-    margin-top: 38px;
-    margin-bottom: 38px;
-  }
+    .picture-container {
+      position: relative;
+      margin-top: 38px;
+      margin-bottom: 38px;
+    }
 
-  .leave-rating-container {
-    white-space: nowrap;
-    height: 21px;
-    font-size: 16px;
-    line-height: 21px;
-    margin-top: 14.5px;
+    .leave-rating-container {
+      white-space: nowrap;
+      height: 21px;
+      font-size: 16px;
+      line-height: 21px;
+      margin-top: 14.5px;
 
-    div.star-container {
-      width: 230px;
-      cursor: pointer;
+      div.star-container {
+        width: 230px;
+        cursor: pointer;
 
-      .red-star {
-        color: #AA182A;
+        .red-star {
+          color: #AA182A;
+        }
+
+        .grey-star {
+          color: #707070;
+        }
       }
 
-      .grey-star {
-        color: #707070;
+      .review-form-text {
+        margin-top: 10px;
+        width: 100%;
+      }
+
+      div.submit-btn-container {
+        display: none;
       }
     }
 
-    .review-form-text {
-      margin-top: 10px;
-      width: 100%;
-    }
-  }
+    div.submit-btn-container-2 {
 
-  div.submit-btn-container {
+      margin-top: 57px;
 
-    margin-top: 57px;
-
-    button.submit-btn {
-      height: 32px;
-      width: 70px;
-      border-radius: 100px;
-      background-color: #AA182A;
-      color: white;
-      padding-bottom: 21px;
-      margin-top: 0;
-      margin-bottom: 0;
-      cursor: pointer;
+      button.submit-btn {
+        height: 32px;
+        width: 70px;
+        border-radius: 100px;
+        background-color: #AA182A;
+        color: white;
+        padding-bottom: 21px;
+        margin-top: 0;
+        margin-bottom: 0;
+        cursor: pointer;
+      }
     }
   }
 }
 
+// Review form mobile styling
+
+@media (max-width: 767px) {
+  .review-form {
+    height: 161px;
+    width: 100%;
+    border: 1px solid #d9d9d9;
+    border-radius: 100px;
+    background-color: #f0f0f0;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+
+    .picture-container {
+      position: relative;
+      margin-top: 48px;
+      margin-bottom: 48px;
+      height: 50px;
+
+      img {
+        height: 0;
+        width: 0;
+      }
+    }
+
+    .leave-rating-container {
+      white-space: nowrap;
+      height: 16px;
+      font-size: 12px;
+      line-height: 16px;
+      margin-top: 14.5px;
+
+      div.star-container {
+        width: 230px;
+        cursor: pointer;
+
+        .red-star {
+          color: #AA182A;
+        }
+
+        .grey-star {
+          color: #707070;
+        }
+      }
+
+      .review-form-text {
+        margin-top: 10px;
+        width: 100%;
+        resize: none;
+      }
+
+      div.submit-btn-container {
+
+        button.submit-btn {
+          height: 32px;
+          width: 70px;
+          border-radius: 100px;
+          background-color: #AA182A;
+          color: white;
+          padding-top: 11px;
+          margin-bottom: 0;
+          cursor: pointer;
+          margin-top: 10px;
+        }
+      }
+    }
+
+    div.submit-btn-container-2 {
+
+      display: none;
+      margin-top: 57px;
+
+      button.submit-btn {
+        height: 32px;
+        width: 70px;
+        border-radius: 100px;
+        background-color: #AA182A;
+        color: white;
+        padding-bottom: 21px;
+        margin-top: 0;
+        margin-bottom: 0;
+        cursor: pointer;
+      }
+    }
+  }
+}
 
 // Review desktop styling
 
@@ -1266,7 +1358,6 @@ footer {
 }
 
 
-
 // Review mobile styling
 
 @media (max-width: 767px) {
@@ -1308,7 +1399,7 @@ footer {
       }
 
       div.review-comment {
-        width: 275px;
+        width: 250px;
         font-size: 9.8px;
         font-weight: 300;
         line-height: 24px;
@@ -1435,6 +1526,7 @@ footer {
 }
 
 // Reply form mobile styling
+
 @media (max-width: 767px) {
   .reply-form-container {
     margin-top: 20px;
