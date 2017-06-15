@@ -1057,6 +1057,20 @@ footer {
             }
           }
         }
+
+        .review-container {
+
+          button.edit-btn {
+            display: block;
+            margin-top: 30px;
+            text-align: center;
+            cursor: pointer;
+          }
+
+          div.review-list {
+            margin-top: 30px;
+          }
+        }
       }
 
       div.profile-sidebar-group {
@@ -1169,141 +1183,13 @@ footer {
 }
 
 
-// Review styling
+// Review desktop styling
 
-div.review_content {
+@media (min-width: 768px) {
 
-  div.review-text-container {
-    margin-left: 68px;
-    position: relative;
-    bottom: 10px;
+  div.review_content {
 
-    h4 {
-      height: 21px;
-      font-size: 18px;
-      font-weight: bold;
-      letter-spacing: 1px;
-      line-height: 21px;
-      white-space: nowrap;
-      margin-bottom: 5px;
-    }
-
-    a {
-      color: black;
-    }
-
-    div.review-comment {
-      width: 513px;
-      font-size: 14px;
-      font-weight: 300;
-      line-height: 35px;
-    }
-
-    div.review-info-bar {
-
-      color: #707070;
-      font-size: 14px;
-      font-weight: 300;
-      line-height: 34px;
-
-      .review_icon:hover {
-        box-shadow: 5px 5px 50px black;
-      }
-
-      span.upvotes {
-
-        .rockon_icon_flipped {
-          -o-transform: scaleY(-1);
-          -webkit-transform: scaleY(-1);
-          transform: scaleY(-1);
-          filter: FlipV;
-          -ms-filter: "FlipV";
-        }
-      }
-
-      span.reply {
-        margin-left: 27px;
-
-        img {
-          cursor: pointer;
-        }
-      }
-
-      span.share {
-        margin-left: 27px;
-      }
-
-      span.delete {
-        margin-left: 27px;
-      }
-
-      span.report {
-        margin-left: 27px;
-      }
-
-      .timestamp {
-        margin-left: 27px;
-      }
-    }
-  }
-}
-
-// Reply form styling
-
-.reply-form-container {
-  height: 149px;
-  width: 451px;
-  border: 1px solid #d9d9d9;
-  border-radius: 40px;
-  background-color: #f0f0f0;
-
-  .reply-form {
-    height: 123px;
-    width: 411px;
-    margin-top: 13px;
-    border: 1px solid #dcdcdc;
-    border-radius: 30px;
-    background-color: #ffffff;
-
-
-    textarea {
-      height: 103px;
-      width: 363px;
-      position: relative;
-      top: 10px;
-      left: 24px;
-      border: none;
-    }
-
-    .reply-form-btn {
-      height: 32px;
-      width: 70px;
-      border-radius: 100px;
-      background-color: #AA182A;
-      color: white;
-      padding-bottom: 21px;
-      cursor: pointer;
-      margin-left: 10px;
-      margin-bottom: 15px;
-      position: relative;
-      left: 320px;
-      bottom: 30px;
-    }
-  }
-}
-
-
-
-// Response styling
-
-.response-container {
-
-  margin-left: 116px;
-
-  .response-content {
-
-    .response-text-container {
-
+    div.review-text-container {
       margin-left: 68px;
       position: relative;
       bottom: 10px;
@@ -1315,34 +1201,47 @@ div.review_content {
         letter-spacing: 1px;
         line-height: 21px;
         white-space: nowrap;
-        margin-bottom: 0;
+        margin-bottom: 5px;
       }
 
       a {
         color: black;
       }
 
-      div.response-comment {
+      div.review-comment {
         width: 513px;
         font-size: 14px;
         font-weight: 300;
         line-height: 35px;
       }
 
-      div.response-info-bar {
+      div.review-info-bar {
 
         color: #707070;
         font-size: 14px;
         font-weight: 300;
         line-height: 34px;
 
+        .review_icon:hover {
+          box-shadow: 5px 5px 50px black;
+        }
+
         span.upvotes {
+
           .rockon_icon_flipped {
             -o-transform: scaleY(-1);
             -webkit-transform: scaleY(-1);
             transform: scaleY(-1);
             filter: FlipV;
             -ms-filter: "FlipV";
+          }
+        }
+
+        span.reply {
+          margin-left: 27px;
+
+          img {
+            cursor: pointer;
           }
         }
 
@@ -1363,10 +1262,404 @@ div.review_content {
         }
       }
     }
-
   }
-
 }
+
+
+
+// Review mobile styling
+
+@media (max-width: 767px) {
+
+  div.review_content {
+
+    margin-left: 15px;
+
+    img.review-pic {
+      width: 27px;
+      height: 27px;
+    }
+
+    div.review-text-container {
+      margin-left: 38px;
+      position: relative;
+      bottom: 20px;
+
+      h4 {
+        height: 15px;
+        font-size: 12.6px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        line-height: 15px;
+        white-space: nowrap;
+        margin-bottom: 0;
+      }
+
+      a {
+        color: black;
+      }
+
+      div.ratings_list {
+
+        img {
+          height: 9px;
+          width: 9px;
+        }
+      }
+
+      div.review-comment {
+        width: 275px;
+        font-size: 9.8px;
+        font-weight: 300;
+        line-height: 24px;
+      }
+
+      div.review-info-bar {
+
+        color: #707070;
+        font-size: 7.84px;
+        font-weight: 300;
+        line-height: 19px;
+
+        .review_icon:hover {
+          box-shadow: 5px 5px 50px black;
+        }
+
+        span.upvotes {
+
+          img {
+            width: 10px;
+            height: 10px;
+          }
+
+          .rockon_icon_flipped {
+            -o-transform: scaleY(-1);
+            -webkit-transform: scaleY(-1);
+            transform: scaleY(-1);
+            filter: FlipV;
+            -ms-filter: "FlipV";
+          }
+        }
+
+        span.reply {
+          margin-left: 10px;
+
+          img {
+            cursor: pointer;
+            width: 10px;
+            height: 8px;
+          }
+        }
+
+        span.share {
+          margin-left: 10px;
+
+          img {
+            width: 7px;
+            height: 9px;
+          }
+        }
+
+        span.delete {
+          margin-left: 10px;
+
+          img {
+            width: 11px;
+            height: 11px;
+          }
+        }
+
+        span.report {
+          margin-left: 10px;
+
+          img {
+            width: 7px;
+            height: 8px;
+          }
+        }
+
+        .timestamp {
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+}
+
+
+// Reply form desktop styling
+
+@media(min-width: 768px) {
+  .reply-form-container {
+    height: 149px;
+    width: 451px;
+    border: 1px solid #d9d9d9;
+    border-radius: 40px;
+    background-color: #f0f0f0;
+
+    .reply-form {
+      height: 123px;
+      width: 411px;
+      margin-top: 13px;
+      border: 1px solid #dcdcdc;
+      border-radius: 30px;
+      background-color: #ffffff;
+
+
+      textarea {
+        height: 103px;
+        width: 363px;
+        position: relative;
+        top: 10px;
+        left: 24px;
+        border: none;
+        resize: none;
+      }
+
+      .reply-form-btn {
+        height: 32px;
+        width: 70px;
+        border-radius: 100px;
+        background-color: rgba(170,24,42,.5);
+        color: white;
+        padding-bottom: 21px;
+        cursor: pointer;
+        margin-left: 10px;
+        margin-bottom: 15px;
+        position: relative;
+        left: 320px;
+        bottom: 30px;
+      }
+    }
+  }
+}
+
+// Reply form mobile styling
+@media (max-width: 767px) {
+  .reply-form-container {
+    margin-top: 20px;
+    height: 82.6px;
+    width: 250px;
+    border: 1px solid #d9d9d9;
+    border-radius: 40px;
+    background-color: #f0f0f0;
+
+    .reply-form {
+      height: 68.2px;
+      width: 227.8px;
+      margin-top: 6px;
+      border: 1px solid #dcdcdc;
+      border-radius: 30px;
+      background-color: #ffffff;
+
+
+      textarea {
+        height: 57px;
+        width: 140px;
+        position: relative;
+        top: 5px;
+        left: 13px;
+        border: none;
+        font-size: 11.2px;
+        line-height: 15px;
+        resize: none;
+      }
+
+      .reply-form-btn {
+        height: 22.5px;
+        width: 65px;
+        border-radius: 100px;
+        background-color: #AA182A;
+        color: white;
+        cursor: pointer;
+        position: relative;
+        padding-top: 10px;
+        padding-bottom: 20px;
+        left: 7px;
+        bottom: 15px;
+        z-index: 1000;
+      }
+    }
+  }
+}
+
+
+
+// Response desktop styling
+
+@media (min-width: 768px) {
+  .response-container {
+
+    margin-left: 116px;
+
+    .response-content {
+
+      .response-text-container {
+
+        margin-left: 68px;
+        position: relative;
+        bottom: 10px;
+
+        h4 {
+          height: 21px;
+          font-size: 18px;
+          font-weight: bold;
+          letter-spacing: 1px;
+          line-height: 21px;
+          white-space: nowrap;
+          margin-bottom: 0;
+        }
+
+        a {
+          color: black;
+        }
+
+        div.response-comment {
+          width: 513px;
+          font-size: 14px;
+          font-weight: 300;
+          line-height: 35px;
+        }
+
+        div.response-info-bar {
+
+          color: #707070;
+          font-size: 14px;
+          font-weight: 300;
+          line-height: 34px;
+
+          span.upvotes {
+            .rockon_icon_flipped {
+              -o-transform: scaleY(-1);
+              -webkit-transform: scaleY(-1);
+              transform: scaleY(-1);
+              filter: FlipV;
+              -ms-filter: "FlipV";
+            }
+          }
+
+          span.share {
+            margin-left: 27px;
+          }
+
+          span.delete {
+            margin-left: 27px;
+          }
+
+          span.report {
+            margin-left: 27px;
+          }
+
+          .timestamp {
+            margin-left: 27px;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Response mobile styling
+
+@media(max-width: 767px) {
+  .response-container {
+
+    margin-left: 50px;
+
+    img.response-pic {
+      width: 27px;
+      height: 27px;
+    }
+
+    .response-content {
+
+      .response-text-container {
+
+        margin-left: 38px;
+        position: relative;
+        bottom: 20px;
+
+        h4 {
+          height: 15px;
+          font-size: 12.6px;
+          font-weight: bold;
+          letter-spacing: 1px;
+          line-height: 15px;
+          white-space: nowrap;
+          margin-bottom: 0;
+        }
+
+        a {
+          color: black;
+        }
+
+        div.response-comment {
+          width: 200px;
+          font-size: 9.8px;
+          font-weight: 300;
+          line-height: 18px;
+          white-space: normal;
+        }
+
+        div.response-info-bar {
+
+          color: #707070;
+          font-size: 7.84px;
+          font-weight: 300;
+          line-height: 19px;
+
+          span.upvotes {
+
+            img {
+              width: 10px;
+              height: 10px;
+            }
+
+            .rockon_icon_flipped {
+              -o-transform: scaleY(-1);
+              -webkit-transform: scaleY(-1);
+              transform: scaleY(-1);
+              filter: FlipV;
+              -ms-filter: "FlipV";
+            }
+          }
+
+          span.share {
+            margin-left: 10px;
+
+            img {
+              width: 7px;
+              height: 9px;
+            }
+          }
+
+          span.delete {
+            margin-left: 10px;
+
+            img {
+              width: 11px;
+              height: 11px;
+            }
+          }
+
+          span.report {
+            margin-left: 10px;
+
+            img {
+              width: 7px;
+              height: 8px;
+            }
+          }
+
+          .timestamp {
+            margin-left: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+
 // Override for bootsrap modal class to fix scrolling issue
 
 .modal {
