@@ -2,25 +2,27 @@
   <%= link_to cl_image_tag(artist_card.picture, class: "artist-image"), user_path(artist_card), method: :get if artist_card.picture? %>
   <%= link_to cl_image_tag("static/blank_user", class: "artist-image"), user_path(artist_card), method: :get unless artist_card.picture? %>
 
-  <div>
+  <div class="name-container">
     <h5><%= artist_card.name %></h5>
     <% if !artist_card.genre.nil? %>
       <h6><%= artist_card.genre.name %></h6>
     <% end %>
   </div>
 
-  <span>
-    <%= cl_image_tag('static/white_star', :alt => "star", :width => 14, :height => 14, :class => "icon-image") %>
-    <%= artist_card.average_rating.round(2) %>
-  </span>
+  <div class="numbers-container">
+    <span>
+      <%= cl_image_tag('static/white_star', :alt => "star", :width => 14, :height => 14, :class => "icon-image") %>
+      <%= artist_card.average_rating.round(2) %>
+    </span>
 
-  <span class="span-2">
-    <%= material_icon.message.md_18 %>
-    <%= number_to_human artist_card.review_count%>
-  </span>
+    <span class="span-2">
+      <%= material_icon.message.md_18 %>
+      <%= number_to_human artist_card.review_count%>
+    </span>
 
-  <span>
-    <%= cl_image_tag('static/response_icon', :alt => "response", :width => 14, :height => 14, :class => "icon-image") %>
-    <%= number_to_human artist_card.response_count %>
-  </span>
+    <span>
+      <%= cl_image_tag('static/response_icon', :alt => "response", :width => 14, :height => 14, :class => "icon-image") %>
+      <%= number_to_human artist_card.response_count %>
+    </span>
+  </div>
 </div>
