@@ -89,3 +89,7 @@ UserRelationship.populate 50 do |user_relationship|
   user_relationship.follower_id = Faker::Number.unique.between(1, 100)
   user_relationship.followed_id = Faker::Number.unique.between(1, 100)
 end
+
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
+
+
