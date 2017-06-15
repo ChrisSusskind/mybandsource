@@ -74,6 +74,7 @@ function reorderReviews(recent_ordered) {
 function loadReviewForm(){
     $('#review_load_button').hide();
     $('#review_form').show();
+    loadRatingEntry();
 }
 
 //Function that sends an ajax request to server w/ content to create a new review
