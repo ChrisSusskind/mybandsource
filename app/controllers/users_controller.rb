@@ -16,9 +16,9 @@ class UsersController < ApplicationController
         @review = Review.find_by(receiving_user_id: @artist.id, leaving_user_id: current_user.id)
         @review.nil? ? @review = Review.new : @review
       end
-      @reviews = @artist.received_reviews.page(params[:page]).order('updated_at DESC').per(25)
+      @reviews = @artist.received_reviews.page(params[:page]).order('updated_at DESC').per(2)
     else
-      @reviews = @user.left_reviews.page(params[:page]).order('updated_at DESC').per(25)
+      @reviews = @user.left_reviews.page(params[:page]).order('updated_at DESC').per(2)
     end
     if params[:review].present?
       if params[:response_link].present?
@@ -29,7 +29,10 @@ class UsersController < ApplicationController
         render 'show', locals: {top_review: top_review}
       end
     else
-      render 'show'
+      respond_to do |format|
+        format.html {render 'show'}
+        format.js {render :action => 'paginate_reviews'}
+      end
     end
   end
 
