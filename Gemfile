@@ -9,8 +9,6 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.1'
-# Use sqlite3 as the database for Active Record
-# gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -72,10 +70,10 @@ gem 'glyphicons-rails'
 gem 'tether-rails'
 
 #Whenever gem for scheduling background jobs
-gem 'whenever'
+gem 'whenever', '~> 0.9.7'
 
 # Admin portal
-gem 'activeadmin'
+gem 'activeadmin', '~> 1.0.0'
 
 
 group :development, :test do
