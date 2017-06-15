@@ -75,7 +75,7 @@ gem 'tether-rails'
 gem 'whenever'
 
 # Admin portal
-gem 'activeadmin', github: 'activeadmin'
+gem 'activeadmin'
 
 
 group :development, :test do
