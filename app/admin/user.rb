@@ -38,13 +38,34 @@ ActiveAdmin.register User do
   filter :created_at
   filter :updated_at
 
+  show do
+    attributes_table do
+      row :email
+      row :name
+      row :location
+      row :bio
+      row :is_artist
+      row :genre
+      row :real_name
+      row :picture
+      row :banner_picture
+      row :facebook_url
+      row :soundcloud_url
+      row :spotify_url
+      row :itunes_url
+      row :twitter_url
+      row :average_rating
+    end
+  end
+
+
   form do |f|
     f.inputs "Admin Details" do
       f.input :email
       f.input :name
       f.input :is_artist
       f.input :bio
-      f.input :genre
+      f.input :genre_id, as: :select, collection: Genre.all.collect { |genre| [genre.name, genre.id] }
       f.input :facebook_url
       f.input :soundcloud_url
       f.input :spotify_url
