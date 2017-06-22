@@ -10,7 +10,7 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- */
+*/
 
 // Special icons used
 //= require material_icons
@@ -298,6 +298,8 @@ footer {
 
 .homepage-search-container {
   position: relative;
+  max-width: 585px;
+  margin: 0 auto;
 }
 
 .search-bar {
@@ -313,13 +315,18 @@ footer {
   background: #AA182A;
   border: 1px solid #AA182A;
   border-radius: 100px;
+  width: 190px;
+  height: 48px;
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 
 /* Homepage styling */
 
 .jumbotron-main {
-  display: flex;
   justify-content: center;
   align-items: center;
 	background-image: url(<%= Cloudinary::Utils.cloudinary_url("static/home_header.png") %>);
@@ -327,6 +334,7 @@ footer {
 	color: white;
 	height: 500px;
 	border-radius: 0;
+  width: 1384px;
 }
 
 .artist-carousel {
@@ -417,7 +425,7 @@ footer {
 
 .home-title-container {
 
-  width: 100%;
+  width: 1384px;
 
   h4 {
     clear: left;
@@ -437,9 +445,7 @@ footer {
 }
 
 .genre-card-row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+
 }
 
 .artist-card-row {
@@ -2248,10 +2254,9 @@ footer {
 
 .genre-card {
 
-  flex: 20%;
-  min-width: 200px;
-  max-width: 300px;
-  max-height: 200px;
+  width: 295.7px;
+  height: 292.9px;
+
   border: none;
   border-radius: 0;
   position: relative;
@@ -2279,11 +2284,6 @@ footer {
     bottom: 50%;
     font-weight: 500;
   }
-}
-
-.genre-card-homepage {
-  width: 220px;
-  height: 200px;
 }
 
 // Genre pages styling
