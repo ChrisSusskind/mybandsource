@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="wide-homepage mx-auto">
 
 	<div class="jumbotron jumbotron-main">
 		<div class="home-title-container my-auto">
@@ -7,25 +7,21 @@
 			<%= react_component "ArtistSearchContainerComponent", {searchPath: search_artists_path, submitPath: submit_search_path, navbar: false}, class: "homepage-search-container" %>
 		</div>
 	</div>
-	
-	<hr>
 
 	<!-- Artist Cards -->
-	<div class="container-fluid">
+	<div class="">
 
-		<div class="section-title-block text-center">
+		<div class="section-title-block text-center homepage-section-text">
 			<h3>Featured Artists</h3>
 			<p>Discover and explore conversations around artists.</p>
 		</div>
-
-    <%= render partial: 'artist_carousel' %>
 	</div>
 
 	
 	<!-- Genre Cards -->
-	<div class="container-fluid">
+	<div class="genre-homepage-block">
 
-		<div class="section-title-block text-center">
+		<div class="section-title-block text-center homepage-section-text">
 			<h3>Popular Genres</h3>
 			<p>Explore artists by genre.</p>
 		</div>
@@ -37,14 +33,14 @@
 		</div>
 
 		<div class="text-center">
-			<%= link_to "View all genres", genres_path, class: "btn btn-danger button-home" %>
+			<%= link_to "View all genres", genres_path, class: "view-all-genres-link" %>
 		</div>
 	</div>
 
-	<div class="container-fluid">
+	<div class="bottom-homepage-block">
 		<div class="container text-center section-title-block">
-			<h1>Join the Conversation</h1>
-			<p class="lead">Rate, Review, and Discuss.</p>
+			<h1>Join the Conversation.</h1>
+			<p class="lead">Rate, Review & Discuss Artists</p>
 			<a href="#signup_modal" data-toggle="modal" class="btn btn-danger button-home">Sign up</a>
 		</div>
 	</div>
