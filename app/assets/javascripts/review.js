@@ -13,7 +13,6 @@ Performs following actions when document is ready
  */
 $(document).on('ready page:load', function(){
     user_id = $('#user_id_container').attr('data-user_id');
-    console.log(user_id);
 
     window.onclick = function(e){
       if(!e.target.matches('.dropbtn')){

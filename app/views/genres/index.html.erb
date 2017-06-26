@@ -1,9 +1,9 @@
-<div class="genre-index-container container">
+<div class="genre-index-container">
 	<h3>ALL GENRES</h3>
 
   <div class="genre-card-row cards">
-    <% @genres.each do |genre| %>
-        <%= render partial: 'genre_card', locals: {genre: genre, column: 4, class_name: ""} %>
+    <% @genres.order(:name).each do |genre| %>
+        <%= render partial: 'genre_card', locals: {genre: genre, class_name: ""} %>
     <% end %>
   </div>
 </div>
