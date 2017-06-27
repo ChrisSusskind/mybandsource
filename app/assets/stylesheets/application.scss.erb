@@ -1175,7 +1175,7 @@ footer {
             position: absolute;
             left: 0;
             width: 100%;
-            height: 100%;
+            height: 293px;
             z-index: 2000;
 
             div.profile-picture-overlay:hover > .change-profile-pic-text {
@@ -2358,73 +2358,183 @@ footer {
   }
 }
 
-// Styles used for follower/following modal
+// Styles used for follower/following modal desktop and mobile
 
 .modal-close {
   position: relative;
   left: 97%;
 }
 
-.follow-body {
-  border: none;
-  position: relative;
-  bottom: 10px;
-
-  h3 {
-    text-transform: uppercase;
-    text-align: left;
+@media(min-width: 768px) {
+  .follow-body {
+    border: none;
     position: relative;
-    bottom: 20px;
-    font-weight: 600;
-  }
+    bottom: 10px;
 
-  div.follow-row {
-    border-bottom: solid thin #e5e5e5;
-    border-top: solid thin #e5e5e5;
-    height: 85px;
-    padding-left: 20px;
-    padding-right: 20px;
-    white-space: nowrap;
-
-    img {
+    h3 {
+      text-transform: uppercase;
+      text-align: left;
       position: relative;
-      top: 17.5px;
+      bottom: 20px;
+      font-size: 24px;
+      font-weight: 600;
     }
 
-    h5 {
-      color: black;
-      display: inline-block;
-      vertical-align: middle;
-      line-height: 85px;
-      margin-right: 20px;
+    div.follow-row {
+      border-bottom: solid thin #e5e5e5;
+      border-top: solid thin #e5e5e5;
+      height: 85px;
+      padding-left: 20px;
+      padding-right: 20px;
+      white-space: nowrap;
 
-      a {
-        color: black;
+      img {
+        position: relative;
+        top: 17.5px;
+      }
+
+      div.follow-name {
+        padding-left: 0!important;
+
+        h5 {
+          color: black;
+          display: inline-block;
+          vertical-align: middle;
+          line-height: 85px;
+          font-size: 18px;
+          font-weight: bold;
+          letter-spacing: 1px;
+
+          a {
+            color: black;
+          }
+        }
       }
     }
-  }
 
-  .follower-btn {
-    width: 150px;
-    position: relative;
-    top: 20px;
-    padding-top: 12px;
-    padding-bottom: 4px;
-    cursor: pointer;
-  }
+    .follower-btn {
+      width: 132px;
+      height: 48px;
+      border: 1px solid #AA182A;
+      border-radius: 100px;
+      background-color: #AA182A;
+      position: relative;
+      top: 18px;
+      padding-top: 16px;
+      padding-bottom: 16px;
+      cursor: pointer;
+      font-size: 13px;
+      line-height: 16px;
+      font-weight: bold;
+    }
 
-  .unfollower-btn {
-    width: 150px;
+    .unfollower-btn {
+      height: 48px;
+      width: 132px;
+      border-radius: 100px;
+      border: 1px solid #000000;
+      position: relative;
+      top: 13px;
+      padding-top: 16px;
+      padding-bottom: 16px;
+      cursor: pointer;
+      color: black;
+      background-color: white;
+      font-size: 13px;
+      font-weight: bold;
+      line-height: 16px;
+    }
+  }
+}
+
+@media(max-width: 767px) {
+  .follow-body {
+    border: none;
     position: relative;
-    top: 20px;
-    padding-top: 12px;
-    padding-bottom: 4px;
-    cursor: pointer;
-    color: black;
-    background-color: white;
-    border-style: solid;
-    border-width: 1px;
-    border-color: black;
+    bottom: 10px;
+
+    h3 {
+      text-transform: uppercase;
+      text-align: left;
+      position: relative;
+      bottom: 20px;
+      font-size: 16.8px;
+      font-weight: 600;
+    }
+
+    div.follow-row {
+      border-bottom: solid thin #e5e5e5;
+      border-top: solid thin #e5e5e5;
+      height: 65px;
+      padding-left: 10px;
+      padding-right: 10px;
+      white-space: nowrap;
+
+      div.follow-pic-container{
+
+        padding-left: 0!important;
+
+        img {
+          position: relative;
+          top: 16px;
+          height: 33.57px;
+          width: 33.61px
+        }
+      }
+
+      div.follow-name {
+
+        padding-left: 0!important;
+
+        h5 {
+          color: black;
+          display: inline-block;
+          vertical-align: middle;
+          line-height: 65px;
+          font-size: 12.6px;
+          font-weight: bold;
+
+          a {
+            color: black;
+          }
+        }
+      }
+    }
+
+    .follower-btn {
+      width: 92.42px;
+      height: 33.57px;
+      border: .7px solid #AA182A;
+      border-radius: 70px;
+      background-color: #AA182A;
+      position: relative;
+      top: 10px;
+      right: 10px;
+      padding-top: 11px;
+      padding-bottom: 11px;
+      cursor: pointer;
+      font-size: 9.1px;
+      line-height: 11px;
+      font-weight: bold;
+    }
+
+    .unfollower-btn {
+      width: 92.42px;
+      height: 33.57px;
+      border-radius: 100px;
+      border: .7px solid #000000;
+      position: relative;
+      top: 10px;
+      right: 10px;
+      padding-top: 11px;
+      padding-bottom: 11px;
+      cursor: pointer;
+      color: black;
+      background-color: white;
+      font-size: 9.1px;
+      font-weight: bold;
+      line-height: 11px;
+    }
   }
 }
 
@@ -2518,7 +2628,6 @@ footer {
   height: 200px;
   overflow: auto;
   padding-left: 0;
-  z-index: 1000;
   width: 100%;
 
   div {
