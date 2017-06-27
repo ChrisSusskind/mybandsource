@@ -573,7 +573,7 @@ footer {
     .jumbotron-main {
       justify-content: center;
       align-items: center;
-      background-image: url(<%= Cloudinary::Utils.cloudinary_url("static/home_header.png") %>);
+      background-image: url(<%= Cloudinary::Utils.cloudinary_url("static/home_header_mobile.png") %>);
       background-size: cover;
       color: white;
       height: 475px;
@@ -2563,6 +2563,9 @@ footer {
   width: 295.7px;
   height: 292.9px;
   display: inline-block;
+  @media(max-width: 767px) {
+    display: block!important;
+  }
   border: none;
   border-radius: 0;
   position: relative;
