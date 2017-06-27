@@ -74,7 +74,6 @@ h1,h2,h3,h4,h5,h6,p, .h-largecaps {
 
 /* Navbar Custom Styles */
 
-
 .main-navbar {
   background-color: white;
   margin-top: 20px;
@@ -83,21 +82,26 @@ h1,h2,h3,h4,h5,h6,p, .h-largecaps {
   display: flex;
   justify-content: space-between;
   white-space: nowrap;
-
-  .navbar-header {
-    width: 175px;
-  }
+  max-width: 1384px;
 
   .navbar-search-container{
     position: relative;
-    width: 50%;
-    top: 5px;
+    width: 349px;
+
+    .search-icon {
+      position: absolute;
+      z-index: 5000;
+      top: 12px;
+      left: 10px;
+    }
 
     .search-box {
       display: block;
-      border-radius: 50px;
+      border: 1px solid #dcdcdc;
+      border-radius: 100px;
       width: 100%;
-      height: 30px;
+      height: 48px;
+      padding-left: 40px;
     }
   }
 
@@ -105,21 +109,15 @@ h1,h2,h3,h4,h5,h6,p, .h-largecaps {
     display: none;
     position: relative;
     left: 5px;
-    top: 8px;
+    top: 4px;
     color: black;
   }
 
   div.navbar-links {
 
-    @media (min-width: 751px) {
-      .search-icon {
-        display: none;
-      }
-    }
-
     a {
-      line-height: 40px;
-      height: 40px;
+      line-height: 50px;
+      height: 50px;
     }
 
     .login-header {
@@ -165,41 +163,93 @@ h1,h2,h3,h4,h5,h6,p, .h-largecaps {
   }
 }
 
-@media (max-width: 750px) {
-  .search-icon {
-    display: inline;
-  }
-
-  .navbar-search-container {
+@media(min-width: 768px) {
+  .search-icon-mobile {
     display: none;
-    width: 90%!important;
+  }
+
+  .login-signup-dropdown {
+    display: none;
   }
 }
 
-@media (max-width: 360px){
+@media(max-width: 767px) {
+
+  .main-navbar {
+    max-width: 303px!important;
+  }
+
   .navbar-logo {
-    width: 110px;
-    height: 27px;
-    margin-top: 8px;
+    width: 152px;
+    height: 34px;
   }
 
-  .navbar-header {
-    width: 100px;
-  }
-}
-
-@media (max-width: 750px) {
-
-  .search-icon {
+  .search-icon-mobile {
+    display: inline-block;
     outline: none;
     border: none;
     cursor: pointer;
     background-color: transparent;
-    height: 35px;
+    position: relative;
+    top: 5px;
+  }
 
-    i {
-      position: relative;
-      top: 10px;
+  .navbar-search-container {
+    display: none;
+    height: 34px!important;
+    width: 267px!important;
+
+
+    .search-icon {
+      top: 6px!important;
+    }
+
+    .search-box {
+      border: .7px solid #dcdcdc!important;
+      border-radius: 70px!important;
+      height: 34px!important;
+    }
+
+  }
+
+  .login-header {
+    display: none;
+  }
+
+  .signup-header {
+    display: none;
+  }
+
+  .login-signup-dropdown-button {
+    display: inline-block;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    height: 34px;
+    line-height: 34px;
+    position: relative;
+    bottom: 7px;
+  }
+
+  .login-signup-dropdown-menu {
+    width: 234px!important;
+    height: 121px;
+    border: 1px solid #BFBFBF;
+
+    li {
+      padding-left: 20px;
+      border-bottom: solid thin #e5e5e5;
+
+      a {
+        color: black;
+        font-size: 14px;
+        font-weight: bold;
+      }
+
+      a.signup-dropdown {
+        color: #AA182A!important;
+      }
     }
   }
 
@@ -208,6 +258,8 @@ h1,h2,h3,h4,h5,h6,p, .h-largecaps {
     padding-left: 0!important;
     height: 35px!important;
     width: 35px!important;
+    position: relative;
+    bottom: 5px;
 
     img {
       width: 35px;
@@ -217,6 +269,8 @@ h1,h2,h3,h4,h5,h6,p, .h-largecaps {
 
   .notification-dropdown {
     height: 35px;
+    position: relative;
+    bottom: 5px;
 
     span {
       left: 18px!important;
@@ -293,13 +347,6 @@ footer {
   }
 
 }
-
-/*
-.section-title-block {
-  margin-top: 50px;
-  margin-bottom: 50px;
-}*/
-
 
 /* Homepage desktop styling */
 
@@ -2366,7 +2413,7 @@ footer {
 
   div {
     background-color: rgba(255, 255, 255, 0.5);
-    padding: 5px 5px 5px 50px;
+    padding: 5px 5px 5px 10px;
 
     img {
       float: left;
