@@ -133,6 +133,33 @@ h1,h2,h3,h4,h5,h6,p, .h-largecaps {
       margin-left: 10px;
     }
 
+    .notification-dropdown {
+      z-index: 10000;
+
+      span {
+        color: white;
+        font-size: .6em;
+        position: absolute;
+        left: 25px;
+        top: 7px;
+        z-index: 1000;
+      }
+
+      button {
+        width: 50px;
+        height: 50px;
+        background-color: black;
+        border: none;
+        @extend %glyphicon-bell;
+        color: white;
+        cursor: pointer;
+      }
+
+      ul {
+        width: 294px;
+      }
+    }
+
     .user-dropdown {
 
       z-index: 10000;
@@ -280,6 +307,11 @@ h1,h2,h3,h4,h5,h6,p, .h-largecaps {
     button {
       height: 35px!important;
       width: 35px!important;
+    }
+
+    ul {
+      width: 250px!important;
+      border: 1px solid #BFBFBF;
     }
   }
 }
@@ -2319,62 +2351,42 @@ footer {
   cursor: pointer;
 }
 
-// Styles used for notifications dropdown and notifications index page
+// Styles used for notifications and notifications index page
 
 .dropdown-menu {
-  width: 275px;
   list-style: none;
-}
-
-.notification-dropdown {
-  z-index: 10000;
-
-  span {
-    color: white;
-    font-size: .6em;
-    position: absolute;
-    left: 25px;
-    top: 7px;
-    z-index: 1000;
-  }
-
-  button {
-    width: 50px;
-    height: 50px;
-    background-color: black;
-    border: none;
-    @extend %glyphicon-bell;
-    color: white;
-    cursor: pointer;
-  }
+  border: 1px solid #BFBFBF;
 }
 
 .notification-container {
   padding: 10px 10px 10px 10px;
-  border-bottom: solid thin #e5e5e5;
+  border-bottom: solid 1px #BFBFBF;
 }
 
 .notification-text-container {
   position: relative;
-  padding-bottom: 2px;
   margin-left: 10px;
+  width: 294px;
+  white-space: normal;
 
   p {
     color: black;
-    font-size: small;
+    font-size: 12px;
     margin-bottom: 0;
-    line-height: 1.5em;
 
     a {
       color: black;
-      font-weight: 800;
+      font-weight: bold;
       cursor: pointer;
+      line-height: 12px!important;
     }
 
-    .timeago {
-      color: gray;
-      font-size: small;
-    }
+  }
+
+  .timeago {
+    color: gray;
+    font-size: small;
+    position: relative;
   }
 }
 
