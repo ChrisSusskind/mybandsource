@@ -2384,54 +2384,113 @@ footer {
 
 .artist-card {
 
-  flex: 25%;
-  min-width: 225px;
-  max-width: 300px;
-  background-color: #252525;
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-
-  img.artist-image {
-    width: 100%;
-    height: 270px;
-  }
-
-  div.name-container {
-    margin-left: 20px;
-    margin-top: 20px;
+  @media(min-width: 768px) {
+    display: inline-block;
+    width: 296px;
+    height: 415px;
+    background-color: #252525;
+    margin-right: 20px;
     margin-bottom: 20px;
 
-    h5 {
-      color: white;
-      font-weight: 500;
+    img.artist-image {
+      width: 100%;
+      height: 276px;
     }
 
-    h6 {
-      color: #929292;
-      font-weight: 500;
+    div.name-container {
+      margin-left: 20px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+
+      h5 {
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      h6 {
+        color: rgba(255,255,255,.5);
+        font-weight: bold;
+        font-size: 14px;
+        letter-spacing: 1px;
+      }
+    }
+
+    div.numbers-container {
+
+      margin-left: 10px;
+
+      span {
+
+        color: white;
+        display: inline-block;
+        margin-bottom: 10px;
+        margin-left: 10px;
+        font-size: 14px;
+        font-weight: 300;
+
+        i {
+          position: relative;
+          top: 3px;
+        }
+
+        .icon-image {
+          position: relative;
+          bottom: 3px;
+        }
+      }
     }
   }
 
-  div.numbers-container {
+  @media(max-width: 767px) {
+    width: 207px;
+    height: 277px;
+    background-color: #252525;
+    margin: 10px auto;
 
-    margin-left: 10px;
+    img.artist-image {
+      width: 100%;
+      height: 193px;
+    }
 
-    span {
-      color: white;
-      display: inline-block;
-      margin-bottom: 10px;
+    div.name-container {
       margin-left: 10px;
+      margin-top: 10px;
+      margin-bottom: 10px;
 
-      i {
-        position: relative;
-        top: 3px;
+      h5 {
+        color: white;
+        font-size: 14px;
+        font-weight: bold;
       }
 
-      .icon-image {
-        position: relative;
-        bottom: 3px;
+      h6 {
+        color: rgba(255,255,255,.5);
+        font-weight: bold;
+        font-size: 11px;
+      }
+    }
+
+    div.numbers-container {
+
+      span {
+
+        color: white;
+        display: inline-block;
+        margin-bottom: 5px;
+        margin-left: 10px;
+        font-size: 11px;
+        font-weight: 300;
+
+        i {
+          position: relative;
+          top: 3px;
+        }
+
+        .icon-image {
+          position: relative;
+          bottom: 3px;
+        }
       }
     }
   }
@@ -2534,21 +2593,47 @@ footer {
 
 .genre-show-container {
 
-  margin-top: 40px;
-
   a {
     color: #AA182A;
   }
 
-  h3 {
-    display: inline;
-    font-weight: 500;
+  @media(min-width: 768px) {
+    padding-left: 90px;
+    padding-right: 90px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    width: 1500px;
+
+    h3 {
+      display: inline;
+      font-size: 24px;
+      line-height: 62px;
+      font-weight: 600;
+    }
+
+    .artist-card-row {
+      margin-top: 60px;
+    }
   }
 
-  div.cards {
-    position: relative;
-    left: 3px;
+  @media(max-width: 767px) {
+    padding-left: 25px;
+    padding-right: 25px;
     margin-top: 30px;
+    margin-bottom: 30px;
+    width: 100%;
+
+    h3 {
+      display: inline;
+      font-size: 11px;
+      font-weight: 600;
+      line-height: 30px;
+    }
+
+    .artist-card-row {
+      margin-top: 20px;
+      width: 100%;
+    }
   }
 }
 
@@ -2609,7 +2694,7 @@ footer {
 
 // Styles used for artist card ordering (alphabetical or by rating) dropdown
 
-@media (min-width: 769px) {
+@media (min-width: 768px) {
   .artist-card-order-dropdown {
     width: 275px;
     float: right;
@@ -2625,10 +2710,10 @@ footer {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .artist-card-order-dropdown {
-    width: 275px;
-    margin-top: 20px;
+    width: 125px;
+    margin-top: 10px;
 
     .dropdown-toggle {
       font-weight: 500;
