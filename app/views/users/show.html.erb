@@ -10,6 +10,7 @@
     <% if @user == current_user %>
       <div class="header-picture-overlay">
         <label class="change-header-pic-text">
+          <%= cl_image_tag("static/camera_icon", width: 48, height: 37, class: "camera-icon") %><br/>
           Change your Header Photo
           <%= cl_image_upload_tag(:banner_picture, :html => {:class => "image_upload"}) %>
         </label>
@@ -21,6 +22,7 @@
         <% if @user == current_user %>
           <div class="profile-picture-overlay">
             <label class="change-profile-pic-text">
+              <%= cl_image_tag("static/camera_icon", width: 48, height: 37, class: "camera-icon") %><br/>
               Change your Profile Picture
               <%= cl_image_upload_tag(:picture, :html => {:class => "image_upload"}) %>
             </label>
@@ -69,10 +71,10 @@
 
         <div class="profile-banner-buttons-container">
           <% if user_signed_in? && current_user != @user && !current_user.following?(@user) %>
-             <%= link_to("Follow", "/userrelationship/#{@user.id}", method: "post", class: "btn btn-danger btn-pill follow-button ") %>
+             <%= link_to("Follow", "/userrelationship/#{@user.id}", method: "post", class: "btn btn-danger follow-button ") %>
           <% end %>
           <% if user_signed_in? && current_user != @user && current_user.following?(@user) %>
-             <%= link_to("Unfollow", "/userrelationship/#{@user.id}", method: "delete", class: "btn btn-danger btn-pill follow-button") %>
+             <%= link_to("Unfollow", "/userrelationship/#{@user.id}", method: "delete", class: "btn btn-danger follow-button") %>
           <% end %>
 
           <div class="share-link-container">
@@ -137,6 +139,14 @@
           </div>
         </div>
       </div>
+
+      <% if @user.is_artist && !user_signed_in? %>
+        <div class="signup-container mx-auto">
+          <p class="bold">Join the conversation</p>
+          <p>Create an account to rate, review, and discuss artists.</p>
+          <button onclick="openSignupModal()">Sign Up</button>
+        </div>
+      <% end %>
 
       <div class="review-container">
         <% if user_signed_in? && @user.is_artist && @review.receiving_user_id.nil? %>
