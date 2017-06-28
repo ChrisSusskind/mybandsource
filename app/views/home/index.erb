@@ -9,12 +9,13 @@
 	</div>
 
 	<!-- Artist Cards -->
-	<div class="genre-artist-block">
-
+	<div class="artist-homepage-block">
 		<div class="section-title-block text-center homepage-section-text">
 			<h3>FEATURED ARTISTS</h3>
 			<p>Discover & explore conversations around artists.</p>
 		</div>
+
+    <%= render partial: 'artist_carousel', locals: {artists: @artists} %>
 	</div>
 
 	

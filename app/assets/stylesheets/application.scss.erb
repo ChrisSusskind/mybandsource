@@ -27,6 +27,10 @@
 // Importing glyphicons
 @import "glyphicons";
 
+// Importing slick carousel
+@import 'slick';
+@import 'slick-theme';
+
 .main-container {
   width: 100%;
 }
@@ -492,7 +496,26 @@ footer {
     }
   }
 
-  .artist-card-row {
+  div.artist-homepage-block {
+
+    img.prev-arrow {
+      position: absolute;
+      top: 181px;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    img.next-arrow {
+      float: right;
+      position: relative;
+      bottom: 250px;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    div.artist-carousel {
+      width: 1384px;
+    }
   }
 
   div.genre-homepage-block {
@@ -656,6 +679,31 @@ footer {
             line-height: 11px;
             cursor: pointer;
           }
+        }
+      }
+    }
+
+    div.artist-homepage-block {
+      img.prev-arrow {
+        position: absolute;
+        top: 115px;
+        cursor: pointer;
+        z-index: 1000;
+      }
+
+      img.next-arrow {
+        float: right;
+        position: relative;
+        bottom: 178px;
+        cursor: pointer;
+        z-index: 1000;
+      }
+
+      div.artist-carousel {
+        width: 100%;
+
+        div.artist-card {
+          margin-left: 15px!important;
         }
       }
     }
@@ -2652,8 +2700,8 @@ footer {
 
   @media(min-width: 768px) {
     display: inline-block;
-    width: 296px;
-    height: 415px;
+    width: 296px!important;
+    height: 415px!important;
     background-color: #252525;
     margin-right: 20px;
     margin-bottom: 20px;
@@ -2703,14 +2751,15 @@ footer {
         .icon-image {
           position: relative;
           bottom: 3px;
+          display: inline-block!important;
         }
       }
     }
   }
 
   @media(max-width: 767px) {
-    width: 207px;
-    height: 277px;
+    width: 207px!important;
+    height: 277px!important;
     background-color: #252525;
     margin: 10px auto;
 
@@ -2756,6 +2805,7 @@ footer {
         .icon-image {
           position: relative;
           bottom: 3px;
+          display: inline-block!important;
         }
       }
     }

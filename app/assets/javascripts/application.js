@@ -16,6 +16,7 @@
 //= require 'jquery.debounce.js'
 //= require turbolinks
 //= require bootstrap-sprockets
+//= require jquery.slick
 //= require 'starrating.js'
 //= require 'review.js'
 //= require react
