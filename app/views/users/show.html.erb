@@ -1,6 +1,6 @@
 <%= cloudinary_js_config %>
 
-<div class="" id="user_id_container" data-user_id=<%=@user.id%> >
+<div class="" id="user_id_container" data-artist_name= "<%= @user.name %>" data-user_id=<%=@user.id%>>
   <% if @user.banner_picture? %>
   <div class="profile-banner" style="background-image: <%= Cloudinary::Utils.cloudinary_url(@user.banner_picture) %>">
   <% else %>
@@ -217,7 +217,7 @@
         <div class="profile-sidebar-group">
           <div class="claim-artist-container">
             <h1>Is this you?</h1>
-            <a href="#" class="claim-artist-link">Claim Artist Profile</a>
+            <a href="#claim_artist_modal_1" data-toggle="modal" class="claim-artist-link">Claim Artist Profile</a>
           </div>
         </div>
       <% end %>

@@ -2980,6 +2980,10 @@ footer {
   text-align: center;
 }
 
+.about-contact-link {
+  color: black;
+}
+
 // Styles used for privacy modal
 
 .privacy-text {
@@ -3040,6 +3044,205 @@ footer {
 
     a {
       color: black!important;
+    }
+  }
+}
+
+// Styles used for claim artist modals 1 and 2 desktop and mobile
+
+@media(min-width: 768px){
+  div.claim-artist-modal-1 {
+    h1 {
+      text-align: center;
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 29px;
+    }
+
+    h1.artist-name {
+      color: #AA182A;
+      margin-bottom: 40px;
+
+      input {
+        color: #AA182A;
+        text-transform: capitalize;
+        text-align: center;
+        border-bottom: 1px solid #000000;
+        border-top: none;
+        border-right: none;
+        border-left: none;
+      }
+    }
+
+    div {
+      width: 411px;
+      font-size: 12px;
+      font-weight: 300;
+
+      input {
+        width: 100%;
+        letter-spacing: 1px;
+        line-height: 17px;
+        font-size: 14px;
+        margin-bottom: 19.33px;
+        margin-top: 18px;
+        border-bottom: 1px solid #000000;
+        border-top: none;
+        border-right: none;
+        border-left: none;
+      }
+
+      p {
+        margin-bottom: 31px;
+        font-size: 14px;
+        line-height: 17px;
+        color: #808080;
+      }
+
+      button {
+        width: 100%;
+        height: 48px;
+        background-color: #AA182A;
+        border: 1px solid #AA182A;
+        border-radius: 100px;
+        color: white;
+        font-size: 13px;
+        font-weight: bold;
+        line-height: 16px;
+        margin-bottom: 71px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  div.claim-artist-modal-2 {
+    h1 {
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 29px;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    p {
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 17px;
+      color: #808080;
+      margin-bottom: 34px;
+      text-align: center;
+    }
+
+    button {
+      width: 411px;
+      height: 48px;
+      border: 1px solid #AA182A;
+      border-radius: 100px;
+      background-color: #AA182A;
+      color: white;
+      font-size: 13px;
+      font-weight: bold;
+      line-height: 16px;
+      margin-bottom: 58px;
+      cursor: pointer;
+    }
+  }
+}
+
+@media(max-width: 767px) {
+  div.claim-artist-modal-1 {
+    h1 {
+      text-align: center;
+      font-size: 16.8px;
+      font-weight: 600;
+      line-height: 20px;
+    }
+
+    h1.artist-name {
+      color: #AA182A;
+      margin-bottom: 29.8px;
+
+      input {
+        color: #AA182A;
+        text-transform: capitalize;
+        text-align: center;
+        border-bottom: .7px solid #000000;
+        border-top: none;
+        border-right: none;
+        border-left: none;
+      }
+    }
+
+    div {
+      width: 270px;
+      font-size: 8.4px;
+      font-weight: 300;
+
+      input {
+        width: 100%;
+        border-bottom: .7px solid #000000;
+        border-top: none;
+        border-right: none;
+        border-left: none;
+        font-size: 9.8px;
+        line-height: 12px;
+        margin-top: 11.8px;
+        margin-bottom: 13.3px;
+      }
+
+      p {
+        color: #808080;
+        font-size: 9.8px;
+        line-height: 12px;
+        margin-bottom: 21px;
+      }
+
+      button {
+        width: 100%;
+        height: 34px;
+        border: .7px solid #AA182A;
+        border-radius: 70px;
+        background-color: #AA182A;
+        color: white;
+        font-size: 9.1px;
+        font-weight: bold;
+        line-height: 11px;
+        cursor: pointer;
+        margin-bottom: 50px;
+      }
+    }
+  }
+
+  div.claim-artist-modal-2 {
+    h1 {
+      text-align: center;
+      font-size: 16.8px;
+      font-weight: 600;
+      line-height: 20px;
+      margin-bottom: 22px;
+    }
+
+    p {
+      font-size: 9.8px;
+      font-weight: 300;
+      line-height: 12px;
+      color: #808080;
+      text-align: center;
+      margin-bottom: 23px;
+    }
+
+    button {
+      width: 270px;
+      height: 34px;
+      border: .7px solid #AA182A;
+      border-radius: 70px;
+      background-color: #AA182A;
+      color: white;
+      font-size: 9.1px;
+      font-weight: bold;
+      line-height: 11px;
+      cursor: pointer;
+      margin-bottom: 50px;
     }
   }
 }
