@@ -1842,6 +1842,7 @@ footer {
         font-size: 14px;
         font-weight: 300;
         line-height: 35px;
+        overflow-wrap: break-word;
       }
 
       div.review-info-bar {
@@ -1940,6 +1941,7 @@ footer {
         font-size: 9.8px;
         font-weight: 300;
         line-height: 24px;
+        overflow-wrap: break-word;
       }
 
       div.review-info-bar {
@@ -2019,44 +2021,49 @@ footer {
 
 @media(min-width: 768px) {
   .reply-form-container {
-    height: 149px;
-    width: 451px;
+    height: 148px;
+    width: 515px;
     border: 1px solid #d9d9d9;
     border-radius: 40px;
     background-color: #f0f0f0;
 
-    .reply-form {
+    img {
+      height: 48px;
+      width: 48px;
+      float: left;
+      margin-left: 20px;
+      margin-top: 13px;
+    }
+
+    div.text-container {
       height: 123px;
       width: 411px;
-      margin-top: 13px;
       border: 1px solid #dcdcdc;
       border-radius: 30px;
-      background-color: #ffffff;
-
+      background-color: white;
+      margin-left: 84px;
+      margin-top: 12px;
 
       textarea {
-        height: 103px;
-        width: 363px;
-        position: relative;
-        top: 10px;
-        left: 24px;
+        height: 95px;
+        width: 283.75px;
+        margin-top: 14.23px;
+        margin-left: 23.73px;
         border: none;
         resize: none;
       }
 
       .reply-form-btn {
         height: 32px;
-        width: 70px;
+        width: 88px;
         border-radius: 100px;
-        background-color: rgba(170,24,42,.5);
+        border: none;
+        background-color: #AA182A;
         color: white;
-        padding-bottom: 21px;
+        font-size: 11px;
+        font-weight: bold;
+        padding-top: 10.5px;
         cursor: pointer;
-        margin-left: 10px;
-        margin-bottom: 15px;
-        position: relative;
-        left: 320px;
-        bottom: 30px;
       }
     }
   }
@@ -2066,47 +2073,56 @@ footer {
 
 @media (max-width: 767px) {
   .reply-form-container {
-    margin-top: 20px;
-    height: 82.6px;
-    width: 250px;
-    border: 1px solid #d9d9d9;
-    border-radius: 40px;
+    height: 53.81px;
+    width: 254.74px;
+    border: .7px solid #d9d9d9;
+    border-radius: 100px;
     background-color: #f0f0f0;
+    margin-top: 10px;
 
-    .reply-form {
-      height: 68.2px;
-      width: 227.8px;
-      margin-top: 6px;
-      border: 1px solid #dcdcdc;
-      border-radius: 30px;
-      background-color: #ffffff;
+    img {
+      height: 33.53px;
+      width: 33.62px;
+      margin-left: 11.39px;
+      margin-bottom: 47px;
+    }
 
+    div.text-container {
+      display: inline-block;
+      height: 33.53px;
+      width: 185.88px;
+      border: .7px solid #dcdcdc;
+      border-radius: 70px;
+      background-color: white;
+      margin-left: 5.3px;
+      margin-top: 9.8px;
 
       textarea {
-        height: 57px;
-        width: 140px;
-        position: relative;
-        top: 5px;
-        left: 13px;
+        height: 15px;
+        width: 108px;
+        margin-top: 9.26px;
+        margin-left: 10.59px;
         border: none;
+        resize: none;
         font-size: 11.2px;
         line-height: 15px;
-        resize: none;
       }
 
       .reply-form-btn {
-        height: 22.5px;
-        width: 65px;
-        border-radius: 100px;
+        height: 22.36px;
+        width: 53.85px;
+        border-radius: 70px;
+        border: none;
         background-color: #AA182A;
         color: white;
-        cursor: pointer;
+        font-size: 9.1px;
+        font-weight: bold;
+        padding-top: 5.68px;
+        padding-left: 10px;
+        margin-left: 120px;
         position: relative;
-        padding-top: 10px;
-        padding-bottom: 20px;
-        left: 7px;
-        bottom: 15px;
-        z-index: 1000;
+        bottom: 24px;
+        cursor: pointer;
       }
     }
   }
@@ -2148,6 +2164,7 @@ footer {
           font-size: 14px;
           font-weight: 300;
           line-height: 35px;
+          overflow-wrap: break-word;
         }
 
         div.response-info-bar {
@@ -2228,6 +2245,7 @@ footer {
           font-weight: 300;
           line-height: 18px;
           white-space: normal;
+          overflow-wrap: break-word;
         }
 
         div.response-info-bar {
