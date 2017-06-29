@@ -4,6 +4,7 @@
 
 var user_id;
 var show_responses = false;
+var rating;
 
 /*
 Performs following actions when document is ready
@@ -26,12 +27,10 @@ $(document).on('ready page:load', function(){
     };
 
     $('#reviews_button').on('click', function(e) {
-        console.log("Review button clicked");
         show_responses = false;
     });
 
     $('#discussion_button').on('click', function(e) {
-        console.log("Discussion button clicked");
         show_responses = true;
     });
 
@@ -76,16 +75,30 @@ function loadReviewForm(){
     loadRatingEntry();
 }
 
+function submitReviewForm1(){
+    var selected_rating = parseInt($('#rating_field').val());
+    if(selected_rating != -1){
+        rating = selected_rating;
+        $('#review-form-1').hide();
+        $('#review-form-2').show();
+
+    }
+}
+
+function reviewFormGoBack(){
+    $('#review-form-2').hide();
+    $('#review-form-1').show();
+}
+
 //Function that sends an ajax request to server w/ content to create a new review
 function createReview() {
-    var selected_rating = parseInt($('#rating_field').val());
     var comment = $('#review-form-text').val();
 
     $.ajax({
         type: 'POST',
         url: '/users/' + user_id + '/reviews',
         data: {
-            rating: selected_rating,
+            rating: rating,
             comment: comment
         }
     });
@@ -93,14 +106,13 @@ function createReview() {
 
 //Function that sends an ajax request to server w/ content to update an existing review
 function updateReview(review_id) {
-    var selected_rating = parseInt($('#rating_field').val());
     var comment = $('#review-form-text').val();
 
     $.ajax({
         type: 'PUT',
         url: '/users/' + user_id + '/reviews/' + review_id,
         data: {
-            rating: selected_rating,
+            rating: rating,
             comment: comment
         }
     });

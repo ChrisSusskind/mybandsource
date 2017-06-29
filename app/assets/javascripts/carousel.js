@@ -7,7 +7,7 @@ $(document).on('ready page: load', function() {
         infinite: true,
         autoplay: true,
         autoplaySpeed: 5000,
-        speed: 300,
+        speed: 500,
         arrows: true,
         slidesToShow: 4,
         slidesToScroll: 1,

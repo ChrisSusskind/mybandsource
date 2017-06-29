@@ -1112,10 +1112,22 @@ footer {
           margin-top: 30px;
           text-align: center;
           cursor: pointer;
+          border-radius: 100px;
+          border: none;
+          background-color: #AA182A;
+          color: white;
+          height: 50px;
+          width: 200px;
         }
 
         div.review-list {
           margin-top: 30px;
+        }
+
+        div#paginator {
+          span {
+            margin-right: 2px!important;
+          }
         }
       }
     }
@@ -1373,6 +1385,9 @@ footer {
 
       div.profile-content-column {
 
+        padding-bottom: 28.5px;
+        border-bottom: 0.7px solid rgba(0, 0, 0, 0.15);
+
         div.profile-section {
 
           padding-bottom: 20px;
@@ -1483,15 +1498,33 @@ footer {
             margin-top: 30px;
             text-align: center;
             cursor: pointer;
+            border-radius: 100px;
+            border: none;
+            background-color: #AA182A;
+            color: white;
+            height: 50px;
+            width: 150px;
           }
 
           div.review-list {
             margin-top: 30px;
           }
+
+          div#paginator {
+
+            margin-left: 5px;
+
+            span {
+              font-size: 12.6px!important;
+              margin-right: 2px!important;
+            }
+          }
         }
       }
 
       div.profile-sidebar-group {
+
+        margin-top: 28.5px;
 
         h3 {
           height: 39px;
@@ -1544,63 +1577,109 @@ footer {
 
 @media (min-width: 768px) {
   .review-form {
-    height: 146px;
-    width: 100%;
+    height: 73px;
+    width: 584px;
     border: 1px solid #d9d9d9;
     border-radius: 100px;
     background-color: #f0f0f0;
     margin-top: 30px;
+    margin-left: 20px;
 
-    .picture-container {
+    div.review-form-1 {
+      height: 48px;
+      width: 584px;
       position: relative;
-      margin-top: 38px;
-      margin-bottom: 38px;
-    }
+      top: 12.5px;
 
-    .leave-rating-container {
-      white-space: nowrap;
-      height: 21px;
-      font-size: 16px;
-      line-height: 21px;
-      margin-top: 14.5px;
+      img {
+        display: inline;
+        margin-left: 21px;
+      }
 
-      div.star-container {
-        width: 230px;
-        cursor: pointer;
+      span.leave-rating {
+        font-size: 16px;
+        line-height: 21px;
+        margin-left: 30px;
+
+        .grey-star {
+          color: grey;
+          cursor: pointer;
+        }
 
         .red-star {
           color: #AA182A;
-        }
-
-        .grey-star {
-          color: #707070;
+          cursor: pointer;
         }
       }
 
-      .review-form-text {
-        margin-top: 10px;
-        width: 100%;
-      }
-
-      div.submit-btn-container {
-        display: none;
+      span.button-container {
+        button {
+          margin-left: 105px;
+          height: 32px;
+          width: 88px;
+          border-radius: 100px;
+          border: none;
+          background-color: #AA182A;
+          color: white;
+          font-size: 13px;
+          font-weight: bold;
+          line-height: 16px;
+          cursor: pointer;
+        }
       }
     }
 
-    div.submit-btn-container-2 {
+    div.review-form-2 {
+      height: 48px;
+      width: 584px;
+      position: relative;
+      top: 12.5px;
 
-      margin-top: 57px;
 
-      button.submit-btn {
-        height: 32px;
-        width: 70px;
-        border-radius: 100px;
-        background-color: #AA182A;
-        color: white;
-        padding-bottom: 21px;
-        margin-top: 0;
-        margin-bottom: 0;
+      img {
+        display: inline;
+        margin-left: 36px;
+        position: relative;
+        top: 10px;
         cursor: pointer;
+      }
+
+      span.text-area {
+        display: inline-block;
+        margin-left: 30.62px;
+        height: 48px;
+        border: 1px solid #dcdcdc;
+        border-radius: 100px;
+        background-color: white;
+
+        textarea {
+          height: 21px;
+          position: relative;
+          top: 10px;
+          margin-left: 28px;
+          width: 340px;
+          border: none;
+          font-size: 16px;
+          line-height: 21px;
+          resize: none;
+        }
+
+        button {
+          margin-left: 11px;
+          margin-right: 12px;
+          height: 32px;
+          width: 88px;
+          position: relative;
+          top: 8px;
+          border-radius: 100px;
+          border: none;
+          background-color: #AA182A;
+          color: white;
+          font-size: 13px;
+          font-weight: bold;
+          line-height: 16px;
+          cursor: pointer;
+        }
       }
     }
   }
@@ -1610,84 +1689,124 @@ footer {
 
 @media (max-width: 767px) {
   .review-form {
-    height: 161px;
-    width: 100%;
-    border: 1px solid #d9d9d9;
-    border-radius: 100px;
-    background-color: #f0f0f0;
-    margin-top: 30px;
-    margin-left: auto;
-    margin-right: auto;
 
-    .picture-container {
-      position: relative;
-      margin-top: 48px;
-      margin-bottom: 48px;
-      height: 50px;
+    div.review-form-1 {
+      height: 79.81px;
+      width: 291.56px;
+      border: .7px solid #d9d9d9;
+      border-radius: 16px;
+      background-color: #f0f0f0;
+      margin-top: 20px;
 
       img {
-        height: 0;
-        width: 0;
+        display: inline;
+        margin-left: 15.3px;
+        height: 33.53px;
+        width: 33.62px;
+        position: relative;
+        top: 15px;
       }
-    }
 
-    .leave-rating-container {
-      white-space: nowrap;
-      height: 16px;
-      font-size: 12px;
-      line-height: 16px;
-      margin-top: 14.5px;
+      span.leave-rating {
+        font-size: 11.2px;
+        line-height: 15px;
+        margin-left: 20px;
+        position: relative;
+        top: 5px;
 
-      div.star-container {
-        width: 230px;
-        cursor: pointer;
-
-        .red-star {
-          color: #AA182A;
+        span {
+          font-size: 15px;
         }
 
         .grey-star {
-          color: #707070;
+          color: grey;
+          cursor: pointer;
+        }
+
+        .red-star {
+          color: #AA182A;
+          cursor: pointer;
         }
       }
 
-      .review-form-text {
-        margin-top: 10px;
-        width: 100%;
-        resize: none;
-      }
+      span.button-container {
 
-      div.submit-btn-container {
+        display: block;
+        margin-left: 73px;
+        position: relative;
 
-        button.submit-btn {
-          height: 32px;
-          width: 70px;
-          border-radius: 100px;
+        button {
+          height: 22.36px;
+          width: 61.63px;
+          border-radius: 70px;
+          border: none;
           background-color: #AA182A;
           color: white;
-          padding-top: 11px;
-          margin-bottom: 0;
+          font-size: 9.1px;
+          font-weight: bold;
+          line-height: 11px;
           cursor: pointer;
-          margin-top: 10px;
         }
       }
     }
 
-    div.submit-btn-container-2 {
+    div.review-form-2 {
+      height: 53.81px;
+      width: 291.56px;
+      border: .7px solid #d9d9d9;
+      border-radius: 100px;
+      background-color: #f0f0f0;
+      margin-top: 20px;
 
-      display: none;
-      margin-top: 57px;
 
-      button.submit-btn {
-        height: 32px;
-        width: 70px;
-        border-radius: 100px;
-        background-color: #AA182A;
-        color: white;
-        padding-bottom: 21px;
-        margin-top: 0;
-        margin-bottom: 0;
+      img {
+        display: inline;
+        margin-left: 14.3px;
+        height: 17px;
+        width: 9px;
+        position: relative;
+        top: 12px;
         cursor: pointer;
+      }
+
+      span.text-area {
+        display: inline-block;
+        margin-left: 10px;
+        height: 33.53px;
+        border: .7px solid #dcdcdc;
+        border-radius: 70px;
+        background-color: white;
+        position: relative;
+        top: 9.5px;
+
+        textarea {
+          height: 15px;
+          width: 150px;
+          position: relative;
+          top: 1px;
+          margin-left: 15px;
+          border: none;
+          font-size: 11.2px;
+          line-height: 15px;
+          resize: none;
+        }
+
+        button {
+          margin-left: 5.58px;
+          margin-right: 5.58px;
+          height: 22.36px;
+          width: 61.63px;
+          position: relative;
+          top: .5px;
+          border-radius: 70px;
+          border: none;
+          background-color: #AA182A;
+          color: white;
+          font-size: 9.1px;
+          font-weight: bold;
+          line-height: 11px;
+          cursor: pointer;
+        }
       }
     }
   }

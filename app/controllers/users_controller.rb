@@ -16,9 +16,9 @@ class UsersController < ApplicationController
         @review = Review.find_by(receiving_user_id: @artist.id, leaving_user_id: current_user.id)
         @review.nil? ? @review = Review.new : @review
       end
-      @reviews = @artist.received_reviews.page(params[:page]).order('updated_at DESC').per(2)
+      @reviews = @artist.received_reviews.page(params[:page]).order('updated_at DESC').per(25)
     else
-      @reviews = @user.left_reviews.page(params[:page]).order('updated_at DESC').per(2)
+      @reviews = @user.left_reviews.page(params[:page]).order('updated_at DESC').per(25)
     end
     if params[:review].present?
       if params[:response_link].present?
