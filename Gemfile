@@ -73,6 +73,8 @@ gem 'whenever', '~> 0.9.7'
 # Admin portal
 gem 'activeadmin', '~> 1.0.0'
 
+#Gem for carousel
+gem 'jquery-slick-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

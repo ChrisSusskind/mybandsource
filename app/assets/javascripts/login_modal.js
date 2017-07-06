@@ -9,3 +9,7 @@ function signupToLoginModal(){
 function loginToSignupModal(){
     $('#login_modal').modal('hide');
 }
+
+function openSignupModal(){
+    $('#signup_modal').modal('show');
+}

@@ -3,16 +3,14 @@
   <%= link_to cl_image_tag("static/blank_user", class: "artist-image"), user_path(artist_card), method: :get unless artist_card.picture? %>
 
   <div class="name-container">
-    <h5><%= artist_card.name %></h5>
-    <% if !artist_card.genre.nil? %>
-      <h6><%= artist_card.genre.name %></h6>
-    <% end %>
+    <h5><%= artist_card.name.length > 25 ? truncate(artist_card.name, length: 25) : artist_card.name %></h5>
+    <h6><%= artist_card.genre.nil? ? "HELLO" : artist_card.genre.name %></h6>
   </div>
 
   <div class="numbers-container">
     <span>
       <%= cl_image_tag('static/white_star', :alt => "star", :width => 14, :height => 14, :class => "icon-image") %>
-      <%= artist_card.average_rating %>
+      <%= artist_card.average_rating ? artist_card.average_rating.round(2) : 0.0 %>
     </span>
 
     <span class="span-2">

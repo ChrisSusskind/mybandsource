@@ -1,0 +1,23 @@
+<div class="review-form-1" id="review-form-1">
+  <% if current_user.is_artist %>
+      <%= cl_image_tag(current_user.picture, :alt => "Avatar", :width => 48, :height => 48, class: "review-form-picture ") if current_user.picture? %>
+      <%= cl_image_tag("static/blank_user.png", :width => 48, :height => 48 , :alt => "User Image", class: "review-form-picture") unless current_user.picture? %>
+  <% else %>
+      <%= cl_image_tag(current_user.picture, :alt => "Avatar", :width => 48, :height => 48, class: "review-form-picture rounded-circle img-circle") if current_user.picture? %>
+      <%= cl_image_tag("static/blank_user.png", :width => 48, :height => 48 , :alt => "User Image", class: "review-form-picture rounded-circle img-circle") unless current_user.picture? %>
+  <% end %>
+
+  <span class="leave-rating" id="leave_rating">
+    Leave a Review:&nbsp
+    <span>&starf;</span>
+    <span>&starf;</span>
+    <span>&starf;</span>
+    <span>&starf;</span>
+    <span>&starf;</span>
+    <input type="hidden" id="rating_field" value=<%= review.nil? ? -1 : review.rating %> />
+  </span>
+
+  <span class="button-container">
+    <button onclick="submitReviewForm1()">Next</button>
+  </span>
+</div>

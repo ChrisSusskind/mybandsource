@@ -1,6 +1,6 @@
 <%= cloudinary_js_config %>
 
-<div class="" id="user_id_container" data-user_id=<%=@user.id%> >
+<div class="" id="user_id_container" data-artist_name= "<%= @user.name %>" data-user_id=<%=@user.id%>>
   <% if @user.banner_picture? %>
   <div class="profile-banner" style="background-image: <%= Cloudinary::Utils.cloudinary_url(@user.banner_picture) %>">
   <% else %>
@@ -10,6 +10,7 @@
     <% if @user == current_user %>
       <div class="header-picture-overlay">
         <label class="change-header-pic-text">
+          <%= cl_image_tag("static/camera_icon", width: 48, height: 37, class: "camera-icon") %><br/>
           Change your Header Photo
           <%= cl_image_upload_tag(:banner_picture, :html => {:class => "image_upload"}) %>
         </label>
@@ -21,6 +22,7 @@
         <% if @user == current_user %>
           <div class="profile-picture-overlay">
             <label class="change-profile-pic-text">
+              <%= cl_image_tag("static/camera_icon", width: 48, height: 37, class: "camera-icon") %><br/>
               Change your Profile Picture
               <%= cl_image_upload_tag(:picture, :html => {:class => "image_upload"}) %>
             </label>
@@ -69,10 +71,10 @@
 
         <div class="profile-banner-buttons-container">
           <% if user_signed_in? && current_user != @user && !current_user.following?(@user) %>
-             <%= link_to("Follow", "/userrelationship/#{@user.id}", method: "post", class: "btn btn-danger btn-pill follow-button ") %>
+             <%= link_to("Follow", "/userrelationship/#{@user.id}", method: "post", class: "btn btn-danger follow-button ") %>
           <% end %>
           <% if user_signed_in? && current_user != @user && current_user.following?(@user) %>
-             <%= link_to("Unfollow", "/userrelationship/#{@user.id}", method: "delete", class: "btn btn-danger btn-pill follow-button") %>
+             <%= link_to("Unfollow", "/userrelationship/#{@user.id}", method: "delete", class: "btn btn-danger follow-button") %>
           <% end %>
 
           <div class="share-link-container">
@@ -138,16 +140,26 @@
         </div>
       </div>
 
+      <% if @user.is_artist && !user_signed_in? %>
+        <div class="signup-container mx-auto">
+          <p class="bold">Join the conversation</p>
+          <p>Create an account to rate, review, and discuss artists.</p>
+          <button onclick="openSignupModal()">Sign Up</button>
+        </div>
+      <% end %>
+
       <div class="review-container">
         <% if user_signed_in? && @user.is_artist && @review.receiving_user_id.nil? %>
-            <button onclick="loadReviewForm()" id="review_load_button" class="btn btn-danger button-home mx-auto edit-btn" style="display: none">Edit Review</button>
-            <div id="review_form" class="review-form row">
-              <%= render partial: 'reviews/review_form', locals: {artist: @user, review: @review} %>
+            <button onclick="loadReviewForm()" id="review_load_button" class="btn btn-danger mx-auto edit-btn" style="display: none">Edit Review</button>
+            <div id="review_form" class="review-form mx-auto">
+              <%= render partial: 'reviews/review_form_1', locals: {review: @review} %>
+              <%= render partial: 'reviews/review_form_2', locals: {review: @review} %>
             </div>
         <% elsif user_signed_in? && @user.is_artist %>
-            <button onclick="loadReviewForm()" id="review_load_button" class="btn btn-danger button-home mx-auto edit-btn">Edit Review</button>
-            <div id="review_form" class="review-form row" style="display: none">
-              <%= render partial: 'reviews/review_form', locals: {artist: @user, review: @review} %>
+            <button onclick="loadReviewForm()" id="review_load_button" class="btn btn-danger mx-auto edit-btn">Edit Review</button>
+            <div id="review_form" class="review-form mx-auto" style="display: none">
+              <%= render partial: 'reviews/review_form_1', locals: {review: @review} %>
+              <%= render partial: 'reviews/review_form_2', locals: {review: @review} %>
             </div>
         <% end %>
 
@@ -207,7 +219,7 @@
         <div class="profile-sidebar-group">
           <div class="claim-artist-container">
             <h1>Is this you?</h1>
-            <a href="#" class="claim-artist-link">Claim Artist Profile</a>
+            <a href="#claim_artist_modal_1" data-toggle="modal" class="claim-artist-link">Claim Artist Profile</a>
           </div>
         </div>
       <% end %>

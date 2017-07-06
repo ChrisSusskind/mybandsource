@@ -16,7 +16,7 @@ class User < ApplicationRecord
 	has_many :responses, dependent: :destroy
 
 	#For user to genre associations
-	has_one :genre
+	belongs_to :genre
 
 	#For user to user relationships
 	has_many :active_relationships, class_name: "UserRelationship", foreign_key: "follower_id", dependent: :destroy

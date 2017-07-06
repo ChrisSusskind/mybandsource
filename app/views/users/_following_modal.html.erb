@@ -1,5 +1,5 @@
 <div class="modal hide fade" id="following_modal" tabindex="-1">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header" style="border: none">
         <button type="button" class="close modal-close" data-dismiss="modal" aria-label="Close">
@@ -11,7 +11,7 @@
 
         <% followings.each do |following| %>
             <div class="row follow-row">
-              <div class="col-1">
+              <div class="col-2 follow-pic-container">
                 <% if following.is_artist %>
                     <%= cl_image_tag(following.picture, :width => 50, :height => 50, :crop => :fill, :alt => "Avatar", class: "follow-pic") if following.picture? %>
                     <%= cl_image_tag("static/blank_user.png", :width => 50, :height => 50, :crop => :fill, :alt => "User Image", class: "follow-pic") unless following.picture? %> 
@@ -20,16 +20,20 @@
                     <%= cl_image_tag("static/blank_user.png", :width => 50, :height => 50, :crop => :fill, :alt => "User Image", class: "follow-pic rounded-circle img-circle") unless following.picture? %> 
                 <% end %>
               </div>
-              <div class="col-8">
-                <h5><%= link_to following.name, "/users/#{following.id}", method: "get", class: "follow-name" %></h5>
+              <div class="col-6 follow-name">
+                <% if following.name.length > 17 %>
+                  <h5><%= link_to truncate(following.name, length: 17), "/users/#{following.id}", method: "get", class: "follow-name" %></h5>
+                <% else %>
+                  <h5><%= link_to following.name, "/users/#{following.id}", method: "get", class: "follow-name" %></h5>
+                <% end %>
               </div>
-              <div class="col-3">
+              <div class="col-4">
                 <% if current_user %>
                   <% if current_user.following.exists?(following.id) && current_user.id != following.id %>
                     <%= link_to "Unfollow", "/userrelationship/#{following.id}", method: :delete, remote: true, id: "unfollow-btn"+following.id.to_s, class: "btn btn-outline-secondary btn-pill unfollower-btn" %>
-                    <%= link_to "Follow", "/userrelationship/#{following.id}", method: :post, remote: true, id: "follow-btn"+following.id.to_s, class: "btn btn-danger button-home btn-pill follower-btn", style: "display: none" %>
+                    <%= link_to "Follow", "/userrelationship/#{following.id}", method: :post, remote: true, id: "follow-btn"+following.id.to_s, class: "btn btn-danger follower-btn", style: "display: none" %>
                   <% elsif current_user.id != following.id %>
-                    <%= link_to "Follow", "/userrelationship/#{following.id}", method: :post, remote: true, id: "follow-btn"+following.id.to_s, class: "btn btn-danger button-home btn-pill follower-btn" %>
+                    <%= link_to "Follow", "/userrelationship/#{following.id}", method: :post, remote: true, id: "follow-btn"+following.id.to_s, class: "btn btn-danger follower-btn" %>
                     <%= link_to "Unfollow", "/userrelationship/#{following.id}", method: :delete, remote: true, id: "unfollow-btn"+following.id.to_s, class: "btn btn-outline-secondary btn-pill unfollower-btn", style: "display: none" %>
                   <% end %>
                 <% end %>

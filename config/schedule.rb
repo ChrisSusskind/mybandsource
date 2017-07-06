@@ -19,11 +19,11 @@
 
 # Learn more: http://github.com/javan/whenever
 
-job_type :runner, "cd :path && :environment_variable=:environment nice -19 rake :task :output"
+#job_type :runner, "cd :path && :environment_variable=:environment nice -19 rake :task :output"
 
-set :environment, "production"
-set :output, {:error => "log/cron_error_log.log", :standard => "log/cron_log.log"}
+#set :environment, "production"
+#set :output, {:error => "log/cron_error_log.log", :standard => "log/cron_log.log"}
 
-every 6.hours do
-  runner 'calculate_average_rating_and_counts'
-end
+#every 6.hours do
+ # runner 'calculate_average_rating_and_counts'
+#end

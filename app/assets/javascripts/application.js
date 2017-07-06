@@ -16,6 +16,7 @@
 //= require 'jquery.debounce.js'
 //= require turbolinks
 //= require bootstrap-sprockets
+//= require jquery.slick
 //= require 'starrating.js'
 //= require 'review.js'
 //= require react
@@ -30,3 +31,4 @@
 //= require 'notification'
 //= require 'login_modal'
 //= require 'profile'
+//= require 'claim_artist'

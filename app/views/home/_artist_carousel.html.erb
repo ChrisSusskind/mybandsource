@@ -1,23 +1,5 @@
-<div>
-  <div id="carouselExample" class="carousel slide mx-auto artist-carousel" data-ride="carousel" data-interval="30000">
-    <div class="carousel-inner artist-card-row" role="listbox">
-      <div class="carousel-item col-md-4 col-sm-6 active mx-auto">
-        <%= render partial: 'shared/artist_card', object: @artists.first %>
-      </div>
-
-      <%  @artists[1...(@artists.length-1)].each do |artist| %>
-        <div class="carousel-item col-md-4 col-sm-6 mx-auto">
-          <%= render partial: 'shared/artist_card', object: artist %>
-        </div>
-      <% end %>
-    </div>
-    <a class="carousel-control-prev text-faded" href="#carouselExample" role="button" data-slide="prev">
-      <%= cl_image_tag("static/left_arrow", :alt => "Left arrow", class: "") %>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next text-faded" href="#carouselExample" role="button" data-slide="next">
-      <%= cl_image_tag("static/right_arrow", :alt => "Right arrow", class: "") %>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
+<div class="artist-carousel">
+  <% artists.each do |artist| %>
+    <%= render partial: 'shared/artist_card', locals: {artist_card: artist} %>
+  <% end %>
 </div>

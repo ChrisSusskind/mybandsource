@@ -2,30 +2,27 @@
   <div class="media notification-container">
     <div class="media-left">
       <div class="media-object">
-        <%= image_tag(notification.generating_user_picture, size: "30x30", :alt => "Avatar", class: "notification-pic rounded-circle img-circle") if notification.generating_user_picture %>
-        <%= image_tag("blank_user.png", size: "30x30" , :alt => "User Image", class: "notification-pic rounded-circle img-circle") if !notification.generating_user_picture %> 
+        <%= cl_image_tag(notification.generating_user_picture, size: "30x30", :alt => "Avatar", class: "notification-pic rounded-circle img-circle") if notification.generating_user_picture %>
+        <%= cl_image_tag('static/blank_user', size: "30x30" , :alt => "User Image", class: "notification-pic rounded-circle img-circle") if !notification.generating_user_picture %> 
       </div>
     </div>
     <div class="media-body notification-text-container">
         <% case notification.notification_type %>
           <% when 'follow' %>
             <p class="notification-text">
-              <%= link_to(notification.generating_user_name,  user_path(notification.generating_user_id), method: :get) %>
-              followed your profile
+              <%= link_to(notification.generating_user_name,  user_path(notification.generating_user_id), method: :get) %> followed your profile
           <% when 'review' %>
             <p class="notification-text">
-              <%= link_to(notification.generating_user_name,  user_path(notification.generating_user_id), method: :get) %>
-              reviewed your profile
+              <%= link_to(notification.generating_user_name,  user_path(notification.generating_user_id), method: :get) %> reviewed your profile
           <% when 'response' %>
             <p class="notification-text">
-              <%= link_to(notification.generating_user_name,  user_path(notification.generating_user_id), method: :get) %>
-              responded to your comment
+              <%= link_to(notification.generating_user_name,  user_path(notification.generating_user_id), method: :get) %> responded to your comment
           <% else %>
-        <% end %><br/>
-              <abbr class="timeago">
-                <%= time_ago_in_words(notification.created_at.getutc.iso8601) %> ago
-              </abbr>
+        <% end %>
             </p>
+            <abbr class="timeago">
+              <%= time_ago_in_words(notification.created_at.getutc.iso8601) %> ago
+            </abbr>
     </div>
   </div>
 </li>

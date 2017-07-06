@@ -1,51 +1,48 @@
-<div class="container-fluid">
+<div class="wide-homepage mx-auto">
 
-	<div class="jumbotron jumbotron-main">
-		<div class="home-title-container my-auto">
+	<div class="jumbotron-main">
+		<div class="home-title-container my-auto mx-auto">
 			<h3 class="display-4 text-center">Reinventing Music Conversation</h3>
-			<h4 class="text-center">Rate, Review, & Discuss Artists</h4>
+			<h4 class="text-center">Rate, Review & Discuss Artists</h4>
 			<%= react_component "ArtistSearchContainerComponent", {searchPath: search_artists_path, submitPath: submit_search_path, navbar: false}, class: "homepage-search-container" %>
 		</div>
 	</div>
-	
-	<hr>
 
 	<!-- Artist Cards -->
-	<div class="container-fluid">
-
-		<div class="section-title-block text-center">
-			<h3>Featured Artists</h3>
-			<p>Discover and explore conversations around artists.</p>
+	<div class="artist-homepage-block">
+		<div class="section-title-block text-center homepage-section-text">
+			<h3>FEATURED ARTISTS</h3>
+			<p>Discover & explore conversations around artists.</p>
 		</div>
 
-    <%= render partial: 'artist_carousel' %>
+    <%= render partial: 'artist_carousel', locals: {artists: @artists} %>
 	</div>
 
 	
 	<!-- Genre Cards -->
-	<div class="container-fluid">
+	<div class="genre-homepage-block">
 
-		<div class="section-title-block text-center">
-			<h3>Popular Genres</h3>
+		<div class="section-title-block text-center homepage-section-text">
+			<h3>POPULAR GENRES</h3>
 			<p>Explore artists by genre.</p>
 		</div>
 
 		<div class="genre-card-row">
 			<% @genres.each do |genre| %>
-        <%= render partial: 'genres/genre_card', locals: {genre: genre, column: 3, class_name:"genre-card-homepage"} %>
+        <%= render partial: 'genres/genre_card', locals: {genre: genre, class_name:"genre-card-homepage"} %>
 			<% end %>
 		</div>
 
 		<div class="text-center">
-			<%= link_to "View all genres", genres_path, class: "btn btn-danger button-home" %>
+			<%= link_to "View All Genres", genres_path, class: "view-all-genres-link" %>
 		</div>
 	</div>
 
-	<div class="container-fluid">
-		<div class="container text-center section-title-block">
-			<h1>Join the Conversation</h1>
-			<p class="lead">Rate, Review, and Discuss.</p>
-			<a href="#signup_modal" data-toggle="modal" class="btn btn-danger button-home">Sign up</a>
+	<div class="bottom-homepage-block">
+		<div class="text-center section-title-block">
+			<h1>Join the Conversation.</h1>
+			<p class="lead">Rate, Review & Discuss Artists</p>
+			<a href="#signup_modal" data-toggle="modal" class="btn btn-danger button-home">Sign Up</a>
 		</div>
 	</div>
 </div>

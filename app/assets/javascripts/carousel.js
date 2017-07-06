@@ -3,26 +3,28 @@
  */
 
 $(document).on('ready page: load', function() {
-
-    $('#carouselExample').on('slide.bs.carousel', function (e) {
-
-        var $e = $(e.relatedTarget);
-        var idx = $e.index();
-
-        var itemsPerSlide = 3;
-        var totalItems = $('.carousel-item').length;
-
-        if (idx >= totalItems-(itemsPerSlide-1)) {
-            var it = itemsPerSlide - (totalItems - idx);
-            for (var i=0; i<it; i++) {
-                // append slides to end
-                if (e.direction=="left") {
-                    $('.carousel-item').eq(i).appendTo('.carousel-inner');
-                }
-                else {
-                    $('.carousel-item').eq(0).appendTo('.carousel-inner');
+    $('.artist-carousel').slick({
+        infinite: true,
+        autoplay: true,
+        autoplaySpeed: 5000,
+        speed: 500,
+        arrows: true,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        variableWidth: true,
+        prevArrow: '<img class="prev-arrow" src="http://res.cloudinary.com/mybandsource/image/upload/v1498680955/static/prev_arrow.png" />',
+        nextArrow: '<img class="next-arrow" src="http://res.cloudinary.com/mybandsource/image/upload/v1498680955/static/next_arrow.png" />',
+        responsive: [
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
                 }
             }
-        }
+            // You can unslick at a given breakpoint now by adding:
+            // settings: "unslick"
+            // instead of a settings object
+        ]
     });
 });

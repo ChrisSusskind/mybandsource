@@ -1,6 +1,6 @@
 <header class="container-fluid">
-  <div class="main-navbar">
-    <%= link_to(cl_image_tag("static/logo_v2_padded", :width => 175, :height => 40, :crop => :fill, class: "navbar-logo"), '/', method: :get, class: "navbar-header") %>
+  <div class="main-navbar mx-auto">
+    <%= link_to(cl_image_tag("static/logo_v2_padded_tm", :width => 225, :height => 50, :crop => :fill, class: "navbar-logo"), '/', method: :get, class: "navbar-header") %>
 
     <% unless current_page?('/') %>
         <%= react_component "ArtistSearchContainerComponent", {searchPath: search_artists_path, submitPath: submit_search_path, navbar: true}, class: "mx-auto navbar-search-container" %>
@@ -17,15 +17,17 @@
 
     <div class="navbar-links">
       <% unless current_page?('/') %>
-        <button class="search-icon" onclick="displaySearch()"><%= material_icon.search %></button>
+        <button class="search-icon-mobile" onclick="displaySearch()"><%= material_icon.search %></button>
       <% end %>
       <% if current_user %>
           <%= render partial: 'notifications/notification_dropdown' %>
           <%= render partial: 'layouts/user_dropdown' %>
         <% else %>
+          <%= render partial: 'layouts/login_signup_dropdown' %>
           <%= link_to "Log In", "#login_modal", "data-toggle": "modal", class: "login-header", id: "login-btn" %>
           <%= link_to "Sign up", "#signup_modal", "data-toggle": "modal", class: "signup-header", id: "signup-btn" %>
         <% end %>
     </div>
+    </ul>
   </div>
 </header>
