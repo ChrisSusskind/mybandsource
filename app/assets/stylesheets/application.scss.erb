@@ -157,9 +157,13 @@ textarea:focus, input:focus{
         height: 50px;
         background-color: black;
         border: none;
-        @extend %glyphicon-bell;
         color: white;
         cursor: pointer;
+
+        i {
+          position: relative;
+          top: 4px;
+        }
       }
 
       ul {
@@ -314,6 +318,11 @@ textarea:focus, input:focus{
     button {
       height: 35px!important;
       width: 35px!important;
+
+      i {
+        position: relative;
+        right: 4px;
+      }
     }
 
     ul {
@@ -362,6 +371,10 @@ footer {
 
 .footer_social {
   order: 2;
+  a {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
 }
 
 @media (max-width: 800px) {
@@ -378,11 +391,12 @@ footer {
   }
 
   .footer_links {
-    padding: 20px 0;
+    padding: 10px 0;
 
   }
 
   .footer_social {
+    padding-bottom: 10px;
   }
 
 }

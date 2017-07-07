@@ -11,8 +11,8 @@
 		<a href=<%= create_artist_path %>>Create Artist Profile</a>
 	</div>
 	<div class="social-bar footer_social">
-		<a href="" target="_blank" class="fa fa-twitter"></a>
-		<a href="" target="_blank" class="fa fa-facebook"></a>
-		<a href="" target="_blank" class="fa fa-instagram"></a>
-	</div>
+    <%= link_to cl_image_tag('static/twitter_icon_profile', alt: "Twitter", width: 20, height: 16), 'twitter.com/mybandsource' %>
+    <%= link_to cl_image_tag('static/twitter_icon_profile', alt: "Facebook", width: 20, height: 16, crop: :fill), 'facebook.com/myBandSource' %>
+    <%= link_to cl_image_tag('static/twitter_icon_profile', alt: "Instagram", width: 20, height: 16, crop: :fill), 'instagram.com/mybandsource' %>
+  </div>
 </footer>
