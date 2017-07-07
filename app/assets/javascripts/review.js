@@ -94,14 +94,16 @@ function reviewFormGoBack(){
 function createReview() {
     var comment = $('#review-form-text').val();
 
-    $.ajax({
-        type: 'POST',
-        url: '/users/' + user_id + '/reviews',
-        data: {
-            rating: rating,
-            comment: comment
-        }
-    });
+    if(comment != ""){
+        $.ajax({
+            type: 'POST',
+            url: '/users/' + user_id + '/reviews',
+            data: {
+                rating: rating,
+                comment: comment
+            }
+        });
+    }
 }
 
 //Function that sends an ajax request to server w/ content to update an existing review
