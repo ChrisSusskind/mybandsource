@@ -897,6 +897,11 @@ footer {
           height: 37px;
           margin-bottom: 16px;
 
+          p {
+            display: inline;
+            margin-bottom: 0px;
+          }
+
           span {
             color: white;
           }
@@ -1283,6 +1288,11 @@ footer {
           div.profile-numbers {
 
             margin-bottom: 11px;
+
+            p {
+              display: inline;
+              margin-bottom: 0px;
+            }
 
             span {
               color: white;
@@ -1851,6 +1861,13 @@ footer {
         font-weight: 300;
         line-height: 34px;
 
+        a {
+          color: #707070;
+          font-size: 14px;
+          font-weight: 300;
+          line-height: 34px;
+        }
+
         .review_icon:hover {
           box-shadow: 5px 5px 50px black;
         }
@@ -1949,6 +1966,13 @@ footer {
         font-size: 7.84px;
         font-weight: 300;
         line-height: 19px;
+
+        a {
+          color: #707070;
+          font-size: 7.84px;
+          font-weight: 300;
+          line-height: 19px;
+        }
 
         .review_icon:hover {
           box-shadow: 5px 5px 50px black;
@@ -2173,6 +2197,13 @@ footer {
           font-weight: 300;
           line-height: 34px;
 
+          a {
+            color: #707070;
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 34px;
+          }
+
           span.upvotes {
             .rockon_icon_flipped {
               -o-transform: scaleY(-1);
@@ -2253,6 +2284,13 @@ footer {
           font-size: 7.84px;
           font-weight: 300;
           line-height: 19px;
+
+          a {
+            color: #707070;
+            font-size: 7.84px;
+            font-weight: 300;
+            line-height: 19px;
+          }
 
           span.upvotes {
 
@@ -2809,11 +2847,11 @@ footer {
 
 .live-search-results {
   position: absolute;
-  height: 200px;
+  height: 0;
   overflow: auto;
   padding-left: 0;
   width: 100%;
-  z-index: 500;
+  z-index: 1000;
 
   div {
     background-color: rgba(255, 255, 255, 0.5);

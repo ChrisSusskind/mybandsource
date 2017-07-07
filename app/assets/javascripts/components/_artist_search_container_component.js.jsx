@@ -49,7 +49,7 @@ class ArtistSearchContainerComponent extends React.Component {
     render(){
         if(this.props.navbar){
             return(
-                <div>
+                <div className="react-search-container">
                     <ArtistSearchNavBarComponent searchPath={this.onChange} submitSearch={this.submitSearch} />
                     <ArtistsComponent artists={this.state.artists} showButton={this.state.showButton} entry={this.state.entry} submitSearch={this.submitSearch}/>
                 </div>
@@ -57,7 +57,7 @@ class ArtistSearchContainerComponent extends React.Component {
         }
         else {
             return(
-                <div>
+                <div className="react-search-container">
                     <ArtistSearchComponent searchPath={this.onChange} submitSearch={this.submitSearch} showButton={this.state.showButton} />
                     <ArtistsComponent artists={this.state.artists} showButton={this.state.showButton} entry={this.state.entry} submitSearch={this.submitSearch}/>
                 </div>

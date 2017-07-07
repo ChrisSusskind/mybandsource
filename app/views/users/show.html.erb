@@ -52,19 +52,19 @@
 
         <% if @user.is_artist %>
           <div class="profile-numbers">
-             <span>
+             <span id="avg-rating">
                 <%= cl_image_tag('static/white_star', :alt => "star", :width => 14, :height => 14, :class => "icon-image") %>
-                <%= @user.average_rating %>
+                <p id="avg-rating-number"><%= @user.average_rating %></p>
              </span>
 
-            <span class="not-left">
+            <span class="not-left" id="review-count">
               <%= material_icon.message.md_18 %>
-              <%= number_to_human @user.review_count%>
+              <p id="review-count-number"><%= number_to_human @user.review_count%></p>
             </span>
 
-            <span class="not-left">
+            <span class="not-left" id="response-count">
               <%= cl_image_tag('static/response_icon', :alt => "response", :width => 14, :height => 14, :class => "icon-image") %>
-              <%= number_to_human @user.response_count %>
+              <p id="response-count-number"><%= number_to_human @user.response_count %></p>
             </span>
           </div>
         <% end %>
