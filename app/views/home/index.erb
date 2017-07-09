@@ -4,7 +4,7 @@
 		<div class="home-title-container my-auto mx-auto">
 			<h3 class="display-4 text-center">Reinventing Music Conversation</h3>
 			<h4 class="text-center">Rate, Review & Discuss Artists</h4>
-			<%= react_component "ArtistSearchContainerComponent", {searchPath: search_artists_path, submitPath: submit_search_path, navbar: false}, class: "homepage-search-container" %>
+			<%= react_component 'ArtistSearchContainerComponent', {searchPath: search_artists_path, submitPath: submit_search_path, navbar: false}, class: 'homepage-search-container' %>
 		</div>
 	</div>
 
@@ -29,12 +29,12 @@
 
 		<div class="genre-card-row">
 			<% @genres.each do |genre| %>
-        <%= render partial: 'genres/genre_card', locals: {genre: genre, class_name:"genre-card-homepage"} %>
+        <%= render partial: 'genres/genre_card', locals: {genre: genre, class_name: 'genre-card-homepage'} %>
 			<% end %>
 		</div>
 
 		<div class="text-center">
-			<%= link_to "View All Genres", genres_path, class: "view-all-genres-link" %>
+			<%= link_to 'View All Genres', genres_path, class: 'view-all-genres-link' %>
 		</div>
 	</div>
 

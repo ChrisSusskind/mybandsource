@@ -21,17 +21,16 @@ class UsersController < ApplicationController
       @reviews = @user.left_reviews.page(params[:page]).order('updated_at DESC').per(25)
     end
     if params[:review].present?
+      top_review = Review.find(params[:review])
       if params[:response_link].present?
-        top_review = Review.find(params[:review])
         render 'show', locals: {top_review: top_review, response_link: true}
       else
-        top_review = Review.find(params[:review])
         render 'show', locals: {top_review: top_review}
       end
     else
       respond_to do |format|
-        format.html {render 'show'}
-        format.js {render :action => 'paginate_reviews'}
+        format.html { render 'show' }
+        format.js { render action: 'paginate_reviews' }
       end
     end
   end
@@ -62,7 +61,6 @@ class UsersController < ApplicationController
   end
 
   def claim_artist
-
   end
 
   private
