@@ -73,8 +73,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :location, :bio])
+    devise_parameter_sanitizer.permit(:account_update)
   end
+
+ def update_resource(resource, params)
+   if params.has_key?(:genre)
+     params["genre"] = Genre.find(params[:genre].to_i)
+   end
+   resource.update_with_password(params)
+ end
 
   # The path used after sign up.
   # def after_sign_up_path_for(resource)
@@ -104,10 +111,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
    artist_params["genre"] = Genre.find(params[:user][:genre].to_i)
    artist_params[:is_artist] = true
    artist_params
- end
-
- def artist_signup_params
-
  end
 
  def missing_params_error

@@ -207,10 +207,10 @@
         <h3>Social Profiles</h3>
         <div class="profile-social-media-icons-container">
           <% if @user.twitter_url? %>
-              <%= link_to cl_image_tag('static/twitter_icon_profile', alt: "Twitter"), @user.twitter_url, target: "_blank", class: "profile-social-icon" %>
+              <%= link_to cl_image_tag('static/twitter_icon_profile', alt: "Twitter"), url_with_protocol(@user.twitter_url), target: "_blank", class: "profile-social-icon" %>
           <% end %>
           <% if @user.facebook_url? %>
-              <%= link_to cl_image_tag('static/facebook_icon_profile', alt: "Facebook"), @user.facebook_url, target: "_blank", class: "profile-social-icon" %>
+              <%= link_to cl_image_tag('static/facebook_icon_profile', alt: "Facebook"), url_with_protocol(@user.facebook_url), target: "_blank", class: "profile-social-icon" %>
           <% end %>
         </div>
       </div>

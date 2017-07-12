@@ -61,6 +61,7 @@ class UsersController < ApplicationController
   end
 
   def claim_artist
+
   end
 
   private
