@@ -1,7 +1,8 @@
 class ResponsesController < ApplicationController
-  before_action :set_user
-  before_action :set_review
+  before_action :set_user, except: [:report]
+  before_action :set_review, except: [:report]
   before_action :set_response, only: [:destroy, :upvote, :remove_upvote]
+
   def create
     @response = @review.responses.create({user_id: current_user.id, comment: params[:comment]})
     unless @response.valid?
@@ -44,6 +45,11 @@ class ResponsesController < ApplicationController
   def share
     link = root_url[0...-1] + user_path(@user) + "?review=" + params[:review_id] + "%26response_link=true" + "%23review" + params[:review_id]
     render :action => 'share_response.js.erb', locals: {link: link}
+  end
+
+  def report
+    @response = Response.find(params[:id])
+
   end
 
   private

@@ -56,4 +56,9 @@ Rails.application.routes.draw do
 
   #Claim artist mailer route
   post '/claim_artist', to: 'users#claim_artist'
+
+  #Report review and response routes
+  post '/report_review/:id', to: 'reviews#report'
+  post '/report_response/:id', to: 'responses#report'
+
 end

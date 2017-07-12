@@ -32,7 +32,11 @@
   <% end %>
 
   <span class="report">
-    <%= cl_image_tag('static/flag_icon', alt: "Report", width: 9, height: 10, crop: :fill) %>
+    <% if user_signed_in? %>
+        <%= link_to cl_image_tag('static/flag_icon', alt: "Report", width: 9, height: 10, crop: :fill), '/report_response/'+response.id.to_s, method: :post, remote: true %>
+    <% else %>
+        <%= cl_image_tag('static/flag_icon', alt: "Report", width: 9, height: 10, crop: :fill) %>
+    <% end %>
 
     Report
   </span>

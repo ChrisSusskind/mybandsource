@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
-  before_action :set_user
-  before_action :set_review, only: [:update, :destroy]
+  before_action :set_user, except: [:report]
+  before_action :set_review, only: [:update, :destroy, :upvote, :remove_upvote, :report]
 
   def create
     @review = Review.create({receiving_user_id: @user.id, leaving_user_id: current_user.id, comment: params[:comment], rating: params[:rating]})
@@ -27,7 +27,6 @@ class ReviewsController < ApplicationController
   end
 
   def upvote
-    @review = Review.find(params[:id])
     @review.upvotes+=1
     @review.upvotes_userlist.nil? ?
       @review.upvotes_userlist = [current_user.id] :
@@ -39,7 +38,6 @@ class ReviewsController < ApplicationController
   end
 
   def remove_upvote
-    @review = Review.find(params[:id])
     @review.upvotes-=1
     @review.upvotes_userlist-=[current_user.id.to_s]
 
@@ -115,6 +113,10 @@ class ReviewsController < ApplicationController
   def share
     link = root_url[0...-1] + user_path(@user) + "?review=" + params[:id] + "%23review" + params[:id]
     render :action => 'share_review.js.erb', locals: {link: link}
+  end
+
+  def report
+
   end
 
   private
