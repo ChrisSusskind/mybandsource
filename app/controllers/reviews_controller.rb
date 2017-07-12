@@ -4,23 +4,29 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.create({receiving_user_id: @user.id, leaving_user_id: current_user.id, comment: params[:comment], rating: params[:rating]})
-    unless @review.valid?
+    if !@review.valid?
       flash[:alert] = "Review creation failed"
+    else
+      create_notification(current_user, @user, @review)
+      @user.new_avg_rating_review_count(@review.rating)
     end
-    create_notification(current_user, @user, @review)
     create_review_display(@review)
   end
 
   def update
-    unless @review.update(comment: params[:comment], rating: params[:rating])
+    old_rating = @review.rating
+    if !@review.update(comment: params[:comment], rating: params[:rating])
       flash[:alert] = "Review update failed"
+    else
+      @user.change_rating(old_rating, params[:rating].to_f)
     end
     update_review_display
   end
 
   def destroy
     destroy_notification(current_user, @user, @review)
-    unless @review.destroy
+    @user.delete_avg_rating_review_count(@review.rating)
+    if !@review.destroy
       flash[:alert] = "Review deletion failed"
     end
     destroy_review_display

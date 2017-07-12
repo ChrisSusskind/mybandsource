@@ -2,6 +2,6 @@ $('#reviews_container').html('<%= escape_javascript(render partial: 'reviews/rev
 $('#paginator').html('<%= escape_javascript(paginate(@reviews, :remote => true).to_s) %>');
 $('#review_form').html('<%= escape_javascript(render partial: 'reviews/review_form_2', locals: {artist: user, review: review}) %>').hide();
 $('#review_load_button').show();
-loadRatingsStyle();
+$('#avg-rating-number').html('<%= user.average_rating %>');
+$('#review-count-number').html('<%= number_to_human user.review_count %>');
 loadRatingEntry();
-changeTimeDisplays();

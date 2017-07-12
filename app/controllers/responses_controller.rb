@@ -5,19 +5,23 @@ class ResponsesController < ApplicationController
 
   def create
     @response = @review.responses.create({user_id: current_user.id, comment: params[:comment]})
-    unless @response.valid?
+    if !@response.valid?
       flash[:alert] = "Response creation failed"
-    end
-    if current_user != @user
-      create_notification(current_user, @review.leaving_user_id, @response)
+    else
+      @user.increment_response_count
+      if current_user != @user
+        create_notification(current_user, @review.leaving_user_id, @response)
+      end
     end
     render :action => 'response_display', locals: {is_artist: @user.is_artist}
   end
 
   def destroy
     destroy_notification(current_user, @review.leaving_user_id, @response)
-    unless @response.destroy
+    if !@response.destroy
       flash[:alert] = "Response deletion failed"
+    else
+      @user.decrement_response_count
     end
     render :action => 'response_display', locals: {is_artist: @user.is_artist}
   end

@@ -31,6 +31,51 @@ class User < ApplicationRecord
 
 	mount_uploader :picture, AvatarUploader
 
+	def increment_response_count
+		if self.response_count != nil
+			self.response_count += 1
+		else
+			self.response_count = 1
+		end
+		self.save
+	end
+
+	def decrement_response_count
+		self.response_count -= 1
+		self.save
+	end
+
+	def new_avg_rating_review_count(rating)
+		if self.average_rating != nil
+			avg_rating = self.average_rating
+		else
+			avg_rating = 0
+		end
+		if self.review_count != nil
+			rc = self.review_count
+		else
+			rc = 0
+		end
+		self.average_rating = (avg_rating * rc + rating) / (rc + 1)
+		self.review_count = rc + 1
+		self.save
+	end
+
+	def change_rating(old_rating, new_rating)
+		self.average_rating = (self.average_rating * self.review_count - old_rating + new_rating) / self.review_count
+		self.save
+	end
+
+	def delete_avg_rating_review_count(rating)
+		if self.review_count == 1
+			self.average_rating = 0.0
+		else
+			self.average_rating = (self.average_rating * self.review_count - rating) / self.review_count - 1
+		end
+		self.review_count -= 1
+		self.save
+	end
+
 	def follow(other_user)
 		following << other_user
 	end

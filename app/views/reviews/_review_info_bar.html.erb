@@ -16,28 +16,27 @@
   <span class="reply">
     <% if user_signed_in? %>
         <%= cl_image_tag('static/reply_icon.png', alt: "Reply", width: 13, height: 10, crop: :fill, class: "review_icon reply_icon", id: "reply_icon", onclick: "showReplyForm(this)") %>
+        <a href="" onclick="event.preventDefault(); showReplyForm(this)">Reply</a>
     <% else %>
         <%= cl_image_tag('static/reply_icon.png', alt: "Reply", width: 13, height: 10, crop: :fill, class: "") %>
+        Reply
     <% end %>
-
-    Reply
   </span>
 
   <span class="share">
     <% if user_signed_in? %>
       <%= link_to(cl_image_tag('static/share_icon_reply.png', alt: "Share", width: 9, height: 11, crop: :fill, class:"review_icon review_share"), "/users/#{user_id}/share/review/#{review.id}", method: :post, remote: true) %>
+      <%= link_to 'Share', "/users/#{user_id}/share/review/#{review.id}", method: :post, remote: true %>
     <% else %>
       <%= cl_image_tag('static/share_icon_reply.png', alt: "Share", width: 9, height: 11, crop: :fill) %>
+      Share
     <% end %>
-
-    Share
   </span>
 
   <% if user_signed_in? && current_user == review.leaving_user %>
     <span class="delete">
       <%= link_to(cl_image_tag('static/trashcan_icon.png', alt: "Trashcan", width: 15, height: 15, crop: :fill, class: "review_icon"), "/users/#{user_id}/reviews/#{review.id}", method: :delete, remote: true) %>
-
-      Delete
+      <%= link_to 'Delete', "/users/#{user_id}/reviews/#{review.id}", method: :delete, remote: true %>
     </span>
   <% end %>
 

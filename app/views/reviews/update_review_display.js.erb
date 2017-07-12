@@ -2,6 +2,5 @@ $('#reviews_container').html('<%= escape_javascript(render partial: 'reviews/rev
 $('#paginator').html('<%= escape_javascript(paginate(@reviews, :remote => true).to_s) %>');
 $('#review_form').hide();
 $('#review_load_button').show();
-loadRatingsStyle();
+$('#avg-rating-number').html('<%= user.average_rating %>');
 loadRatingEntry();
-changeTimeDisplays();

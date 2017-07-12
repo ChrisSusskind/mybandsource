@@ -16,18 +16,17 @@
   <span class="share">
     <% if user_signed_in? %>
       <%= link_to(cl_image_tag('static/share_icon_reply.png', alt: "Share", width: 9, height: 11, crop: :fill, class:"review_icon"), "/users/#{user_id}/share/reviews/#{response.review_id}/response", method: :post, remote: true) %>
+      <%= link_to 'Share', "/users/#{user_id}/share/reviews/#{response.review_id}/response", method: :post, remote: true %>
     <% else %>
       <%= cl_image_tag('static/share_icon_reply.png', alt: "Share", width: 9, height: 11, crop: :fill) %>
+      Share
     <% end %>
-
-    Share
   </span>
 
   <% if user_signed_in? && current_user == response.user %>
     <span class="delete">
       <%= link_to(cl_image_tag('static/trashcan_icon.png', alt: "Trashcan", width: 15, height: 15, crop: :fill, class: "review_icon"), user_review_response_path(user_id, review, response), method: :delete, remote: true) %>
-
-    Delete
+      <%= link_to 'Delete', user_review_response_path(user_id, review, response), method: :delete, remote: true %>
     </span>
   <% end %>
 

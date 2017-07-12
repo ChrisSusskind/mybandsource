@@ -53,8 +53,8 @@ User.populate 50 do |artist|
 	artist.sign_in_count		= 0
   artist.average_rating = 0.0
   artist.is_artist = true
-  artist.review_count = Faker::Number.between(0,1200000)
-	artist.response_count = Faker::Number.between(0,1200000)
+  artist.review_count = 0
+	artist.response_count = 0
 end
 
 # Regular users

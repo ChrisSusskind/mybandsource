@@ -94,14 +94,16 @@ function reviewFormGoBack(){
 function createReview() {
     var comment = $('#review-form-text').val();
 
-    $.ajax({
-        type: 'POST',
-        url: '/users/' + user_id + '/reviews',
-        data: {
-            rating: rating,
-            comment: comment
-        }
-    });
+    if(comment != ""){
+        $.ajax({
+            type: 'POST',
+            url: '/users/' + user_id + '/reviews',
+            data: {
+                rating: rating,
+                comment: comment
+            }
+        });
+    }
 }
 
 //Function that sends an ajax request to server w/ content to update an existing review
@@ -126,25 +128,35 @@ function showReplyForm(node) {
     var review_text_container = node.parentElement.parentElement.parentElement;
     var review = review_text_container.parentElement;
     var review_id = review.getAttribute('data-review_id');
+    var profile_pic_url = "http://res.cloudinary.com/mybandsource/image/upload/" + $('#user_id_container').data('user_picture_url');
+    if(profile_pic_url == "http://res.cloudinary.com/mybandsource/image/upload/"){
+        profile_pic_url = "http://res.cloudinary.com/mybandsource/image/upload/v1490846366/static/blank_user.png";
+    }
     var wrapper = document.createElement('div');
     wrapper.innerHTML = '' +
         '<div class="reply-form-container">' +
-        '<form id="reply_form" class="reply-form mx-auto">' +
-        '   <textarea id="reply"></textarea>' +
-        '   <input class="btn btn-danger btn-pill reply-form-btn" type="submit" value="Submit">' +
-        '</form>' +
+            '<img src="' + profile_pic_url + '"/>' +
+            '<div class="text-container">' +
+                '<form id="reply_form" class="reply-form mx-auto">' +
+                '   <textarea id="reply"></textarea>' +
+                '   <input class="btn btn-danger reply-form-btn" type="submit" value="Submit">' +
+                '</form>' +
+            '</div>' +
         '</div>';
     review_text_container.append(wrapper);
     $('#reply_form').submit(function (e) {
         e.preventDefault();
-        $.ajax({
-            type: 'POST',
-            url: '/users/' + user_id + '/reviews/' + review_id + '/responses',
-            data: {
-                comment: $('#reply').val()
-            },
-            dataType: 'script'
-        })
+        var $reply = $('#reply');
+        if($reply.val() != ""){
+            $.ajax({
+                type: 'POST',
+                url: '/users/' + user_id + '/reviews/' + review_id + '/responses',
+                data: {
+                    comment: $reply.val()
+                },
+                dataType: 'script'
+            })
+        }
     });
     node.onclick = null;
 }
