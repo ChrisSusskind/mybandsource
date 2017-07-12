@@ -73,7 +73,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update)
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :location, :bio, :facebook_url, :itunes_url, :soundcloud_url, :spotify_url, :twitter_url])
   end
 
  def update_resource(resource, params)
