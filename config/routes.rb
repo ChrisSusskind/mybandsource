@@ -15,7 +15,12 @@ Rails.application.routes.draw do
   get '/search_results', to: 'users#render_search_page'
 
   # Devise routes
-  devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations', :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations',
+    omniauth_callbacks: 'users/omniauth_callbacks',
+    :confirmations => 'users/confirmations'
+  }
 
   # Non-devise user routes and review/response routes
   resources :users, only: [:index, :show] do
