@@ -3,7 +3,7 @@ ActiveAdmin.register User do
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
 
-  permit_params :name, :email, :location, :picture, :bio, :is_artist, :real_name, :facebook_url, :soundcloud_url, :spotify_url, :itunes_url, :twitter_url, :genre, :banner_picture
+  permit_params :name, :email, :password, :location, :picture, :bio, :is_artist, :real_name, :facebook_url, :soundcloud_url, :spotify_url, :itunes_url, :twitter_url, :genre, :banner_picture
 
   index do
     actions
@@ -11,8 +11,10 @@ ActiveAdmin.register User do
     id_column
     column :email
     column :name
+    column :real_name
     column :is_artist
     column :bio
+    column :location
     column :genre
     column :facebook_url
     column :soundcloud_url
@@ -26,8 +28,10 @@ ActiveAdmin.register User do
 
   filter :email
   filter :name
+  filter :real_name
   filter :is_artist
   filter :bio
+  filter :location
   filter :genre
   filter :facebook_url
   filter :soundcloud_url
@@ -42,11 +46,11 @@ ActiveAdmin.register User do
     attributes_table do
       row :email
       row :name
+      row :real_name
       row :location
       row :bio
       row :is_artist
       row :genre
-      row :real_name
       row :picture
       row :banner_picture
       row :facebook_url
@@ -63,6 +67,8 @@ ActiveAdmin.register User do
     f.inputs "Admin Details" do
       f.input :email
       f.input :name
+      f.input :real_name
+      f.input :location
       f.input :is_artist
       f.input :bio
       f.input :genre_id, as: :select, collection: Genre.all.collect { |genre| [genre.name, genre.id] }
