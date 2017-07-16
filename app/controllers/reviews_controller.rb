@@ -9,6 +9,12 @@ class ReviewsController < ApplicationController
     else
       create_notification(current_user, @user, @review)
       @user.new_avg_rating_review_count(@review.rating)
+      ActionCable.server.broadcast(
+          "notification_center_channel_#{current_user.id}",
+          sender_name: current_user.name,
+          sender_id: current_user.id,
+          type: "review"
+      )
     end
     create_review_display(@review)
   end
@@ -37,6 +43,14 @@ class ReviewsController < ApplicationController
     @review.upvotes_userlist.nil? ?
       @review.upvotes_userlist = [current_user.id] :
       @review.upvotes_userlist += [current_user.id]
+    ActionCable.server.broadcast(
+      "notification_center_channel_#{current_user.id}",
+      type: "review",
+      sender_name: current_user.name,
+      sender_id: current_user.id,
+      picture_url: current_user.picture,
+      timestamp: "1 minute ago"
+    )
     unless @review.save(touch: false)
       flash[:alert] = "Review upvote failed"
     end

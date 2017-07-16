@@ -61,4 +61,5 @@ Rails.application.routes.draw do
   post '/report_review/:id', to: 'reviews#report'
   post '/report_response/:id', to: 'responses#report'
 
+  mount ActionCable.server, at: '/cable'
 end

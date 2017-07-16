@@ -6,6 +6,13 @@ class UserRelationshipsController < ApplicationController
     current_user.follow(@user)
     create_notification(current_user, @user)
 
+    ActionCable.server.broadcast(
+      "notification_center_channel_#{current_user.id}",
+      sender_name: current_user.name,
+      sender_id: current_user.id,
+      type: "follow"
+    )
+
     respond_to do |format|
       format.html { redirect_to @user }
       format.js { render action: 'follow.js.erb', locals: {id: params[:id]} }
