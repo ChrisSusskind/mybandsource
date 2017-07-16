@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170614215859) do
+ActiveRecord::Schema.define(version: 20170716212328) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -144,6 +144,7 @@ ActiveRecord::Schema.define(version: 20170614215859) do
     t.float    "average_rating",         default: 0.0
     t.integer  "review_count",           default: 0
     t.integer  "response_count",         default: 0
+    t.text     "genres_list",            default: [],               array: true
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["genre_id"], name: "index_users_on_genre_id", using: :btree

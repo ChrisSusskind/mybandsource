@@ -19,7 +19,7 @@
 
               <div class="form-group">
                 <%= f.label :password, class: "" %> <i class="h-smallcaps">(Leave blank if you don't want to change it)</i><br />
-                <%= f.password_field :password, autocomplete: "off", class: "field-editpage" %>
+                <%= f.password_field :password, autocomplete: "new-password", class: "field-editpage" %>
                 <% if @minimum_password_length %>
                     <em class="h-smallcaps"><%= @minimum_password_length %> characters minimum</em>
                 <% end %>
@@ -70,6 +70,23 @@
                   <%= f.label :twitter_url %>
                   <%= f.text_field :twitter_url, class: "field-editpage", value: @user.twitter_url %>
                 </div>
+
+              <% else %>
+
+              <div class="form-group genre-choice-container">
+                <div id="genre_choices" >
+                  <% @user.genres_list.each do |genre| %>
+                    <%= render partial: "genre_choice", locals: {genre: genre} %>
+                  <% end %>
+                </div>
+                <br/>
+                <a href="#" id="new_genre_choice" onclick="event.preventDefault();addGenre()">Add New Genre</a>
+              </div>
+
+              <div style="display: none;" id="new_genre_form">
+                <%= render partial: "genre_choice", locals: {genre: false} %>
+              </div>
+
               <% end %>
 
               <div class="form-group">

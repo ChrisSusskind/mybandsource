@@ -196,10 +196,9 @@
       <% else %>
         <div class="profile-sidebar-group">
           <h3>Favorite Genres</h3>
-          <h4>Alternative</h4>
-          <h4>Electronic</h4>
-          <h4>Hip-Hop</h4>
-          <h4>Indie</h4>
+          <% @user.genres_list.each do |genre| %>
+              <h4><%= genre %></h4>
+          <% end %>
         </div>
       <% end %>
 

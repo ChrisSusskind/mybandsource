@@ -33,3 +33,4 @@
 //= require 'login_modal'
 //= require 'profile'
 //= require 'claim_artist'
+//= require 'edit_profile'

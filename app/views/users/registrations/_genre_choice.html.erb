@@ -1,0 +1,6 @@
+<div class="genre-choice-form">
+  <%= label_tag "Favorite Genre" %>
+  <br>
+  <%= text_field_tag "user[genres_list][]", !genre ? "" : genre, class: "field-editpage" %>
+  <a href="#" onclick="event.preventDefault(); removeGenre($(this))" class="remove-genre">X</a>
+</div>

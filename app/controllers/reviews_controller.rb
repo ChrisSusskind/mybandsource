@@ -10,7 +10,7 @@ class ReviewsController < ApplicationController
       create_notification(current_user, @user, @review)
       @user.new_avg_rating_review_count(@review.rating)
       ActionCable.server.broadcast(
-          "notification_center_channel_#{current_user.id}",
+          "notification_center_channel_#{@user.id}",
           sender_name: current_user.name,
           sender_id: current_user.id,
           type: "review"
@@ -43,17 +43,15 @@ class ReviewsController < ApplicationController
     @review.upvotes_userlist.nil? ?
       @review.upvotes_userlist = [current_user.id] :
       @review.upvotes_userlist += [current_user.id]
-    ActionCable.server.broadcast(
-      "notification_center_channel_#{current_user.id}",
-      type: "review",
-      sender_name: current_user.name,
-      sender_id: current_user.id,
-      picture_url: current_user.picture,
-      timestamp: "1 minute ago"
-    )
     unless @review.save(touch: false)
       flash[:alert] = "Review upvote failed"
     end
+    ActionCable.server.broadcast(
+        "notification_center_channel_#{current_user.id}",
+        sender_name: current_user.name,
+        sender_id: current_user.id,
+        type: "review"
+    )
     render :action => 'upvote_display.js.erb', locals: {is_artist: @user.is_artist, responses_shown: params[:responses_shown]}
   end
 
