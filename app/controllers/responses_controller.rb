@@ -59,7 +59,7 @@ class ResponsesController < ApplicationController
 
   def report
     @response = Response.find(params[:id])
-
+    @response.reported = true
   end
 
   private
