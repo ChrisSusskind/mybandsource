@@ -11,6 +11,12 @@ class ResponsesController < ApplicationController
       @user.increment_response_count
       if current_user != @user
         create_notification(current_user, @review.leaving_user_id, @response)
+        ActionCable.server.broadcast(
+            "notification_center_channel_#{current_user.id}",
+            sender_name: current_user.name,
+            sender_id: current_user.id,
+            type: "response"
+        )
       end
     end
     render :action => 'response_display', locals: {is_artist: @user.is_artist}
