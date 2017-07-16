@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170716212328) do
+ActiveRecord::Schema.define(version: 20170716223538) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 20170716212328) do
     t.integer  "review_id",                     null: false
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
+    t.boolean  "reported"
     t.index ["review_id"], name: "index_responses_on_review_id", using: :btree
   end
 
@@ -93,6 +94,7 @@ ActiveRecord::Schema.define(version: 20170716212328) do
     t.text     "upvotes_userlist",  default: [],              array: true
     t.integer  "receiving_user_id",              null: false
     t.integer  "leaving_user_id",                null: false
+    t.boolean  "reported"
     t.index ["leaving_user_id"], name: "index_reviews_on_leaving_user_id", using: :btree
     t.index ["receiving_user_id"], name: "index_reviews_on_receiving_user_id", using: :btree
   end
