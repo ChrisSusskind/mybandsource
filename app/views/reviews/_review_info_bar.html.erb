@@ -40,7 +40,7 @@
     </span>
   <% end %>
 
-  <span class="report">
+  <span class="report" id="report_review<%=review.id%>">
     <% if user_signed_in? %>
       <%= link_to cl_image_tag('static/flag_icon', alt: "Report", width: 9, height: 10, crop: :fill), '/report_review/'+review.id.to_s, method: :post, remote: true %>
       <%= link_to 'Report', '/report_review/'+review.id.to_s, method: :post, remote: true %>

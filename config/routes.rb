@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   }
 
   # Non-devise user routes and review/response routes
-  resources :users, only: [:index, :show] do
+  resources :users, only: [:show] do
     resources :reviews, only: [:create, :destroy, :update] do
       member do
         post 'upvote/:responses_shown', to: 'reviews#upvote'

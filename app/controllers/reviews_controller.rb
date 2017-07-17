@@ -135,6 +135,8 @@ class ReviewsController < ApplicationController
 
   def report
     @review.reported = true
+    @review.save
+    render :action => 'reported.js.erb', locals: {review_id: @review.id}
   end
 
   private

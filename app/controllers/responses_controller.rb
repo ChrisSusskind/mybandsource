@@ -60,6 +60,8 @@ class ResponsesController < ApplicationController
   def report
     @response = Response.find(params[:id])
     @response.reported = true
+    @response.save
+    render :action => 'reported.js.erb', locals: {response_id: @response.id}
   end
 
   private
