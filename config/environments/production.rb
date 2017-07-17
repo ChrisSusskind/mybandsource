@@ -38,8 +38,8 @@ Rails.application.configure do
   # config.action_cable.mount_path = nil
   # config.action_cable.url = 'wss://example.com/cable'
   # config.action_cable.allowed_request_origins = [ 'http://example.com', /http:\/\/example.*/ ]
-  config.action_cable.url = 'wss://mybandsource-production.us-east-1.elasticbeanstalk.com/cable'
-  config.action_cable.allowed_request_origins = [ 'mybandsource-production.us-east-1.elasticbeanstalk.com' ]
+  config.action_cable.url = "wss://#{hostname}/cable"
+  config.action_cable.allowed_request_origins = [ "https://#{base_url}", "https://#{hostname}", "http://#{base_url}", "http://#{hostname}" ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
