@@ -12,7 +12,7 @@ Performs following actions when document is ready
 2. Adds click listener to window that hides dropdown menu when user clicks anywhere else on the screen
 3. Adds click listeners to review/discussion toggle buttons
  */
-$(document).on('ready page:load', function(){
+$(document).on('turbolinks:load', function(){
     user_id = $('#user_id_container').attr('data-user_id');
 
     window.onclick = function(e){
@@ -34,6 +34,10 @@ $(document).on('ready page:load', function(){
         show_responses = true;
     });
 
+});
+
+$(document).on('page:change', function(){
+    user_id = $('#user_id_container').attr('data-user_id');
 });
 
 /*

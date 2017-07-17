@@ -9,7 +9,7 @@ var selected_rating;
  Performs following actions when document is ready
  1. Loads info and style for already entered review (if being given option to update)
  */
-$(document).on('ready page:load', function(){
+$(document).on('turbolinks:load', function(){
     loadRatingEntry();
 });
 

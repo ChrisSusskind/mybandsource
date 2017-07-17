@@ -2,7 +2,7 @@
  * Created by Peter on 6/8/17.
  */
 
-$(document).on('ready page: load', function() {
+$(document).on('turbolinks:load', function() {
     $('.artist-carousel').slick({
         infinite: true,
         autoplay: true,

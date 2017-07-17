@@ -3,7 +3,7 @@
  */
 
 
-$(document).on('ready page: load', function() {
+$(document).on('turbolinks:load', function() {
     var artist_name = $('#user_id_container').data('artist_name');
     if(artist_name != null){
         var $artist_name = $('#artist-name');
