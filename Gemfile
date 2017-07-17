@@ -76,6 +76,8 @@ gem 'activeadmin', '~> 1.0.0'
 #Gem for carousel
 gem 'jquery-slick-rails'
 
+gem 'redis'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
