@@ -1,17 +1,20 @@
 language: ruby
 
 rvm:
-- 2.3.3
+  - 2.3.3
 
 cache: bundler
 
 env:
-- DB=postgresql
+  - DB=postgresql
 
 script:
-- RAILS_ENV=test bundle exec rake db:setup --trace
-- bundle exec rake
+  - RAILS_ENV=test bundle exec rake db:setup --trace
+  - bundle exec rake
 
 notifications:
   slack:
     secure: ofCErz9a4ElIhCACCrKUmzTUWUQZoi3zMiNihUO88TvrT7I5wfYhuGL/uBujttV56FwAgToVUnShuPsVAzbRQraKJ0iHbWp4smBW0L9ISPDuPwbwsrYeMia/WbVtU4BbUE8MZlz/cr8ojCNv+W+jRgjB57AzPkJbXM4eESVm4TIoXhgN0n7hid+s3qkwpzVoIlbMSR933tcrcYmZbAa3ZC00SBn04NDsYIEKHLXSRJzQyaJKVgKOPduhks3GW+c6A1lB7xHHQrSAk4tX+z74MpQ2sIpMQZY6fOSsoqLf97+lCNBHq3wXrCkyNZWl/k0h4CJWcGm7Hg5gWs2HNlXq5mkOftqBuF3TVl3WKRfR0Y/oDzCafq6zCyb8akh/n6/UYwj+jFKqCcJ0UtPQaRR0WGwVpOoQIzvOTwbBzMZLMX8xWXEOjKqJuAq5+YfTrJztSTfiPb5iFglH6+CCSE+F0lHHsYU89P81LMsUYUpM5IoNIMPfeSmJQptFCl+4SyJ1SfgRWc3HDe5MEgCGI+aOc/wcWt5qkeq3kisB4Fy+3HetF0jACCxu01cH6XZ7E5iWKypAi/dvDNnxgIMjqBIq1IukXPMNtAIlxNoMA6N7fDRC7yRPsqP+dQNmCZ6MAzcq68j1uR8leo/iiCaqgP8orvd48SRUwkoe9WCelEUGeSs=
+
+services:
+  - redis-server

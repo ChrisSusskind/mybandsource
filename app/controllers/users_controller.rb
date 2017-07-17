@@ -40,7 +40,7 @@ class UsersController < ApplicationController
   end
 
   def upload_avatar
-    @user.update_attributes({picture: params[:picture]})
+    @user.update_attributes({ picture: params[:picture] })
     redirect_to user_path(@user)
   end
 

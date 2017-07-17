@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     registrations: 'users/registrations',
     omniauth_callbacks: 'users/omniauth_callbacks',
-    :confirmations => 'users/confirmations'
+    confirmations: 'users/confirmations'
   }
 
   # Non-devise user routes and review/response routes
