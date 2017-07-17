@@ -6,11 +6,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     @user = User.find_by(email: 'eric@turtle.com')
   end
 
-  test "should get index" do
-    get users_url
-    assert_response :success
-  end
-
   test "should show user" do
     get user_url(@user)
     assert_response :success
