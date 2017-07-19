@@ -3,7 +3,21 @@ ActiveAdmin.register User do
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 
 
-  permit_params :name, :email, :password, :location, :picture, :bio, :is_artist, :real_name, :facebook_url, :soundcloud_url, :spotify_url, :itunes_url, :twitter_url, :genre_id, :banner_picture
+  # To allow passwords in the form
+  controller do
+    def update
+      if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
+        params[:user].delete("password")
+        params[:user].delete("password_confirmation")
+      end
+      super
+    end
+  end
+
+
+  permit_params :email, :name, :real_name, :location, :is_artist, :featured,
+                :bio, :genres_list, :real_name, :facebook_url, :soundcloud_url,
+                :spotify_url, :itunes_url, :twitter_url, :picture, :banner_picture, :password, :password_confirmation
 
   index do
     actions
@@ -13,9 +27,10 @@ ActiveAdmin.register User do
     column :name
     column :real_name
     column :is_artist
+    column :featured
     column :bio
     column :location
-    column :genre
+    column :genres_list
     column :facebook_url
     column :soundcloud_url
     column :spotify_url
@@ -28,11 +43,12 @@ ActiveAdmin.register User do
 
   filter :email
   filter :name
+  filter :featured
   filter :real_name
   filter :is_artist
   filter :bio
   filter :location
-  filter :genre
+  filter :genres_list
   filter :facebook_url
   filter :soundcloud_url
   filter :spotify_url
@@ -50,7 +66,8 @@ ActiveAdmin.register User do
       row :location
       row :bio
       row :is_artist
-      row :genre
+      row :featured
+      row :genres_list
       row :picture
       row :banner_picture
       row :facebook_url
@@ -59,6 +76,8 @@ ActiveAdmin.register User do
       row :itunes_url
       row :twitter_url
       row :average_rating
+      row :updated_at
+      row :created_at
     end
   end
 
@@ -70,8 +89,9 @@ ActiveAdmin.register User do
       f.input :real_name
       f.input :location
       f.input :is_artist
+      f.input :featured
       f.input :bio
-      f.input :genre_id, as: :select, collection: Genre.all.collect { |genre| [genre.name, genre.id] }
+      f.input :genres_list, as: :check_boxes, collection: Genre.pluck(:name)
       f.input :facebook_url
       f.input :soundcloud_url
       f.input :spotify_url
@@ -79,6 +99,8 @@ ActiveAdmin.register User do
       f.input :twitter_url
       f.input :picture
       f.input :banner_picture
+      f.input :password
+      f.input :password_confirmation
     end
     f.actions
   end

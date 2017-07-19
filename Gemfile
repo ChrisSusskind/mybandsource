@@ -64,6 +64,8 @@ gem 'material_icons'
 #Glyphicons gem
 gem 'glyphicons-rails'
 
+gem 'font-awesome-rails'
+
 #Tether gem
 gem 'tether-rails'
 
