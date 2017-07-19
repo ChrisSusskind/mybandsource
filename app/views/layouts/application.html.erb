@@ -20,17 +20,14 @@
   </head>
 
 	<body>
-		<div class="container main-container">
-		
+		<div class="main-container">
 			<%= render 'layouts/header' %>
 
-			<div class="container-fluid">
-				<% if resource.errors.any? %>
-				    <div class="alert alert-danger">
-				    	<%= devise_error_messages! %>
-				    </div>
-				<% end %>
-			</div>
+			<% if resource.errors.any? %>
+          <div class="alert alert-danger">
+            <%= devise_error_messages! %>
+          </div>
+			<% end %>
 
 			<% if notice or alert %>
 				<%= render 'layouts/alerts' %>

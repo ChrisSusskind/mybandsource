@@ -80,6 +80,22 @@ textarea:focus, input:focus{
   outline: none;
 }
 
+// Styling devise alert that appears at top of screen on login/logout/other devise actions
+
+@media (min-width: 768px){
+  .alert-homepage {
+    width: 100%;
+    max-width: 1384px;
+  }
+}
+
+@media (max-width: 767px){
+  .alert-homepage {
+    width: 100%;
+    max-width: 303px;
+  }
+}
+
 /* Navbar Custom Styles */
 
 .main-navbar {
@@ -2490,6 +2506,18 @@ footer {
       font-weight: bold;
     }
   }
+
+  .forgot-password-container {
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 30px;
+
+    a {
+      color: black;
+    }
+  }
 }
 
 // Create artist page styling
@@ -2559,6 +2587,17 @@ footer {
       div.devise-links {
         position: relative;
         top: 40px;
+      }
+
+      div.forgot-password-links {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 20px;
+        top: 0!important;
+
+        a {
+          color: black;
+        }
       }
     }
   }
