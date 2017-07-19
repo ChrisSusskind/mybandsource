@@ -64,7 +64,7 @@ ActiveAdmin.register User do
 
 
   form do |f|
-    f.inputs "Admin Details" do
+    f.inputs "User Details" do
       f.input :email
       f.input :name
       f.input :real_name
