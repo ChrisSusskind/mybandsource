@@ -1,7 +1,7 @@
 ActiveAdmin.register User do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
+
 
   permit_params :name, :email, :password, :location, :picture, :bio, :is_artist, :real_name, :facebook_url, :soundcloud_url, :spotify_url, :itunes_url, :twitter_url, :genre_id, :banner_picture
 
@@ -64,7 +64,7 @@ ActiveAdmin.register User do
 
 
   form do |f|
-    f.inputs "Admin Details" do
+    f.inputs "User Details" do
       f.input :email
       f.input :name
       f.input :real_name

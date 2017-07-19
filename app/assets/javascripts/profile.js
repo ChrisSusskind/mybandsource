@@ -15,4 +15,5 @@ $(document).on('turbolinks:load', function() {
     }, function(){
         $(".change-header-pic-text").css("opacity", 0);
     });
+
 });
