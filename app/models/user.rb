@@ -1,5 +1,6 @@
+# This class encompasses all users of the site. It includes both artists and fans.
 class User < ApplicationRecord
-  
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable,
          :omniauthable, omniauth_providers: [:facebook]
@@ -102,6 +103,12 @@ class User < ApplicationRecord
       sum += review.rating
     end
     return count.zero? ? (sum / count).round(2) : 0
+  end
+
+  protected
+
+  def confirmation_required?
+    false
   end
 
 end
