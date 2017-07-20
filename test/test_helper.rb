@@ -6,10 +6,12 @@ Minitest::Reporters.use!
 
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
-  #fixtures :all
+  # fixtures :all
+
+  ActiveRecord::Migration.maintain_test_schema!
 
   # Add more helper methods to be used by all tests here...
-  if User.first == nil
+  if User.first.nil?
       Rails.application.load_seed
   end
 end

@@ -348,7 +348,7 @@ DEPENDENCIES
   rails (~> 5.0.1)
   rake
   react-rails
-  redis
+  redis (~> 3.0)
   rest-client
   sass-rails (~> 5.0)
   secure_headers

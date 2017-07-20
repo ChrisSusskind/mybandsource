@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170719005300) do
+ActiveRecord::Schema.define(version: 20170719034125) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,26 +75,26 @@ ActiveRecord::Schema.define(version: 20170719005300) do
 
   create_table "responses", force: :cascade do |t|
     t.integer  "upvotes",          default: 0
-    t.text     "upvotes_userlist", default: [],              array: true
-    t.text     "comment",                       null: false
-    t.integer  "user_id",                       null: false
-    t.integer  "review_id",                     null: false
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-    t.boolean  "reported"
+    t.text     "upvotes_userlist", default: [],                 array: true
+    t.text     "comment",                          null: false
+    t.integer  "user_id",                          null: false
+    t.integer  "review_id",                        null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.boolean  "reported",         default: false
     t.index ["review_id"], name: "index_responses_on_review_id", using: :btree
   end
 
   create_table "reviews", force: :cascade do |t|
     t.text     "comment"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.integer  "rating",            default: -1
     t.integer  "upvotes",           default: 0
-    t.text     "upvotes_userlist",  default: [],              array: true
-    t.integer  "receiving_user_id",              null: false
-    t.integer  "leaving_user_id",                null: false
-    t.boolean  "reported"
+    t.text     "upvotes_userlist",  default: [],                 array: true
+    t.integer  "receiving_user_id",                 null: false
+    t.integer  "leaving_user_id",                   null: false
+    t.boolean  "reported",          default: false
     t.index ["leaving_user_id"], name: "index_reviews_on_leaving_user_id", using: :btree
     t.index ["receiving_user_id"], name: "index_reviews_on_receiving_user_id", using: :btree
   end

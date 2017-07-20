@@ -1,16 +1,6 @@
 ActiveAdmin.register Genre do
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if params[:action] == 'create' && current_user.admin?
-#   permitted
-# end
+  menu priority: 4
+  config.batch_actions = true
 
   permit_params :name, :description, :picture
 
@@ -24,8 +14,6 @@ ActiveAdmin.register Genre do
   end
 
   filter :name
-  filter :description
-  filter :picture
 
   show do
     attributes_table do
@@ -38,7 +26,7 @@ ActiveAdmin.register Genre do
   end
 
   form do |f|
-    f.inputs "Genre Details" do
+    f.inputs 'Genre Details' do
       f.input :name
       f.input :description
       f.input :picture

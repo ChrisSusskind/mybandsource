@@ -1,33 +1,30 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :lockable, :timeoutable and :omniauthable
+  
   devise :database_authenticatable, :registerable,
-     :recoverable, :rememberable, :trackable, :validatable, :confirmable,
-     :omniauthable, :omniauth_providers => [:facebook]
-
-
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable,
+         :omniauthable, omniauth_providers: [:facebook]
 
 
   # Artist users scope
   scope :artists, -> { where(is_artist: true)}
 
-  #For user to review associations
+  # For user to review associations
   has_many :received_reviews, class_name: "Review", foreign_key: "receiving_user_id", dependent: :destroy
   has_many :left_reviews, class_name: "Review", foreign_key: "leaving_user_id", dependent: :destroy
 
-  #For user to response associations
+  # For user to response associations
   has_many :responses, dependent: :destroy
 
-  #For user to genre associations
+  # For user to genre associations
   belongs_to :genre, optional: true
 
-  #For user to user relationships
+  # For user to user relationships
   has_many :active_relationships, class_name: "UserRelationship", foreign_key: "follower_id", dependent: :destroy
   has_many :passive_relationships, class_name: "UserRelationship", foreign_key: "followed_id", dependent: :destroy
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
 
-  #For user to notification relationships
+  # For user to notification relationships
   has_many :notifications, foreign_key: "receiving_user_id", dependent: :destroy
 
   validates :name, :email, presence: true
@@ -50,8 +47,8 @@ class User < ApplicationRecord
   end
 
   def new_avg_rating_review_count(rating)
-		avg_rating = average_rating.nil? ? average_rating : 0
-		rc = review_count.nil? ? review_count : 0
+    avg_rating = self.average_rating.nil? ? self.average_rating : 0
+    rc = self.review_count.nil? ? self.review_count : 0
 
     self.average_rating = (avg_rating * rc + rating) / (rc + 1)
     self.review_count = rc + 1
@@ -104,10 +101,7 @@ class User < ApplicationRecord
       count += 1
       sum += review.rating
     end
-    unless count == 0
-      return (sum / count).round(2)
-    end
-    0
+    return count.zero? ? (sum / count).round(2) : 0
   end
 
 end

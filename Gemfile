@@ -7,7 +7,6 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.1'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -22,13 +21,12 @@ gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
+
 # Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 3.0'
+gem 'redis', '~> 3.0'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
 
 # Use PostgreSQL as the database for Active Record
 gem 'pg'
@@ -49,36 +47,35 @@ gem 'cloudinary'
 gem 'puma'
 gem 'rest-client'
 
-#Use kaminari for pagination
+# Use kaminari for pagination
 gem 'kaminari'
 
-#Using react for interactive search on homepage
+# Using react for interactive search on homepage
 gem 'react-rails'
 
 # Transactional email service through MailChimp
 gem 'mandrill-rails'
 
-#Google icons gem
+# Google icons gem
 gem 'material_icons'
 
-#Glyphicons gem
+# Glyphicons gem
 gem 'glyphicons-rails'
 
 gem 'font-awesome-rails'
 
-#Tether gem
+# Tether gem
 gem 'tether-rails'
 
-#Whenever gem for scheduling background jobs
+# Whenever gem for scheduling background jobs
 gem 'whenever', '~> 0.9.7'
 
 # Admin portal
 gem 'activeadmin', '~> 1.0.0'
 
-#Gem for carousel
+# Gem for carousel
 gem 'jquery-slick-rails'
 
-gem 'redis'
 gem 'secure_headers'
 
 group :development, :test do
