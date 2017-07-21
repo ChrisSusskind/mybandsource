@@ -38,8 +38,8 @@ Rails.application.configure do
   # config.action_cable.mount_path = nil
   # config.action_cable.url = 'wss://example.com/cable'
   # config.action_cable.allowed_request_origins = [ 'http://example.com', /http:\/\/example.*/ ]
-  config.action_cable.url = "wss://dev.mybandsource.com/cable"
-  config.action_cable.allowed_request_origins = [ "dev.mybandsource.com", /dev.mybandsource.*/]
+  config.action_cable.url = "wss://#{ENV['DEFAULT_HOST']}/cable"
+  config.action_cable.allowed_request_origins = [ENV['DEFAULT_HOST']]
   config.action_cable.disable_request_forgery_protection = true
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
@@ -63,13 +63,13 @@ Rails.application.configure do
   # Combine this with the development config block in development and production, but not test.
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :address              =>  "smtp.mandrillapp.com",
-    :port                 =>  587,
-    :enable_starttls_auto =>  true,
-    :user_name            =>  ENV["MANDRILL_USERNAME"],
-    :password             =>  ENV["MANDRILL_API_KEY"], # SMTP password is any valid API key
-    :authentication       => 'login', # Mandrill supports 'plain' or 'login'
-    :domain               => 'dev.mybandsource.com'
+    address: 'smtp.mandrillapp.com',
+    port: 587,
+    enable_starttls_auto: true,
+    user_name: ENV['MANDRILL_USERNAME'],
+    password: ENV['MANDRILL_API_KEY'], # SMTP password is any valid API key
+    authentication: 'login', # Mandrill supports 'plain' or 'login'
+    domain: ENV['DEFAULT_HOST']
   }
 
   config.action_mailer.default_url_options = { host: ENV['DEFAULT_HOST'] }
@@ -93,7 +93,7 @@ Rails.application.configure do
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
-  if ENV["RAILS_LOG_TO_STDOUT"].present?
+  if ENV['RAILS_LOG_TO_STDOUT'].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
     config.logger = ActiveSupport::TaggedLogging.new(logger)

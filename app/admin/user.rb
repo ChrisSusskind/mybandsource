@@ -2,14 +2,10 @@ ActiveAdmin.register User do
   menu priority: 4
   config.batch_actions = true
 
-  # To allow passwords in the form
   controller do
-    def update
-      if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
-        params[:user].delete('password')
-        params[:user].delete('password_confirmation')
-      end
-      super
+    def update_resource(object, attributes)
+      update_method = attributes.first[:password].present? ? :update_attributes : :update_without_password
+      object.send(update_method, *attributes)
     end
   end
 
