@@ -4,7 +4,7 @@
   <% if @user.banner_picture? %>
   <div class="profile-banner" style="background-image: url(<%= Cloudinary::Utils.cloudinary_url(@user.banner_picture, width: 1381, height: 457, crop: :fill) %>)">
   <% else %>
-  <div class="profile-banner" style="background-color: purple;">
+  <div class="profile-banner" style="background-image: url(<%= Cloudinary::Utils.cloudinary_url("static/default_banner_image", width: 1381, height: 457, crop: :fill) %>">
   <% end %>
 
     <% if @user == current_user %>
