@@ -33,20 +33,17 @@ ActiveAdmin.register User do
     id_column
     column :email
     column :name
-    column :real_name
     column :is_artist
     column :featured
     column :bio
     column :location
     column :genre_id
+    column :created_at
     column :facebook_url
     column :soundcloud_url
     column :spotify_url
     column :itunes_url
     column :twitter_url
-    column :last_sign_in_at
-    column :created_at
-    column :updated_at
   end
 
 

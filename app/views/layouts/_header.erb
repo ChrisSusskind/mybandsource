@@ -2,13 +2,11 @@
   <div class="main-navbar mx-auto">
     <%= link_to(cl_image_tag("static/logo_v2_padded_tm", :width => 225, :height => 50, :crop => :fill, class: "navbar-logo"), '/', method: :get, class: "navbar-header") %>
 
-    <% unless current_page?('/') %>
-        <%= react_component "ArtistSearchContainerComponent", {searchPath: search_artists_path, submitPath: submit_search_path, navbar: true}, class: "mx-auto navbar-search-container" %>
-        <ul class="nav navbar-nav">
-    <% end %>
-
     <% if current_page?('/') %>
         <ul class="nav navbar-nav ml-auto">
+    <% else %>
+        <%= react_component "ArtistSearchContainerComponent", {searchPath: search_artists_path, submitPath: submit_search_path, navbar: true}, class: "mx-auto navbar-search-container" %>
+        <ul class="nav navbar-nav">
     <% end %>
 
     <button type="button" class="close modal-close" aria-label="Close" onclick="hideSearch()">

@@ -1,7 +1,11 @@
 ActiveAdmin.register Review do
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 
+  # Optimize query time by eager loading associations
+  controller do
+    def scoped_collection
+      super.includes :leaving_user, :receiving_user
+    end
+  end
 
   permit_params :comment, :rating, :upvotes, :reported
 
