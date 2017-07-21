@@ -3,7 +3,7 @@
  */
 
 var stars;
-var selected_rating;
+var selected_rating=0;
 
 /*
  Performs following actions when document is ready
