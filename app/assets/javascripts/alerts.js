@@ -3,8 +3,8 @@
  */
 
 $(document).on('turbolinks:load', function() {
-   setTimeout(hideAlert,2000);
-   setTimeout(hideNotice,2000);
+   setTimeout(hideAlert,3000);
+   setTimeout(hideNotice,3000);
 });
 
 function hideAlert(){
