@@ -2,7 +2,7 @@
 
 <div class="" id="user_id_container" data-artist_name= "<%= @user.name %>"  data-user_picture_url="<%= @user.picture%>" data-user_id=<%=@user.id%>>
   <% if @user.banner_picture? %>
-  <div class="profile-banner" style="background-image: url(<%= Cloudinary::Utils.cloudinary_url(@user.banner_picture) %>)">
+  <div class="profile-banner" style="background-image: url(<%= Cloudinary::Utils.cloudinary_url(@user.banner_picture, width: 1381, height: 457, crop: :fill) %>)">
   <% else %>
   <div class="profile-banner" style="background-color: purple;">
   <% end %>
@@ -12,7 +12,7 @@
         <label class="change-header-pic-text">
           <%= cl_image_tag("static/camera_icon", width: 48, height: 37, class: "camera-icon") %><br/>
           Change your Header Photo
-          <%= cl_image_upload_tag(:banner_picture, :html => {:class => "image_upload"}) %>
+          <%= cl_image_upload_tag(:banner_picture, :html => {:class => "image_upload", version: :banner}) %>
         </label>
       </div>
     <% end %>
