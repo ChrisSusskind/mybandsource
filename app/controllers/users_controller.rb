@@ -61,7 +61,7 @@ class UsersController < ApplicationController
   end
 
   def claim_artist
-
+    ClaimMailer.claim_email(params[:artist], params[:email]).deliver_later
   end
 
   private
