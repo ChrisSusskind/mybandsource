@@ -32,7 +32,7 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   # For Devise. In production, :host should be set to the actual host of application.
-  config.action_mailer.default_url_options = { host: 'mybandsource.com' }
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   
   # Mandrill SMTP settings
   config.action_mailer.delivery_method = :smtp

@@ -29,28 +29,16 @@ Rails.application.configure do
   config.action_controller.allow_forgery_protection = false
   config.action_mailer.perform_caching = false
 
-  # Tell Action Mailer not to deliver emails to the real world.
-  # The :test delivery method accumulates sent emails in the
-  # ActionMailer::Base.deliveries array.
-  # config.action_mailer.delivery_method = :test
-
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
-  # Mandrill SMTP settings
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-      :address              =>  "smtp.mandrillapp.com",
-      :port                 =>  587,
-      :enable_starttls_auto =>  true,
-      :user_name            =>  ENV["MANDRILL_USERNAME"],
-      :password             =>  ENV["MANDRILL_API_KEY"], # SMTP password is any valid API key
-      :authentication       => 'login', # Mandrill supports 'plain' or 'login'
-      :domain               => 'mybandsource.com'
-  }
+  # Tell Action Mailer not to deliver emails to the real world.
+  # The :test delivery method accumulates sent emails in the
+  # ActionMailer::Base.deliveries array.
+  config.action_mailer.delivery_method = :test
+
   # For Devise. In production, :host should be set to the actual host of application.
-  # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-  config.action_mailer.default_url_options = { host: 'mybandsource.com' }
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
