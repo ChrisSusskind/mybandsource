@@ -3,7 +3,7 @@
  */
 
 var stars;
-var selected_rating=0;
+var selected_rating;
 
 /*
  Performs following actions when document is ready
@@ -11,6 +11,7 @@ var selected_rating=0;
  */
 $(document).on('turbolinks:load', function(){
     loadRatingEntry();
+    selected_rating = 0;
 });
 
 //Function that adds hover class to stars when they should be shown full
