@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
+  mount ActionCable.server => '/cable'
+
   # Homepage route
   root 'home#index'
 
@@ -70,5 +72,5 @@ Rails.application.routes.draw do
   # Artist claims
   post '/claim_artist', to: 'users#claim_artist'
 
-  mount ActionCable.server => '/cable'
+
 end
