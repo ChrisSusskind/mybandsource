@@ -12,8 +12,8 @@ $(document).on('turbolinks:load', function() {
         slidesToShow: 4,
         slidesToScroll: 1,
         variableWidth: true,
-        prevArrow: '<img class="prev-arrow" src="http://res.cloudinary.com/mybandsource/image/upload/v1498680955/static/prev_arrow.png" />',
-        nextArrow: '<img class="next-arrow" src="http://res.cloudinary.com/mybandsource/image/upload/v1498680955/static/next_arrow.png" />',
+        prevArrow: '<img class="prev-arrow" src="https://res.cloudinary.com/mybandsource/image/upload/v1498680955/static/prev_arrow.png" />',
+        nextArrow: '<img class="next-arrow" src="https://res.cloudinary.com/mybandsource/image/upload/v1498680955/static/next_arrow.png" />',
         responsive: [
             {
                 breakpoint: 768,

@@ -4,7 +4,7 @@
 
   <div class="name-container">
     <h5><%= artist_card.name.length > 25 ? truncate(artist_card.name, length: 25) : artist_card.name %></h5>
-    <h6><%= artist_card.genre.nil? ? "HELLO" : artist_card.genre.name %></h6>
+    <h6><%= artist_card.genre.nil? ? "..." : artist_card.genre.name %></h6>
   </div>
 
   <div class="numbers-container">

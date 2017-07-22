@@ -7,6 +7,10 @@ ActiveAdmin.register User do
       update_method = attributes.first[:password].present? ? :update_attributes : :update_without_password
       object.send(update_method, *attributes)
     end
+
+    def scoped_collection
+      super.includes :genre
+    end
   end
 
   filter :name
@@ -16,7 +20,7 @@ ActiveAdmin.register User do
   filter :real_name
   filter :bio
   filter :location
-  filter :genres_list
+  filter :genre
   filter :last_sign_in_at
   filter :created_at
   filter :updated_at
@@ -25,7 +29,7 @@ ActiveAdmin.register User do
   permit_params :email, :name, :real_name, :location, :is_artist, :featured,
                 :bio, :real_name, :facebook_url, :soundcloud_url,
                 :spotify_url, :itunes_url, :twitter_url, :picture, :banner_picture,
-                :password, :password_confirmation, :genre_id, genres_list: []
+                :password, :password_confirmation, :genre_id
 
   index do
     actions
@@ -37,7 +41,7 @@ ActiveAdmin.register User do
     column :featured
     column :bio
     column :location
-    column :genre_id
+    column :genre
     column :created_at
     column :facebook_url
     column :soundcloud_url
@@ -54,7 +58,7 @@ ActiveAdmin.register User do
       row :real_name
       row :location
       row :bio
-      row user.is_artist ? :genre_id : :genres_list
+      row :genre
       row :picture
       row :banner_picture
     end
@@ -105,7 +109,7 @@ ActiveAdmin.register User do
       f.input :is_artist
       f.input :featured
       f.input :bio
-      f.input :genres_list, as: :check_boxes, collection: Genre.pluck(:name)
+      f.input :genre
       f.input :facebook_url
       f.input :soundcloud_url
       f.input :spotify_url
