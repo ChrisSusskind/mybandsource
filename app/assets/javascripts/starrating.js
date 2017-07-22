@@ -25,6 +25,7 @@ function fillStars(e){
 
 //Function that removes hover class from stars when they should be shown empty
 function emptyStars(e){
+    console.log("EYYY"+selected_rating);
     for (var i=0; i < stars.length; i++){
         if(stars[i].getAttribute('data_count') > selected_rating-1){
             stars[i].classList.remove('red-star');
