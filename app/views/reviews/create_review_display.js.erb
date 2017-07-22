@@ -1,6 +1,7 @@
 $('#reviews_container').html('<%= escape_javascript(render partial: 'reviews/review', collection: @reviews, locals: {responses_shown: false, is_artist: user.is_artist}) %>');
 $('#paginator').html('<%= escape_javascript(paginate(@reviews, :remote => true).to_s) %>');
-$('#review_form').html('<%= escape_javascript(render partial: 'reviews/review_form_2', locals: {artist: user, review: review}) %>').hide();
+$('#review_form').html('<%= escape_javascript(render partial: 'reviews/review_form_1', locals: {artist: user, review: review}) %>').hide();
+$('#review_form').append('<%= escape_javascript(render partial: 'reviews/review_form_2', locals: {review: review}) %>');
 $('#review_load_button').show();
 $('#avg-rating-number').html('<%= user.average_rating %>');
 $('#review-count-number').html('<%= number_to_human user.review_count %>');
