@@ -22,4 +22,12 @@ $(document).on('turbolinks:load', function() {
        $(this).closest('form').submit();
     });
 
+    $('#change-banner-picture-label').click(function(){
+        $('#banner-upload-input').click();
+    });
+
+    $('#change-profile-picture-label').click(function(){
+        $('#avatar-upload-input').click();
+    });
+
 });

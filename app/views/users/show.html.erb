@@ -9,11 +9,11 @@
 
     <% if @user == current_user %>
       <div class="header-picture-overlay">
-        <label class="change-header-pic-text">
+        <label class="change-header-pic-text" id="change-banner-picture-label">
           <%= cl_image_tag("static/camera_icon", width: 48, height: 37, class: "camera-icon") %><br/>
           Change your Header Photo
           <%= form_for @user, url: "/users/#{@user.id}/banner_picture", method: :patch do |f| %>
-              <%= f.file_field(:banner_picture, onchange: "javascript:this.form.submit();") %>
+              <%= f.file_field(:banner_picture, onchange: "javascript:this.form.submit();", id: "banner-upload-input", style: "display: none") %>
           <% end %>
         </label>
       </div>
@@ -23,13 +23,13 @@
       <div class="profile-banner-avatar" id="profile-picture">
         <% if @user == current_user %>
           <div class="profile-picture-overlay">
-            <label class="change-profile-pic-text">
-              <%= cl_image_tag("static/camera_icon", width: 48, height: 37, class: "camera-icon") %><br/>
-              Change your Profile Picture
               <%= form_for @user, url: "/users/#{@user.id}/profile_picture", method: :patch do |f| %>
-                <%= f.file_field(:picture, onchange: "javascript:this.form.submit();") %>
+                <label class="change-profile-pic-text" id="change-profile-picture-label">
+                  <%= cl_image_tag("static/camera_icon", width: 48, height: 37, class: "camera-icon") %><br/>
+                  Change your Profile Picture
+                </label>
+                  <%= f.file_field(:picture, onchange: "javascript:this.form.submit();", id: "avatar-upload-input", style: "display: none") %>
               <% end %>
-            </label>
           </div>
         <% end %>
 
