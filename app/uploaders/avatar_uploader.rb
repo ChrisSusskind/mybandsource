@@ -17,8 +17,4 @@ class AvatarUploader < CarrierWave::Uploader::Base
     process :resize_to_fill => [1381, 457]
   end
 
-  version :banner do
-    process :resize_to_
-  end
-
 end

@@ -12,7 +12,9 @@
         <label class="change-header-pic-text">
           <%= cl_image_tag("static/camera_icon", width: 48, height: 37, class: "camera-icon") %><br/>
           Change your Header Photo
-          <%= cl_image_upload_tag(:banner_picture, :html => {:class => "image_upload", version: :banner}) %>
+          <%= form_for @user, url: "/users/#{@user.id}/banner_picture", method: :patch do |f| %>
+              <%= f.file_field(:banner_picture, onchange: "javascript:this.form.submit();") %>
+          <% end %>
         </label>
       </div>
     <% end %>
@@ -24,7 +26,9 @@
             <label class="change-profile-pic-text">
               <%= cl_image_tag("static/camera_icon", width: 48, height: 37, class: "camera-icon") %><br/>
               Change your Profile Picture
-              <%= cl_image_upload_tag(:picture, :html => {:class => "image_upload", :id => "profile-image-input"}) %>
+              <%= form_for @user, url: "/users/#{@user.id}/profile_picture", method: :patch do |f| %>
+                <%= f.file_field(:picture, onchange: "javascript:this.form.submit();") %>
+              <% end %>
             </label>
           </div>
         <% end %>

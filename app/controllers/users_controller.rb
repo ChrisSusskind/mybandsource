@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :upload_avatar]
+  before_action :set_user, only: [:show, :upload_avatar, :upload_banner]
 
   # GET /users
   # GET /users.json
@@ -40,7 +40,12 @@ class UsersController < ApplicationController
   end
 
   def upload_avatar
-    @user.update_attributes({ picture: params[:picture] })
+    @user.update_attributes({ picture: params[:user][:picture] })
+    redirect_to user_path(@user)
+  end
+
+  def upload_banner
+    @user.update_attributes({ banner_picture: params[:user][:banner_picture] })
     redirect_to user_path(@user)
   end
 

@@ -16,4 +16,10 @@ $(document).on('turbolinks:load', function() {
         $(".change-header-pic-text").css("opacity", 0);
     });
 
+
+    $('#avatar-input').change(function(){
+        console.log("EYYY");
+       $(this).closest('form').submit();
+    });
+
 });

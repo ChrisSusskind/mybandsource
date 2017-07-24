@@ -53,6 +53,7 @@ Rails.application.routes.draw do
 
   # User uploading images (using cloudinary) routes
   patch '/users/:id/profile_picture', to: 'users#upload_avatar'
+  patch '/users/:id/banner_picture', to: 'users#upload_banner'
 
   # Notification routes
   resources :notifications, only: [:index]
