@@ -56,7 +56,12 @@
 
         <% if @user.is_artist %>
           <div class="profile-numbers">
-             <span id="avg-rating">
+            <span id="">
+              <%= cl_image_tag('static/view_count_eye', :alt => "eye", :width => 15, :height => 8, :class => "icon-image") %>
+              <p id=""><%= number_to_human @user.view_count %></p>
+            </span>
+
+             <span class="not-left" id="avg-rating">
                 <%= cl_image_tag('static/white_star', :alt => "star", :width => 14, :height => 14, :class => "icon-image") %>
                 <p id="avg-rating-number"><%= @user.average_rating %></p>
              </span>
