@@ -17,6 +17,8 @@ class UsersController < ApplicationController
         @review.nil? ? @review = Review.new : @review
       end
       @reviews = @artist.received_reviews.page(params[:page]).order('updated_at DESC').per(25)
+      @artist.view_count.present? ? @artist.view_count += 1 : @artist.view_count = 0
+      @artist.save
     else
       @reviews = @user.left_reviews.page(params[:page]).order('updated_at DESC').per(25)
     end
