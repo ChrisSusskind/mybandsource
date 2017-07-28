@@ -27,8 +27,6 @@ ActiveAdmin.register Review do
   filter :comment
   filter :upvotes
   filter :rating
-  filter :receiving_user
-  filter :leaving_user
   filter :reported
   filter :created_at
   filter :updated_at
