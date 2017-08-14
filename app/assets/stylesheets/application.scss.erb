@@ -31,6 +31,7 @@
 @import 'slick';
 @import 'slick-theme';
 
+
 .main-container {
   width: 100%;
 }
@@ -518,13 +519,13 @@ footer {
       }
 
       .search-btn {
-        height: 48px;
+        height: 40px;
         width: 190px;
         border: 1px solid #AA182A;
         border-radius: 100px;
         background-color: #AA182A;
         font-size: 13px;
-        font-weight: bold;
+        font-weight: normal;
         line-height: 16px;
         cursor: pointer;
       }
@@ -590,18 +591,6 @@ footer {
       opacity: .9;
     }
 
-    a {
-      background: #AA182A;
-      border: 1px solid #AA182A;
-      border-radius: 100px;
-      width: 244px;
-      color: white;
-      font-size: 13px;
-      line-height: 16px;
-      font-weight: bold;
-      padding-top: 10px;
-      cursor: pointer;
-    }
   }
 }
 
@@ -3064,8 +3053,8 @@ footer {
 
 .genre-card {
 
-  width: 295.7px;
-  height: 292.9px;
+  width: 100%;//295.7px
+  height: 100%;;//292.9px
   display: inline-block;
   @media(max-width: 767px) {
     display: block!important;
@@ -3073,8 +3062,8 @@ footer {
   border: none;
   border-radius: 0;
   position: relative;
-  margin-bottom: 20px;
-  margin-right: 25px;
+  padding-bottom: 25px;
+  //margin-right: 25px;
 
   a {
     display: block;
@@ -3493,3 +3482,5 @@ footer {
     }
   }
 }
+
+@import "users";

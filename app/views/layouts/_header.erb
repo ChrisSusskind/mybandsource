@@ -1,6 +1,6 @@
 <header class="container-fluid">
   <div class="main-navbar mx-auto">
-    <%= link_to(cl_image_tag("static/logo_v2_padded_tm", :width => 225, :height => 50, :crop => :fill, class: "navbar-logo"), '/', method: :get, class: "navbar-header") %>
+    <%= link_to(cl_image_tag("static/logo_v2_padded_tm", style: "max-width:185px;",  :crop => :fill, class: "navbar-logo"), '/', method: :get, class: "navbar-header") %>
 
     <% unless current_page?('/') %>
         <%= react_component "ArtistSearchContainerComponent", {searchPath: search_artists_path, submitPath: submit_search_path, navbar: true}, class: "mx-auto navbar-search-container" %>
