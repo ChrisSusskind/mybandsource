@@ -1,3 +1,18 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.home-title-container .homepage-search-container .search-btn, .red-btn {
+  padding: 12px 0;
+  width: 190px;
+  border: 1px solid #AA182A;
+  border-radius: 100px;
+  background-color: #AA182A;
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 16px;
+  cursor: pointer;
+}
+
+.form-control-lg, .input-group-lg > .form-control, .input-group-lg > .input-group-addon, .input-group-lg > .input-group-btn > .btn {font-size: 1.05rem;}
+
