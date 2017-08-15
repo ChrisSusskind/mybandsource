@@ -2,6 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+//Main Elements
+a:hover{text-decoration:none;}
+
+//Buttons
 .home-title-container .homepage-search-container .search-btn, .red-btn {
   padding: 12px 0;
   width: 190px;
@@ -15,15 +19,21 @@
   font-family: 'Montserrat';
 }
 
+//Forms
 .form-control-lg, .input-group-lg > .form-control, .input-group-lg > .input-group-addon, .input-group-lg > .input-group-btn > .btn {font-size: 0.95rem;}
 
 
+//Headers
 .home-title-container h3{font-size:42px;}
 .home-title-container h4{font-size:20px;font-weight:100;}
-a:hover{text-decoration:none;}
 
+
+//Artist Cards
 div.artist-homepage-block div.artist-carousel{width:100%;}
 h5{font-weight:normal;}
 h6{text-transform: uppercase;}
-
 .number-bump{position:relative;bottom:1px;}
+
+//Modal
+.modal-content{border-radius:0px;}
+.modal-header{border-bottom:none;}
