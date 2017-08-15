@@ -7,7 +7,7 @@
         </button>
       </div>
       <div class="modal-body" id="login-modal-body-start">
-        <%= cl_image_tag("static/logo_v2_padded_tm", :width => 225, :height => 50, :crop => :fill, class: "d-block mx-auto") %>
+        <%= cl_image_tag("static/logo_v2_padded_tm",  :crop => :fill, class: "d-block mx-auto", style: "margin-bottom: 30px;max-width:200px;") %>
         <span class="login-signup-form">
           <%= form_for(resource, as: resource_name, url: session_path(resource_name), remote: true) do |f| %>
               <div class="form-group mx-auto">
@@ -27,7 +27,7 @@
                   </div>
               <% end -%>
 
-              <div class="login-btn-container">
+              <div class="login-btn-container" style="margin-bottom: 40px;">
                 <%= f.submit "Log in", class: "btn btn-danger button-home btn-pill login-btn-modal d-block mx-auto" %>
               </div>
               <hr />
