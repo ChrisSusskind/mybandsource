@@ -1,4 +1,4 @@
-<div class="wide-homepage mx-auto">
+<div class="mx-auto-no-mas">
 
 	<div class="jumbotron-main">
 		<div class="home-title-container my-auto mx-auto">
@@ -15,7 +15,9 @@
 			<p>Discover & explore conversations around artists.</p>
 		</div>
 
-    <%= render partial: 'artist_carousel', locals: {artists: @artists} %>
+    <div class="">
+    	<%= render partial: 'artist_carousel', locals: {artists: @artists} %>
+    </div>
 	</div>
 
 	
@@ -27,7 +29,7 @@
 			<p>Explore artists by genre.</p>
 		</div>
 
-		<div class="genre-card-row">
+		<div class="genre-card-row row">
 			<% @genres.each do |genre| %>
         <%= render partial: 'genres/genre_card', locals: {genre: genre, class_name: 'genre-card-homepage'} %>
 			<% end %>
@@ -40,9 +42,9 @@
 
 	<div class="bottom-homepage-block">
 		<div class="text-center section-title-block">
-			<h1>Join the Conversation.</h1>
+			<h1>Join the conversation.</h1>
 			<p class="lead">Rate, Review & Discuss Artists</p>
-			<a href="#signup_modal" data-toggle="modal" class="btn btn-danger button-home">Sign Up</a>
+			<a href="#signup_modal" data-toggle="modal" class="btn btn-danger red-btn">Sign Up</a>
 		</div>
 	</div>
 </div>
