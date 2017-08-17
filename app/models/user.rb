@@ -1,5 +1,6 @@
+# This class encompasses all users of the site. It includes both artists and fans.
 class User < ApplicationRecord
-  
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable,
          :omniauthable, omniauth_providers: [:facebook]
@@ -47,8 +48,8 @@ class User < ApplicationRecord
   end
 
   def new_avg_rating_review_count(rating)
-    avg_rating = self.average_rating.nil? ? self.average_rating : 0
-    rc = self.review_count.nil? ? self.review_count : 0
+    avg_rating = self.average_rating.nil? ? 0 : self.average_rating
+    rc = self.review_count.nil? ? 0 : self.review_count
 
     self.average_rating = (avg_rating * rc + rating) / (rc + 1)
     self.review_count = rc + 1
@@ -101,7 +102,13 @@ class User < ApplicationRecord
       count += 1
       sum += review.rating
     end
-    return count.zero? ? (sum / count).round(2) : 0
+    return count.zero? ? 0 : (sum / count).round(2)
+  end
+
+  protected
+
+  def confirmation_required?
+    false
   end
 
 end

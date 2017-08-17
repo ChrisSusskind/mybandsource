@@ -11,6 +11,7 @@ var selected_rating;
  */
 $(document).on('turbolinks:load', function(){
     loadRatingEntry();
+    selected_rating = 0;
 });
 
 //Function that adds hover class to stars when they should be shown full

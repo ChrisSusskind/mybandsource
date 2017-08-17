@@ -8,6 +8,6 @@ class NotificationsController < ApplicationController
     @notifications.each do |notification|
       notification.update(viewed: true)
     end
-    render :action => 'mark_read_user'
+    render action: 'mark_read_user'
   end
 end

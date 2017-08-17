@@ -34,3 +34,4 @@
 //= require 'profile'
 //= require 'claim_artist'
 //= require 'edit_profile'
+//= require 'alerts'

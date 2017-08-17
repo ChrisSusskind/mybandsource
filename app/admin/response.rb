@@ -1,9 +1,6 @@
 ActiveAdmin.register Response do
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 
-
-  permit_params :upvotes, :comments, :user, :review, :reported
+  permit_params :upvotes, :comments, :reported
 
   index do
     actions
@@ -11,8 +8,8 @@ ActiveAdmin.register Response do
     id_column
     column :upvotes
     column :comment
-    column :user
-    column :review
+    column :user_id
+    column :review_id
     column :created_at
     column :updated_at
     column :reported
@@ -21,16 +18,8 @@ ActiveAdmin.register Response do
   filter :id
   filter :upvotes
   filter :comment
-  filter :user
-  filter :review
-  filter :location
-  filter :genre
-  filter :facebook_url
-  filter :soundcloud_url
-  filter :spotify_url
-  filter :itunes_url
-  filter :twitter_url
-  filter :last_sign_in_at
+  filter :user_id
+  filter :review_id
   filter :created_at
   filter :updated_at
 
@@ -40,27 +29,21 @@ ActiveAdmin.register Response do
       row :upvotes
       row :comment
       row :user
-      row :review
+      row 'Responded To' do |resp|
+        resp.review.comment
+      end
       row :created_at
       row :updated_at
-      row :reported
-      row :banner_picture
-      row :facebook_url
-      row :soundcloud_url
-      row :spotify_url
-      row :itunes_url
-      row :twitter_url
-      row :average_rating
     end
   end
 
   form do |f|
-    f.inputs "Response Details" do
+    f.inputs 'Response Details' do
       f.input :comment
+      f.input :upvotes
       f.input :reported
     end
     f.actions
   end
-
 
 end

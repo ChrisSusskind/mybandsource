@@ -2,17 +2,19 @@
 
 <div class="" id="user_id_container" data-artist_name= "<%= @user.name %>"  data-user_picture_url="<%= @user.picture%>" data-user_id=<%=@user.id%>>
   <% if @user.banner_picture? %>
-  <div class="profile-banner" style="background-image: url(<%= Cloudinary::Utils.cloudinary_url(@user.banner_picture) %>)">
+  <div class="profile-banner" style="background-image: url(<%= Cloudinary::Utils.cloudinary_url(@user.banner_picture, width: 1381, height: 457, crop: :fill) %>)">
   <% else %>
-  <div class="profile-banner" style="background-color: purple;">
+  <div class="profile-banner" style="background-image: url(<%= Cloudinary::Utils.cloudinary_url("static/default_banner_image", width: 1381, height: 457, crop: :fill) %>">
   <% end %>
 
     <% if @user == current_user %>
       <div class="header-picture-overlay">
-        <label class="change-header-pic-text">
+        <label class="change-header-pic-text" id="change-banner-picture-label">
           <%= cl_image_tag("static/camera_icon", width: 48, height: 37, class: "camera-icon") %><br/>
           Change your Header Photo
-          <%= cl_image_upload_tag(:banner_picture, :html => {:class => "image_upload"}) %>
+          <%= form_for @user, url: "/users/#{@user.id}/banner_picture", method: :patch do |f| %>
+              <%= f.file_field(:banner_picture, onchange: "javascript:this.form.submit();", id: "banner-upload-input", style: "display: none") %>
+          <% end %>
         </label>
       </div>
     <% end %>
@@ -21,11 +23,13 @@
       <div class="profile-banner-avatar" id="profile-picture">
         <% if @user == current_user %>
           <div class="profile-picture-overlay">
-            <label class="change-profile-pic-text">
-              <%= cl_image_tag("static/camera_icon", width: 48, height: 37, class: "camera-icon") %><br/>
-              Change your Profile Picture
-              <%= cl_image_upload_tag(:picture, :html => {:class => "image_upload", :id => "profile-image-input"}) %>
-            </label>
+              <%= form_for @user, url: "/users/#{@user.id}/profile_picture", method: :patch do |f| %>
+                <label class="change-profile-pic-text" id="change-profile-picture-label">
+                  <%= cl_image_tag("static/camera_icon", width: 48, height: 37, class: "camera-icon") %><br/>
+                  Change your Profile Picture
+                </label>
+                  <%= f.file_field(:picture, onchange: "javascript:this.form.submit();", id: "avatar-upload-input", style: "display: none") %>
+              <% end %>
           </div>
         <% end %>
 
@@ -52,7 +56,12 @@
 
         <% if @user.is_artist %>
           <div class="profile-numbers">
-             <span id="avg-rating">
+            <span id="">
+              <%= cl_image_tag('static/view_count_eye', :alt => "eye", :width => 15, :height => 8, :class => "icon-image") %>
+              <p id=""><%= number_to_human @user.view_count %></p>
+            </span>
+
+             <span class="not-left" id="avg-rating">
                 <%= cl_image_tag('static/white_star', :alt => "star", :width => 14, :height => 14, :class => "icon-image") %>
                 <p id="avg-rating-number"><%= @user.average_rating %></p>
              </span>
@@ -196,8 +205,10 @@
       <% else %>
         <div class="profile-sidebar-group">
           <h3>Favorite Genres</h3>
-          <% @user.genres_list.each do |genre| %>
-              <h4><%= genre %></h4>
+          <% if @user.genres_list? %>
+            <% @user.genres_list.each do |genre| %>
+                <h4><%= genre %></h4>
+            <% end %>
           <% end %>
         </div>
       <% end %>

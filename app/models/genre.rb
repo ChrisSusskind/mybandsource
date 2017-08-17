@@ -10,4 +10,6 @@ class Genre < ApplicationRecord
 			user.genre_id = nil;
 		end
 	end
+
+	mount_uploader :picture, AvatarUploader
 end

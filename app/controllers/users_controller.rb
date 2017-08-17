@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :upload_avatar]
+  before_action :set_user, only: [:show, :upload_avatar, :upload_banner]
 
   # GET /users
   # GET /users.json
@@ -17,6 +17,8 @@ class UsersController < ApplicationController
         @review.nil? ? @review = Review.new : @review
       end
       @reviews = @artist.received_reviews.page(params[:page]).order('updated_at DESC').per(25)
+      @artist.view_count.present? ? @artist.view_count += 1 : @artist.view_count = 0
+      @artist.save
     else
       @reviews = @user.left_reviews.page(params[:page]).order('updated_at DESC').per(25)
     end
@@ -40,7 +42,12 @@ class UsersController < ApplicationController
   end
 
   def upload_avatar
-    @user.update_attributes({ picture: params[:picture] })
+    @user.update_attributes({ picture: params[:user][:picture] })
+    redirect_to user_path(@user)
+  end
+
+  def upload_banner
+    @user.update_attributes({ banner_picture: params[:user][:banner_picture] })
     redirect_to user_path(@user)
   end
 
@@ -61,7 +68,7 @@ class UsersController < ApplicationController
   end
 
   def claim_artist
-
+    ClaimMailer.claim_email(params[:artist], params[:email]).deliver_later
   end
 
   private
