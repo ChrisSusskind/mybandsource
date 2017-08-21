@@ -8,8 +8,8 @@
   </div>
 
   <div class="numbers-container">
-    <span>
-      <%= cl_image_tag('static/view_count_eye', :alt => "eye", :width => 15, :height => 8, :class => "icon-image") %>
+    <span  class="number">
+      <%= cl_image_tag('static/view_count_eye', :alt => "eye", :width => 15, :height => 8, :class => "icon-image", style: "bottom: 1px;") %>
       <%= number_to_human artist_card.view_count %>
     </span>
 
