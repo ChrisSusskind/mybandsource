@@ -115,8 +115,9 @@ textarea:focus, input:focus{
 
     .search-icon {
       position: absolute;
-      top: 12px;
-      left: 10px;
+      top: 10px;
+      left: 15px;
+      font-size: 18px;
     }
 
     .search-box {
@@ -124,9 +125,23 @@ textarea:focus, input:focus{
       border: 1px solid #dcdcdc;
       border-radius: 100px;
       width: 100%;
-      height: 48px;
+      height: 35px;
       padding-left: 40px;
+      font-size: 14px;
+      
     }
+      .search-box::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        color: #D9D9D9;
+      }
+      .search-box::-moz-placeholder { /* Firefox 19+ */
+        color: #D9D9D9;
+      }
+      .search-box:-ms-input-placeholder { /* IE 10+ */
+        color: #D9D9D9;
+      }
+      .search-box:-moz-placeholder { /* Firefox 18- */
+        color:#D9D9D9;
+      }
   }
 
   .close {
@@ -902,27 +917,35 @@ footer {
           white-space: nowrap;
           height: 62px;
           color: #ffffff;
-          font-size: 36px;
+          font-size: 32px;
           font-weight: bold;
           line-height: 62px;
-          margin-bottom: 5px;
+          margin-bottom: 0px;
         }
 
         h2 {
           white-space: nowrap;
           height: 17px;
-          color: rgba(255,255,255,1);
+          color: rgba(255,255,255,0.50);
           font-size: 14px;
-          font-weight: bold;
+          font-weight: 500;
           letter-spacing: 1px;
           line-height: 17px;
           margin-bottom: 32px;
+          text-transform: uppercase;
         }
 
         div.profile-numbers {
           height: 37px;
           margin-bottom: 16px;
+          font-weight:100;
+          font-size:14px;
+          
+          img{
+            width:10px;
 
+          }
+          
           p {
             display: inline;
             margin-bottom: 0px;
@@ -938,7 +961,7 @@ footer {
 
           i {
             position: relative;
-            top: 3px;
+            top: 1px;
           }
 
           .icon-image {
@@ -992,17 +1015,20 @@ footer {
 
         div.follow_count {
           position: relative;
-          top: 20px;
+          top: 0px;
 
           p.followers_text {
-            color: white;
+            color: rgba(255, 255, 255, 0.5);
             margin-bottom: 0;
+            font-size:12px;
           }
 
           a.follow-number {
             color: white;
             display: block;
             text-align: right;
+            font-weight:100;
+            font-size:14px;
           }
         }
       }
@@ -1019,8 +1045,9 @@ footer {
     font-family: 'Montserrat', Helvetica, sans-serif;
     display: flex;
     align-items: flex-start;
-    width: 100%;
-    padding: 60px 60px;
+    width: 80%;
+    padding: 60px 0px;
+    margin:auto;
 
     div.profile-content-column {
       width: 100%;
@@ -1034,7 +1061,7 @@ footer {
 
         // First section
 
-        font-size: 24px;
+        font-size: 17px;
         font-weight: 300;
         letter-spacing: 1px;
         line-height: 35px;
@@ -1044,7 +1071,7 @@ footer {
         h1 {
           height: 62px;
           line-height: 62px;
-          font-size: 24px;
+          font-size: 20px;
           font-weight: 600;
           text-transform: uppercase;
           margin-bottom: 0;
@@ -1068,11 +1095,9 @@ footer {
         min-width: 620px;
 
         a {
-          height: 62px;
           color: black;
-          font-size: 24px;
+          font-size: 20px;
           font-weight: 600;
-          line-height: 62px;
           margin-bottom: 5px;
         }
 
@@ -1099,7 +1124,7 @@ footer {
       }
 
       div.signup-container {
-        width: 584px;
+        width: 100%;//584px
         height: 73px;
         border: 1px solid #D9D9D9;
         border-radius: 100px;
@@ -1108,7 +1133,7 @@ footer {
         margin-top: 30px;
 
         p {
-          font-size: 16px;
+          font-size: 14px;
           line-height: 21px;
           font-weight: 300;
         }
@@ -1129,8 +1154,8 @@ footer {
           border: none;
           background-color: #AA182A;
           color: white;
-          font-size: 13px;
-          font-weight: bold;
+          font-size: 11px;
+          font-weight: normal;
           line-height: 16px;
           cursor: pointer;
         }
@@ -1170,35 +1195,34 @@ footer {
       margin-right: 60px;
       min-width: 200px;
 
-      div.profile-sidebar-group {
+      .profile-sidebar-group {
+        margin-bottom:35px;
 
         h3 {
-          height: 62px;
           color: black;
           font-size: 12px;
           font-weight: 300;
-          line-height: 62px;
+          line-height: normal;
           text-transform: uppercase;
+          margin-bottom:10px;
         }
 
         h4 {
-          height: 17px;
           color: rgba(0,0,0,.5);
           font-size: 14px;
           font-weight: bold;
           letter-spacing: 1px;
-          line-height: 17px;
+          line-height: normal;
           text-transform: uppercase;
           position: relative;
-          bottom: 10px;
         }
 
         a.profile-social-icon {
           margin-right: 10px;
         }
 
-        div.claim-artist-container {
-
+        .claim-artist-container {
+          font-weight:bold;
           margin-top: 50px;
 
           h1 {
@@ -1211,11 +1235,7 @@ footer {
           }
 
           a.claim-artist-link {
-            height: 28px;
             color: #AA182A;
-            font-size: 18px;
-            font-weight: bold;
-            line-height: 24px;
           }
         }
       }
@@ -1385,7 +1405,7 @@ footer {
 
             p.followers_text {
               font-size: 10px;
-              font-weight: 300;
+              font-weight: 100;
               margin-bottom: 0;
               color: white;
               width: 53px;
@@ -1394,7 +1414,7 @@ footer {
             a.follow-number {
               color: white;
               font-size: 14px;
-              font-weight: 300;
+              font-weight: 100;
               display: block;
               text-align: right;
               position: relative;
@@ -1456,11 +1476,9 @@ footer {
         div.review-mode-toggle {
 
           a {
-            height: 31px;
             color: black;
             font-size: 12px;
             font-weight: 600;
-            line-height: 31px;
             margin-bottom: 5px;
           }
 
@@ -1854,16 +1872,14 @@ footer {
   div.review_content {
 
     div.review-text-container {
-      margin-left: 68px;
+      margin-left: 25px;
       position: relative;
-      bottom: 10px;
+      margin-top: 10px;
 
       h4 {
-        height: 21px;
-        font-size: 18px;
+        font-size: 16px;
         font-weight: bold;
         letter-spacing: 1px;
-        line-height: 21px;
         white-space: nowrap;
         margin-bottom: 5px;
       }

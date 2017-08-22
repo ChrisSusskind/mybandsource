@@ -57,12 +57,12 @@
         <% if @user.is_artist %>
           <div class="profile-numbers">
             <span id="">
-              <%= cl_image_tag('static/view_count_eye', :alt => "eye", :width => 15, :height => 8, :class => "icon-image") %>
+              <%= cl_image_tag('static/view_count_eye', :alt => "eye", :class => "icon-image") %>
               <p id=""><%= number_to_human @user.view_count %></p>
             </span>
 
              <span class="not-left" id="avg-rating">
-                <%= cl_image_tag('static/white_star', :alt => "star", :width => 14, :height => 14, :class => "icon-image") %>
+                <%= cl_image_tag('static/white_star', :alt => "star", :class => "icon-image") %>
                 <p id="avg-rating-number"><%= @user.average_rating %></p>
              </span>
 
@@ -72,7 +72,7 @@
             </span>
 
             <span class="not-left" id="response-count">
-              <%= cl_image_tag('static/response_icon', :alt => "response", :width => 14, :height => 14, :class => "icon-image") %>
+              <%= cl_image_tag('static/response_icon', :alt => "response", :class => "icon-image") %>
               <p id="response-count-number"><%= number_to_human @user.response_count %></p>
             </span>
           </div>
@@ -95,10 +95,10 @@
 
       <div class="follow-container">
         <div class="follow_count">
-          <p class="followers_text right_align">Followers</p>
+          <p class="followers_text right_align" style="font-weight:100;">FOLLOWERS</p>
           <div> <%= link_to "#{@user.followers.count}", "#follower_modal", "data-toggle": "modal", class: "follow-number" %> </div>
           <div class="following">
-            <p class="followers_text right_align">Following</p>
+            <p class="followers_text right_align" style="font-weight:100;">FOLLOWING</p>
             <div> <%= link_to "#{@user.following.count}", "#following_modal", "data-toggle": "modal", class: "follow-number" %> </div>
           </div>
         </div>
@@ -136,9 +136,9 @@
       </div>
 
       <div class="review-mode-toggle">
-        <%= link_to("Reviews", "/users/#{@user.id}/reviews/hide_responses", method: "get", class: "review-toggle active", id: "reviews_button", remote: true) %>
-        <%= link_to("Discussion", "/users/#{@user.id}/reviews/show_responses", method: "get", class: "discussion-toggle", id: "discussion_button", remote: true) %>
-        <div class="dropdown order-dropdown">
+        <%= link_to("REVIEWS", "/users/#{@user.id}/reviews/hide_responses", method: "get", class: "review-toggle active", id: "reviews_button", remote: true) %>
+        <%= link_to("DISCUSSIONS", "/users/#{@user.id}/reviews/show_responses", method: "get", class: "discussion-toggle", id: "discussion_button", remote: true) %>
+        <div class="dropdown order-dropdown" style="display: none;">
           <a class="dropdown-toggle" href="#" id="order-dropdown-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Arrange Reviews By
           </a>
@@ -150,9 +150,9 @@
       </div>
 
       <% if @user.is_artist && !user_signed_in? %>
-        <div class="signup-container mx-auto">
-          <p class="bold">Join the conversation</p>
-          <p>Create an account to rate, review, and discuss artists.</p>
+        <div class="signup-container">
+          <p class="bold" style="font-weight:500;">Join the conversation</p>
+          <p style="color:grey;font-weight:100;">Create an account to rate, review, and discuss artists.</p>
           <button onclick="openSignupModal()">Sign Up</button>
         </div>
       <% end %>
@@ -172,7 +172,7 @@
             </div>
         <% end %>
 
-        <div class="row review-list" id="reviews_container">
+        <div class="review-list" id="reviews_container">
           <% if defined? top_review %>
               <% if defined? response_link %>
                   <%= render partial: 'reviews/review', locals: {review: top_review, responses_shown: true, is_artist: @user.is_artist} %>
@@ -228,7 +228,7 @@
       <% if @user.is_artist %>
         <div class="profile-sidebar-group">
           <div class="claim-artist-container">
-            <h1>Is this you?</h1>
+            <div>Is this you?</div>
             <a href="#claim_artist_modal_1" data-toggle="modal" class="claim-artist-link">Claim Artist Profile</a>
           </div>
         </div>
