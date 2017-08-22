@@ -34,7 +34,7 @@
       <%= render partial: 'reviews/review_info_bar', locals: {review: review, user_id: review.leaving_user_id, responses_shown: responses_shown} %>
     <% end %>
   </div>
-
+  <div class="clearfix"></div>
   <div class="response-container">
     <% if responses_shown %>
       <%= render partial: 'responses/response', collection: review.responses.order('CREATED_AT ASC'), locals: {review: review, is_artist: is_artist} %>
