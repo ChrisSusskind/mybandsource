@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @fullwidth = true
     if @user.is_artist
       @artist = @user
       if user_signed_in?

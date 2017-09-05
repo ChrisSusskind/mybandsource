@@ -50,6 +50,16 @@ h6{text-transform: uppercase;}
   bottom: 4px;
 }
 
+#review-filter {
+  text-align: right;
+  font-size: 13px;
+  font-weight: 100;
+  color: grey;
+  margin: 10px;
+  a{color:#707070;font-size:12px;}
+}
+
 
 //navigation
 .material-icons.md-24, .mi.md-24{font-size:13px;}
+

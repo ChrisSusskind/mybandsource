@@ -23,8 +23,10 @@
   </head>
 
 	<body>
-		<div class="container">
-			<%= render 'layouts/header' %>
+		<div class="<%= @fullwidth ? 'full-width' : 'container' %>">
+			<div class="<%= @fullwidth ? 'container' : 'nada' %>">
+        <%= render 'layouts/header' %>
+      </div>
 
 			<% if resource.errors.any? %>
           <div class="alert alert-danger">

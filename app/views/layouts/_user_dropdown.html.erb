@@ -1,6 +1,6 @@
 <div class="btn-group user-dropdown">
   <button type="button" id="user_dropdown_button" data-toggle="dropdown">
-    <%= cl_image_tag(current_user.picture, :crop => :fill, :alt => "Avatar", class: "rounded-circle img-circle", style:"max-width:25px;") if current_user.picture? %>
+    <%= cl_image_tag(current_user.picture, :crop => :fill, :alt => "Avatar", class: "rounded-circle img-circle", style:"width:35px;height:35px;") if current_user.picture? %>
     <%= cl_image_tag("static/blank_user.png", :crop => :fill, :alt => "User Image", class: "rounded-circle img-circle", style:"max-width:25px;") unless current_user.picture? %> 
   </button>
   <ul class="dropdown-menu dropdown-menu-right" role="menu">
