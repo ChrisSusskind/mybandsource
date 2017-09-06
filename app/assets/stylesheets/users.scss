@@ -34,6 +34,18 @@ h5{font-weight:normal;}
 h6{text-transform: uppercase;}
 .number-bump{position:relative;bottom:1px;}
 
+.slick-track .artist-card{
+
+  @media(min-width: 768px) {
+    display: inline-block;
+    width: 296px!important;
+    height: 415px!important;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    overflow:hidden;
+  }
+}
+
 //Modal
 .modal-content{border-radius:0px;}
 .modal-header{border-bottom:none;}
@@ -62,4 +74,10 @@ h6{text-transform: uppercase;}
 
 //navigation
 .material-icons.md-24, .mi.md-24{font-size:13px;}
+
+
+//genres
+.artist-image-area{
+  height: 276px;  
+}
 

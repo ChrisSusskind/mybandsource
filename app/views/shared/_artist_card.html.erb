@@ -1,6 +1,11 @@
+<%- unless current_page?('/') %>
+  <div class='col-xs-12 col-md-4'>
+<% end %>
 <div class="artist-card">
-  <%= link_to cl_image_tag(artist_card.picture, class: "artist-image"), user_path(artist_card), method: :get if artist_card.picture? %>
-  <%= link_to cl_image_tag("static/blank_user", class: "artist-image"), user_path(artist_card), method: :get unless artist_card.picture? %>
+  <%= link_to artist_card do %>
+  <div class="artist-image-area" style="background: url('<%=artist_card.picture.blank? ? 'https://res.cloudinary.com/mybandsource/image/upload/v1/static/blank_user' : artist_card.picture %>');-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">
+  </div>
+  <% end %>
 
   <div class="name-container">
     <h5><%= artist_card.name.length > 25 ? truncate(artist_card.name, length: 25) : artist_card.name %></h5>
@@ -29,3 +34,6 @@
     </span>
   </div>
 </div>
+<%- unless current_page?('/') %>
+  </div>
+<% end %>

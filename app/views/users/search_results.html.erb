@@ -3,7 +3,7 @@
 
   <div class="dropdown order-dropdown artist-card-order-dropdown">
     <a class="dropdown-toggle" href="#" id="order-dropdown-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <h3>Arrange Artists By</h3>
+      Arrange Artists By
     </a>
     <span class="dropdown-menu" aria-labelledby="order-dropdown-btn">
         <a class="dropdown-item" href="#" onclick="orderByAlphabetical(event)">Alphabetical</a>
@@ -23,6 +23,8 @@
   </script>
 
   <div class="row cards artist-card-row">
-        <%= render partial: 'shared/artist_card', collection: @artists.order(:name) %>
+    <%- @artists.order(:name).each do |artist| %>
+      <%= render partial: 'shared/artist_card', locals:{artist_card: artist}  %>
+    <% end %>
   </div>
 </div>

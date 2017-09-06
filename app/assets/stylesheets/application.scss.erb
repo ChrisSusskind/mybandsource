@@ -155,8 +155,12 @@ textarea:focus, input:focus{
   div.navbar-links {
 
     a {
-      line-height: 40px;
-      height: 50px;
+      line-height:35px; 
+      height: 0px;
+      font-size: 12px;
+      color: #707070;
+      font-weight: normal;
+      font-family: 'Montserrat', Helvetica, sans-serif;      
     }
 
     .login-header {
@@ -226,7 +230,6 @@ textarea:focus, input:focus{
 
           a {
             color: #707070;
-            font-weight: 100;
             font-family: 'Montserrat', Helvetica, sans-serif;
           }
         }
@@ -1177,8 +1180,10 @@ footer {
           border: none;
           background-color: #AA182A;
           color: white;
-          height: 50px;
-          width: 200px;
+          height: 30px;
+          width: 150px;
+          font-size: 12px;
+          font-weight: normal;
         }
 
         div.review-list {
@@ -1687,7 +1692,7 @@ footer {
           background-color: #AA182A;
           color: white;
           font-size: 13px;
-          font-weight: bold;
+          font-weight: normal;
           line-height: 16px;
           cursor: pointer;
         }
@@ -1742,7 +1747,7 @@ footer {
           background-color: #AA182A;
           color: white;
           font-size: 13px;
-          font-weight: bold;
+          font-weight: normal;
           line-height: 16px;
           cursor: pointer;
         }
@@ -1809,7 +1814,7 @@ footer {
           background-color: #AA182A;
           color: white;
           font-size: 9.1px;
-          font-weight: bold;
+          font-weight: normal;
           line-height: 11px;
           cursor: pointer;
         }
@@ -2951,10 +2956,13 @@ footer {
   padding-left: 0;
   width: 100%;
   z-index: 1000;
+  margin: 10px 0;
+
 
   div {
-    background-color: rgba(255, 255, 255, 0.5);
-    padding: 5px 5px 5px 10px;
+    background-color: rgb(246, 246, 246);
+    padding: 10px;
+    border-bottom: 1px solid #bdbdbd;
 
     img {
       float: left;
@@ -2973,13 +2981,13 @@ footer {
 .artist-card {
 
   @media(min-width: 768px) {
-    display: inline-block;
-    width: 296px!important;
-    height: 415px!important;
+    //display: inline-block;
+    //width: 296px!important;
+    min-height: 415px;
     background-color: #252525;
-    margin-right: 20px;
+    //margin-right: 20px;
     margin-bottom: 20px;
-    overflow:hidden;
+    //overflow:hidden;
 
     img.artist-image {
       //width: 100%;
@@ -3036,8 +3044,8 @@ footer {
   }
 
   @media(max-width: 767px) {
-    width: 207px!important;
-    height: 277px!important;
+    //width: 207px!important;
+    //height: 277px!important;
     background-color: #252525;
     margin: 10px auto;
 
@@ -3297,23 +3305,27 @@ footer {
 
 @media (min-width: 768px) {
   .artist-card-order-dropdown {
-    width: 275px;
+    //width: 275px;
     float: right;
     white-space: nowrap;
+    position:relative;
+    top:20px;
 
     .dropdown-toggle {
       font-weight: 500;
     }
 
     a {
-      color: black!important;
+      color: #707070;
+      font-size:13px;
+
     }
   }
 }
 
 @media (max-width: 767px) {
   .artist-card-order-dropdown {
-    width: 125px;
+    //width: 125px;
     margin-top: 10px;
 
     .dropdown-toggle {
@@ -3321,7 +3333,8 @@ footer {
     }
 
     a {
-      color: black!important;
+      color: #707070;
+      font-size:13px;
     }
   }
 }
