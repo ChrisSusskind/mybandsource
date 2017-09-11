@@ -71,10 +71,24 @@ h6{text-transform: uppercase;}
   a{color:#707070;font-size:12px;}
 }
 
+.artist-img-holder {
+    height: 246px;
+    overflow: hidden;
+}
+
 
 //navigation
 .material-icons.md-24, .mi.md-24{font-size:13px;}
-
+#user_dropdown_button{
+  height:35px;
+}
+.round-user {
+    width: 35px;
+    height: 35px;
+    overflow: hidden;
+    border-radius: 50%;
+    position: relative;
+}
 
 //genres
 .artist-image-area{

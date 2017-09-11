@@ -4,7 +4,7 @@
      break if notification.viewed
    end %>
 
-<div class="btn-group notification-dropdown">
+<div class="btn-group notification-dropdown" style="vertical-align: bottom;">
   <span id="unviewed_notification_number" class="badge badge-notify"><%= unviewed %></span>
   <button type="button" id="notification_dropdown_button" class= "rounded-circle" data-toggle="dropdown" onclick="markNotificationsViewed()">
     <%= material_icon.notifications.md_24 %>
