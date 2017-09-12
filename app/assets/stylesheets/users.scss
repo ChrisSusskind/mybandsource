@@ -22,6 +22,15 @@ a:hover{text-decoration:none;}
 //Forms
 .form-control-lg, .input-group-lg > .form-control, .input-group-lg > .input-group-addon, .input-group-lg > .input-group-btn > .btn {font-size: 0.95rem;}
 
+.genre-choice-form {
+  margin: 50px 0 0 0;
+}
+
+#new_genre_choice{
+  font-size:13px;
+  text-decoration:underline;
+}
+
 
 //Headers
 .home-title-container h3{font-size:42px;}
