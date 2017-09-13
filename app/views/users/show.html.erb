@@ -52,22 +52,22 @@
 
         <% if @user.is_artist %>
           <div class="profile-numbers">
-            <span id="">
+            <span id="" data-toggle="tooltip" title="Views">
               <%= cl_image_tag('static/view_count_eye', :alt => "eye", :class => "icon-image") %>
               <p id=""><%= number_to_human @user.view_count %></p>
             </span>
 
-             <span class="not-left" id="avg-rating">
+             <span class="not-left" id="avg-rating" data-toggle="tooltip" title="Rating">
                 <%= cl_image_tag('static/white_star', :alt => "star", :class => "icon-image") %>
                 <p id="avg-rating-number"><%= @user.average_rating %></p>
              </span>
 
-            <span class="not-left" id="review-count">
+            <span class="not-left" id="review-count" data-toggle="tooltip" title="Reviews">
               <%= material_icon.message.md_18 %>
               <p id="review-count-number"><%= number_to_human @user.review_count%></p>
             </span>
 
-            <span class="not-left" id="response-count">
+            <span class="not-left" id="response-count" data-toggle="tooltip" title="Responses">
               <%= cl_image_tag('static/response_icon', :alt => "response", :class => "icon-image") %>
               <p id="response-count-number"><%= number_to_human @user.response_count %></p>
             </span>
@@ -157,15 +157,16 @@
               <%= render partial: 'reviews/review_form_2', locals: {review: @review} %>
             </div>
         <% end %>
-      <div id="review-filter" class="dropdown order-dropdown">
-        <a class="dropdown-toggle" href="#" id="order-dropdown-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Filter Reviews By
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="order-dropdown-btn">
-          <a class="dropdown-item" href="#" onclick="orderReviewsByAge(event)">Most Recent</a>
-          <a class="dropdown-item" href="#" onclick="orderReviewsByUpvotes(event)">Most Upvoted</a>
+        <div id="review-filter" class="dropdown order-dropdown">
+          <a class="dropdown-toggle" href="#" id="order-dropdown-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Filter Reviews By
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="order-dropdown-btn">
+            <a class="dropdown-item" href="#" onclick="orderReviewsByAge(event)">Most Recent</a>
+            <a class="dropdown-item" href="#" onclick="orderReviewsByUpvotes(event)">Most Upvoted</a>
+          </div>
         </div>
-      </div>
+        <div class="clearfix"></div>
         <div class="review-list" id="reviews_container">
           <% if defined? top_review %>
               <% if defined? response_link %>
@@ -234,3 +235,9 @@
 <%= render partial: "follower_modal", locals: {followers: @user.followers} %>
 <%= render partial: "following_modal", locals: {followings: @user.following} %>
 <%= render partial: "profile_share_modal", locals: {link: root_url[0...-1] + user_path(@user) } %>
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip(); 
+});
+</script>
