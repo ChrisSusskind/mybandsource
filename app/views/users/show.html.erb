@@ -1,6 +1,6 @@
 <%= cloudinary_js_config %>
 
-<div class="" id="user_id_container" data-artist_name= "<%= @user.name %>"  data-user_picture_url="<%= @user.picture%>" data-user_id=<%=@user.id%>>
+<div class="" id="user_id_container" data-artist_name= "<%= @user.name %>"  data-user_picture_url="<%= @user.picture%>" data-user_id=<%=@user.id%> data-current_user=<%=current_user.picture if current_user %> >
   <div class="dark-overlay">
   </div>
   <% if @user.banner_picture? %>

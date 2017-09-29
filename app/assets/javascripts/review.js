@@ -132,14 +132,18 @@ function showReplyForm(node) {
     var review_text_container = node.parentElement.parentElement.parentElement;
     var review = review_text_container.parentElement;
     var review_id = review.getAttribute('data-review_id');
-    var profile_pic_url = "http://res.cloudinary.com/mybandsource/image/upload/" + $('#user_id_container').data('user_picture_url');
-    if(profile_pic_url == "http://res.cloudinary.com/mybandsource/image/upload/"){
-        profile_pic_url = "http://res.cloudinary.com/mybandsource/image/upload/v1490846366/static/blank_user.png";
+    var profile_pic_url = $('#user_id_container').data('user_picture_url');
+    var current_user_profile_url = $('#user_id_container').data('current_user');
+    if(current_user_profile_url < 3){
+        current_user_profile_url = "http://res.cloudinary.com/mybandsource/image/upload/v1490846366/static/blank_user.png";
     }
     var wrapper = document.createElement('div');
     wrapper.innerHTML = '' +
         '<div class="reply-form-container">' +
-            '<img src="' + profile_pic_url + '"/>' +
+            '<div class="inner-profile-response" style="background: url(\''+ current_user_profile_url +'\');-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;background-position: center center;">' +
+                '<img src="'+ current_user_profile_url +'" style="width:36px;height:36px;visibility: hidden;"/>' +
+            '</div>'+
+
             '<div class="text-container">' +
                 '<form id="reply_form" class="reply-form mx-auto">' +
                 '   <textarea id="reply"></textarea>' +
