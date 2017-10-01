@@ -3,10 +3,10 @@ const ArtistsComponent = props => {
         let url = "/users/"+artist.id;
         let image_url;
         if(artist.picture.url != null && artist.picture.url != ""){
-            image_url = "http://res.cloudinary.com/mybandsource/image/upload/v1/ " + artist.picture.url;
+            image_url = artist.picture.url;
         }
         else{
-            image_url = "http://res.cloudinary.com/mybandsource/image/upload/v1/static/blank_user";
+            image_url = "https://res.cloudinary.com/mybandsource/image/upload/v1/static/blank_user";
         }
         return(
             <div key={artist.id}>
