@@ -2,7 +2,7 @@
   <img onclick="reviewFormGoBack()" src="http://res.cloudinary.com/mybandsource/image/upload/v1498692412/static/red_left_arrow.png" />
 
   <span class="text-area">
-    <textarea type="text" id="review-form-text" rows="1" placeholder="Tell us about your experience"><%= review.comment%></textarea>
+    <textarea type="text" id="review-form-text" rows="1" placeholder="Tell us what you think"><%= review.comment%></textarea>
     <% if review.receiving_user_id.nil? %>
       <button onclick="createReview()">Submit</button>
     <% else %>
