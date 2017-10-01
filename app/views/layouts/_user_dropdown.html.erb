@@ -1,7 +1,6 @@
 <div class="btn-group user-dropdown">
   <button type="button" id="user_dropdown_button" data-toggle="dropdown">
-    <div class="round-user">
-      <%= cl_image_tag(current_user.picture, :crop => :fill, :alt => "Avatar", class: "", style:"width:35px;") if current_user.picture? %>
+    <div class="round-user" style="background: url(<%=current_user.picture%>);background-size: cover;background-position: center center;">
       <%= cl_image_tag("static/blank_user.png", :crop => :fill, :alt => "User Image", class: "rounded-circle img-circle", style:"max-width:35px;") unless current_user.picture? %> 
     </div>
     
