@@ -82,6 +82,15 @@ h6{text-transform: uppercase;}
   bottom: 4px;
 }
 
+.rockon_icon_flipped img, .review_icon img:hover{
+  -ms-transform: rotate(-15deg); /* IE 9 */
+  -webkit-transform: rotate(-15deg); /* Chrome, Safari, Opera */
+  transform: rotate(-15deg);
+ -webkit-transition-duration: 0.5s;
+ -moz-transition-duration: 0.5s;
+ -o-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+}
 #review-filter {
   text-align: right;
   font-size: 13px;
