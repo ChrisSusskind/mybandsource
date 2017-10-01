@@ -34,7 +34,7 @@
               <% end %>
           </div>
         <% end %>
-        <div class="artist-img-holder" style="background: url('<%=@user.picture.blank? ? 'https://res.cloudinary.com/mybandsource/image/upload/v1/static/blank_user' : @user.picture %>');-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;background-position: center center;background-color:grey; ">
+        <div class="artist-img-holder <%= 'user-circle' unless @user.is_artist %>" style="background: url('<%=@user.picture.blank? ? 'https://res.cloudinary.com/mybandsource/image/upload/v1/static/blank_user' : @user.picture %>');-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;background-position: center center;background-color:grey;">
         </div>
       </div>
 

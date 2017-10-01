@@ -1,11 +1,6 @@
 <div class="review_content" id=<%= "review" + review.id.to_s %> data-review_id=<%=review.id.to_s%>>
-  <% if review.leaving_user.is_artist %>
-      <%= cl_image_tag(review.leaving_user.picture, :width => 36, :height => 36, :crop => :fill, :alt => "Avatar", class: "float-left review-pic") if review.leaving_user.picture? %>
-      <%= cl_image_tag("static/blank_user.png", :width => 36, :height => 36, :crop => :fill, :alt => "User Image", class: "float-left review-pic") unless review.leaving_user.picture? %> 
-  <% else %>
-      <%= cl_image_tag(review.leaving_user.picture, :width => 36, :height => 36, :crop => :fill, :alt => "Avatar", class: "rounded rounded-circle float-left review-pic") if review.leaving_user.picture? %>
-      <%= cl_image_tag("static/blank_user.png", :width => 36, :height => 36, :crop => :fill, :alt => "User Image", class: "rounded rounded-circle float-left review-pic") unless review.leaving_user.picture? %> 
-  <% end %>
+  <div class="float-left review-pic <%= 'user-circle' unless review.leaving_user.is_artist %>" style="background: url('<%=review.leaving_user.picture.blank? ? 'https://res.cloudinary.com/mybandsource/image/upload/v1/static/blank_user' : review.leaving_user.picture %>');-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;background-position: center center;background-color:grey;height:36px;width:36px;">
+  </div>
   <div class="review-text-container float-left">
     <h4 class="review_username float-left">
         <% if is_artist %>
