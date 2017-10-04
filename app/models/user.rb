@@ -10,8 +10,8 @@ class User < ApplicationRecord
   scope :artists, -> { where(is_artist: true)}
 
   # For user to review associations
-  has_many :received_reviews, class_name: "Review", foreign_key: "receiving_user_id", dependent: :destroy
-  has_many :left_reviews, class_name: "Review", foreign_key: "leaving_user_id", dependent: :destroy
+  has_many :received_reviews, class_name: 'Review', foreign_key: 'receiving_user_id', dependent: :destroy
+  has_many :left_reviews, class_name: 'Review', foreign_key: 'leaving_user_id', dependent: :destroy
 
   # For user to response associations
   has_many :responses, dependent: :destroy
@@ -20,13 +20,13 @@ class User < ApplicationRecord
   belongs_to :genre, optional: true
 
   # For user to user relationships
-  has_many :active_relationships, class_name: "UserRelationship", foreign_key: "follower_id", dependent: :destroy
-  has_many :passive_relationships, class_name: "UserRelationship", foreign_key: "followed_id", dependent: :destroy
+  has_many :active_relationships, class_name: 'UserRelationship', foreign_key: 'follower_id', dependent: :destroy
+  has_many :passive_relationships, class_name: 'UserRelationship', foreign_key: 'followed_id', dependent: :destroy
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
 
   # For user to notification relationships
-  has_many :notifications, foreign_key: "receiving_user_id", dependent: :destroy
+  has_many :notifications, foreign_key: 'receiving_user_id', dependent: :destroy
 
   validates :name, :email, presence: true
 
@@ -87,15 +87,15 @@ class User < ApplicationRecord
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
-      user.name = auth.info.name  	# Assuming the user model has a name
-      user.image = auth.info.image 	# Assuming the user model has an image
+      user.name = auth.info.name  	  # Assuming the user model has a name
+      user.picture = auth.info.image 	# Assuming the user model has an image
       # If you are using confirmable and the providers you use validate emails,
       # Uncomment the line below to skip the confirmation emails
       user.skip_confirmation!
     end
   end
 
-  def get_rating
+  def rating
     sum = 0.0
     count = 0.0
     received_reviews.each do |review|
