@@ -1,3 +1,4 @@
+###
 App.notification_center = App.cable.subscriptions.create "NotificationCenterChannel",
   connected: ->
     # Called when the subscription is ready for use on the server
@@ -95,3 +96,7 @@ App.notification_center = App.cable.subscriptions.create "NotificationCenterChan
           '</div>' +
         '</div>' +
       '</li>'
+  
+Use a single # sign
+
+###       

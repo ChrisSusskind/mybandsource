@@ -92,7 +92,6 @@ class User < ApplicationRecord
       user.uid = auth.uid
       user.save
       return user
-
     end
   end
 

@@ -61,6 +61,7 @@ Rails.application.routes.draw do
   resources :notifications, only: [:index]
   post '/notifications/mark_viewed_user', to: 'notifications#mark_viewed_user'
   post '/notifications/mark_viewed_artist', to: 'notifications#mark_viewed_artist'
+  get '/notifications/retrieve_notifications'
 
   # Claim artist mailer route
   post '/claim_artist', to: 'users#claim_artist'
