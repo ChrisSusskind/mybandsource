@@ -33,6 +33,9 @@ class User < ApplicationRecord
   mount_uploader :picture, AvatarUploader
   mount_uploader :banner_picture, AvatarUploader
 
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+
   def increment_response_count
     if self.response_count != nil
       self.response_count += 1

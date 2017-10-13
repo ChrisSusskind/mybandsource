@@ -31,7 +31,7 @@ class UserRelationshipsController < ApplicationController
   private
 
   def set_user
-    @user = User.find(params[:id])
+    @user = User.friendly.find(params[:id])
   end
 
   def create_notification(generating_user, receiving_user)

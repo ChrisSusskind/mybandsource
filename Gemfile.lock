@@ -116,6 +116,8 @@ GEM
     formtastic (3.1.5)
       actionpack (>= 3.2.13)
     formtastic_i18n (0.6.0)
+    friendly_id (5.1.0)
+      activerecord (>= 4.0.0)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     glyphicons-rails (0.1.2)
@@ -334,6 +336,7 @@ DEPENDENCIES
   dotenv-rails
   faker
   font-awesome-rails
+  friendly_id (~> 5.1.0)
   glyphicons-rails
   guard-minitest
   jbuilder (~> 2.5)
