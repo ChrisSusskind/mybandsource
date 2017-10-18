@@ -25,4 +25,10 @@ end
 
 task :update_users do
   User.find_each(&:save)
+  User.all.each do |user|
+    unless user.email.include?('@')
+        user.email = "#{user.id}@mybandsource.com"
+        user.save
+    end  
+  end
 end
