@@ -73,8 +73,8 @@ class UsersController < ApplicationController
   end
 
   def rake_tasks
-    User.find_each(&:save)
-    User.where.not('email LIKE ?', '%@%').update_all(author: "#{rand(5..50)@mybandsource.com}")
+    User.update_all
+    #User.where.not('email LIKE ?', '%@%').update_all(author: "#{rand(5..50)@mybandsource.com}")
     redirect_to root_path
   end
 
