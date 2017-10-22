@@ -45,6 +45,9 @@ Rails.application.routes.draw do
     # Routes for sharing review and responses
     post '/share/review/:id', to: 'reviews#share'
     post '/share/reviews/:review_id/response', to: 'responses#share'
+    collection do 
+      get :rake_tasks
+    end
   end
 
   get '/create_artist', to: 'users#create_artist'

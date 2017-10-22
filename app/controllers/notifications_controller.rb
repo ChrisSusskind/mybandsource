@@ -1,6 +1,6 @@
 class NotificationsController < ApplicationController
   def index
-    @notifications = current_user.notifications.where(viewed: false).order('created_at DESC')
+    @notifications = current_user.notifications.order('created_at DESC')
   end
 
   def mark_viewed_user

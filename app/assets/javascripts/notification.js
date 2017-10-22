@@ -15,15 +15,13 @@ function retrieveNotifications(){
         url: '/notifications/retrieve_notifications',
         success: function(data) {
             if(data.length > 0){
-              $("#notification_dropdown_button").css( "background-color", "red" );
+              $("#notification_dropdown_button").css( "color", "red" );
               $("#unviewed_notification_number").html(data.length);
             }
             else
             {
-              $("#notification_dropdown_button").css( "background-color", "black" );
+              $("#notification_dropdown_button").css( "color", "white" );
               $("#unviewed_notification_number").html(data.length);
-              $("#notification-dropdown-menu li").hide();
-              $("#notification-dropdown-menu li:last").show();
               console.log("no new notifications");
             }
         },

@@ -72,6 +72,17 @@ class UsersController < ApplicationController
     ClaimMailer.claim_email(params[:artist], params[:email]).deliver_later
   end
 
+  def rake_tasks
+    User.find_each(&:save)
+    User.all.each do |user|
+      unless user.email.include?('@')
+          user.email = "#{user.id}@mybandsource.com"
+          user.save
+      end  
+    end
+    redirect_to root_path
+  end
+
   private
 
     # Use callbacks to share common setup or constraints between actions.

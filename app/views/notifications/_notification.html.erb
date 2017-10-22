@@ -1,5 +1,5 @@
 <li>
-  <div class="media notification-container">
+  <div class="media notification-container <%= 'unread-notification' if notification.viewed == false %> ">
     <div class="media-left">
       <div class="media-object">
         <% unless User.find(notification.generating_user_id).picture.blank? %>

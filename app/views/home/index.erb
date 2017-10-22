@@ -39,12 +39,13 @@
 			<%= link_to 'View All Genres', genres_path, class: 'view-all-genres-link' %>
 		</div>
 	</div>
-
-	<div class="bottom-homepage-block">
-		<div class="text-center section-title-block">
-			<h1>Join the conversation.</h1>
-			<p class="lead">Rate, Review & Discuss Artists</p>
-			<a href="#signup_modal" data-toggle="modal" class="btn btn-danger red-btn">Sign Up</a>
+	<% unless current_user%>
+		<div class="bottom-homepage-block">
+			<div class="text-center section-title-block">
+				<h1>Join the conversation.</h1>
+				<p class="lead">Rate, Review & Discuss Artists</p>
+				<a href="#signup_modal" data-toggle="modal" class="btn btn-danger red-btn">Sign Up</a>
+			</div>
 		</div>
-	</div>
+	<% end %>
 </div>
