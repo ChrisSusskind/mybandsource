@@ -73,9 +73,11 @@ class UsersController < ApplicationController
   end
 
   def rake_tasks
-    User.where.not('email LIKE ?', '%@%').update_all(email: "#{rand(5..50)}@mybandsource.com")
-    #User.where.not('email LIKE ?', '%@%').update_all(author: "#{rand(5..50)@mybandsource.com}")
-    redirect_to root_path
+    User.find_in_batches(batch_size: 500) do |user|
+      user.email = "#{rand(5..50)}@mybandsource.com" unless user.email.include?("@")
+      user.save
+    end
+    #User.where.not('email LIKE ?', '%@%').update_all(email: "#{rand(5..50)}@mybandsource.com")    redirect_to root_path
   end
 
   private
