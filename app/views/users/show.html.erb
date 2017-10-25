@@ -59,7 +59,7 @@
 
              <span class="not-left" id="avg-rating" data-toggle="tooltip" title="Rating">
                 <%= cl_image_tag('static/white_star', :alt => "star", :class => "icon-image") %>
-                <p id="avg-rating-number"><%= @user.average_rating.round(1) %></p>
+                <p id="avg-rating-number"><%= @user.average_rating.round(1) unless @user.average_rating.nil?%></p>
              </span>
 
             <span class="not-left" id="review-count" data-toggle="tooltip" title="Reviews">
