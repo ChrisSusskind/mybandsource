@@ -15,12 +15,14 @@ function retrieveNotifications(){
         url: '/notifications/retrieve_notifications',
         success: function(data) {
             if(data.length > 0){
-              $("#notification_dropdown_button").css( "color", "red" );
+              $("#notification_dropdown_button").css( "color", "black" );
+              $("#notification_dropdown_button").css( "background-color", "white" );
               $("#unviewed_notification_number").html(data.length);
             }
             else
             {
               $("#notification_dropdown_button").css( "color", "white" );
+              $("#notification_dropdown_button").css( "background-color", "black" );
               $("#unviewed_notification_number").html(data.length);
               console.log("no new notifications");
             }
