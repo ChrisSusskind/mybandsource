@@ -1,5 +1,5 @@
 class Genre < ApplicationRecord
-	#For genre to user/artist associations
+	# For genre to user/artist associations
 	has_many :users
 	before_destroy :remove_users_genre, prepend: true
 
@@ -7,9 +7,8 @@ class Genre < ApplicationRecord
 
 	def remove_users_genre
 		users.each do |user|
-			user.genre_id = nil;
+			user.genre_id = nil
 		end
 	end
 
-	mount_uploader :picture, AvatarUploader
 end

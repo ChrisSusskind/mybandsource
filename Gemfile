@@ -40,8 +40,8 @@ gem 'omniauth-facebook'
 gem 'bootstrap', '~> 4.0.0.alpha6'
 
 # Use Cloudinary for image hosting CDN
-gem 'carrierwave'
 gem 'cloudinary'
+gem 'attachinary'
 
 # Use Puma for the webserver
 gem 'puma'

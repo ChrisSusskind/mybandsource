@@ -19,7 +19,7 @@
     <meta property="og:title"              content="MyBandSource" />
     <meta property="og:description"        content="Check this out" />
     <meta property="og:image"              content=<%= cl_image_tag("static/mbs_facebook_image") %>
-
+    <%= cloudinary_js_config %>
   </head>
 
 	<body>
@@ -49,6 +49,7 @@
 			<%= yield %>
 
 			<%= render 'layouts/footer' %>
+
 
 		</div>
 	</body>
