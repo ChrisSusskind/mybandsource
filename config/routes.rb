@@ -4,13 +4,15 @@ Rails.application.routes.draw do
 
   mount ActionCable.server => '/cable'
 
+  mount Attachinary::Engine => '/attachinary'
+
   # Homepage route
   root 'home#index'
 
   # Genre routes
   resources :genres, only: [:show, :index]
 
-  # Searchbar routes
+  # Search-bar routes
   post '/search_artists', to: 'users#search_artists'
   post '/submit_search', to: 'users#get_artist'
   get '/search_results', to: 'users#render_search_page'

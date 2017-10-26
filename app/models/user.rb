@@ -30,8 +30,9 @@ class User < ApplicationRecord
 
   validates :name, :email, presence: true
 
-  mount_uploader :picture, AvatarUploader
-  mount_uploader :banner_picture, AvatarUploader
+  # Attachinary photo configuration
+  has_attachment :avatar, accept: [:jpg, :png, :gif]
+  has_attachment :banner, accept: [:jpg, :png, :gif]
 
   extend FriendlyId
   friendly_id :name, use: :slugged
