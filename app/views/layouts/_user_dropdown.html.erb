@@ -1,6 +1,8 @@
 <div class="btn-group user-dropdown">
   <button type="button" id="user_dropdown_button" data-toggle="dropdown">
-    <div class="round-user" style="background: url(<%=current_user.picture%>);background-size: cover;background-position: center center;">
+    <div class="round-user" style="background: url('http://res.cloudinary.com/mybandsource/<%=current_user.picture.path unless current_user.picture.blank? %>');background-size: cover;background-position: center center;">
+
+
       <%= cl_image_tag("static/blank_user.png", :crop => :fill, :alt => "User Image", class: "rounded-circle img-circle", style:"max-width:35px;") unless current_user.picture? %> 
     </div>
     

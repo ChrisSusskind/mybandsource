@@ -4,7 +4,7 @@
   <div class="dark-overlay">
   </div>
   <% if @user.banner_picture? %>
-  <div class="profile-banner" style="background-size: cover; background-image: url(<%= Cloudinary::Utils.cloudinary_url(@user.banner_picture, width: 1381, height: 457, crop: :fill) %>)">
+  <div class="profile-banner" style="background-size: cover; background-image: url(<%= Cloudinary::Utils.cloudinary_url(@user.banner_picture.path, width: 1381, height: 457, crop: :fill) %>)">
   <% else %>
   <div class="profile-banner" style="background-size: cover; background-image: url(<%= Cloudinary::Utils.cloudinary_url("static/default_banner_image", width: 1381, height: 457, crop: :fill) %>">
   <% end %>
@@ -15,7 +15,7 @@
           <%= cl_image_tag("static/camera_icon", width: 48, height: 37, class: "camera-icon") %><br/>
           Change your Header Photo
           <%= form_for @user, url: "/users/#{@user.id}/banner_picture", method: :patch do |f| %>
-              <%= f.file_field(:banner_picture, onchange: "javascript:this.form.submit();", id: "banner-upload-input", style: "display: none") %>
+              <%= f.file_field(:banner_picture, as: :attachinary, onchange: "javascript:this.form.submit();", id: "banner-upload-input", style: "display: none") %>
           <% end %>
         </label>
       </div>
@@ -30,11 +30,11 @@
                   <%= cl_image_tag("static/camera_icon", width: 48, height: 37, class: "camera-icon") %><br/>
                   Change your Profile Picture
                 </label>
-                  <%= f.file_field(:picture, onchange: "javascript:this.form.submit();", id: "avatar-upload-input", style: "display: none") %>
+                  <%= f.file_field(:picture, as: :attachinary, onchange: "javascript:this.form.submit();", id: "avatar-upload-input", style: "display: none") %>
               <% end %>
           </div>
         <% end %>
-        <div class="artist-img-holder <%= 'user-circle' unless @user.is_artist %>" style="background: url('<%=@user.picture.blank? ? 'https://res.cloudinary.com/mybandsource/image/upload/v1/static/blank_user' : @user.picture %>');-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;background-position: center center;background-color:grey;">
+        <div class="artist-img-holder <%= 'user-circle' unless @user.is_artist %>" style="background: url('<%=@user.picture.blank? ? 'https://res.cloudinary.com/mybandsource/image/upload/v1/static/blank_user' : "https://res.cloudinary.com/mybandsource/image/upload/#{@user.picture.path}" %>');-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;background-position: center center;background-color:grey;">
         </div>
       </div>
 

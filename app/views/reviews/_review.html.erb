@@ -1,5 +1,5 @@
 <div class="review_content" id=<%= "review" + review.id.to_s %> data-review_id=<%=review.id.to_s%>>
-  <div class="float-left review-pic <%= 'user-circle' unless review.leaving_user.is_artist %>" style="background: url('<%=review.leaving_user.picture.blank? ? 'https://res.cloudinary.com/mybandsource/image/upload/v1/static/blank_user' : review.leaving_user.picture %>');-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;background-position: center center;background-color:grey;height:36px;width:36px;">
+  <div class="float-left review-pic <%= 'user-circle' unless review.leaving_user.is_artist %>" style="background: url('<%=review.leaving_user.picture.blank? ? 'https://res.cloudinary.com/mybandsource/image/upload/v1/static/blank_user' : "https://res.cloudinary.com/mybandsource/#{review.leaving_user.picture.path}" %>');-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;background-position: center center;background-color:grey;height:36px;width:36px;">
   </div>
   <div class="review-text-container float-left">
     <h4 class="review_username float-left">

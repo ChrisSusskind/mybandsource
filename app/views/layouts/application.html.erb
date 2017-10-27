@@ -22,7 +22,7 @@
     <%= cloudinary_js_config %>
   </head>
 
-	<body>
+	<body data-login="<%= current_user ? 'yes' : 'no' %>">
 		<div class="<%= @fullwidth ? 'full-width' : 'container' %>">
 			<div class="<%= @fullwidth ? 'container' : 'nada' %>">
         <%= render 'layouts/header' %>

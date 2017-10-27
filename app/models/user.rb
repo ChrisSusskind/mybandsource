@@ -31,8 +31,8 @@ class User < ApplicationRecord
   validates :name, :email, presence: true
 
   # Attachinary photo configuration
-  has_attachment :avatar, accept: [:jpg, :png, :gif]
-  has_attachment :banner, accept: [:jpg, :png, :gif]
+  has_attachment :picture, accept: [:jpg, :png, :gif]
+  has_attachment :banner_picture, accept: [:jpg, :png, :gif]
 
   extend FriendlyId
   friendly_id :name, use: :slugged

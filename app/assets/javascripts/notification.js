@@ -33,9 +33,12 @@ function retrieveNotifications(){
     });
 }
 
-retrieveNotifications();
 
 setInterval(function() {
-    retrieveNotifications();//retrieveNotifications();
-}, 1000); // 60 * 1000 milsec
+    if($("body").data('login') == "yes"){
+      retrieveNotifications();//retrieveNotifications();
+    }
+}, 1000); // 60 * 1000 milsec 
+
+
 
