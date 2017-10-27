@@ -4,7 +4,7 @@
       </div>
       <%= cl_image_tag("static/blank_user.png", :width => 48, :height => 48 , :alt => "User Image", class: "review-form-picture") unless current_user.picture? %>
   <% else %>
-      <div class="round-user" style="background: url(<%=current_user.picture.path unless current_user.path.blank?%>);height:48px;width:48px;background-size: cover;background-position: center center;margin-left:21px;float:left;">
+      <div class="round-user" style="background: url(<%=current_user.picture.path unless current_user.picture.blank?%>);height:48px;width:48px;background-size: cover;background-position: center center;margin-left:21px;float:left;">
       </div>
       <%= cl_image_tag("static/blank_user.png", :width => 48, :height => 48 , :alt => "User Image", class: "review-form-picture rounded-circle img-circle") unless current_user.picture? %>
   <% end %>
