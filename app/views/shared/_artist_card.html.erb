@@ -3,7 +3,7 @@
 <% end %>
 <div class="artist-card">
   <%= link_to artist_card do %>
-  <div class="artist-image-area" style="background: url('<%=artist_card.picture.blank? ? 'https://res.cloudinary.com/mybandsource/image/upload/v1/static/blank_user' : artist_card.picture %>');-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;background-position: center center;">
+  <div class="artist-image-area" style="background: url('<%=artist_card.picture.blank? ? 'https://res.cloudinary.com/mybandsource/image/upload/v1/static/blank_user' : "https://res.cloudinary.com/mybandsource/#{artist_card.picture.path}" %>');-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;background-position: center center;">
   </div>
   <% end %>
 
