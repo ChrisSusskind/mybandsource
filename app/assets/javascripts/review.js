@@ -135,7 +135,7 @@ function showReplyForm(node) {
     var profile_pic_url = $('#user_id_container').data('user_picture_url');
     var current_user_profile_url = $('#user_id_container').data('current_user');
     if(current_user_profile_url < 3){
-        current_user_profile_url = "http://res.cloudinary.com/mybandsource/image/upload/v1490846366/static/blank_user.png";
+        current_user_profile_url = "https://res.cloudinary.com/mybandsource/image/upload/v1490846366/static/blank_user.png";
     }
     var wrapper = document.createElement('div');
     wrapper.innerHTML = '' +
