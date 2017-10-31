@@ -20,6 +20,7 @@
     <meta property="og:description"        content="Check this out" />
     <meta property="og:image"              content=<%= cl_image_tag("static/mbs_facebook_image") %>
     <%= cloudinary_js_config %>
+    <%= render "layouts/ga" %>
   </head>
 
 	<body data-login="<%= current_user ? 'yes' : 'no' %>">
