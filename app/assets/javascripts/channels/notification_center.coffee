@@ -1,3 +1,4 @@
+###
 App.notification_center = App.cable.subscriptions.create "NotificationCenterChannel",
   connected: ->
     # Called when the subscription is ready for use on the server
@@ -7,9 +8,9 @@ App.notification_center = App.cable.subscriptions.create "NotificationCenterChan
 
   received: (data) ->
     # Called when there's incoming data on the websocket for this channel
-    picture_url = "http://res.cloudinary.com/mybandsource/image/upload/" + data["picture_url"]
-    if(picture_url == "http://res.cloudinary.com/mybandsource/image/upload/")
-      picture_url = "http://res.cloudinary.com/mybandsource/image/upload/v1490846366/static/blank_user.png"
+    picture_url = "https://res.cloudinary.com/mybandsource/image/upload/" + data["picture_url"]
+    if(picture_url == "https://res.cloudinary.com/mybandsource/image/upload/")
+      picture_url = "https://res.cloudinary.com/mybandsource/image/upload/v1490846366/static/blank_user.png"
 
     user_url = "/users/#{data['sender_id']}"
 
@@ -95,3 +96,7 @@ App.notification_center = App.cable.subscriptions.create "NotificationCenterChan
           '</div>' +
         '</div>' +
       '</li>'
+  
+Use a single # sign
+
+###       

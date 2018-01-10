@@ -1,7 +1,11 @@
 <div class="btn-group user-dropdown">
   <button type="button" id="user_dropdown_button" data-toggle="dropdown">
-    <%= cl_image_tag(current_user.picture, :width => 50, :height => 50, :crop => :fill, :alt => "Avatar", class: "rounded-circle img-circle") if current_user.picture? %>
-    <%= cl_image_tag("static/blank_user.png", :width => 50, :height => 50, :crop => :fill, :alt => "User Image", class: "rounded-circle img-circle") unless current_user.picture? %> 
+    <div class="round-user" style="background: url('https://res.cloudinary.com/mybandsource/<%=current_user.picture.path unless current_user.picture.blank? %>');background-size: cover;background-position: center center;">
+
+
+      <%= cl_image_tag("static/blank_user.png", :crop => :fill, :alt => "User Image", class: "rounded-circle img-circle", style:"max-width:35px;") unless current_user.picture? %> 
+    </div>
+    
   </button>
   <ul class="dropdown-menu dropdown-menu-right" role="menu">
     <li>

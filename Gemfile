@@ -40,8 +40,8 @@ gem 'omniauth-facebook'
 gem 'bootstrap', '~> 4.0.0.alpha6'
 
 # Use Cloudinary for image hosting CDN
-gem 'carrierwave'
 gem 'cloudinary'
+gem 'attachinary'
 
 # Use Puma for the webserver
 gem 'puma'
@@ -77,6 +77,8 @@ gem 'activeadmin', '~> 1.0.0'
 gem 'jquery-slick-rails'
 
 gem 'secure_headers'
+
+gem 'friendly_id', '~> 5.1.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

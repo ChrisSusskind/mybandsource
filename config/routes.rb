@@ -4,13 +4,15 @@ Rails.application.routes.draw do
 
   mount ActionCable.server => '/cable'
 
+  mount Attachinary::Engine => '/attachinary'
+
   # Homepage route
   root 'home#index'
 
   # Genre routes
   resources :genres, only: [:show, :index]
 
-  # Searchbar routes
+  # Search-bar routes
   post '/search_artists', to: 'users#search_artists'
   post '/submit_search', to: 'users#get_artist'
   get '/search_results', to: 'users#render_search_page'
@@ -45,6 +47,9 @@ Rails.application.routes.draw do
     # Routes for sharing review and responses
     post '/share/review/:id', to: 'reviews#share'
     post '/share/reviews/:review_id/response', to: 'responses#share'
+    collection do 
+      get :rake_tasks
+    end
   end
 
   get '/create_artist', to: 'users#create_artist'
@@ -61,6 +66,7 @@ Rails.application.routes.draw do
   resources :notifications, only: [:index]
   post '/notifications/mark_viewed_user', to: 'notifications#mark_viewed_user'
   post '/notifications/mark_viewed_artist', to: 'notifications#mark_viewed_artist'
+  get '/notifications/retrieve_notifications'
 
   # Claim artist mailer route
   post '/claim_artist', to: 'users#claim_artist'

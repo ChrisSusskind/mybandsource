@@ -115,8 +115,9 @@ textarea:focus, input:focus{
 
     .search-icon {
       position: absolute;
-      top: 12px;
-      left: 10px;
+      top: 10px;
+      left: 15px;
+      font-size: 18px;
     }
 
     .search-box {
@@ -124,9 +125,23 @@ textarea:focus, input:focus{
       border: 1px solid #dcdcdc;
       border-radius: 100px;
       width: 100%;
-      height: 48px;
+      height: 35px;
       padding-left: 40px;
+      font-size: 14px;
+      
     }
+      .search-box::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        color: #D9D9D9;
+      }
+      .search-box::-moz-placeholder { /* Firefox 19+ */
+        color: #D9D9D9;
+      }
+      .search-box:-ms-input-placeholder { /* IE 10+ */
+        color: #D9D9D9;
+      }
+      .search-box:-moz-placeholder { /* Firefox 18- */
+        color:#D9D9D9;
+      }
   }
 
   .close {
@@ -140,8 +155,12 @@ textarea:focus, input:focus{
   div.navbar-links {
 
     a {
-      line-height: 50px;
-      height: 50px;
+      line-height:35px; 
+      height: 0px;
+      font-size: 12px;
+      color: #707070;
+      font-weight: normal;
+      font-family: 'Montserrat', Helvetica, sans-serif;      
     }
 
     .login-header {
@@ -164,22 +183,25 @@ textarea:focus, input:focus{
         color: white;
         font-size: .6em;
         position: absolute;
-        left: 25px;
-        top: 7px;
+        left: 15px;
+        top: -5px;
         z-index: 1000;
+        background:grey;
       }
 
       button {
-        width: 50px;
-        height: 50px;
+        width: 25px;
+        height: 25px;
         background-color: black;
         border: none;
         color: white;
         cursor: pointer;
+        border: 1px solid black;
 
         i {
           position: relative;
-          top: 4px;
+          top: -1px;
+          left: -1px;
         }
       }
 
@@ -204,13 +226,14 @@ textarea:focus, input:focus{
 
         li {
           padding-left: 20px;
-          padding-top: 15px;
-          padding-bottom: 15px;
+          //padding-top: 15px;
+          //padding-bottom: 15px;
           border-bottom: solid thin #e5e5e5;
+          font-size: 13px;
 
           a {
-            color: black;
-            font-weight: 800;
+            color: #707070;
+            font-family: 'Montserrat', Helvetica, sans-serif;
           }
         }
       }
@@ -426,13 +449,13 @@ footer {
     margin-bottom: 60px;
 
     h3 {
-      font-size: 20px;
+      font-size: 19px;
       font-weight: 600;
     }
 
     p {
       color: #707070;
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 200;
       letter-spacing: 1px;
     }
@@ -453,6 +476,7 @@ footer {
     /*margin-left: 13.75px;
     margin-right: 13.75px;*/
     margin-bottom: 90px;
+    padding: 0 50px;
   }
 
   .home-title-container {
@@ -600,6 +624,8 @@ footer {
 // Homepage mobile styling
 
 @media (max-width: 767px) {
+  img.prev-arrow.slick-arrow, img.next-arrow.slick-arrow{display:none!important;}
+  .artist-card.slick-slide{margin:0 2px;}
   .homepage-section-text {
 
     h3 {
@@ -807,6 +833,8 @@ footer {
     overflow: hidden;
     display: flex;
     align-items: flex-end;
+    background-blend-mode: multiply;
+    background-color: rgba(96, 11, 90, 0.73);
 
     img.camera-icon {
       margin-bottom: 10px;
@@ -902,27 +930,35 @@ footer {
           white-space: nowrap;
           height: 62px;
           color: #ffffff;
-          font-size: 36px;
+          font-size: 32px;
           font-weight: bold;
           line-height: 62px;
-          margin-bottom: 5px;
+          margin-bottom: 0px;
         }
 
         h2 {
           white-space: nowrap;
           height: 17px;
-          color: rgba(255,255,255,1);
+          color: rgba(255,255,255,0.50);
           font-size: 14px;
-          font-weight: bold;
+          font-weight: 500;
           letter-spacing: 1px;
           line-height: 17px;
           margin-bottom: 32px;
+          text-transform: uppercase;
         }
 
         div.profile-numbers {
           height: 37px;
           margin-bottom: 16px;
+          font-weight:100;
+          font-size:14px;
+          
+          img{
+            width:10px;
 
+          }
+          
           p {
             display: inline;
             margin-bottom: 0px;
@@ -938,7 +974,7 @@ footer {
 
           i {
             position: relative;
-            top: 3px;
+            top: 1px;
           }
 
           .icon-image {
@@ -992,17 +1028,20 @@ footer {
 
         div.follow_count {
           position: relative;
-          top: 20px;
+          top: 0px;
 
           p.followers_text {
-            color: white;
+            color: rgba(255, 255, 255, 0.5);
             margin-bottom: 0;
+            font-size:12px;
           }
 
           a.follow-number {
             color: white;
             display: block;
             text-align: right;
+            font-weight:100;
+            font-size:14px;
           }
         }
       }
@@ -1019,8 +1058,9 @@ footer {
     font-family: 'Montserrat', Helvetica, sans-serif;
     display: flex;
     align-items: flex-start;
-    width: 100%;
-    padding: 60px 60px;
+    width: 80%;
+    padding: 60px 0px;
+    margin:auto;
 
     div.profile-content-column {
       width: 100%;
@@ -1034,7 +1074,7 @@ footer {
 
         // First section
 
-        font-size: 24px;
+        font-size: 17px;
         font-weight: 300;
         letter-spacing: 1px;
         line-height: 35px;
@@ -1044,21 +1084,17 @@ footer {
         h1 {
           height: 62px;
           line-height: 62px;
-          font-size: 24px;
+          font-size: 20px;
           font-weight: 600;
           text-transform: uppercase;
           margin-bottom: 0;
           color: black;
         }
 
-        a.read-more-link {
-          color: black;
+        a.read-more-link, a.read-less-link   {
+          color: #aa182a;
           font-weight: 600;
-        }
-
-        a.read-less-link {
-          color: black;
-          font-weight: 600;
+          border-bottom: 2px solid #AA182A;
         }
       }
 
@@ -1068,11 +1104,9 @@ footer {
         min-width: 620px;
 
         a {
-          height: 62px;
           color: black;
-          font-size: 24px;
+          font-size: 20px;
           font-weight: 600;
-          line-height: 62px;
           margin-bottom: 5px;
         }
 
@@ -1094,12 +1128,13 @@ footer {
             font-weight: 400;
             line-height: 31px;
             margin-bottom: 5px;
+            font-size:12px;
           }
         }
       }
 
       div.signup-container {
-        width: 584px;
+        width: 100%;//584px
         height: 73px;
         border: 1px solid #D9D9D9;
         border-radius: 100px;
@@ -1108,7 +1143,7 @@ footer {
         margin-top: 30px;
 
         p {
-          font-size: 16px;
+          font-size: 14px;
           line-height: 21px;
           font-weight: 300;
         }
@@ -1129,8 +1164,8 @@ footer {
           border: none;
           background-color: #AA182A;
           color: white;
-          font-size: 13px;
-          font-weight: bold;
+          font-size: 11px;
+          font-weight: normal;
           line-height: 16px;
           cursor: pointer;
         }
@@ -1147,8 +1182,10 @@ footer {
           border: none;
           background-color: #AA182A;
           color: white;
-          height: 50px;
-          width: 200px;
+          height: 30px;
+          width: 150px;
+          font-size: 12px;
+          font-weight: normal;
         }
 
         div.review-list {
@@ -1170,35 +1207,34 @@ footer {
       margin-right: 60px;
       min-width: 200px;
 
-      div.profile-sidebar-group {
+      .profile-sidebar-group {
+        margin-bottom:35px;
 
         h3 {
-          height: 62px;
           color: black;
           font-size: 12px;
           font-weight: 300;
-          line-height: 62px;
+          line-height: normal;
           text-transform: uppercase;
+          margin-bottom:10px;
         }
 
         h4 {
-          height: 17px;
           color: rgba(0,0,0,.5);
           font-size: 14px;
           font-weight: bold;
           letter-spacing: 1px;
-          line-height: 17px;
+          line-height: normal;
           text-transform: uppercase;
           position: relative;
-          bottom: 10px;
         }
 
         a.profile-social-icon {
           margin-right: 10px;
         }
 
-        div.claim-artist-container {
-
+        .claim-artist-container {
+          font-weight:bold;
           margin-top: 50px;
 
           h1 {
@@ -1211,11 +1247,7 @@ footer {
           }
 
           a.claim-artist-link {
-            height: 28px;
             color: #AA182A;
-            font-size: 18px;
-            font-weight: bold;
-            line-height: 24px;
           }
         }
       }
@@ -1236,6 +1268,8 @@ footer {
       width: 100%;
       position: relative;
       padding: 0 5%;
+      background-blend-mode: multiply;
+      background-color: rgba(96, 11, 90, 0.73);
 
       img.camera-icon {
         height: 26.12px;
@@ -1385,7 +1419,7 @@ footer {
 
             p.followers_text {
               font-size: 10px;
-              font-weight: 300;
+              font-weight: 100;
               margin-bottom: 0;
               color: white;
               width: 53px;
@@ -1394,7 +1428,7 @@ footer {
             a.follow-number {
               color: white;
               font-size: 14px;
-              font-weight: 300;
+              font-weight: 100;
               display: block;
               text-align: right;
               position: relative;
@@ -1442,13 +1476,8 @@ footer {
             color: #707070;
           }
 
-          a.read-more-link {
-            color: black;
-            font-weight: 600;
-          }
-
-          a.read-less-link {
-            color: black;
+          a.read-more-link, a.read-less-link {
+            color: #aa182a;
             font-weight: 600;
           }
         }
@@ -1456,11 +1485,9 @@ footer {
         div.review-mode-toggle {
 
           a {
-            height: 31px;
             color: black;
             font-size: 12px;
             font-weight: 600;
-            line-height: 31px;
             margin-bottom: 5px;
           }
 
@@ -1487,6 +1514,7 @@ footer {
               line-height: 31px;
               margin-bottom: 5px;
               width: 90px;
+              font-size:12px;
             }
           }
         }
@@ -1613,7 +1641,7 @@ footer {
 @media (min-width: 768px) {
   .review-form {
     height: 73px;
-    width: 584px;
+    width: 100%;
     border: 1px solid #d9d9d9;
     border-radius: 100px;
     background-color: #f0f0f0;
@@ -1648,8 +1676,12 @@ footer {
       }
 
       span.button-container {
+        float: right;
+        top: 10px;
+        position: relative;
+        
         button {
-          margin-left: 105px;
+          //margin-left: 105px;
           height: 32px;
           width: 88px;
           border-radius: 100px;
@@ -1657,7 +1689,7 @@ footer {
           background-color: #AA182A;
           color: white;
           font-size: 13px;
-          font-weight: bold;
+          font-weight: normal;
           line-height: 16px;
           cursor: pointer;
         }
@@ -1690,13 +1722,14 @@ footer {
         textarea {
           height: 21px;
           position: relative;
-          top: 10px;
+          top: 11px;
           margin-left: 28px;
           width: 340px;
           border: none;
-          font-size: 16px;
+          font-size: 13px;
           line-height: 21px;
           resize: none;
+          font-weight: 100;
         }
 
         button {
@@ -1711,7 +1744,7 @@ footer {
           background-color: #AA182A;
           color: white;
           font-size: 13px;
-          font-weight: bold;
+          font-weight: normal;
           line-height: 16px;
           cursor: pointer;
         }
@@ -1778,7 +1811,7 @@ footer {
           background-color: #AA182A;
           color: white;
           font-size: 9.1px;
-          font-weight: bold;
+          font-weight: normal;
           line-height: 11px;
           cursor: pointer;
         }
@@ -1854,16 +1887,15 @@ footer {
   div.review_content {
 
     div.review-text-container {
-      margin-left: 68px;
+      margin-left: 25px;
       position: relative;
-      bottom: 10px;
+      margin-top: 10px;
+      max-width:100%;
 
       h4 {
-        height: 21px;
-        font-size: 18px;
+        font-size: 16px;
         font-weight: bold;
         letter-spacing: 1px;
-        line-height: 21px;
         white-space: nowrap;
         margin-bottom: 5px;
       }
@@ -1895,17 +1927,17 @@ footer {
         }
 
         .review_icon:hover {
-          box-shadow: 5px 5px 50px black;
+          //box-shadow: 5px 5px 50px black;
         }
 
         span.upvotes {
 
           .rockon_icon_flipped {
-            -o-transform: scaleY(-1);
-            -webkit-transform: scaleY(-1);
-            transform: scaleY(-1);
-            filter: FlipV;
-            -ms-filter: "FlipV";
+            //-o-transform: scaleY(-1);
+            //-webkit-transform: scaleY(-1);
+            //transform: scaleY(-1);
+            //filter: FlipV;
+            //-ms-filter: "FlipV";
           }
         }
 
@@ -1949,6 +1981,7 @@ footer {
     img.review-pic {
       width: 27px;
       height: 27px;
+      max-width:25%;
     }
 
     div.review-text-container {
@@ -2001,22 +2034,22 @@ footer {
         }
 
         .review_icon:hover {
-          box-shadow: 5px 5px 50px black;
+          //box-shadow: 5px 5px 50px black;
         }
 
         span.upvotes {
 
           img {
-            width: 10px;
-            height: 10px;
+            width: 20px;
+            height: 20px;
           }
 
           .rockon_icon_flipped {
-            -o-transform: scaleY(-1);
-            -webkit-transform: scaleY(-1);
-            transform: scaleY(-1);
-            filter: FlipV;
-            -ms-filter: "FlipV";
+            //-o-transform: scaleY(-1);
+            //-webkit-transform: scaleY(-1);
+            //transform: scaleY(-1);
+            //filter: FlipV;
+            //-ms-filter: "FlipV";
           }
         }
 
@@ -2077,11 +2110,20 @@ footer {
     background-color: #f0f0f0;
 
     img {
-      height: 48px;
-      width: 48px;
+      height: 36px;
+      width: 36px;
       float: left;
       margin-left: 20px;
       margin-top: 13px;
+    }
+
+    .inner-profile-response {
+      height: 36px;
+      width: 36px;
+      float: left;
+      margin-left: 20px;
+      margin-top: 13px;
+      border-radius: 50%;
     }
 
     div.text-container {
@@ -2100,6 +2142,7 @@ footer {
         margin-left: 23.73px;
         border: none;
         resize: none;
+        font-size:13px;
       }
 
       .reply-form-btn {
@@ -2110,9 +2153,10 @@ footer {
         background-color: #AA182A;
         color: white;
         font-size: 11px;
-        font-weight: bold;
-        padding-top: 10.5px;
+        font-weight: normal;
+        line-height:normal;
         cursor: pointer;
+        margin-bottom: 10px;
       }
     }
   }
@@ -2123,13 +2167,20 @@ footer {
 @media (max-width: 767px) {
   .reply-form-container {
     height: 53.81px;
-    width: 254.74px;
+    width: 100%;
     border: .7px solid #d9d9d9;
     border-radius: 100px;
     background-color: #f0f0f0;
     margin-top: 10px;
 
     img {
+      height: 33.53px;
+      width: 33.62px;
+      margin-left: 11.39px;
+      margin-bottom: 47px;
+    }
+
+    inner-profile-response{
       height: 33.53px;
       width: 33.62px;
       margin-left: 11.39px;
@@ -2192,7 +2243,8 @@ footer {
 
         margin-left: 68px;
         position: relative;
-        bottom: 10px;
+        margin-top: 20px;
+        //bottom: 10px;
 
         h4 {
           height: 21px;
@@ -2232,11 +2284,11 @@ footer {
 
           span.upvotes {
             .rockon_icon_flipped {
-              -o-transform: scaleY(-1);
-              -webkit-transform: scaleY(-1);
-              transform: scaleY(-1);
-              filter: FlipV;
-              -ms-filter: "FlipV";
+              //-o-transform: scaleY(-1);
+              //-webkit-transform: scaleY(-1);
+              //transform: scaleY(-1);
+              //filter: FlipV;
+              //-ms-filter: "FlipV";
             }
           }
 
@@ -2326,11 +2378,11 @@ footer {
             }
 
             .rockon_icon_flipped {
-              -o-transform: scaleY(-1);
-              -webkit-transform: scaleY(-1);
-              transform: scaleY(-1);
-              filter: FlipV;
-              -ms-filter: "FlipV";
+              //-o-transform: scaleY(-1);
+              //-webkit-transform: scaleY(-1);
+              //transform: scaleY(-1);
+              //filter: FlipV;
+              //-ms-filter: "FlipV";
             }
           }
 
@@ -2599,7 +2651,7 @@ footer {
 
 .genre-choice-container {
   a {
-    color: black;
+    color: #aa182a;
   }
 
   .genre-choice-form {
@@ -2918,10 +2970,13 @@ footer {
   padding-left: 0;
   width: 100%;
   z-index: 1000;
+  margin: 10px 0;
+
 
   div {
-    background-color: rgba(255, 255, 255, 0.5);
-    padding: 5px 5px 5px 10px;
+    background-color: rgb(246, 246, 246);
+    padding: 10px;
+    border-bottom: 1px solid #bdbdbd;
 
     img {
       float: left;
@@ -2940,16 +2995,19 @@ footer {
 .artist-card {
 
   @media(min-width: 768px) {
-    display: inline-block;
-    width: 296px!important;
-    height: 415px!important;
+    //display: inline-block;
+    //width: 296px!important;
+    min-height: 415px;
     background-color: #252525;
-    margin-right: 20px;
+    //margin-right: 20px;
     margin-bottom: 20px;
+    //overflow:hidden;
 
     img.artist-image {
-      width: 100%;
+      //width: 100%;
       height: 276px;
+      margin: auto;
+      background: #3a3a3a;
     }
 
     div.name-container {
@@ -2987,7 +3045,7 @@ footer {
 
         i {
           position: relative;
-          top: 3px;
+          top: 1px;
         }
 
         .icon-image {
@@ -3000,8 +3058,8 @@ footer {
   }
 
   @media(max-width: 767px) {
-    width: 207px!important;
-    height: 277px!important;
+    //width: 207px!important;
+    //height: 277px!important;
     background-color: #252525;
     margin: 10px auto;
 
@@ -3011,7 +3069,7 @@ footer {
     }
 
     div.name-container {
-      margin-left: 10px;
+      padding: 0 5px;
       margin-top: 10px;
       margin-bottom: 10px;
 
@@ -3029,6 +3087,10 @@ footer {
     }
 
     div.numbers-container {
+      padding: 0 5px;
+      span.number:first-child {
+        margin-left:0px;
+      }
 
       span.number {
 
@@ -3060,15 +3122,15 @@ footer {
 .genre-card {
 
   width: 100%;//295.7px
-  height: 100%;;//292.9px
-  display: inline-block;
+  height: 200px;//292.9px
+  //display: inline-block;
   @media(max-width: 767px) {
-    display: block!important;
+    //display: block!important;
   }
   border: none;
   border-radius: 0;
   position: relative;
-  padding-bottom: 25px;
+  //padding-bottom: 25px;
   //margin-right: 25px;
 
   a {
@@ -3081,6 +3143,7 @@ footer {
   img {
     height: 100%;
     width: 100%;
+    visibility:hidden;
   }
 
   @media(min-width: 768px) {
@@ -3089,7 +3152,7 @@ footer {
       color: white;
       font-size: 20px;
       position: relative;
-      bottom: 50%;
+      line-height: 200px;//bottom: 50%;
       font-weight: 600;
     }
   }
@@ -3098,11 +3161,11 @@ footer {
     h5 {
       font-size: 14px;
       font-weight: 600;
-      line-height: 43px;
+      line-height: 200px;
       text-align: center;
       position: relative;
-      bottom: 50%;
-      transform: translateY(-50%);
+      //bottom: 50%;
+      //transform: translateY(-50%);
     }
   }
 
@@ -3159,11 +3222,10 @@ footer {
   }
 
   @media(min-width: 768px) {
-    padding-left: 90px;
-    padding-right: 90px;
+    padding-left: 0px;
+    padding-right: 0px;
     margin-top: 60px;
     margin-bottom: 60px;
-    width: 1500px;
 
     h3 {
       display: inline;
@@ -3261,23 +3323,27 @@ footer {
 
 @media (min-width: 768px) {
   .artist-card-order-dropdown {
-    width: 275px;
+    //width: 275px;
     float: right;
     white-space: nowrap;
+    position:relative;
+    top:20px;
 
     .dropdown-toggle {
       font-weight: 500;
     }
 
     a {
-      color: black!important;
+      color: #707070;
+      font-size:13px;
+
     }
   }
 }
 
 @media (max-width: 767px) {
   .artist-card-order-dropdown {
-    width: 125px;
+    //width: 125px;
     margin-top: 10px;
 
     .dropdown-toggle {
@@ -3285,7 +3351,8 @@ footer {
     }
 
     a {
-      color: black!important;
+      color: #707070;
+      font-size:13px;
     }
   }
 }

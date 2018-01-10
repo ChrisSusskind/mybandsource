@@ -7,6 +7,8 @@
 		<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= action_cable_meta_tag %>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
 
 		<%= csrf_meta_tags %>
 
@@ -19,11 +21,15 @@
     <meta property="og:title"              content="MyBandSource" />
     <meta property="og:description"        content="Check this out" />
     <meta property="og:image"              content=<%= cl_image_tag("static/mbs_facebook_image") %>
+    <%= cloudinary_js_config %>
+    <%= render "layouts/ga" %>
   </head>
 
-	<body>
-		<div class="container">
-			<%= render 'layouts/header' %>
+	<body data-login="<%= current_user ? 'yes' : 'no' %>">
+		<div class="<%= @fullwidth ? 'full-width' : 'container' %>">
+			<div class="<%= @fullwidth ? 'container' : 'nada' %>">
+        <%= render 'layouts/header' %>
+      </div>
 
 			<% if resource.errors.any? %>
           <div class="alert alert-danger">
@@ -46,6 +52,7 @@
 			<%= yield %>
 
 			<%= render 'layouts/footer' %>
+
 
 		</div>
 	</body>

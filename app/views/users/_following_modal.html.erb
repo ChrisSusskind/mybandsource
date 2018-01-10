@@ -12,7 +12,7 @@
         <% followings.each do |following| %>
             <div class="row follow-row">
               <div class="col-2 follow-pic-container">
-                <% if following.is_artist %>
+                <% if following.is_artist? %>
                     <%= cl_image_tag(following.picture, :width => 50, :height => 50, :crop => :fill, :alt => "Avatar", class: "follow-pic") if following.picture? %>
                     <%= cl_image_tag("static/blank_user.png", :width => 50, :height => 50, :crop => :fill, :alt => "User Image", class: "follow-pic") unless following.picture? %> 
                 <% else %>

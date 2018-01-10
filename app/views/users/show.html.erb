@@ -1,10 +1,12 @@
 <%= cloudinary_js_config %>
 
-<div class="" id="user_id_container" data-artist_name= "<%= @user.name %>"  data-user_picture_url="<%= @user.picture%>" data-user_id=<%=@user.id%>>
+<div class="" id="user_id_container" data-artist_name= "<%= @user.name %>"  data-user_picture_url="<%= @user.picture%>" data-user_id=<%=@user.id%> data-current_user=<%=current_user.picture if current_user %> >
+  <div class="dark-overlay">
+  </div>
   <% if @user.banner_picture? %>
-  <div class="profile-banner" style="background-image: url(<%= Cloudinary::Utils.cloudinary_url(@user.banner_picture, width: 1381, height: 457, crop: :fill) %>)">
+  <div class="profile-banner" style="background-size: cover; background-image: url(<%= Cloudinary::Utils.cloudinary_url(@user.banner_picture.path, width: 1381, height: 457, crop: :fill) %>)">
   <% else %>
-  <div class="profile-banner" style="background-image: url(<%= Cloudinary::Utils.cloudinary_url("static/default_banner_image", width: 1381, height: 457, crop: :fill) %>">
+  <div class="profile-banner" style="background-size: cover; background-image: url(<%= Cloudinary::Utils.cloudinary_url("static/default_banner_image", width: 1381, height: 457, crop: :fill) %>">
   <% end %>
 
     <% if @user == current_user %>
@@ -13,7 +15,7 @@
           <%= cl_image_tag("static/camera_icon", width: 48, height: 37, class: "camera-icon") %><br/>
           Change your Header Photo
           <%= form_for @user, url: "/users/#{@user.id}/banner_picture", method: :patch do |f| %>
-              <%= f.file_field(:banner_picture, onchange: "javascript:this.form.submit();", id: "banner-upload-input", style: "display: none") %>
+              <%= f.file_field(:banner_picture, as: :attachinary, onchange: "javascript:this.form.submit();", id: "banner-upload-input", style: "display: none") %>
           <% end %>
         </label>
       </div>
@@ -28,18 +30,12 @@
                   <%= cl_image_tag("static/camera_icon", width: 48, height: 37, class: "camera-icon") %><br/>
                   Change your Profile Picture
                 </label>
-                  <%= f.file_field(:picture, onchange: "javascript:this.form.submit();", id: "avatar-upload-input", style: "display: none") %>
+                  <%= f.file_field(:picture, as: :attachinary, onchange: "javascript:this.form.submit();", id: "avatar-upload-input", style: "display: none") %>
               <% end %>
           </div>
         <% end %>
-
-        <% if @user.is_artist %>
-            <%= cl_image_tag(@user.picture, :alt => "Avatar", :width => 246, :height => 246, class: "profile-picture") if @user.picture? %>
-            <%= cl_image_tag("static/blank_user.png", :width => 246, :height => 246 , :alt => "User Image", class: "profile-picture") unless @user.picture? %>
-        <% else %>
-            <%= cl_image_tag(@user.picture, :alt => "Avatar", :width => 246, :height => 246, class: "profile-picture rounded-circle img-circle") if @user.picture? %>
-            <%= cl_image_tag("static/blank_user.png", :width => 246, :height => 246 , :alt => "User Image", class: "profile-picture rounded-circle img-circle") unless @user.picture? %>
-        <% end %>
+        <div class="artist-img-holder <%= 'user-circle' unless @user.is_artist %>" style="background: url('<%=@user.picture.blank? ? 'https://res.cloudinary.com/mybandsource/image/upload/v1/static/blank_user' : "https://res.cloudinary.com/mybandsource/image/upload/#{@user.picture.path}" %>');-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;background-position: center center;background-color:grey;">
+        </div>
       </div>
 
       <div class="profile-banner-info">
@@ -56,23 +52,23 @@
 
         <% if @user.is_artist %>
           <div class="profile-numbers">
-            <span id="">
-              <%= cl_image_tag('static/view_count_eye', :alt => "eye", :width => 15, :height => 8, :class => "icon-image") %>
+            <span id="" data-toggle="tooltip" title="Views">
+              <%= cl_image_tag('static/view_count_eye', :alt => "eye", :class => "icon-image") %>
               <p id=""><%= number_to_human @user.view_count %></p>
             </span>
 
-             <span class="not-left" id="avg-rating">
-                <%= cl_image_tag('static/white_star', :alt => "star", :width => 14, :height => 14, :class => "icon-image") %>
-                <p id="avg-rating-number"><%= @user.average_rating %></p>
+             <span class="not-left" id="avg-rating" data-toggle="tooltip" title="Rating">
+                <%= cl_image_tag('static/white_star', :alt => "star", :class => "icon-image") %>
+                <p id="avg-rating-number"><%= @user.average_rating.round(1) unless @user.average_rating.nil?%></p>
              </span>
 
-            <span class="not-left" id="review-count">
+            <span class="not-left" id="review-count" data-toggle="tooltip" title="Reviews">
               <%= material_icon.message.md_18 %>
               <p id="review-count-number"><%= number_to_human @user.review_count%></p>
             </span>
 
-            <span class="not-left" id="response-count">
-              <%= cl_image_tag('static/response_icon', :alt => "response", :width => 14, :height => 14, :class => "icon-image") %>
+            <span class="not-left" id="response-count" data-toggle="tooltip" title="Responses">
+              <%= cl_image_tag('static/response_icon', :alt => "response", :class => "icon-image") %>
               <p id="response-count-number"><%= number_to_human @user.response_count %></p>
             </span>
           </div>
@@ -95,10 +91,10 @@
 
       <div class="follow-container">
         <div class="follow_count">
-          <p class="followers_text right_align">Followers</p>
+          <p class="followers_text right_align" style="font-weight:100;">FOLLOWERS</p>
           <div> <%= link_to "#{@user.followers.count}", "#follower_modal", "data-toggle": "modal", class: "follow-number" %> </div>
           <div class="following">
-            <p class="followers_text right_align">Following</p>
+            <p class="followers_text right_align" style="font-weight:100;">FOLLOWING</p>
             <div> <%= link_to "#{@user.following.count}", "#following_modal", "data-toggle": "modal", class: "follow-number" %> </div>
           </div>
         </div>
@@ -136,27 +132,17 @@
       </div>
 
       <div class="review-mode-toggle">
-        <%= link_to("Reviews", "/users/#{@user.id}/reviews/hide_responses", method: "get", class: "review-toggle active", id: "reviews_button", remote: true) %>
-        <%= link_to("Discussion", "/users/#{@user.id}/reviews/show_responses", method: "get", class: "discussion-toggle", id: "discussion_button", remote: true) %>
-        <div class="dropdown order-dropdown">
-          <a class="dropdown-toggle" href="#" id="order-dropdown-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Arrange Reviews By
-          </a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="order-dropdown-btn">
-            <a class="dropdown-item" href="#" onclick="orderReviewsByAge(event)">Most Recent</a>
-            <a class="dropdown-item" href="#" onclick="orderReviewsByUpvotes(event)">Most Upvoted</a>
-          </div>
-        </div>
+        <%= link_to("REVIEWS", "/users/#{@user.id}/reviews/hide_responses", method: "get", class: "review-toggle active", id: "reviews_button", remote: true) %>
+        <%= link_to("DISCUSSIONS", "/users/#{@user.id}/reviews/show_responses", method: "get", class: "discussion-toggle", id: "discussion_button", remote: true) %>
       </div>
 
       <% if @user.is_artist && !user_signed_in? %>
-        <div class="signup-container mx-auto">
-          <p class="bold">Join the conversation</p>
-          <p>Create an account to rate, review, and discuss artists.</p>
+        <div class="signup-container">
+          <p class="bold" style="font-weight:500;">Join the conversation</p>
+          <p style="color:grey;font-weight:100;">Create an account to rate, review, and discuss artists.</p>
           <button onclick="openSignupModal()">Sign Up</button>
         </div>
       <% end %>
-
       <div class="review-container">
         <% if user_signed_in? && @user.is_artist && @review.receiving_user_id.nil? %>
             <button onclick="loadReviewForm()" id="review_load_button" class="btn btn-danger mx-auto edit-btn" style="display: none">Edit Review</button>
@@ -165,14 +151,23 @@
               <%= render partial: 'reviews/review_form_2', locals: {review: @review} %>
             </div>
         <% elsif user_signed_in? && @user.is_artist %>
-            <button onclick="loadReviewForm()" id="review_load_button" class="btn btn-danger mx-auto edit-btn">Edit Review</button>
+            <button onclick="loadReviewForm()" id="review_load_button" class="btn btn-danger edit-btn">Edit My Review</button>
             <div id="review_form" class="review-form mx-auto" style="display: none">
               <%= render partial: 'reviews/review_form_1', locals: {review: @review} %>
               <%= render partial: 'reviews/review_form_2', locals: {review: @review} %>
             </div>
         <% end %>
-
-        <div class="row review-list" id="reviews_container">
+        <div id="review-filter" class="dropdown order-dropdown">
+          <a class="dropdown-toggle" href="#" id="order-dropdown-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Filter Reviews By
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="order-dropdown-btn">
+            <a class="dropdown-item" href="#" onclick="orderReviewsByAge(event)">Most Recent</a>
+            <a class="dropdown-item" href="#" onclick="orderReviewsByUpvotes(event)">Most Upvoted</a>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="review-list" id="reviews_container">
           <% if defined? top_review %>
               <% if defined? response_link %>
                   <%= render partial: 'reviews/review', locals: {review: top_review, responses_shown: true, is_artist: @user.is_artist} %>
@@ -214,21 +209,23 @@
       <% end %>
 
       <div class="profile-sidebar-group">
-        <h3>Social Profiles</h3>
-        <div class="profile-social-media-icons-container">
-          <% if @user.twitter_url? %>
-              <%= link_to cl_image_tag('static/twitter_icon_profile', alt: "Twitter"), url_with_protocol(@user.twitter_url), target: "_blank", class: "profile-social-icon" %>
-          <% end %>
-          <% if @user.facebook_url? %>
-              <%= link_to cl_image_tag('static/facebook_icon_profile', alt: "Facebook"), url_with_protocol(@user.facebook_url), target: "_blank", class: "profile-social-icon" %>
-          <% end %>
-        </div>
+        <% if @user.is_artist? %>
+          <h3>Social Profiles</h3>
+          <div class="profile-social-media-icons-container">
+            <% if @user.twitter_url? %>
+                <%= link_to cl_image_tag('static/twitter_icon_profile', alt: "Twitter"), url_with_protocol(@user.twitter_url), target: "_blank", class: "profile-social-icon" %>
+            <% end %>
+            <% if @user.facebook_url? %>
+                <%= link_to cl_image_tag('static/facebook_icon_profile', alt: "Facebook"), url_with_protocol(@user.facebook_url), target: "_blank", class: "profile-social-icon" %>
+            <% end %>
+          </div>
+        <% end %>
       </div>
 
       <% if @user.is_artist %>
         <div class="profile-sidebar-group">
           <div class="claim-artist-container">
-            <h1>Is this you?</h1>
+            <div>Is this you?</div>
             <a href="#claim_artist_modal_1" data-toggle="modal" class="claim-artist-link">Claim Artist Profile</a>
           </div>
         </div>
@@ -240,3 +237,15 @@
 <%= render partial: "follower_modal", locals: {followers: @user.followers} %>
 <%= render partial: "following_modal", locals: {followings: @user.following} %>
 <%= render partial: "profile_share_modal", locals: {link: root_url[0...-1] + user_path(@user) } %>
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip(); 
+    $('textarea').bind('keypress', function(e) {
+      if ((e.keyCode || e.which) == 13) {
+        $(this).parents('form').submit();
+        return false;
+      }
+    });
+});
+</script>

@@ -1,9 +1,12 @@
 <li>
-  <div class="media notification-container">
+  <div class="media notification-container <%= 'unread-notification' if notification.viewed == false %> ">
     <div class="media-left">
       <div class="media-object">
-        <%= cl_image_tag(notification.generating_user_picture, size: "30x30", :alt => "Avatar", class: "notification-pic rounded-circle img-circle") if notification.generating_user_picture %>
-        <%= cl_image_tag('static/blank_user', size: "30x30" , :alt => "User Image", class: "notification-pic rounded-circle img-circle") if !notification.generating_user_picture %> 
+        <% unless User.find(notification.generating_user_id).picture.blank? %>
+          <%= image_tag("https://res.cloudinary.com/mybandsource/#{User.find(notification.generating_user_id).picture.path}", size: "30x30", class: "notification-pic rounded-circle img-circle") %>
+        <% else %>
+          <%= image_tag('https://res.cloudinary.com/mybandsource/image/upload/c_fill/v1/static/blank_user.png', size: "30x30" , :alt => "doesnt have image", class: "notification-pic rounded-circle img-circle") %> 
+        <% end %>
       </div>
     </div>
     <div class="media-body notification-text-container">

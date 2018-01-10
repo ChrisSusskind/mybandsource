@@ -67,7 +67,7 @@ Devise.setup do |config|
   # config.http_authenticatable = false
 
   # If 401 status code should be returned for AJAX requests. True by default.
-   config.http_authenticatable_on_xhr = false
+  config.http_authenticatable_on_xhr = false
 
   # The realm used in Http Basic Authentication. 'Application' by default.
   # config.http_authentication_realm = 'Application'
@@ -247,7 +247,7 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  config.omniauth :facebook, "243060176100394", "c7a89e4201587c7cc688a8e751f4c98a" # App ID, App Secret
+  config.omniauth :facebook, '243060176100394', 'c7a89e4201587c7cc688a8e751f4c98a'
 
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.

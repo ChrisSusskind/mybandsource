@@ -22,3 +22,13 @@ desc "Rake task to test use of whenever for cron job management"
 task :hello_world do
   puts "Hello World"
 end
+
+task :update_users do
+  User.find_each(&:save)
+  User.all.each do |user|
+    unless user.email.include?('@')
+        user.email = "#{user.id}@mybandsource.com"
+        user.save
+    end  
+  end
+end

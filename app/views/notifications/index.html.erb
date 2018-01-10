@@ -1,9 +1,17 @@
 <div class="container">
-  <div class="notifications-page-title-container">
-    <h5 style="font-weight: bold">Your Notifications</h5>
+  <div class="row">
+    <div class="notifications-page-title-container">
+      <h5 style="font-weight: bold">Your Notifications</h5>
+    </div>
   </div>
-
-  <ul class="notifications-page-list">
-    <%= render @notifications %>
-  </ul>
+  <div class="row">
+    <ul class="notifications-page-list">
+      <%= render @notifications %>
+    </ul>
+    <div class="col-xs-12">
+      <%- if @notifications.count < 1%>
+        <p style="font-size: 12px;font-weight: normal;">You currently have no new notifications</p>  
+      <% end %>
+    </div>
+  </div>
 </div>

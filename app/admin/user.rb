@@ -115,8 +115,8 @@ ActiveAdmin.register User do
       f.input :spotify_url
       f.input :itunes_url
       f.input :twitter_url
-      f.input :picture
-      f.input :banner_picture
+      f.input :picture, as: :file
+      f.input :banner_picture, as: :file
       f.input :password
       f.input :password_confirmation
     end

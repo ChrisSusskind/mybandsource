@@ -1,13 +1,8 @@
 <div class="review_content" id=<%= "review" + review.id.to_s %> data-review_id=<%=review.id.to_s%>>
-  <% if review.leaving_user.is_artist %>
-      <%= cl_image_tag(review.leaving_user.picture, :width => 48, :height => 48, :crop => :fill, :alt => "Avatar", class: "float-left review-pic") if review.leaving_user.picture? %>
-      <%= cl_image_tag("static/blank_user.png", :width => 48, :height => 48, :crop => :fill, :alt => "User Image", class: "float-left review-pic") unless review.leaving_user.picture? %> 
-  <% else %>
-      <%= cl_image_tag(review.leaving_user.picture, :width => 48, :height => 48, :crop => :fill, :alt => "Avatar", class: "rounded rounded-circle float-left review-pic") if review.leaving_user.picture? %>
-      <%= cl_image_tag("static/blank_user.png", :width => 48, :height => 48, :crop => :fill, :alt => "User Image", class: "rounded rounded-circle float-left review-pic") unless review.leaving_user.picture? %> 
-  <% end %>
-  <div class="review-text-container">
-    <h4 class="review_username">
+  <div class="float-left review-pic <%= 'user-circle' unless review.leaving_user.is_artist %>" style="background: url('<%=review.leaving_user.picture.blank? ? 'https://res.cloudinary.com/mybandsource/image/upload/v1/static/blank_user' : "https://res.cloudinary.com/mybandsource/#{review.leaving_user.picture.path}" %>');-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;background-position: center center;background-color:grey;height:36px;width:36px;">
+  </div>
+  <div class="review-text-container float-left">
+    <h4 class="review_username float-left">
         <% if is_artist %>
           <%= link_to(review.leaving_user.name, user_path(review.leaving_user)) %>
         <% else %>
@@ -15,15 +10,15 @@
         <% end %>
     </h4>
 
-    <div class="ratings_list" data-rating= <%= review.rating %>>
+    <div class="ratings_list float-left" data-rating= <%= review.rating %>>
       <% for i in 0...review.rating %>
-        <%= cl_image_tag("static/red_star", :width => 19, :height => 19, :crop => :fill, :alt => "Star") %>
+        <%= cl_image_tag("static/red_star", :width => 12, :height => 12, :crop => :fill, :alt => "Star") %>
       <% end %>
       <% for i in 0...5-review.rating %>
-        <%= cl_image_tag("static/grey_star", :width => 19, :height => 19, :crop => :fill, :alt => "Star") %>
+        <%= cl_image_tag("static/grey_star", :width => 12, :height => 12, :crop => :fill, :alt => "Star") %>
       <% end %>
     </div>
-
+    <div class="clearfix"></div>
     <div class="review-comment">
       <%= review.comment %>
     </div>
@@ -34,10 +29,11 @@
       <%= render partial: 'reviews/review_info_bar', locals: {review: review, user_id: review.leaving_user_id, responses_shown: responses_shown} %>
     <% end %>
   </div>
-
+  <div class="clearfix"></div>
   <div class="response-container">
     <% if responses_shown %>
       <%= render partial: 'responses/response', collection: review.responses.order('CREATED_AT ASC'), locals: {review: review, is_artist: is_artist} %>
     <% end %>
   </div>
+  <div class="clearfix"></div>
 </div>

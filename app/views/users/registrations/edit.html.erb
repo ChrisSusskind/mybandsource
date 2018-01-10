@@ -80,7 +80,7 @@
                   <% end %>
                 </div>
                 <br/>
-                <a href="#" id="new_genre_choice" onclick="event.preventDefault();addGenre()">Add New Genre</a>
+                <a href="#" id="new_genre_choice" onclick="event.preventDefault();addGenre()">Add New Genre >></a>
               </div>
 
               <div style="display: none;" id="new_genre_form">
@@ -89,10 +89,6 @@
 
               <% end %>
 
-              <div class="form-group">
-                <%= f.label :current_password, class: "", style: "color:red" %> <i class="h-smallcaps" style="color:red">(To confirm your changes)</i><br />
-                <%= f.password_field :current_password, autocomplete: "off", class: "field-editpage" %>
-              </div>
 
               <div class="submit-btn-editpage">
                 <%= f.submit "Update", class: "d-block mx-auto btn btn-danger btn-pill" %>

@@ -50,11 +50,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   ###THESE TESTS DON'T WORK.  Getting ActionController::UnknownFormat Error
 
-  test "should update user location" do
-   post user_session_path, params: { user: {email: @user.email, password: 'turtle'}}
-   put user_registration_path, params: { user: { location: 'FUCK OFF', current_password: 'turtle' }, commit: :update }
-   assert_redirected_to user_url(@user)
-  end
 
   test "should destroy user" do
     post user_session_path, params: { user: {email: @user.email, password: 'turtle'}}

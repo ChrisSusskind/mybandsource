@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @fullwidth = true
     if @user.is_artist
       @artist = @user
       if user_signed_in?
@@ -71,11 +72,14 @@ class UsersController < ApplicationController
     ClaimMailer.claim_email(params[:artist], params[:email]).deliver_later
   end
 
+  def rake_tasks
+  end
+
   private
 
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:id])
+      @user = User.friendly.find(params[:id])
     end
 end
 
