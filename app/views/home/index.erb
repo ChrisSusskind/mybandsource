@@ -49,3 +49,9 @@
 		</div>
 	<% end %>
 </div>
+<%=render "shared/help_modal"%>
+<script type="text/javascript">
+    $(window).on('load',function(){
+        $('#help_modal').modal('show');
+    });
+</script>
