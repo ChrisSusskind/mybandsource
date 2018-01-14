@@ -13,17 +13,20 @@
         <h3>Reinventing Music Conversation Through Fan Connections</h3>
         <p>Our mission is to provide a streamlined way for music fans to convene and review, discuss, promote, and connect directly with artists. By connecting and collaborating, we create a new, alternative, and actionable data source to help the artists we love grow and share that special sound.</p>
         <p>Think of us like a Yelp for musical artists.</p>
-        <p>We want passionate fans just like you and I to join our community. Sign up below and contact me (the founder) directly. Your input and feedback is music to our ears. Reach out and let’s have a conversation, we all have the need to connect and share.</p>
+        <p>We want passionate fans just like you and I to join our community. 
+        <%= mail_to "chris.susskind@mybandsource.com", "Contact", style:"color:#aa182b;text-decoration:underline;", subject: "MyBandSource" %>
+        me (the founder) directly. Your input and feedback is music to our ears. Reach out and let’s have a conversation, we all have the need to connect and share.</p>
         <p>We are an exciting early-stage venture but you can be part of of this initial and important beginning - and acknowledged for your important contribution!</p>
         <p>Together, we can give rise to a new and disruptive trend in the music industry, driven by harnessing the combined power of connected communities of fans. Join the select group of fans, artists, and industry professionals who want to make an immediate change and impact on the industry. United, the MyBandSource family is infinitely powerful. Our strength will only grow in numbers.</p>
         <p>MyBandSource is currently in a soft launch phase, in the process of additional development and seeking smart funding and qualified talent. 
-        <%= mail_to "chris.susskind@mybandsource.com", "Please contact me if interested.", style:"color:#aa182b;", subject: "MyBandSource" %>
+        <%= mail_to "chris.susskind@mybandsource.com", "Please contact me if interested.", style:"color:#aa182b;text-decoration:underline;", subject: "MyBandSource" %>
         </p>
         <p>Cheers,<br>
         --
         </p>
         <div class="smaller-text-bottom">
-          <p>Chris Susskind<br>
+          <p>
+          <b>Chris Susskind</b><br>
           Founder & CEO<br>
           MyBandSource LLC<br>
           chris.susskind@mybandsource.com<br>
